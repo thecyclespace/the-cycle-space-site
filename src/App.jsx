@@ -762,7 +762,7 @@ export default function App() {
           <div className="aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#DCCDB8] p-3">
             <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
               <img
-                src="/elsa.jpg"
+                src={`${import.meta.env.BASE_URL}elsa.jpg`}
                 alt="Elsa, osteopath and women's health practitioner"
                 loading="lazy"
                 className="h-full w-full object-cover"
