@@ -266,6 +266,11 @@ const copy = {
       "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
     emailPlaceholder: "your@email.com",
     download: "Download the guide",
+    guideInvalidEmail: "Please enter a valid email address.",
+    guideConsent: "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
+    guideThanksTitle: "Your guide is on its way.",
+    guideThanksText: "The download just started. If nothing happened, click below to get it again.",
+    guideDownloadAgain: "Download again",
     aboutTitle: "Meet Elsa.",
     aboutText:
       "Elsa is a French osteopath, women's health practitioner and cycle educator. Born in Venezuela, raised in Brazil, clinically trained in London and shaped by movement, language and culture, she brings a rare mix of rigour, warmth and lived understanding to women's health.",
@@ -352,6 +357,11 @@ const copy = {
       "Télécharge Know Your Flow ou Connais Ton Cycle et commence à suivre ton corps avec plus de confiance et moins de bruit.",
     emailPlaceholder: "ton@email.com",
     download: "Télécharger le guide",
+    guideInvalidEmail: "Merci de saisir une adresse email valide.",
+    guideConsent: "Ton email sert uniquement à t'envoyer le guide et quelques nouvelles. Désabonnement à tout moment.",
+    guideThanksTitle: "Le guide arrive.",
+    guideThanksText: "Le téléchargement vient de démarrer. Si rien ne s'est passé, clique ci-dessous pour le récupérer.",
+    guideDownloadAgain: "Télécharger à nouveau",
     aboutTitle: "Rencontrer Elsa.",
     aboutText:
       "Elsa est ostéopathe française, praticienne en santé féminine et éducatrice du cycle. Née au Venezuela, élevée au Brésil, formée cliniquement à Londres et influencée par le mouvement, les langues et les cultures, elle apporte une combinaison rare de rigueur, chaleur et compréhension vécue à la santé féminine.",
@@ -395,6 +405,113 @@ function OrbitalGraphic({ dense = false }) {
         }`}
       />
       <div className="absolute right-[13%] top-[18%] h-5 w-5 rounded-full bg-[#9E4F49] shadow-[0_0_0_10px_rgba(158,79,73,0.08)]" />
+    </div>
+  );
+}
+
+const GUIDE_PDF = "Know_Your_Cycle_EN.pdf";
+const GUIDE_FILENAME = "The_Cycle_Space_Know_Your_Cycle.pdf";
+const STORAGE_KEY = "tcs_guide_email";
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
+function triggerGuideDownload() {
+  const a = document.createElement("a");
+  a.href = `${import.meta.env.BASE_URL}${GUIDE_PDF}`;
+  a.download = GUIDE_FILENAME;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function GuideForm({ t }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        setEmail(saved);
+        setStatus("done");
+      }
+    } catch {}
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const value = email.trim();
+    if (!isValidEmail(value)) {
+      setStatus("invalid");
+      return;
+    }
+    setStatus("submitting");
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch {}
+    triggerGuideDownload();
+    setTimeout(() => setStatus("done"), 250);
+  };
+
+  if (status === "done") {
+    return (
+      <div className="mt-10 max-w-xl rounded-[2rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-6 text-[#241915]">
+        <div className="flex items-start gap-4">
+          <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#9E4F49]/15 text-[#6F3432]">
+            <Icon name="check" size={20} />
+          </span>
+          <div className="flex-1">
+            <p className="font-serif text-2xl leading-tight">{t.guideThanksTitle}</p>
+            <p className="mt-2 text-sm leading-6 text-[#5d5049]">{t.guideThanksText}</p>
+            <button
+              type="button"
+              onClick={triggerGuideDownload}
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+            >
+              <Icon name="download" size={16} /> {t.guideDownloadAgain}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-10 max-w-xl">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-3 rounded-[2rem] bg-[#FBF7EF] p-2 sm:flex-row sm:rounded-full"
+        noValidate
+      >
+        <input
+          className="min-w-0 flex-1 bg-transparent px-5 py-4 text-[#241915] outline-none placeholder:text-[#8a7d75]"
+          placeholder={t.emailPlaceholder}
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (status === "invalid") setStatus("idle");
+          }}
+          aria-label="Email"
+          aria-invalid={status === "invalid"}
+          required
+        />
+        <Button
+          type="submit"
+          className="bg-[#9E4F49] px-6 py-4 text-[#FBF7EF] hover:bg-[#6F3432]"
+        >
+          <Icon name="download" size={18} /> {t.download}
+        </Button>
+      </form>
+      {status === "invalid" && (
+        <p className="mt-3 px-2 text-sm text-[#C46B63]" role="alert">
+          {t.guideInvalidEmail}
+        </p>
+      )}
+      <p className="mt-3 px-2 text-xs text-[#DCCDB8]">{t.guideConsent}</p>
     </div>
   );
 }
@@ -730,21 +847,7 @@ export default function App() {
             <p className="mb-5 text-sm uppercase tracking-[0.2em] text-[#C46B63]">Free resource</p>
             <h2 className="font-serif text-5xl leading-tight md:text-7xl">{t.resourcesTitle}</h2>
             <p className="mt-7 max-w-2xl text-xl leading-8 text-[#E7D8C8]">{t.resourcesText}</p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-10 flex max-w-xl flex-col gap-3 rounded-[2rem] bg-[#FBF7EF] p-2 sm:flex-row sm:rounded-full"
-            >
-              <input
-                className="min-w-0 flex-1 bg-transparent px-5 py-4 text-[#241915] outline-none placeholder:text-[#8a7d75]"
-                placeholder={t.emailPlaceholder}
-                type="email"
-                aria-label="Email"
-                required
-              />
-              <Button type="submit" className="bg-[#9E4F49] px-6 py-4 text-[#FBF7EF] hover:bg-[#6F3432]">
-                <Icon name="download" size={18} /> {t.download}
-              </Button>
-            </form>
+            <GuideForm t={t} />
           </div>
           <div className="relative min-h-[420px] bg-[#352A25] p-8 md:p-14">
             <OrbitalGraphic dense />
