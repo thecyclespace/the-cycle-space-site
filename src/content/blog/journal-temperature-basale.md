@@ -8,6 +8,7 @@ tags:
   - outil
 tool: basal-tracker
 lang: fr
+translation: basal-temperature-tracker
 draft: false
 ---
 

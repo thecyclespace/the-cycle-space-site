@@ -8,6 +8,7 @@ tags:
   - tool
 tool: basal-tracker
 lang: en
+translation: journal-temperature-basale
 draft: false
 ---
 

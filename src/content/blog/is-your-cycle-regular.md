@@ -8,6 +8,7 @@ tags:
   - tool
 tool: cycle-regularity
 lang: en
+translation: ton-cycle-est-il-regulier
 draft: false
 ---
 

@@ -8,6 +8,7 @@ tags:
   - outil
 tool: cycle-phase
 lang: fr
+translation: where-am-i-in-my-cycle
 draft: false
 ---
 

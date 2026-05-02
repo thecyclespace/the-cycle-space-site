@@ -8,6 +8,7 @@ tags:
   - outil
 tool: post-contraception
 lang: fr
+translation: post-contraception-timeline
 draft: false
 ---
 

@@ -8,6 +8,7 @@ tags:
   - tool
 tool: post-contraception
 lang: en
+translation: apres-larret-de-la-contraception
 draft: false
 ---
 

@@ -8,6 +8,7 @@ tags:
   - outil
 tool: period-calculator
 lang: fr
+translation: period-calculator
 draft: false
 ---
 

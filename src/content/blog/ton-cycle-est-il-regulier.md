@@ -8,6 +8,7 @@ tags:
   - outil
 tool: cycle-regularity
 lang: fr
+translation: is-your-cycle-regular
 draft: false
 ---
 

@@ -71,6 +71,7 @@ export const posts = Object.entries(modules)
       coverImage: data.coverImage || null,
       tags: Array.isArray(data.tags) ? data.tags : [],
       tool: data.tool || null,
+      translation: data.translation || null,
       lang: data.lang === "fr" ? "fr" : "en",
       draft: data.draft === true || data.draft === "true",
       bodyHtml: marked.parse(content || "", { async: false }),

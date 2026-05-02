@@ -8,6 +8,7 @@ tags:
   - tool
 tool: cycle-phase
 lang: en
+translation: ou-en-suis-je-dans-mon-cycle
 draft: false
 ---
 

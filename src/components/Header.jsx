@@ -1,15 +1,40 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Icon, Button, LogoMark } from "./ui";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
+import { getPost } from "../lib/blog";
 
 const NAV_ROUTES = ["/", "/services", "/blog", "/about"];
 
 export default function Header() {
   const { lang, setLang, t } = useI18n();
   const { openBooking } = useBooking();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleToggleLang = () => {
+    const nextLang = lang === "en" ? "fr" : "en";
+    const blogMatch = location.pathname.match(/^\/blog\/([^/]+)\/?$/);
+    if (blogMatch) {
+      const current = getPost(blogMatch[1]);
+      if (current?.translation) {
+        const target = getPost(current.translation);
+        if (target && target.lang === nextLang) {
+          setLang(nextLang);
+          navigate(`/blog/${target.slug}`);
+          return;
+        }
+      }
+      if (current && current.lang !== nextLang) {
+        setLang(nextLang);
+        navigate("/blog");
+        return;
+      }
+    }
+    setLang(nextLang);
+  };
 
   const navLinkClass = ({ isActive }) =>
     `transition ${isActive ? "text-[#9E4F49]" : "text-[#5d5049] hover:text-[#9E4F49]"}`;
@@ -37,7 +62,7 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 md:flex">
           <button
-            onClick={() => setLang(lang === "en" ? "fr" : "en")}
+            onClick={handleToggleLang}
             className="inline-flex items-center gap-2 rounded-full border border-[#DCCDB8] px-4 py-2 text-sm text-[#5d5049] hover:bg-[#F4EBDD]"
             aria-label={lang === "en" ? "Switch to French" : "Switch to English"}
           >
@@ -77,7 +102,7 @@ export default function Header() {
                 {t.book}
               </Button>
               <Button
-                onClick={() => setLang(lang === "en" ? "fr" : "en")}
+                onClick={handleToggleLang}
                 variant="outline"
                 className="border-[#DCCDB8] text-[#241915] hover:bg-[#F4EBDD]"
               >

@@ -8,6 +8,7 @@ tags:
   - tool
 tool: period-calculator
 lang: en
+translation: calculateur-cycle-menstruel
 draft: false
 ---
 
