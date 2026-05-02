@@ -29,18 +29,18 @@
   "calendlyLoading": "Loading the calendar…",
   "nav": [
     "Home",
+    "About",
     "Services",
-    "Resources",
-    "About"
+    "Resources"
   ],
   "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
   "finalText": "Book a first consultation or start with a free guide. Either way, this is a space for clarity.",
-  "heroText": "Your cycle, your hormones, your symptoms. Work with your body, not against it. Rooted in evidence. Entirely online.",
+  "heroText": "Here is where you learn to listen to your cycle, your hormones, your symptoms. Start working with your body, not against it. Rooted in evidence, centred on you.\nEntirely online.",
   "download": "Download the guide",
   "book": "Book a consultation",
   "aboutTitle": "Meet Elsa.",
   "modalTitle": "Book a consultation",
-  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles — these are not failures. They're signals. The work here is to understand what your body is telling you, then build something that fits your life.",
+  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles - these are not failures. They're signals, and your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually fits your life.\n\n",
   "heroKicker": "Women's health. Cycle education. Body literacy.",
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
@@ -58,7 +58,13 @@
     "You want to understand your body, not just be handed a protocol."
   ],
   "emailPlaceholder": "your@email.com",
-  "manifestoTitle": "This is not symptom management. This is body literacy.",
+  "homeTool": {
+    "kicker": "Free tool",
+    "title": "Track your cycle.",
+    "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
+    "learnMore": "Read the full article"
+  },
+  "manifestoTitle": "This is not symptom management.                                                                                     This is body literacy.",
   "trust": "Online sessions in English or French. Worldwide.",
   "journeyTitle": "Here's how it works.",
   "calendly": "Open Calendly",
@@ -96,11 +102,5 @@
     }
   ],
   "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
-  "heroTitle": "Your body has been speaking. Here is where you learn to listen.",
-  "homeTool": {
-    "kicker": "Free tool",
-    "title": "Track your cycle.",
-    "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
-    "learnMore": "Read the full article"
-  }
+  "heroTitle": "Your body has been speaking. "
 }
