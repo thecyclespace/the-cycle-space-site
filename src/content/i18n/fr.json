@@ -1,0 +1,79 @@
+{
+  "nav": ["Accueil", "Services", "Ressources", "À propos"],
+  "book": "Prendre rendez-vous",
+  "heroKicker": "Santé féminine. Éducation du cycle. Compréhension du corps.",
+  "heroTitle": "Ton corps te parle depuis longtemps. C'est ici que tu apprends à l'écouter.",
+  "heroText": "À ton cycle, tes hormones, tes symptômes, tes signes de fertilité — et commence à travailler avec ton corps, pas contre lui. Ancré dans la science, centré sur toi. Entièrement en ligne.",
+  "heroSecondary": "Explorer l'espace",
+  "trust": "Séances en ligne en anglais ou français. Partout dans le monde.",
+  "manifestoTitle": "On ne gère pas juste des symptômes. On apprend le langage du corps.",
+  "manifestoText": "Douleurs, fatigue, ballonnements, acné, sautes d'humeur, cycles irréguliers — ce ne sont pas des échecs aléatoires. Ce sont des signaux. Et ton corps les envoie pour une raison. Le travail ici, c'est de comprendre ce qu'il essaie de te dire, puis de construire quelque chose qui colle vraiment à ta vie.",
+  "manifestoQuote": "Ton corps n'est pas un problème à corriger. C'est un système à comprendre.",
+  "pillarsTitle": "Une approche plus calme et plus intelligente de la santé hormonale.",
+  "pillarsSubtitle": "Réflexion clinique, éducation du cycle et outils concrets. Pas de wellness anxiogène. Pas de solution magique. Pas de conseils flous.",
+  "services": [
+    {
+      "title": "Consultation santé féminine 1:1",
+      "tag": "Bilan approfondi en ligne",
+      "body": "Une séance personnalisée pensée pour t'aider à comprendre ce qui se passe dans ton corps, pourquoi tes symptômes apparaissent, et co-créer un plan pour y répondre sans te submerger. On regarde le tableau complet : ton cycle, ton histoire, ton mode de vie, tes patterns. Puis on construit quelque chose de pratique, fondé sur les preuves, et entièrement à toi.",
+      "cta": "Réserver cette séance"
+    },
+    {
+      "title": "Session d'éducation du cycle",
+      "tag": "Comprendre tes phases",
+      "body": "Apprends les quatre phases de ton cycle, comment les suivre, et comment adapter ton travail, ton mouvement, ton alimentation et ta récupération avec plus de clarté.",
+      "cta": "En savoir plus"
+    },
+    {
+      "title": "Programmes de groupe",
+      "tag": "Bientôt disponible",
+      "body": "Des programmes en cohorte autour du cycle syncing et de la santé hormonale pour les femmes qui cherchent structure, éducation et communauté.",
+      "cta": "Rejoindre la liste"
+    }
+  ],
+  "forYouTitle": "Tu es probablement au bon endroit si...",
+  "forYou": [
+    "On t'a dit que tout était normal, mais tu sens que quelque chose ne va pas.",
+    "Tu vis avec du SPM, PMDD, SOPK, endométriose, règles douloureuses, acné hormonale ou cycles irréguliers.",
+    "Tu arrêtes une contraception hormonale — pilule, stérilet, implant — et tu veux comprendre ton cycle naturel.",
+    "Tu traverses la périménopause ou la ménopause et tu peines avec les changements.",
+    "Tu cherches à comprendre tes signes de fertilité.",
+    "Tu veux comprendre ton corps, pas juste recevoir un protocole."
+  ],
+  "notForTitle": "Ce n'est peut-être pas pour toi si tu cherches une solution magique.",
+  "notForText": "The Cycle Space est fait pour les femmes prêtes à faire les choses autrement, curieuses de leur corps, ouvertes à un changement progressif, et qui cherchent quelque chose de durable. L'approche travaille avec la médecine conventionnelle, mais ne remplace pas une prise en charge médicale urgente.",
+  "journeyTitle": "Voici comment ça se passe.",
+  "journey": [
+    { "num": "01", "title": "Réserve ta consultation", "body": "Choisis un horaire qui te convient, les séances sont entièrement en ligne, en français ou en anglais." },
+    { "num": "02", "title": "Partage ton histoire", "body": "Avant ta séance, tu remplis un questionnaire approfondi sur ton cycle, tes symptômes, ton mode de vie et ton historique de santé. Pour qu'on tire le meilleur de notre temps ensemble." },
+    { "num": "03", "title": "Rendez-vous en ligne", "body": "La séance est calme, claire et sans précipitation, avec de l'espace pour chaque question." },
+    { "num": "04", "title": "Repars avec un plan", "body": "Tu repars avec des étapes concrètes et pratiques autour du tracking, de la nutrition, du mode de vie et du soutien." }
+  ],
+  "resourcesTitle": "Commence avec un guide gratuit du cycle.",
+  "resourcesText": "Télécharge Know Your Flow ou Connais Ton Cycle et commence à suivre ton corps avec plus de confiance et moins de bruit.",
+  "emailPlaceholder": "ton@email.com",
+  "download": "Télécharger le guide",
+  "guideInvalidEmail": "Merci de saisir une adresse email valide.",
+  "guideConsent": "Ton email sert uniquement à t'envoyer le guide et quelques nouvelles. Désabonnement à tout moment.",
+  "guideThanksTitle": "Le guide arrive.",
+  "guideThanksText": "Le téléchargement vient de démarrer. Si rien ne s'est passé, clique ci-dessous pour le récupérer.",
+  "guideDownloadAgain": "Télécharger à nouveau",
+  "aboutTitle": "Rencontrer Elsa.",
+  "aboutText": "Elsa est praticienne en santé féminine et ostéopathe, formée à Londres, et sincèrement fascinée par l'intelligence du corps féminin.\n\nMais ce travail n'est pas juste professionnel. Il est personnel.\n\nPendant des années, Elsa a vécu avec de l'acné, du SPM, des problèmes digestifs et des règles douloureuses. Mise sous pilule très jeune, elle a passé sept ans sans savoir à quoi ressemblait son cycle naturel. Quand elle l'a arrêtée, tout est revenu, mais en pire : la douleur, l'inflammation, les changements de poids, l'épuisement. Alors qu'elle était plus active que jamais. Après un an de galère et peu de vrais repères, elle a accepté un stérilet par pur désespoir.\n\nC'est durant cette période que tout a basculé. Elle a commencé à travailler sa santé intestinale, sa nutrition, son inflammation. Elle a commencé à vraiment écouter son corps. Quatre ans plus tard, elle a fait retirer le stérilet et, même si la réadaptation a pris du temps, pour la première fois les choses ont commencé à être différentes. Moins de douleur. Moins de SPM. Plus d'énergie. Des règles qui avaient du sens. Un corps qu'elle comprenait enfin.\n\nCette expérience est exactement la raison pour laquelle The Cycle Space existe. Parce qu'aucune femme ne devrait passer des années à se sentir ignorée, perdue ou déconnectée de son propre corps.\n\nElsa voit la personne dans sa globalité, pas juste le symptôme. Et elle trouve ce travail sincèrement, infiniment fascinant, parce que chaque corps a une histoire qui mérite d'être comprise.",
+  "credentials": [
+    "M.Ost. University College of Osteopathy",
+    "7+ ans de pratique clinique",
+    "Praticienne en santé féminine",
+    "Professeure de yoga 200h RYT",
+    "Français, anglais, portugais, espagnol"
+  ],
+  "finalTitle": "Prête à comprendre ce que ton corps essaie de dire ?",
+  "finalText": "Réserve une première consultation ou commence avec un guide gratuit. Dans tous les cas, cet espace est fait pour la clarté.",
+  "modalTitle": "Prendre rendez-vous",
+  "modalText": "Choisis une date et un horaire ci-dessous. Parcours conseillé : un appel découverte court, puis une consultation complète.",
+  "calendly": "Ouvrir Calendly",
+  "calendlyLoading": "Chargement du calendrier…",
+  "calendlyError": "Impossible de charger le calendrier. Tu peux ouvrir Calendly directement.",
+  "disclaimer": "Éducation et accompagnement — ne remplace pas un avis médical urgent. En cas de détresse ou de symptômes sévères, contacte ton médecin ou les services d'urgence.",
+  "footerTagline": "Éducation du cycle. Santé féminine. En ligne, partout dans le monde."
+}

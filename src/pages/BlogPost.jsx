@@ -1,0 +1,114 @@
+import { Link, Navigate, useParams } from "react-router-dom";
+import { Icon } from "../components/ui";
+import FinalCTA from "../components/FinalCTA";
+import PeriodCalculator from "../components/tools/PeriodCalculator";
+import CyclePhaseTool from "../components/tools/CyclePhaseTool";
+import CycleRegularityTool from "../components/tools/CycleRegularityTool";
+import PostContraceptionTimeline from "../components/tools/PostContraceptionTimeline";
+import BasalTemperatureTracker from "../components/tools/BasalTemperatureTracker";
+import { useI18n } from "../lib/i18n";
+import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
+import { getPost, formatDate } from "../lib/blog";
+
+// Registre des widgets interactifs disponibles dans un article.
+// L'article les déclenche via `tool: <key>` en frontmatter et un marqueur
+// `<!-- calculator -->` placé dans le corps Markdown à l'endroit voulu.
+const TOOLS = {
+  "period-calculator": PeriodCalculator,
+  "cycle-phase": CyclePhaseTool,
+  "cycle-regularity": CycleRegularityTool,
+  "post-contraception": PostContraceptionTimeline,
+  "basal-tracker": BasalTemperatureTracker,
+};
+const TOOL_MARKER = "<!-- calculator -->";
+
+export default function BlogPost() {
+  const { slug } = useParams();
+  const { lang } = useI18n();
+  const post = getPost(slug);
+
+  usePageMeta(
+    "blog",
+    post
+      ? {
+          title: `${post.title} — The Cycle Space`,
+          description: post.excerpt,
+          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
+        }
+      : undefined
+  );
+  useJsonLd(
+    post
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt || undefined,
+          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
+          datePublished: post.date ? post.date.toISOString() : undefined,
+          author: { "@type": "Person", name: "Elsa" },
+          publisher: {
+            "@type": "Organization",
+            name: "The Cycle Space",
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.svg` },
+          },
+          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+          inLanguage: post.lang === "fr" ? "fr-FR" : "en",
+        }
+      : null
+  );
+
+  if (!post) return <Navigate to="/blog" replace />;
+
+  const ToolComponent = post.tool ? TOOLS[post.tool] : null;
+  const splitIndex = ToolComponent ? post.bodyHtml.indexOf(TOOL_MARKER) : -1;
+  const bodyBefore = splitIndex >= 0 ? post.bodyHtml.slice(0, splitIndex) : post.bodyHtml;
+  const bodyAfter = splitIndex >= 0 ? post.bodyHtml.slice(splitIndex + TOOL_MARKER.length) : "";
+
+  const proseCls =
+    "prose prose-lg mx-auto max-w-3xl prose-headings:font-serif prose-headings:text-[#241915] prose-p:text-[#352A25] prose-a:text-[#9E4F49] hover:prose-a:text-[#6F3432] prose-strong:text-[#241915] prose-blockquote:border-[#9E4F49] prose-blockquote:text-[#6F3432]";
+
+  return (
+    <>
+      <section className="bg-[#FBF7EF] px-5 pb-12 pt-32 md:px-8 md:pt-40">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+          >
+            <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
+          </Link>
+          {post.date && (
+            <p className="mt-10 text-xs uppercase tracking-[0.2em] text-[#9E4F49]">
+              {formatDate(post.date, lang)}
+            </p>
+          )}
+          <h1 className="mt-4 font-serif text-5xl leading-tight md:text-6xl">{post.title}</h1>
+          {post.excerpt && (
+            <p className="mt-6 text-xl leading-8 text-[#5d5049]">{post.excerpt}</p>
+          )}
+        </div>
+      </section>
+
+      {post.coverImage && (
+        <section className="px-5 md:px-8">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[2rem]">
+            <img src={post.coverImage} alt="" className="w-full" />
+          </div>
+        </section>
+      )}
+
+      <article className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-3xl">
+          <div className={proseCls} dangerouslySetInnerHTML={{ __html: bodyBefore }} />
+          {ToolComponent && <ToolComponent />}
+          {bodyAfter && (
+            <div className={proseCls} dangerouslySetInnerHTML={{ __html: bodyAfter }} />
+          )}
+        </div>
+      </article>
+
+      <FinalCTA />
+    </>
+  );
+}

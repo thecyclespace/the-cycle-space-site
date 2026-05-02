@@ -1,0 +1,100 @@
+{
+  "journey": [
+    {
+      "num": "01",
+      "title": "Book your consultation",
+      "body": "Choose a time that works for you, sessions are fully online and available in English or French."
+    },
+    {
+      "num": "02",
+      "title": "Share your story",
+      "body": "Before your session, you'll complete an in-depth intake form covering your cycle, symptoms, lifestyle and health history. So we can make the most of your time together."
+    },
+    {
+      "num": "03",
+      "title": "Meet online",
+      "body": "Your session is calm, clear and unhurried, with space for every question."
+    },
+    {
+      "num": "04",
+      "title": "Leave with a plan",
+      "body": "You leave with grounded, practical next steps across tracking, nutrition, lifestyle and support."
+    }
+  ],
+  "guideInvalidEmail": "Please enter a valid email address.",
+  "pillarsSubtitle": "Clinical thinking, cycle education and everyday tools. No fear-based wellness. No quick fixes. No vague advice.",
+  "forYouTitle": "You are probably in the right place if...",
+  "finalTitle": "Ready to understand what your body has been trying to say?",
+  "notForTitle": "This may not be the right fit if you want a quick fix.",
+  "calendlyLoading": "Loading the calendar…",
+  "nav": [
+    "Start",
+    "Services",
+    "Resources",
+    "About"
+  ],
+  "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
+  "finalText": "Book a first consultation or start with a free guide. Either way, this is a space for clarity.",
+  "heroText": "To your cycle, your hormones, your symptoms, your fertility signs, and start working with your body, not against it. Rooted in evidence, centred on you. Entirely online.",
+  "download": "Download the guide",
+  "book": "Book a consultation",
+  "aboutTitle": "Meet Elsa.",
+  "modalTitle": "Book a consultation",
+  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles, these are not random failures. They are signals. And your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually fits your life.",
+  "heroKicker": "Women's health. Cycle education. Body literacy.",
+  "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
+  "pillarsTitle": "A calmer, smarter route into hormonal health.",
+  "resourcesText": "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
+  "guideThanksText": "The download just started. If nothing happened, click below to get it again.",
+  "footerTagline": "Cycle education. Women's health. Online, worldwide.",
+  "guideThanksTitle": "Your guide is on its way.",
+  "resourcesTitle": "Start with a free cycle guide.",
+  "forYou": [
+    "You have been told everything looks normal, but you know something is off.",
+    "You have PMS, PMDD, PCOS, endometriosis, painful periods, hormonal acne or irregular cycles.",
+    "You are coming off hormonal birth control — pill, IUD, implant — and want to understand your natural cycle.",
+    "You are going through perimenopause or menopause and struggling with the changes.",
+    "You are trying to understand your fertility signs.",
+    "You want to understand your body, not just be handed a protocol."
+  ],
+  "emailPlaceholder": "your@email.com",
+  "manifestoTitle": "This is not symptom management. This is body literacy.",
+  "trust": "Online sessions in English or French. Worldwide.",
+  "journeyTitle": "Here's how it works.",
+  "calendly": "Open Calendly",
+  "modalText": "Pick a date and time below. Recommended: a short discovery call first, then a full consultation.",
+  "aboutText": "Elsa is a women's health practitioner and osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.\n\nBut this work isn't just professional. It's personal.\n\nFor years, Elsa struggled with acne, PMS, gut issues and painful periods. Put on the pill at a young age, she spent seven years not knowing what her natural cycle even felt like. When she came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion. Despite being the most active she'd ever been. After a year of struggling and little real guidance, she accepted a coil out of sheer desperation.\n\nIt was during that time that everything shifted. She started working on her gut health, her nutrition, her inflammation. She started actually listening to her body. Four years later she removed the coil, and though it took time to readjust, for the first time things started to feel different. Less pain. Less PMS. More energy. Periods that made sense. A body she finally understood.\n\nThat experience is exactly why The Cycle Space exists. Because no woman should spend years feeling dismissed, confused or disconnected from her own body.\n\nElsa sees the whole person, not just the symptom. And she finds this work genuinely, endlessly fascinating, because every body has a story worth understanding.",
+  "heroSecondary": "Explore the space",
+  "disclaimer": "Education and support — does not replace urgent medical care. If you are in distress or experiencing severe symptoms, please contact your doctor or local emergency services.",
+  "guideDownloadAgain": "Download again",
+  "manifestoQuote": "Your body is not a problem to fix. It is a system to understand.",
+  "credentials": [
+    "M.Ost. University College of Osteopathy",
+    "7+ years clinical practice",
+    "Women's health practitioner",
+    "Yoga teacher 200h RYT",
+    "French, English, Portuguese, Spanish"
+  ],
+  "services": [
+    {
+      "title": "1:1 Women's Health Consultation",
+      "tag": "Online deep dive",
+      "body": "A personalised session designed to help you understand what's happening in your body, why your symptoms are showing up, and co-create a plan to address them, without overwhelm. We look at the full picture: your cycle, your history, your lifestyle, your patterns. Then we build something practical, evidence-based and entirely yours.",
+      "cta": "Book this session"
+    },
+    {
+      "title": "Cycle Education Session",
+      "tag": "Understand your phases",
+      "body": "Learn the four phases of your cycle, how to track them and how to adapt your work, movement, food and recovery with more clarity.",
+      "cta": "Learn more"
+    },
+    {
+      "title": "Group Programmes",
+      "tag": "Coming soon",
+      "body": "Cohort-based cycle syncing and hormonal health programmes for women who want structure, education and community.",
+      "cta": "Join the list"
+    }
+  ],
+  "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
+  "heroTitle": "Your body has been speaking. Here is where you learn to listen."
+}

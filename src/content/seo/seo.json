@@ -1,0 +1,50 @@
+{
+  "en": {
+    "title": "The Cycle Space — Women's health, cycle education, body literacy",
+    "description": "The Cycle Space helps women understand their cycle, hormones, symptoms and fertility signs through clinically grounded, deeply human online care.",
+    "ogTitle": "The Cycle Space",
+    "ogDescription": "Women's health. Cycle education. Body literacy. Online sessions in English or French.",
+    "pages": {
+      "services": {
+        "title": "Services — The Cycle Space",
+        "description": "1:1 women's health consultations, cycle education sessions and group programmes, all online."
+      },
+      "blog": {
+        "title": "Blog — The Cycle Space",
+        "description": "Free cycle tracking guide and articles on hormones, body literacy and women's wellness."
+      },
+      "about": {
+        "title": "Meet Elsa — The Cycle Space",
+        "description": "Elsa is a women's health practitioner and osteopath, trained in London, fascinated by the intelligence of the female body."
+      },
+      "notFound": {
+        "title": "Page not found — The Cycle Space",
+        "description": "The link you followed didn't lead anywhere. Head back home or explore the rest of the site."
+      }
+    }
+  },
+  "fr": {
+    "title": "The Cycle Space — Santé féminine, éducation du cycle",
+    "description": "The Cycle Space aide les femmes à comprendre leur cycle, leurs hormones, leurs symptômes et leurs signes de fertilité grâce à un accompagnement en ligne clinique, clair et humain.",
+    "ogTitle": "The Cycle Space",
+    "ogDescription": "Santé féminine. Éducation du cycle. Compréhension du corps. Séances en ligne en anglais ou français.",
+    "pages": {
+      "services": {
+        "title": "Services — The Cycle Space",
+        "description": "Consultations santé féminine 1:1, sessions d'éducation du cycle et programmes en groupe, en ligne."
+      },
+      "blog": {
+        "title": "Blog — The Cycle Space",
+        "description": "Guide gratuit de suivi du cycle et articles sur les hormones, la compréhension du corps et le bien-être féminin."
+      },
+      "about": {
+        "title": "Rencontrer Elsa — The Cycle Space",
+        "description": "Elsa est praticienne en santé féminine et ostéopathe, formée à Londres, fascinée par l'intelligence du corps féminin."
+      },
+      "notFound": {
+        "title": "Page introuvable — The Cycle Space",
+        "description": "Le lien que tu as suivi n'a rien donné. Reviens à la page d'accueil ou explore le reste du site."
+      }
+    }
+  }
+}

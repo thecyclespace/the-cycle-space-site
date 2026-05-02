@@ -9,12 +9,28 @@
       name="description"
       content="The Cycle Space helps women understand their cycle, hormones, symptoms and fertility signs through clinically grounded, deeply human online care."
     />
+    <!-- Canonical (override par route via React) -->
+    <link rel="canonical" href="https://thecyclespace.com/" />
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="The Cycle Space" />
     <meta property="og:title" content="The Cycle Space" />
     <meta
       property="og:description"
       content="Women's health. Cycle education. Body literacy. Online sessions in English or French."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thecyclespace.com/" />
+    <meta property="og:image" content="https://thecyclespace.com/elsa.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Cycle Space" />
+    <meta
+      name="twitter:description"
+      content="Women's health. Cycle education. Body literacy. Online sessions in English or French."
+    />
+    <meta name="twitter:image" content="https://thecyclespace.com/elsa.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,9 +38,42 @@
       rel="stylesheet"
     />
     <title>The Cycle Space — Women's health, cycle education, body literacy</title>
+    <!-- JSON-LD : WebSite schema (statique). Per-page schemas (Person, Article)
+         sont injectés à l'hydratation par useJsonLd. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Cycle Space",
+      "url": "https://thecyclespace.com",
+      "description": "Women's health, cycle education and body literacy. Online consultations in English and French.",
+      "inLanguage": ["en", "fr"]
+    }
+    </script>
+    <!-- Netlify Identity widget : gère l'invitation par email + le login pour /admin. -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
+    <!-- Formulaire HTML statique détecté par Netlify au build (Forms).
+         Le formulaire React (GuideForm) POST en AJAX avec le même name="guide-download".
+         Les soumissions arrivent dans Netlify > Forms et déclenchent l'email vers l'admin. -->
+    <form name="guide-download" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input name="bot-field" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Redirige vers /admin/ après login depuis un lien d'invitation.
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
