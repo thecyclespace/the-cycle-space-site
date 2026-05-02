@@ -149,18 +149,97 @@ Si tu veux **garder GitHub Pages comme miroir** : remets `base: "/the-cycle-spac
 
 ---
 
+## Workflow CMS ↔ code local — éviter les conflits
+
+Le CMS Decap commit directement sur GitHub via Git Gateway. Si tu travailles aussi en local sur le code, les deux flux peuvent se croiser. Cette section explique comment éviter les conflits Git.
+
+### Qui touche quoi — la séparation à respecter
+
+**Zone CMS uniquement** — édite-les *toujours* via `/admin`, jamais en local :
+
+```
+src/content/settings/site.json    # contact, calendly, instagram…
+src/content/seo/seo.json          # titres et meta des pages
+src/content/blog/*.md             # tous les articles et outils
+src/content/i18n/en.json          # tous les textes EN
+src/content/i18n/fr.json          # tous les textes FR
+public/uploads/*                  # images uploadées via le CMS
+```
+
+**Zone code uniquement** — édite-les *toujours* en local + `git push`, jamais via le CMS :
+
+```
+src/components/    src/lib/    src/pages/    src/utils/
+package.json    vite.config.js    tailwind.config.js    netlify.toml
+public/admin/config.yml    public/_redirects    public/robots.txt
+index.html    src/App.jsx    src/main.jsx    src/index.css
+```
+
+Si tu respectes cette séparation, tu n'auras quasiment jamais de conflit Git.
+
+### La règle d'or — toujours `pull --rebase` avant de coder
+
+```bash
+cd <repo>
+git pull --rebase
+```
+
+Cela télécharge tous les commits CMS poussés depuis ta dernière session, et les rejoue avant tes modifications locales.
+
+### Workflow type d'une session de code local
+
+```bash
+# 1. Début de session — sync down les modifs CMS
+git pull --rebase
+
+# 2. Travailler — modifier des fichiers de la zone "code"
+git add <fichiers-modifiés>
+git commit -m "..."
+
+# 3. Avant de push — re-pull au cas où le CMS a publié pendant ta session
+git pull --rebase
+git push
+```
+
+### Si le push est rejeté (cas le plus fréquent)
+
+Cela arrive quand le CMS a publié quelque chose depuis ton dernier pull :
+
+```bash
+git pull --rebase    # rejoue tes commits locaux par-dessus les commits CMS
+git push             # cette fois ça passe
+```
+
+### Si un conflit éclate sur un fichier "content" (rare)
+
+Si tu n'as pas respecté la séparation et qu'un conflit apparaît sur un fichier édité aussi via le CMS, **laisse gagner le CMS** (c'est lui la source de vérité du contenu) :
+
+```bash
+git checkout --theirs src/content/i18n/en.json
+git add src/content/i18n/en.json
+git rebase --continue
+```
+
+À l'inverse, si le conflit est sur un fichier "code" (ce qui ne devrait pas arriver), c'est ta version locale qui doit gagner :
+
+```bash
+git checkout --ours src/components/Header.jsx
+git add src/components/Header.jsx
+git rebase --continue
+```
+
+---
+
 ## Limites connues
 
 - L'interface Decap CMS est en anglais (Decap 3 ne propose pas de traduction française complète des libellés du CMS lui-même).
 - Les images uploadées via le CMS arrivent dans `public/uploads/`. Les images existantes (`public/elsa.jpg`, `public/Know_Your_Cycle_EN.pdf`) ne sont pas listées dans le sélecteur d'images du CMS — saisis le nom du fichier à la main pour les référencer (ex: `elsa.jpg`).
-- Le SEO bilingue est mis à jour côté client (au runtime). Les crawlers modernes (Google, Bing) exécutent le JS, donc le SEO fonctionne. Les anciens crawlers verront uniquement les valeurs par défaut de `index.html`.
-- Pas de routing : l'admin et le site partagent la même page, le routing est purement basé sur les ancres (`#start`, `#services`, ...).
+- Le SEO bilingue (canonical, meta, OG, JSON-LD) est mis à jour côté client après hydratation. Les crawlers modernes (Google, Bing) exécutent le JS, donc le SEO fonctionne. La balise canonical pointe toujours vers `SITE_URL` (défini dans `src/lib/seo.js`, par défaut `https://thecyclespace.com`) — surcharge possible via la variable d'env Netlify `VITE_SITE_URL` tant que le domaine définitif n'est pas branché.
 
 ## Améliorations possibles
 
 - Mettre le SEO statique au build via `vite-plugin-html` (meilleur SEO pour les anciens crawlers).
 - Ajouter un OAuth Google externe dans Netlify Identity (login plus simple pour Elsa).
-- Ajouter une collection `blog` dans Decap si un jour le besoin se présente (articles, témoignages…).
 - Connecter un domaine personnalisé (`thecyclespace.com`) dans Netlify et mettre à jour `site_url` dans `public/admin/config.yml`.
 
 ## Dépendances ajoutées pour le CMS
