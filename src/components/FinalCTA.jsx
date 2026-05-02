@@ -6,12 +6,12 @@ export default function FinalCTA({ showSecondary = true }) {
   const { t } = useI18n();
   const { openBooking } = useBooking();
   return (
-    <section className="relative overflow-hidden bg-[#241915] px-5 py-24 text-[#FBF7EF] md:px-8 md:py-32">
+    <section className="relative overflow-hidden bg-[#241915] px-5 py-16 text-[#FBF7EF] md:px-8 md:py-32">
       <OrbitalGraphic />
       <div className="relative mx-auto max-w-4xl text-center">
-        <h2 className="font-serif text-5xl leading-tight md:text-7xl">{t.finalTitle}</h2>
-        <p className="mx-auto mt-7 max-w-2xl text-xl leading-8 text-[#E7D8C8]">{t.finalText}</p>
-        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <h2 className="font-serif text-4xl leading-tight md:text-7xl">{t.finalTitle}</h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#E7D8C8] md:mt-7 md:text-xl md:leading-8">{t.finalText}</p>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:mt-10 md:gap-4">
           <Button onClick={openBooking} className="bg-[#9E4F49] px-7 py-4 text-[#FBF7EF] hover:bg-[#6F3432]">
             {t.book} <Icon name="calendar" size={18} />
           </Button>

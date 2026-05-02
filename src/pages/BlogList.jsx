@@ -42,22 +42,22 @@ export default function BlogList() {
 
   return (
     <>
-      <section className="bg-[#FBF7EF] px-5 pb-12 pt-32 md:px-8 md:pt-40">
+      <section className="bg-[#FBF7EF] px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-40">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-sm uppercase tracking-[0.2em] text-[#9E4F49]">{L.kicker}</p>
-          <h1 className="max-w-4xl font-serif text-5xl leading-tight md:text-7xl">{L.title}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#5d5049]">{L.intro}</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#9E4F49] md:mb-5 md:text-sm">{L.kicker}</p>
+          <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-7xl">{L.title}</h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{L.intro}</p>
         </div>
       </section>
 
-      <section className="px-5 pt-12 md:px-8 md:pt-16">
+      <section className="px-5 pt-10 md:px-8 md:pt-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeader number="01" title={L.free.title} subtitle={L.free.subtitle} />
-          <div className="mt-8 grid grid-cols-1 overflow-hidden rounded-[2.8rem] bg-[#241915] text-[#FBF7EF] md:grid-cols-[1fr_0.8fr]">
-            <div className="p-8 md:p-14">
-              <p className="mb-5 text-sm uppercase tracking-[0.2em] text-[#C46B63]">{L.pdf}</p>
-              <h3 className="font-serif text-4xl leading-tight md:text-5xl">{t.resourcesTitle}</h3>
-              <p className="mt-6 max-w-2xl text-lg leading-7 text-[#E7D8C8]">{t.resourcesText}</p>
+          <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-[2rem] bg-[#241915] text-[#FBF7EF] md:mt-8 md:grid-cols-[1fr_0.8fr] md:rounded-[2.8rem]">
+            <div className="p-6 md:p-14">
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#C46B63] md:mb-5 md:text-sm">{L.pdf}</p>
+              <h3 className="font-serif text-3xl leading-tight md:text-5xl">{t.resourcesTitle}</h3>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#E7D8C8] md:mt-6 md:text-lg">{t.resourcesText}</p>
               <GuideForm />
             </div>
             <div className="relative hidden min-h-[420px] bg-[#352A25] p-8 md:block md:p-14">
@@ -73,10 +73,10 @@ export default function BlogList() {
       </section>
 
       {tools.length > 0 && (
-        <section className="px-5 pt-20 md:px-8 md:pt-28">
+        <section className="px-5 pt-14 md:px-8 md:pt-28">
           <div className="mx-auto max-w-7xl">
             <SectionHeader number="02" title={L.tools.title} subtitle={L.tools.subtitle} />
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="mt-6 grid gap-4 md:mt-8 md:grid-cols-3 md:gap-6">
               {tools.map((post) => (
                 <PostCard key={post.slug} post={post} lang={lang} />
               ))}
@@ -85,7 +85,7 @@ export default function BlogList() {
         </section>
       )}
 
-      <section className="px-5 py-20 md:px-8 md:py-28">
+      <section className="px-5 py-14 md:px-8 md:py-28">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             number={tools.length > 0 ? "03" : "02"}
@@ -93,11 +93,11 @@ export default function BlogList() {
             subtitle={L.articles.subtitle}
           />
           {articles.length === 0 ? (
-            <div className="mt-8 rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-12 text-center text-[#5d5049]">
+            <div className="mt-6 rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-8 text-center text-sm text-[#5d5049] md:mt-8 md:p-12 md:text-base">
               {L.empty}
             </div>
           ) : (
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="mt-6 grid gap-4 md:mt-8 md:grid-cols-3 md:gap-6">
               {articles.map((post) => (
                 <PostCard key={post.slug} post={post} lang={lang} />
               ))}

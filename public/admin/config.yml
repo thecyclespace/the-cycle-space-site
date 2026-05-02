@@ -216,6 +216,16 @@ collections:
           - { label: "Pied de page — Tagline", name: "footerTagline", widget: "string" }
           - { label: "Pied de page — Disclaimer", name: "disclaimer", widget: "text" }
 
+          - label: "Bloc outil sur la home"
+            name: "homeTool"
+            widget: "object"
+            hint: "Section qui présente le calculateur de cycle juste avant le CTA final."
+            fields:
+              - { label: "Kicker (petite ligne)", name: "kicker", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
+
   # ---------------------------------------------------------------------------
   - name: fr
     label: "Textes du site (Français)"
@@ -307,3 +317,13 @@ collections:
 
           - { label: "Pied de page — Tagline", name: "footerTagline", widget: "string" }
           - { label: "Pied de page — Disclaimer", name: "disclaimer", widget: "text" }
+
+          - label: "Bloc outil sur la home"
+            name: "homeTool"
+            widget: "object"
+            hint: "Section qui présente le calculateur de cycle juste avant le CTA final."
+            fields:
+              - { label: "Kicker (petite ligne)", name: "kicker", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }

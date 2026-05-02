@@ -3,11 +3,11 @@
   "book": "Prendre rendez-vous",
   "heroKicker": "Santé féminine. Éducation du cycle. Compréhension du corps.",
   "heroTitle": "Ton corps te parle depuis longtemps. C'est ici que tu apprends à l'écouter.",
-  "heroText": "À ton cycle, tes hormones, tes symptômes, tes signes de fertilité — et commence à travailler avec ton corps, pas contre lui. Ancré dans la science, centré sur toi. Entièrement en ligne.",
+  "heroText": "Ton cycle, tes hormones, tes symptômes. Travaille avec ton corps, pas contre lui. Ancré dans la science. Entièrement en ligne.",
   "heroSecondary": "Explorer l'espace",
   "trust": "Séances en ligne en anglais ou français. Partout dans le monde.",
   "manifestoTitle": "On ne gère pas juste des symptômes. On apprend le langage du corps.",
-  "manifestoText": "Douleurs, fatigue, ballonnements, acné, sautes d'humeur, cycles irréguliers — ce ne sont pas des échecs aléatoires. Ce sont des signaux. Et ton corps les envoie pour une raison. Le travail ici, c'est de comprendre ce qu'il essaie de te dire, puis de construire quelque chose qui colle vraiment à ta vie.",
+  "manifestoText": "Douleurs, fatigue, ballonnements, acné, sautes d'humeur, cycles irréguliers — ce ne sont pas des échecs. Ce sont des signaux. Le travail ici : comprendre ce que ton corps te dit, puis construire ce qui colle à ta vie.",
   "manifestoQuote": "Ton corps n'est pas un problème à corriger. C'est un système à comprendre.",
   "pillarsTitle": "Une approche plus calme et plus intelligente de la santé hormonale.",
   "pillarsSubtitle": "Réflexion clinique, éducation du cycle et outils concrets. Pas de wellness anxiogène. Pas de solution magique. Pas de conseils flous.",
@@ -75,5 +75,11 @@
   "calendlyLoading": "Chargement du calendrier…",
   "calendlyError": "Impossible de charger le calendrier. Tu peux ouvrir Calendly directement.",
   "disclaimer": "Éducation et accompagnement — ne remplace pas un avis médical urgent. En cas de détresse ou de symptômes sévères, contacte ton médecin ou les services d'urgence.",
-  "footerTagline": "Éducation du cycle. Santé féminine. En ligne, partout dans le monde."
+  "footerTagline": "Éducation du cycle. Santé féminine. En ligne, partout dans le monde.",
+  "homeTool": {
+    "kicker": "Outil gratuit",
+    "title": "Calcule ton cycle.",
+    "description": "Estime tes prochaines règles, ton ovulation et ta fenêtre fertile. Tout reste dans ton navigateur.",
+    "learnMore": "Lire l'article complet"
+  }
 }

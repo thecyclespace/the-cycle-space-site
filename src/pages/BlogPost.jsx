@@ -70,7 +70,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <section className="bg-[#FBF7EF] px-5 pb-12 pt-32 md:px-8 md:pt-40">
+      <section className="bg-[#FBF7EF] px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-40">
         <div className="mx-auto max-w-3xl">
           <Link
             to="/blog"
@@ -79,13 +79,13 @@ export default function BlogPost() {
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
           </Link>
           {post.date && !post.tool && (
-            <p className="mt-10 text-xs uppercase tracking-[0.2em] text-[#9E4F49]">
+            <p className="mt-8 text-xs uppercase tracking-[0.2em] text-[#9E4F49] md:mt-10">
               {formatDate(post.date, lang)}
             </p>
           )}
-          <h1 className="mt-4 font-serif text-5xl leading-tight md:text-6xl">{post.title}</h1>
+          <h1 className="mt-4 font-serif text-4xl leading-tight md:text-6xl">{post.title}</h1>
           {post.excerpt && (
-            <p className="mt-6 text-xl leading-8 text-[#5d5049]">{post.excerpt}</p>
+            <p className="mt-5 text-base leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">{post.excerpt}</p>
           )}
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function BlogPost() {
         </section>
       )}
 
-      <article className="px-5 py-16 md:px-8 md:py-24">
+      <article className="px-5 py-12 md:px-8 md:py-24">
         <div className="mx-auto max-w-3xl">
           <div className={proseCls} dangerouslySetInnerHTML={{ __html: bodyBefore }} />
           {ToolComponent && (

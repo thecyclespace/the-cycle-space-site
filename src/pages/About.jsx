@@ -35,10 +35,10 @@ export default function About() {
 
   return (
     <>
-      <section className="bg-[#F4EBDD] px-5 pb-24 pt-32 md:px-8 md:pb-32 md:pt-40">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
-          <div className="aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#DCCDB8] p-3">
-            <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+      <section className="bg-[#F4EBDD] px-5 pb-16 pt-28 md:px-8 md:pb-32 md:pt-40">
+        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-10">
+          <div className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#DCCDB8] p-2 md:rounded-[2.5rem] md:p-3">
+            <div className="relative h-full w-full overflow-hidden rounded-[1.6rem] md:rounded-[2rem]">
               <img
                 src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
                 alt="Elsa, osteopath and women's health practitioner"
@@ -46,28 +46,28 @@ export default function About() {
                 fetchpriority="high"
                 className="h-full w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#241915]/85 via-[#241915]/45 to-transparent p-7 pt-20 text-[#FBF7EF]">
-                <p className="font-serif text-5xl leading-none">Elsa</p>
-                <p className="mt-3 text-sm leading-6 text-[#E7D8C8]">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#241915]/85 via-[#241915]/45 to-transparent p-5 pt-16 text-[#FBF7EF] md:p-7 md:pt-20">
+                <p className="font-serif text-4xl leading-none md:text-5xl">Elsa</p>
+                <p className="mt-2 text-xs leading-5 text-[#E7D8C8] md:mt-3 md:text-sm md:leading-6">
                   Osteopath · Women's health practitioner · Cycle educator
                 </p>
               </div>
             </div>
           </div>
           <div>
-            <h1 className="font-serif text-5xl leading-tight md:text-7xl">{t.aboutTitle}</h1>
-            <p className="mt-7 whitespace-pre-line text-xl leading-9 text-[#5d5049]">{t.aboutText}</p>
-            <div className="mt-9 grid gap-3 sm:grid-cols-2">
+            <h1 className="font-serif text-4xl leading-tight md:text-7xl">{t.aboutTitle}</h1>
+            <p className="mt-5 whitespace-pre-line text-base leading-7 text-[#5d5049] md:mt-7 md:text-xl md:leading-9">{t.aboutText}</p>
+            <div className="mt-7 grid gap-2 sm:grid-cols-2 md:mt-9 md:gap-3">
               {t.credentials.map((credential) => (
                 <div
                   key={credential}
-                  className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-5 py-3 text-sm text-[#5d5049]"
+                  className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-4 py-2.5 text-sm text-[#5d5049] md:px-5 md:py-3"
                 >
                   {credential}
                 </div>
               ))}
             </div>
-            <Button onClick={openBooking} className="mt-10 px-7 py-4">
+            <Button onClick={openBooking} className="mt-8 px-7 py-4 md:mt-10">
               {t.book}
             </Button>
           </div>
