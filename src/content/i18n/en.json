@@ -58,7 +58,13 @@
     "You want to understand your body, not just be handed a protocol."
   ],
   "emailPlaceholder": "your@email.com",
-  "manifestoTitle": "This is not symptom management. This is body literacy.",
+  "homeTool": {
+    "kicker": "Free tool",
+    "title": "Track your cycle.",
+    "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
+    "learnMore": "Read the full article"
+  },
+  "manifestoTitle": "This is not symptom management.                                                                                     This is body literacy.",
   "trust": "Online sessions in English or French. Worldwide.",
   "journeyTitle": "Here's how it works.",
   "calendly": "Open Calendly",
@@ -96,11 +102,5 @@
     }
   ],
   "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
-  "heroTitle": "Your body has been speaking. Here is where you learn to listen.",
-  "homeTool": {
-    "kicker": "Free tool",
-    "title": "Track your cycle.",
-    "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
-    "learnMore": "Read the full article"
-  }
+  "heroTitle": "Your body has been speaking. Here is where you learn to listen."
 }
