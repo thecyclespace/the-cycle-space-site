@@ -6,7 +6,7 @@ import CyclePhaseTool from "../components/tools/CyclePhaseTool";
 import CycleRegularityTool from "../components/tools/CycleRegularityTool";
 import PostContraceptionTimeline from "../components/tools/PostContraceptionTimeline";
 import BasalTemperatureTracker from "../components/tools/BasalTemperatureTracker";
-import { useI18n } from "../lib/i18n";
+import { useI18n, I18nScope } from "../lib/i18n";
 import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
 import { getPost, formatDate } from "../lib/blog";
 
@@ -78,7 +78,7 @@ export default function BlogPost() {
           >
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
           </Link>
-          {post.date && (
+          {post.date && !post.tool && (
             <p className="mt-10 text-xs uppercase tracking-[0.2em] text-[#9E4F49]">
               {formatDate(post.date, lang)}
             </p>
@@ -101,7 +101,11 @@ export default function BlogPost() {
       <article className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-3xl">
           <div className={proseCls} dangerouslySetInnerHTML={{ __html: bodyBefore }} />
-          {ToolComponent && <ToolComponent />}
+          {ToolComponent && (
+            <I18nScope lang={post.lang}>
+              <ToolComponent />
+            </I18nScope>
+          )}
           {bodyAfter && (
             <div className={proseCls} dangerouslySetInnerHTML={{ __html: bodyAfter }} />
           )}
