@@ -1,5 +1,10 @@
 {
-  "nav": ["Accueil", "Services", "Ressources", "À propos"],
+  "nav": [
+    { "label": "Accueil", "route": "/" },
+    { "label": "Services", "route": "/services" },
+    { "label": "Ressources", "route": "/blog" },
+    { "label": "À propos", "route": "/about" }
+  ],
   "book": "Prendre rendez-vous",
   "heroKicker": "Santé féminine. Éducation du cycle. Compréhension du corps.",
   "heroTitle": "Ton corps te parle depuis longtemps. C'est ici que tu apprends à l'écouter.",
@@ -81,5 +86,7 @@
     "title": "Calcule ton cycle.",
     "description": "Estime tes prochaines règles, ton ovulation et ta fenêtre fertile. Tout reste dans ton navigateur.",
     "learnMore": "Lire l'article complet"
-  }
+  },
+  "mobileHeroTitle": "",
+  "mobileHeroText": ""
 }

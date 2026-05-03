@@ -28,10 +28,10 @@
   "notForTitle": "This may not be the right fit if you want a quick fix.",
   "calendlyLoading": "Loading the calendar…",
   "nav": [
-    "Home",
-    "About",
-    "Services",
-    "Resources"
+    { "label": "Home", "route": "/" },
+    { "label": "Services", "route": "/services" },
+    { "label": "Resources", "route": "/blog" },
+    { "label": "About", "route": "/about" }
   ],
   "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
   "finalText": "Book a first consultation or start with a free guide. Either way, this is a space for clarity.",
@@ -102,5 +102,7 @@
     }
   ],
   "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
-  "heroTitle": "Your body has been speaking. "
+  "heroTitle": "Your body has been speaking. ",
+  "mobileHeroTitle": "",
+  "mobileHeroText": ""
 }

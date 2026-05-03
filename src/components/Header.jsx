@@ -5,7 +5,45 @@ import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 import { getPost } from "../lib/blog";
 
-const NAV_ROUTES = ["/", "/services", "/blog", "/about"];
+// Default nav structure used as a safety net if the CMS content is malformed
+// or missing entries — guarantees the header always renders 4 working links.
+const DEFAULT_NAV = [
+  { route: "/", labels: { en: "Home", fr: "Accueil" } },
+  { route: "/services", labels: { en: "Services", fr: "Services" } },
+  { route: "/blog", labels: { en: "Resources", fr: "Ressources" } },
+  { route: "/about", labels: { en: "About", fr: "À propos" } },
+];
+
+// Accepts both shapes:
+//   - legacy: ["Home", "Services", "Resources", "About"] (positional)
+//   - new:    [{ label: "Home", route: "/" }, ...]      (explicit route)
+// Always returns [{ label, route }] in a stable, route-anchored order so
+// reordering labels in the CMS can never mismap to wrong routes.
+function resolveNav(navInput, lang) {
+  if (Array.isArray(navInput) && navInput.length > 0) {
+    if (typeof navInput[0] === "object" && navInput[0] !== null) {
+      const byRoute = new Map(
+        navInput
+          .filter((n) => n && typeof n.route === "string")
+          .map((n) => [n.route, n.label])
+      );
+      return DEFAULT_NAV.map((d) => ({
+        route: d.route,
+        label: byRoute.get(d.route) || d.labels[lang] || d.labels.en,
+      }));
+    }
+    if (typeof navInput[0] === "string") {
+      return DEFAULT_NAV.map((d, i) => ({
+        route: d.route,
+        label: navInput[i] || d.labels[lang] || d.labels.en,
+      }));
+    }
+  }
+  return DEFAULT_NAV.map((d) => ({
+    route: d.route,
+    label: d.labels[lang] || d.labels.en,
+  }));
+}
 
 export default function Header() {
   const { lang, setLang, t } = useI18n();
@@ -13,6 +51,7 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = resolveNav(t.nav, lang);
 
   const handleToggleLang = () => {
     const nextLang = lang === "en" ? "fr" : "en";
@@ -48,14 +87,14 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm md:flex" aria-label="Primary">
-          {t.nav.map((item, idx) => (
+          {navItems.map((item) => (
             <NavLink
-              key={NAV_ROUTES[idx]}
-              to={NAV_ROUTES[idx]}
-              end={NAV_ROUTES[idx] === "/"}
+              key={item.route}
+              to={item.route}
+              end={item.route === "/"}
               className={navLinkClass}
             >
-              {item}
+              {item.label}
             </NavLink>
           ))}
         </nav>
@@ -84,17 +123,17 @@ export default function Header() {
       {menuOpen && (
         <div className="border-t border-[#DCCDB8] bg-[#FBF7EF] px-5 py-5 md:hidden">
           <div className="grid gap-4">
-            {t.nav.map((item, idx) => (
+            {navItems.map((item) => (
               <NavLink
-                key={NAV_ROUTES[idx]}
-                to={NAV_ROUTES[idx]}
-                end={NAV_ROUTES[idx] === "/"}
+                key={item.route}
+                to={item.route}
+                end={item.route === "/"}
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
                   `text-left text-lg ${isActive ? "text-[#9E4F49]" : "text-[#352A25]"}`
                 }
               >
-                {item}
+                {item.label}
               </NavLink>
             ))}
             <div className="flex gap-3 pt-2">

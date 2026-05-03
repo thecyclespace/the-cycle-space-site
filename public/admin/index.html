@@ -4,21 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>The Cycle Space — Administration</title>
+    <title>The Cycle Space — Admin</title>
   </head>
   <body>
     <!-- Netlify Identity widget: handles login + invitation flow for git-gateway. -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <!-- Decap CMS (loads config from ./config.yml). -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-    <!-- Brand styling for the markdown preview pane on the blog collection.
-         Mirrors the real BlogPost prose (cream bg, EB Garamond headings,
-         brand palette) so the editor sees something close to the live look. -->
-    <script>
-      if (window.CMS && typeof window.CMS.registerPreviewStyle === "function") {
-        window.CMS.registerPreviewStyle("/admin/preview.css");
-      }
-    </script>
+    <!-- Brand preview style + custom blog preview template + responsive selector. -->
+    <script src="/admin/preview.js"></script>
   </body>
 </html>

@@ -28,8 +28,26 @@ export default function Home() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#9E4F49]/40 bg-[#FBF7EF]/5 px-4 py-2 text-xs text-[#E7D8C8] md:mb-8 md:text-sm">
               <Icon name="sparkles" size={14} className="text-[#C46B63]" /> {t.heroKicker}
             </div>
-            <h1 className="max-w-4xl font-serif text-[2.75rem] leading-[1.02] tracking-tight md:text-8xl md:leading-[0.92]">{t.heroTitle}</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-7 text-[#E7D8C8] md:mt-8 md:text-2xl md:leading-9">{t.heroText}</p>
+            <h1 className="max-w-4xl font-serif text-[2.75rem] leading-[1.02] tracking-tight md:text-8xl md:leading-[0.92]">
+              {t.mobileHeroTitle && t.mobileHeroTitle.trim() ? (
+                <>
+                  <span className="md:hidden">{t.mobileHeroTitle}</span>
+                  <span className="hidden md:inline">{t.heroTitle}</span>
+                </>
+              ) : (
+                t.heroTitle
+              )}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-7 text-[#E7D8C8] md:mt-8 md:text-2xl md:leading-9">
+              {t.mobileHeroText && t.mobileHeroText.trim() ? (
+                <>
+                  <span className="md:hidden">{t.mobileHeroText}</span>
+                  <span className="hidden md:inline">{t.heroText}</span>
+                </>
+              ) : (
+                t.heroText
+              )}
+            </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
               <Button onClick={openBooking} className="bg-[#9E4F49] px-7 py-4 text-base text-[#FBF7EF] hover:bg-[#6F3432]">
                 {t.book} <Icon name="calendar" size={18} />
