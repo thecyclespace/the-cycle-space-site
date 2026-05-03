@@ -23,10 +23,11 @@ local_backend: true
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# URL du site (utilisée pour le bouton "View" en haut du CMS).
-# À mettre à jour quand le domaine définitif est branché sur Netlify.
-site_url: https://thecyclespace.com
-display_url: thecyclespace.com
+# URL du site (utilisée pour le bouton "View" en haut du CMS et pour le
+# bouton "Open in new tab" depuis chaque brouillon).
+# À mettre à jour quand thecyclespace.com sera branché sur Netlify.
+site_url: https://thecyclespace.netlify.app
+display_url: thecyclespace.netlify.app
 logo_url: /elsa.jpg
 
 collections:
@@ -120,8 +121,10 @@ collections:
           - { label: "Où en suis-je dans mon cycle ?", value: "cycle-phase" }
           - { label: "Mon cycle est-il régulier ?", value: "cycle-regularity" }
           - { label: "Après l'arrêt de la pilule / DIU", value: "post-contraception" }
+          - { label: "Mini journal température basale & glaire cervicale", value: "basal-tracker" }
         default: ""
         hint: "Si défini, insère le widget interactif à l'emplacement du marqueur <!-- calculator --> dans le contenu Markdown."
+      - { label: "Slug de l'article traduit (optionnel)", name: "translation", widget: "string", required: false, hint: "Slug de la version EN/FR de cet article. Ex: si cet article est en FR et qu'il existe une version EN à /blog/period-calculator, mets 'period-calculator'. Permet au toggle EN/FR du header de naviguer vers la traduction au lieu de juste switcher la langue." }
       - { label: "Contenu de l'article", name: "body", widget: "markdown", hint: "Éditeur riche — titres, listes, citations, images, liens. Utilise <!-- calculator --> sur une ligne seule pour positionner un widget interactif." }
 
   # ---------------------------------------------------------------------------
