@@ -8,7 +8,7 @@
     {
       "num": "02",
       "title": "Share your story",
-      "body": "Before your session, you'll complete an in-depth intake form covering your cycle, symptoms, lifestyle and health history. So we can make the most of your time together."
+      "body": "Before your session, you'll complete an in-depth intake form covering your cycle, symptoms, lifestyle and health history. So we can make the most of our time together."
     },
     {
       "num": "03",
@@ -28,10 +28,10 @@
   "notForTitle": "This may not be the right fit if you want a quick fix.",
   "calendlyLoading": "Loading the calendar…",
   "nav": [
-    { "label": "Home", "route": "/" },
-    { "label": "Services", "route": "/services" },
-    { "label": "Resources", "route": "/blog" },
-    { "label": "About", "route": "/about" }
+    "Home",
+    "About",
+    "Services",
+    "Resources"
   ],
   "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
   "finalText": "Book a first consultation or start with a free guide. Either way, this is a space for clarity.",
@@ -40,7 +40,7 @@
   "book": "Book a consultation",
   "aboutTitle": "Meet Elsa.",
   "modalTitle": "Book a consultation",
-  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles - these are not failures. They're signals, and your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually fits your life.\n\n",
+  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles - these are not failures. They're signals, and your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually works for you and fits your life.\n\n",
   "heroKicker": "Women's health. Cycle education. Body literacy.",
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
@@ -64,12 +64,12 @@
     "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
     "learnMore": "Read the full article"
   },
-  "manifestoTitle": "This is not symptom management.                                                                                     This is body literacy.",
+  "manifestoTitle": "This is not symptom management. This is body literacy.",
   "trust": "Online sessions in English or French. Worldwide.",
   "journeyTitle": "Here's how it works.",
   "calendly": "Open Calendly",
   "modalText": "Pick a date and time below. Recommended: a short discovery call first, then a full consultation.",
-  "aboutText": "Elsa is a women's health practitioner and osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.\n\nBut this work isn't just professional. It's personal.\n\nFor years, Elsa struggled with acne, PMS, gut issues and painful periods. Put on the pill at a young age, she spent seven years not knowing what her natural cycle even felt like. When she came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion. Despite being the most active she'd ever been. After a year of struggling and little real guidance, she accepted a coil out of sheer desperation.\n\nIt was during that time that everything shifted. She started working on her gut health, her nutrition, her inflammation. She started actually listening to her body. Four years later she removed the coil, and though it took time to readjust, for the first time things started to feel different. Less pain. Less PMS. More energy. Periods that made sense. A body she finally understood.\n\nThat experience is exactly why The Cycle Space exists. Because no woman should spend years feeling dismissed, confused or disconnected from her own body.\n\nElsa sees the whole person, not just the symptom. And she finds this work genuinely, endlessly fascinating, because every body has a story worth understanding.",
+  "aboutText": "Elsa is a women's health practitioner and an Osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.\n\nBut this work isn't just professional. It's personal.\n\nFor years, Elsa struggled with acne, PMS, gut issues and painful periods. Put on the pill at a young age, she spent seven years not knowing what her natural cycle even felt like. When she came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion. Despite being the most active she'd ever been. After a year of struggling and little real guidance from her gynaecologist, she accepted a coil out of sheer desperation.\n\nIt was during that time that everything shifted. She started working on her gut health, her nutrition, her inflammation. She started actually listening to her body. Four years later she removed the coil, and though it took time to readjust, for the first time things started to feel different. Less pain. Less PMS. More energy. Periods that made sense. A body she finally understood.\n\nThat experience is exactly why The Cycle Space exists. Because no woman should spend years feeling dismissed, confused or disconnected from her own body.\n\nElsa sees the whole person, not just the symptom. And she finds this work genuinely, endlessly fascinating, because every body has a story worth understanding.",
   "heroSecondary": "Explore the space",
   "disclaimer": "Education and support — does not replace urgent medical care. If you are in distress or experiencing severe symptoms, please contact your doctor or local emergency services.",
   "guideDownloadAgain": "Download again",
@@ -102,7 +102,5 @@
     }
   ],
   "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
-  "heroTitle": "Your body has been speaking. ",
-  "mobileHeroTitle": "",
-  "mobileHeroText": ""
+  "heroTitle": "Your body has been speaking. "
 }
