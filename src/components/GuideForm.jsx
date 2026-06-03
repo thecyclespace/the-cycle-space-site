@@ -21,24 +21,13 @@ function triggerGuideDownload() {
   document.body.removeChild(a);
 }
 
-// Capture de lead via Netlify Forms (configuré dans index.html).
-// Fire-and-forget : si l'API ne répond pas (dev, offline), le téléchargement
-// se fait quand même — la capture est best-effort.
-function captureLead(email) {
-  if (typeof window === "undefined") return;
-  try {
-    const body = new URLSearchParams({
-      "form-name": "guide-download",
-      email,
-      "bot-field": "",
-    }).toString();
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-    }).catch(() => {});
-  } catch {}
-}
+// NOTE — Capture des emails (lead capture) :
+// L'ancienne version envoyait l'email à Netlify Forms. Netlify a été retiré du
+// projet : l'email est validé et déclenche le téléchargement du PDF, mais il
+// n'est plus envoyé à un service externe. Le site étant hébergé sur GitHub Pages
+// (100 % statique, sans serveur), réactiver la collecte des emails passe par un
+// service externe gratuit (Formspree, Getform…) à brancher ici.
+// Voir CMS_MIGRATION_AUDIT.md > "Follow-ups".
 
 export default function GuideForm() {
   const { t } = useI18n();
@@ -64,7 +53,6 @@ export default function GuideForm() {
     }
     setStatus("submitting");
     try { localStorage.setItem(STORAGE_KEY, value); } catch {}
-    captureLead(value);
     triggerGuideDownload();
     setTimeout(() => setStatus("done"), 250);
   };

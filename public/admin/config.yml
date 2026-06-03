@@ -1,29 +1,41 @@
-# Decap CMS — The Cycle Space
+# Sveltia CMS — The Cycle Space
 # ----------------------------------------------------------------------------
-# Backend : Netlify Identity + Git Gateway (le CMS pousse des commits sur GitHub
-# via Netlify, sans exposer de secret côté client).
+# Backend : GitHub (le CMS commit directement sur le dépôt GitHub).
+#   - "Publish" = 1 commit sur `main` -> GitHub Actions reconstruit et publie sur GitHub Pages (~1-2 min).
+#   - Pas de Netlify Identity, pas de Git Gateway, pas de serveur CMS séparé.
 #
-# Editorial workflow : ACTIVÉ.
-#   - "Save" = brouillon (branche cms/<slug>) -> AUCUN build Netlify
-#   - "Publish" = merge dans main -> 1 build Netlify (consomme des credits)
+# Connexion (voir CMS_GUIDE.md) :
+#   - Simple : bouton "Sign In with Token" -> coller un GitHub Personal Access Token.
+#   - Confort (recommandé plus tard) : OAuth via "Sveltia CMS Authenticator" sur
+#     Cloudflare Workers -> décommenter `base_url` ci-dessous.
+#
+# Édition en LOCAL : ouvrir http://localhost:5173/admin/ dans Chrome/Edge ; Sveltia
+# utilise l'API File System Access pour lire/écrire directement le dépôt local
+# (aucun proxy, aucun `decap-server`). `local_backend` n'est PAS nécessaire.
 # ----------------------------------------------------------------------------
 
 backend:
-  name: git-gateway
+  name: github
+  # ⚠️ Propriétaire/dépôt GitHub. Format : OWNER/REPO.
+  repo: thecyclespace/the-cycle-space-site
   branch: main
-
-publish_mode: editorial_workflow
-
-# Mode local : `npx decap-server` lit/écrit les fichiers directement (pas d'auth).
-local_backend: true
+  # Décommenter quand l'authenticator OAuth Cloudflare sera déployé (voir CMS_GUIDE.md) :
+  # base_url: https://REPLACE_WITH_YOUR_CLOUDFLARE_WORKER.workers.dev
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+# Limites/format des médias uploadés via le CMS.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true   # renomme les fichiers en minuscules-sans-accents-tirets
+      max_file_size: 3000000   # 3 Mo max par image (évite les uploads trop lourds)
+
 # URL du site (utilisée pour le bouton "View" du CMS).
-# À mettre à jour quand thecyclespace.com sera branché sur Netlify.
-site_url: https://thecyclespace.netlify.app
-display_url: thecyclespace.netlify.app
+# À mettre à jour si le domaine définitif change.
+site_url: https://thecyclespace.com
+display_url: thecyclespace.com
 logo_url: /elsa.jpg
 
 # IMPORTANT — Pour préserver la structure plate des fichiers JSON et ne pas
@@ -102,12 +114,12 @@ collections:
   # 🌐 PAGE D'ACCUEIL — TEXTES (English)
   # ===========================================================================
   - name: en
-    label: "🌐 Page d'accueil — English"
-    description: "Tous les textes affichés sur la home et les autres pages, en anglais. Sections séparées par emoji dans les labels (🧭 nav, 🎯 hero, ✍️ manifesto, etc.)."
+    label: "🇬🇧 Textes du site — Anglais"
+    description: "TOUS les textes en anglais (accueil, services, à propos, menus, pied de page…). Repère chaque section grâce à l'emoji au début du libellé : 🧭 menu · 🎯 hero · ✍️ manifesto · 🛠 services · 💗 pour toi · 📚 ressources · 🎬 CTA · ⚓ footer."
     editor: { preview: false }
     files:
       - name: home_en
-        label: "Page d'accueil — EN"
+        label: "Tous les textes (anglais)"
         file: "src/content/i18n/en.json"
         format: "json"
         fields:
@@ -242,12 +254,12 @@ collections:
   # 🌐 PAGE D'ACCUEIL — TEXTES (Français)
   # ===========================================================================
   - name: fr
-    label: "🌐 Page d'accueil — Français"
-    description: "Tous les textes affichés sur la home et les autres pages, en français. Sections séparées par emoji dans les labels (🧭 nav, 🎯 hero, ✍️ manifesto, etc.)."
+    label: "🇫🇷 Textes du site — Français"
+    description: "TOUS les textes en français (accueil, services, à propos, menus, pied de page…). Repère chaque section grâce à l'emoji au début du libellé : 🧭 menu · 🎯 hero · ✍️ manifesto · 🛠 services · 💗 pour toi · 📚 ressources · 🎬 CTA · ⚓ footer."
     editor: { preview: false }
     files:
       - name: home_fr
-        label: "Page d'accueil — FR"
+        label: "Tous les textes (français)"
         file: "src/content/i18n/fr.json"
         format: "json"
         fields:

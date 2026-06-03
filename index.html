@@ -50,30 +50,9 @@
       "inLanguage": ["en", "fr"]
     }
     </script>
-    <!-- Netlify Identity widget : gère l'invitation par email + le login pour /admin. -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <!-- Formulaire HTML statique détecté par Netlify au build (Forms).
-         Le formulaire React (GuideForm) POST en AJAX avec le même name="guide-download".
-         Les soumissions arrivent dans Netlify > Forms et déclenchent l'email vers l'admin. -->
-    <form name="guide-download" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="email" name="email" />
-      <input name="bot-field" />
-    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // Redirige vers /admin/ après login depuis un lien d'invitation.
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
   </body>
 </html>

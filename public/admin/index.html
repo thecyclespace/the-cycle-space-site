@@ -7,11 +7,13 @@
     <title>The Cycle Space — Admin</title>
   </head>
   <body>
-    <!-- Netlify Identity widget: handles login + invitation flow for git-gateway. -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Decap CMS (loads config from ./config.yml). -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <!-- Brand preview style + custom blog preview template + responsive selector. -->
-    <script src="/admin/preview.js"></script>
+    <!--
+      Sveltia CMS — free, Git-based content manager. Reads ./config.yml.
+      - Loaded from CDN (no npm dependency, no separate CMS server).
+      - NOT type="module" (required: the bundle attaches itself to window).
+      - No CSS link and no custom preview script: Sveltia ships its own UI + preview.
+      Login: GitHub. See CMS_GUIDE.md for how the site editor signs in and publishes.
+    -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </body>
 </html>

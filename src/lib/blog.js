@@ -59,6 +59,14 @@ function toDate(value) {
   return isNaN(d.getTime()) ? null : d;
 }
 
+// Préfixe le `base` Vite aux chemins absolus (ex. "/uploads/x.png") pour qu'ils
+// résolvent aussi sur un sous-chemin GitHub Pages. Laisse les URLs http(s) intactes.
+function withBase(src) {
+  if (!src || /^https?:\/\//.test(src)) return src || null;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return src.startsWith("/") ? base + src : src;
+}
+
 export const posts = Object.entries(modules)
   .map(([path, raw]) => {
     const slug = path.split("/").pop().replace(/\.md$/, "");
@@ -68,7 +76,7 @@ export const posts = Object.entries(modules)
       title: data.title || slug,
       date: toDate(data.date),
       excerpt: data.excerpt || "",
-      coverImage: data.coverImage || null,
+      coverImage: withBase(data.coverImage),
       tags: Array.isArray(data.tags) ? data.tags : [],
       tool: data.tool || null,
       translation: data.translation || null,

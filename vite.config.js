@@ -44,16 +44,42 @@ ${all
   };
 }
 
-// `base: "/"` -> déploiement Netlify (racine du domaine).
-// Pour réactiver GitHub Pages : remettre `base: "/the-cycle-space-site/"`.
+// Copie dist/index.html -> dist/404.html après le build.
+// GitHub Pages sert 404.html pour toute URL inconnue ; comme c'est le shell de
+// l'app, React Router prend le relais et affiche la bonne route (fallback SPA).
+function spaFallbackPlugin() {
+  return {
+    name: "github-pages-spa-fallback",
+    apply: "build",
+    closeBundle() {
+      try {
+        const index = path.resolve("./dist/index.html");
+        if (fs.existsSync(index)) {
+          fs.copyFileSync(index, path.resolve("./dist/404.html"));
+          // eslint-disable-next-line no-console
+          console.log("✓ 404.html generated (SPA fallback for GitHub Pages)");
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error("404.html generation failed:", e);
+      }
+    },
+  };
+}
+
+// `base` = sous-chemin GitHub Pages (le site est servi sous /<repo>/ sur github.io).
+// Pour passer au domaine personnalisé (thecyclespace.com) plus tard : remettre `base: "/"`
+// et recréer public/CNAME = thecyclespace.com. Le routeur (App.jsx) et les images suivent
+// automatiquement cette valeur via import.meta.env.BASE_URL.
 export default defineConfig({
-  base: "/",
+  base: "/the-cycle-space-site/",
   plugins: [
     react(),
     sitemapPlugin(),
+    spaFallbackPlugin(),
     // Sert public/admin/index.html quand on demande /admin ou /admin/ — sans cela
     // le SPA fallback Vite renverrait le shell React Router.
-    // En prod Netlify, le directory-index est géré nativement par Netlify.
+    // En prod GitHub Pages, /admin/ sert nativement /admin/index.html (index de dossier).
     {
       name: "serve-admin-index",
       configureServer(server) {

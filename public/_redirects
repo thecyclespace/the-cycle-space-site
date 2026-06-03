@@ -1,3 +1,0 @@
-# SPA fallback : toutes les routes non statiques renvoient vers index.html
-# pour que React Router prenne le relais.
-/*  /index.html  200

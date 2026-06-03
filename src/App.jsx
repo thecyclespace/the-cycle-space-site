@@ -7,9 +7,13 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
+// Sous-chemin GitHub Pages (ex. "/the-cycle-space-site"). Sur domaine racine,
+// BASE_URL vaut "/" -> basename "" (équivalent racine). Suit toujours `base` de Vite.
+const BASENAME = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={BASENAME}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
