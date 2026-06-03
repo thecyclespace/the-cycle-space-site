@@ -19,8 +19,9 @@ backend:
   # ⚠️ Propriétaire/dépôt GitHub. Format : OWNER/REPO.
   repo: thecyclespace/the-cycle-space-site
   branch: main
-  # Décommenter quand l'authenticator OAuth Cloudflare sera déployé (voir CMS_GUIDE.md) :
-  # base_url: https://REPLACE_WITH_YOUR_CLOUDFLARE_WORKER.workers.dev
+  # OAuth « 1 clic » via le worker Cloudflare (Sveltia CMS Authenticator).
+  # Remplace le service Netlify par défaut. Voir CMS_GUIDE.md.
+  base_url: https://sveltia-cms-auth.thecyclespaceadmin.workers.dev
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
