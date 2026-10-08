@@ -70,7 +70,7 @@ function spaFallbackPlugin() {
 // `base` = "/" : le site est servi à la racine du domaine personnalisé thecyclespace.com.
 // Le routeur (App.jsx) et les images suivent cette valeur via import.meta.env.BASE_URL.
 export default defineConfig({
-  base: "/the-cycle-space-site/",
+  base: "/",
   plugins: [
     react(),
     sitemapPlugin(),
