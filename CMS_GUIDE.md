@@ -3,6 +3,8 @@
 Ce guide explique, **sans jargon technique**, comment modifier les textes, images, articles
 de blog et réglages SEO du site via l'interface d'administration **Sveltia CMS**.
 
+> **Guide simplifié pour Elsa : voir `GUIDE_ELSA.md`.**
+>
 > En résumé : tu te connectes sur `/admin`, tu modifies, tu cliques **Publish**.
 > Ton changement crée automatiquement une sauvegarde sur GitHub, et le site se met à jour
 > tout seul (via GitHub Pages) une à deux minutes plus tard.

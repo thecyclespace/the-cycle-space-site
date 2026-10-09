@@ -28,10 +28,22 @@
   "notForTitle": "This may not be the right fit if you want a quick fix.",
   "calendlyLoading": "Loading the calendar…",
   "nav": [
-    "Home",
-    "Services",
-    "Resources",
-    "About"
+    {
+      "label": "Home",
+      "route": "/"
+    },
+    {
+      "label": "Services",
+      "route": "/services"
+    },
+    {
+      "label": "Resources",
+      "route": "/blog"
+    },
+    {
+      "label": "About",
+      "route": "/about"
+    }
   ],
   "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
   "finalText": "Book a free Introduction call or start with a free guide. Either way, this is a space for clarity.",
@@ -45,7 +57,7 @@
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
   "resourcesText": "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
-  "guideThanksText": "The download just started. If nothing happened, click the button to get it again.",
+  "guideThanksText": "The download just started. If nothing happened, click below to get the guide again.",
   "footerTagline": "Empowering women one cycle at a time.",
   "guideThanksTitle": "Your guide is on its way.",
   "resourcesTitle": "Start with a free cycle guide.",
@@ -119,7 +131,7 @@
       "cta": "Join the list"
     }
   ],
-  "guideConsent": "Free PDF. No email needed, nothing is stored.",
+  "guideConsent": "I agree to receive the guide and occasional emails from The Cycle Space. My email is sent to Elsa only. I can unsubscribe at any time by replying to any email.",
   "heroTitle": "Your body has been speaking. ",
   "servicesLabels": {
     "forWho": "Who it's for",
@@ -188,5 +200,34 @@
         "quote": "I'm no longer controlled by my symptoms. I'm finally in rhythm with my body."
       }
     ]
-  }
+  },
+  "guideEmailLabel": "Your email",
+  "guideConsentRequired": "Please tick the box to receive the guide by email, or use the direct download below.",
+  "guideNoEmail": "Download without email",
+  "guideSending": "Sending…",
+  "guideSentText": "The download just started and your email was sent to Elsa. If nothing happened, click below to get the guide again.",
+  "guideFailedText": "The download started, but we couldn't register your email just now. You can try again later; the guide is yours either way.",
+  "faq": {
+    "title": "Good to know",
+    "items": [
+      {
+        "q": "Which languages are the sessions in?",
+        "a": "Sessions are fully online and available in English or French."
+      },
+      {
+        "q": "Can I book from outside France or the UK?",
+        "a": "Yes. Sessions are online and open to women worldwide. The booking calendar shows times in your own time zone."
+      },
+      {
+        "q": "What is the difference between the offers?",
+        "a": "The Introduction is a free 15–20 minute conversation to see if we are a good fit. The Rhythm Check-In is a single 90-minute session that ends with a written protocol. Your Inner Rhythm is a 6-month 1:1 programme built on The Inner Rhythm Method."
+      },
+      {
+        "q": "Does this replace medical care?",
+        "a": "No. The Cycle Space offers education and personalised support. It works alongside conventional medicine and does not replace a diagnosis or urgent medical care. If you are in distress or have severe symptoms, please contact your doctor or local emergency services."
+      }
+    ]
+  },
+  "mobileHeroTitle": "",
+  "mobileHeroText": ""
 }

@@ -45,6 +45,8 @@ Captures : `docs/audit/before/` et `docs/audit/after/` (390 et 1440 px ; `320-me
 
 Accueil → menu → Services → « Book a Rhythm Check-In » → modale Calendly (iframe chargé, « 30 Minute Meeting » visible) → Échap. Aussi : menu ouvert/fermé par Échap et après navigation, à 320 px.
 
+> **Mise à jour Phase 2** : le formulaire du guide a ensuite été rétabli avec un envoi réel à Elsa, un consentement explicite et un téléchargement indépendant de l'envoi (voir `docs/PHASE2_CMS_CONVERSION.md`).
+
 ## 5. À valider / à faire par Elsa ou Florent
 
 1. Créer dans Calendly les événements « Introduction » (15–20 min) et « Rhythm Check-In » (90 min), puis coller leurs liens dans le CMS (Réglages). Aujourd'hui un seul événement existe (« 30 Minute Meeting »).

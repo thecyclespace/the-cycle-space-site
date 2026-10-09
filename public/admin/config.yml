@@ -174,6 +174,7 @@ collections:
               - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
               - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
               - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
+              - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
               - { label: "Texte du CTA", name: "cta", widget: "string" }
               - label: "Action du bouton"
                 name: "action"
@@ -229,6 +230,21 @@ collections:
           - { label: "💗 Pas pour toi — Texte", name: "notForText", widget: "text" }
 
           # 🛤 PARCOURS (Services) ==========================================
+          - label: "❓ Questions fréquentes (page Services)"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            hint: "Quelques questions courtes affichées en bas de la page Services. Évite toute promesse médicale."
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string" }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                max: 8
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: "Question", name: "q", widget: "string" }
+                  - { label: "Réponse", name: "a", widget: "text" }
           - { label: "🛤 Parcours — Titre de section", name: "journeyTitle", widget: "string" }
           - label: "🛤 Parcours — Étapes (4)"
             name: "journey"
@@ -251,10 +267,16 @@ collections:
           - { label: "📚 Ressources — Placeholder email", name: "emailPlaceholder", widget: "string" }
           - { label: "📚 Ressources — Bouton 'télécharger'", name: "download", widget: "string" }
           - { label: "📚 Ressources — Bouton 'télécharger à nouveau'", name: "guideDownloadAgain", widget: "string" }
-          - { label: "📚 Ressources — Mention RGPD", name: "guideConsent", widget: "text" }
+          - { label: "📚 Ressources — Libellé du champ email", name: "guideEmailLabel", widget: "string" }
+          - { label: "📚 Ressources — Case de consentement (RGPD)", name: "guideConsent", widget: "text", hint: "Texte à côté de la case à cocher. Il doit dire clairement à qui l'email est transmis." }
+          - { label: "📚 Ressources — Erreur 'case non cochée'", name: "guideConsentRequired", widget: "string" }
+          - { label: "📚 Ressources — Lien 'télécharger sans email'", name: "guideNoEmail", widget: "string" }
+          - { label: "📚 Ressources — Texte du bouton pendant l'envoi", name: "guideSending", widget: "string" }
           - { label: "📚 Ressources — Erreur 'email invalide'", name: "guideInvalidEmail", widget: "string" }
           - { label: "📚 Ressources — Confirmation : titre", name: "guideThanksTitle", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : texte", name: "guideThanksText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (sans email)", name: "guideThanksText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (email envoyé)", name: "guideSentText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (email non envoyé)", name: "guideFailedText", widget: "text" }
 
           # 🛠 BLOC OUTIL HOME ===============================================
           - label: "🛠 Bloc outil interactif sur la home"
@@ -336,6 +358,8 @@ collections:
           - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
           - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
           - { label: "🎯 Hero — Bouton secondaire", name: "heroSecondary", widget: "string" }
+          - { label: "📱 Mobile — Titre du hero (optionnel)", name: "mobileHeroTitle", widget: "string", required: false, default: "", hint: "Si rempli, ce titre remplace le titre principal sur mobile. Vide = on garde le titre principal." }
+          - { label: "📱 Mobile — Texte du hero (optionnel)", name: "mobileHeroText", widget: "text", required: false, default: "", hint: "Pareil, pour le paragraphe sous le titre. Vide = on garde le texte principal." }
           - { label: "🎯 Hero — Ligne de confiance", name: "trust", widget: "string" }
 
           # ✍️ MANIFESTO =====================================================
@@ -358,6 +382,7 @@ collections:
               - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
               - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
               - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
+              - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
               - { label: "Texte du CTA", name: "cta", widget: "string" }
               - label: "Action du bouton"
                 name: "action"
@@ -413,6 +438,21 @@ collections:
           - { label: "💗 Pas pour toi — Texte", name: "notForText", widget: "text" }
 
           # 🛤 PARCOURS ======================================================
+          - label: "❓ Questions fréquentes (page Services)"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            hint: "Quelques questions courtes affichées en bas de la page Services. Évite toute promesse médicale."
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string" }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                max: 8
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: "Question", name: "q", widget: "string" }
+                  - { label: "Réponse", name: "a", widget: "text" }
           - { label: "🛤 Parcours — Titre de section", name: "journeyTitle", widget: "string" }
           - label: "🛤 Parcours — Étapes (4)"
             name: "journey"
@@ -435,10 +475,16 @@ collections:
           - { label: "📚 Ressources — Placeholder email", name: "emailPlaceholder", widget: "string" }
           - { label: "📚 Ressources — Bouton 'télécharger'", name: "download", widget: "string" }
           - { label: "📚 Ressources — Bouton 'télécharger à nouveau'", name: "guideDownloadAgain", widget: "string" }
-          - { label: "📚 Ressources — Mention RGPD", name: "guideConsent", widget: "text" }
+          - { label: "📚 Ressources — Libellé du champ email", name: "guideEmailLabel", widget: "string" }
+          - { label: "📚 Ressources — Case de consentement (RGPD)", name: "guideConsent", widget: "text", hint: "Texte à côté de la case à cocher. Il doit dire clairement à qui l'email est transmis." }
+          - { label: "📚 Ressources — Erreur 'case non cochée'", name: "guideConsentRequired", widget: "string" }
+          - { label: "📚 Ressources — Lien 'télécharger sans email'", name: "guideNoEmail", widget: "string" }
+          - { label: "📚 Ressources — Texte du bouton pendant l'envoi", name: "guideSending", widget: "string" }
           - { label: "📚 Ressources — Erreur 'email invalide'", name: "guideInvalidEmail", widget: "string" }
           - { label: "📚 Ressources — Confirmation : titre", name: "guideThanksTitle", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : texte", name: "guideThanksText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (sans email)", name: "guideThanksText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (email envoyé)", name: "guideSentText", widget: "text" }
+          - { label: "📚 Ressources — Confirmation : texte (email non envoyé)", name: "guideFailedText", widget: "text" }
 
           # 🛠 BLOC OUTIL HOME ===============================================
           - label: "🛠 Bloc outil interactif sur la home"
@@ -490,8 +536,9 @@ collections:
         fields:
           - { label: "Nom du site", name: "siteName", widget: "string" }
           - { label: "URL Calendly (réservation)", name: "bookingUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"], hint: "Lien Calendly complet, utilisé par le bouton de réservation." }
-          - { label: "URL Calendly — The Introduction (optionnel)", name: "bookingUrlIntroduction", widget: "string", required: false, hint: "Lien de l'événement Calendly 'Introduction'. Vide = lien Calendly général." }
-          - { label: "URL Calendly — Rhythm Check-In (optionnel)", name: "bookingUrlCheckIn", widget: "string", required: false, hint: "Lien de l'événement Calendly 'Rhythm Check-In'. Vide = lien Calendly général." }
+          - { label: "URL Calendly — The Introduction (optionnel)", name: "bookingUrlIntroduction", widget: "string", required: false, pattern: ['^$|^https://calendly\.com/[^\s]+$', "Doit être un lien Calendly complet qui commence par https://calendly.com/ (ou rester vide)"], hint: "Lien de l'événement Calendly 'Introduction'. Vide = lien Calendly général." }
+          - { label: "URL Calendly — Rhythm Check-In (optionnel)", name: "bookingUrlCheckIn", widget: "string", required: false, pattern: ['^$|^https://calendly\.com/[^\s]+$', "Doit être un lien Calendly complet qui commence par https://calendly.com/ (ou rester vide)"], hint: "Lien de l'événement Calendly 'Rhythm Check-In'. Vide = lien Calendly général." }
+          - { label: "Email qui reçoit les inscriptions au guide", name: "guideLeadEmail", widget: "string", pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Adresse email invalide"], hint: "Chaque personne qui demande le guide avec son email est envoyée ici. À la toute première inscription, un email de confirmation (FormSubmit) arrive sur cette adresse : clique sur le lien pour activer l'envoi." }
           - { label: "Email de contact", name: "contactEmail", widget: "string", pattern: ['^[^@]+@[^@]+\.[^@]+$', "Adresse email invalide"], hint: "Affiché dans le footer." }
           - { label: "URL Instagram", name: "instagramUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"] }
           - { label: "Image principale (Elsa)", name: "elsaImage", widget: "image", hint: "Sélectionne une image OU saisis le nom d'un fichier déjà dans /public (ex: elsa.jpg)." }
@@ -521,6 +568,29 @@ collections:
               - { label: "Meta description (Google)", name: "description", widget: "text", hint: "Idéal entre 140 et 160 caractères." }
               - { label: "Open Graph — Titre (réseaux sociaux)", name: "ogTitle", widget: "string" }
               - { label: "Open Graph — Description (réseaux sociaux)", name: "ogDescription", widget: "text" }
+              - label: "Pages — Services, Ressources, À propos"
+                name: "pages"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Services"
+                    name: "services"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "Ressources / Blog"
+                    name: "blog"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "À propos"
+                    name: "about"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
           - label: "🇫🇷 Français"
             name: "fr"
             widget: "object"
@@ -530,3 +600,26 @@ collections:
               - { label: "Meta description (Google)", name: "description", widget: "text", hint: "Idéal entre 140 et 160 caractères." }
               - { label: "Open Graph — Titre (réseaux sociaux)", name: "ogTitle", widget: "string" }
               - { label: "Open Graph — Description (réseaux sociaux)", name: "ogDescription", widget: "text" }
+              - label: "Pages — Services, Ressources, À propos"
+                name: "pages"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Services"
+                    name: "services"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "Ressources / Blog"
+                    name: "blog"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "À propos"
+                    name: "about"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
