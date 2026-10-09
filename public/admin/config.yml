@@ -162,7 +162,7 @@ collections:
           # 🛠 SERVICES ======================================================
           - { label: "🛠 Services — Titre de section", name: "pillarsTitle", widget: "string" }
           - { label: "🛠 Services — Sous-titre", name: "pillarsSubtitle", widget: "text" }
-          - label: "🛠 Services — Cartes (3 ou 4 maximum)"
+          - label: "🛠 Services — Offres (3 ou 4 maximum)"
             name: "services"
             widget: "list"
             min: 3
@@ -171,8 +171,52 @@ collections:
             fields:
               - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description", name: "body", widget: "text" }
+              - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
+              - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
+              - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
               - { label: "Texte du CTA", name: "cta", widget: "string" }
+              - label: "Action du bouton"
+                name: "action"
+                widget: "select"
+                default: "intro"
+                options:
+                  - { label: "Réserver l'Introduction (Calendly)", value: "intro" }
+                  - { label: "Réserver le Rhythm Check-In (Calendly)", value: "checkin" }
+                  - { label: "Liste d'attente (email)", value: "waitlist" }
+          - label: "🛠 Services — Intitulés des blocs"
+            name: "servicesLabels"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
+              - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
+          - label: "🧬 Méthode Inner Rhythm (accueil + services)"
+            name: "method"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
+              - { label: "Titre de la méthode", name: "title", widget: "string" }
+              - { label: "Introduction", name: "intro", widget: "text" }
+              - { label: "Lien accueil -> services", name: "cta", widget: "string" }
+              - { label: "Programme — Kicker", name: "programmeKicker", widget: "string" }
+              - { label: "Programme — Titre", name: "programmeTitle", widget: "string" }
+              - { label: "Programme — Détails (durée, langues)", name: "programmeMeta", widget: "string" }
+              - { label: "Programme — Texte du bouton", name: "programmeCta", widget: "string" }
+              - label: "Phases (4)"
+                name: "phases"
+                widget: "list"
+                min: 4
+                max: 4
+                summary: "{{fields.num}} — {{fields.title}}"
+                fields:
+                  - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
+                  - { label: "Description", name: "body", widget: "text" }
+                  - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
+                  - { label: "Résultat", name: "outcome", widget: "text" }
+                  - { label: "Citation", name: "quote", widget: "string" }
 
           # 💗 POUR TOI / PAS POUR TOI =======================================
           - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
@@ -302,7 +346,7 @@ collections:
           # 🛠 SERVICES ======================================================
           - { label: "🛠 Services — Titre de section", name: "pillarsTitle", widget: "string" }
           - { label: "🛠 Services — Sous-titre", name: "pillarsSubtitle", widget: "text" }
-          - label: "🛠 Services — Cartes (3 ou 4 maximum)"
+          - label: "🛠 Services — Offres (3 ou 4 maximum)"
             name: "services"
             widget: "list"
             min: 3
@@ -311,8 +355,52 @@ collections:
             fields:
               - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description", name: "body", widget: "text" }
+              - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
+              - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
+              - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
               - { label: "Texte du CTA", name: "cta", widget: "string" }
+              - label: "Action du bouton"
+                name: "action"
+                widget: "select"
+                default: "intro"
+                options:
+                  - { label: "Réserver l'Introduction (Calendly)", value: "intro" }
+                  - { label: "Réserver le Rhythm Check-In (Calendly)", value: "checkin" }
+                  - { label: "Liste d'attente (email)", value: "waitlist" }
+          - label: "🛠 Services — Intitulés des blocs"
+            name: "servicesLabels"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
+              - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
+          - label: "🧬 Méthode Inner Rhythm (accueil + services)"
+            name: "method"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
+              - { label: "Titre de la méthode", name: "title", widget: "string" }
+              - { label: "Introduction", name: "intro", widget: "text" }
+              - { label: "Lien accueil -> services", name: "cta", widget: "string" }
+              - { label: "Programme — Kicker", name: "programmeKicker", widget: "string" }
+              - { label: "Programme — Titre", name: "programmeTitle", widget: "string" }
+              - { label: "Programme — Détails (durée, langues)", name: "programmeMeta", widget: "string" }
+              - { label: "Programme — Texte du bouton", name: "programmeCta", widget: "string" }
+              - label: "Phases (4)"
+                name: "phases"
+                widget: "list"
+                min: 4
+                max: 4
+                summary: "{{fields.num}} — {{fields.title}}"
+                fields:
+                  - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
+                  - { label: "Description", name: "body", widget: "text" }
+                  - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
+                  - { label: "Résultat", name: "outcome", widget: "text" }
+                  - { label: "Citation", name: "quote", widget: "string" }
 
           # 💗 POUR TOI / PAS POUR TOI =======================================
           - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
@@ -402,6 +490,8 @@ collections:
         fields:
           - { label: "Nom du site", name: "siteName", widget: "string" }
           - { label: "URL Calendly (réservation)", name: "bookingUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"], hint: "Lien Calendly complet, utilisé par le bouton de réservation." }
+          - { label: "URL Calendly — The Introduction (optionnel)", name: "bookingUrlIntroduction", widget: "string", required: false, hint: "Lien de l'événement Calendly 'Introduction'. Vide = lien Calendly général." }
+          - { label: "URL Calendly — Rhythm Check-In (optionnel)", name: "bookingUrlCheckIn", widget: "string", required: false, hint: "Lien de l'événement Calendly 'Rhythm Check-In'. Vide = lien Calendly général." }
           - { label: "Email de contact", name: "contactEmail", widget: "string", pattern: ['^[^@]+@[^@]+\.[^@]+$', "Adresse email invalide"], hint: "Affiché dans le footer." }
           - { label: "URL Instagram", name: "instagramUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"] }
           - { label: "Image principale (Elsa)", name: "elsaImage", widget: "image", hint: "Sélectionne une image OU saisis le nom d'un fichier déjà dans /public (ex: elsa.jpg)." }

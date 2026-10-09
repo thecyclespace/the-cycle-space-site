@@ -7,3 +7,8 @@ dist-ssr
 .env
 .env.local
 *.log
+
+# Local-only files (brand source assets, private chat export)
+Brand Guidelines/
+_chat.txt
+.playwright-mcp/

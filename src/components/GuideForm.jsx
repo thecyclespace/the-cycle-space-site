@@ -59,9 +59,9 @@ export default function GuideForm() {
 
   if (status === "done") {
     return (
-      <div className="mt-10 max-w-xl rounded-[2rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-6 text-[#241915]">
+      <div className="mt-10 max-w-xl rounded-[2rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-6 text-[#362E28]">
         <div className="flex items-start gap-4">
-          <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#9E4F49]/15 text-[#6F3432]">
+          <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#7C3C3C]/15 text-[#5C2B2B]">
             <Icon name="check" size={20} />
           </span>
           <div className="flex-1">
@@ -70,7 +70,7 @@ export default function GuideForm() {
             <button
               type="button"
               onClick={triggerGuideDownload}
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
             >
               <Icon name="download" size={16} /> {t.guideDownloadAgain}
             </button>
@@ -88,7 +88,7 @@ export default function GuideForm() {
         noValidate
       >
         <input
-          className="min-w-0 flex-1 bg-transparent px-5 py-4 text-[#241915] outline-none placeholder:text-[#8a7d75]"
+          className="min-w-0 flex-1 bg-transparent px-5 py-4 text-[#362E28] outline-none placeholder:text-[#8a7d75]"
           placeholder={t.emailPlaceholder}
           type="email"
           value={email}
@@ -100,12 +100,12 @@ export default function GuideForm() {
           aria-invalid={status === "invalid"}
           required
         />
-        <Button type="submit" className="bg-[#9E4F49] px-6 py-4 text-[#FBF7EF] hover:bg-[#6F3432]">
+        <Button type="submit" className="bg-[#7C3C3C] px-6 py-4 text-[#FBF7EF] hover:bg-[#5C2B2B]">
           <Icon name="download" size={18} /> {t.download}
         </Button>
       </form>
       {status === "invalid" && (
-        <p className="mt-3 px-2 text-sm text-[#C46B63]" role="alert">
+        <p className="mt-3 px-2 text-sm text-[#D4887F]" role="alert">
           {t.guideInvalidEmail}
         </p>
       )}

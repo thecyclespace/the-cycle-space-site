@@ -160,8 +160,8 @@ export default function CyclePhaseTool() {
   };
 
   const inputCls =
-    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#241915] outline-none transition focus:border-[#9E4F49] focus:ring-2 focus:ring-[#9E4F49]/30";
-  const errorCls = "mt-2 text-sm text-[#C46B63]";
+    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#362E28] outline-none transition focus:border-[#7C3C3C] focus:ring-2 focus:ring-[#7C3C3C]/30";
+  const errorCls = "mt-2 text-sm text-[#D4887F]";
 
   const phaseInfo = result ? t.phases[result.phase] : null;
 
@@ -172,12 +172,12 @@ export default function CyclePhaseTool() {
         className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10"
         noValidate
       >
-        <h2 className="font-serif text-3xl text-[#241915]">{t.formTitle}</h2>
+        <h2 className="font-serif text-3xl text-[#362E28]">{t.formTitle}</h2>
         <p className="mt-2 text-sm text-[#6e625b]">{t.privacy}</p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-[#352A25]" htmlFor="cp-lmp">
+            <label className="block text-sm font-medium text-[#43372F]" htmlFor="cp-lmp">
               {t.lmpLabel}
             </label>
             <input
@@ -198,7 +198,7 @@ export default function CyclePhaseTool() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#352A25]" htmlFor="cp-cycle">
+            <label className="block text-sm font-medium text-[#43372F]" htmlFor="cp-cycle">
               {t.cycleLabel}
             </label>
             <input
@@ -224,7 +224,7 @@ export default function CyclePhaseTool() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-full bg-[#9E4F49] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#6F3432] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
+            className="inline-flex items-center justify-center rounded-full bg-[#7C3C3C] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#5C2B2B] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
           >
             {t.submit}
           </button>
@@ -240,10 +240,10 @@ export default function CyclePhaseTool() {
 
       {result && phaseInfo && (
         <div
-          className="mt-6 overflow-hidden rounded-[2rem] bg-[#241915] p-6 text-[#FBF7EF] md:p-10"
+          className="mt-6 overflow-hidden rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:p-10"
           aria-live="polite"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-[#C46B63]">{t.resultKicker}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-[#D4887F]">{t.resultKicker}</p>
           <div className="mt-4 grid gap-8 md:grid-cols-[180px_1fr] md:items-center">
             <div className="flex justify-center">
               <CycleDayRing
@@ -272,7 +272,7 @@ export default function CyclePhaseTool() {
               <ul className="mt-2 space-y-1.5 text-sm leading-6 text-[#E7D8C8]">
                 {phaseInfo.suggestions.map((s) => (
                   <li key={s} className="flex gap-2">
-                    <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#9E4F49]" />
+                    <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#7C3C3C]" />
                     <span>{s}</span>
                   </li>
                 ))}
@@ -284,8 +284,8 @@ export default function CyclePhaseTool() {
         </div>
       )}
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-        <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+      <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+        <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
       </div>
     </div>
   );
@@ -294,7 +294,7 @@ export default function CyclePhaseTool() {
 function DetailBlock({ label, value, children }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{label}</p>
+      <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{label}</p>
       {value && <p className="mt-2 text-sm leading-6 text-[#E7D8C8]">{value}</p>}
       {children}
     </div>
@@ -341,7 +341,7 @@ function CycleDayRing({ cycleDay, cycleLength, ovulationDay, periodEnd, fertileS
           cy={cy}
           r={radius}
           fill="none"
-          stroke="#9E4F49"
+          stroke="#7C3C3C"
           strokeWidth="12"
           strokeDasharray={period.dashArray}
           strokeDashoffset={period.dashOffset}
@@ -357,15 +357,14 @@ function CycleDayRing({ cycleDay, cycleLength, ovulationDay, periodEnd, fertileS
           strokeDashoffset={fertile.dashOffset}
         />
       </g>
-      <circle cx={ovX} cy={ovY} r="5" fill="#FBF7EF" stroke="#9E4F49" strokeWidth="2" />
-      <circle cx={dayX} cy={dayY} r="9" fill="#C46B63" stroke="#FBF7EF" strokeWidth="3" />
+      <circle cx={ovX} cy={ovY} r="5" fill="#FBF7EF" stroke="#7C3C3C" strokeWidth="2" />
+      <circle cx={dayX} cy={dayY} r="9" fill="#D4887F" stroke="#FBF7EF" strokeWidth="3" />
       <text
         x={cx}
         y={cy + 5}
         textAnchor="middle"
         fill="#FBF7EF"
-        fontFamily="EB Garamond, Garamond, serif"
-        fontStyle="italic"
+        fontFamily="Aboreto, serif"
         fontSize="32"
       >
         {cycleDay}

@@ -7,14 +7,20 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #FBF7EF;
-  color: #241915;
+  color: #362E28;
 }
 
 ::selection {
-  background-color: rgba(158, 79, 73, 0.25);
-  color: #241915;
+  background-color: rgba(124,60,60, 0.25);
+  color: #362E28;
+}
+
+/* Brand typography (Aboreto display has no italic/bold: never synthesize them). */
+.font-serif {
+  font-synthesis: none;
+  letter-spacing: 0.01em;
 }

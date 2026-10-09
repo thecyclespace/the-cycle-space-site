@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Icon, Button, LogoMark } from "./ui";
+import { Icon, Button, BrandLogo } from "./ui";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 import { getPost } from "../lib/blog";
@@ -76,14 +76,13 @@ export default function Header() {
   };
 
   const navLinkClass = ({ isActive }) =>
-    `transition ${isActive ? "text-[#9E4F49]" : "text-[#5d5049] hover:text-[#9E4F49]"}`;
+    `transition ${isActive ? "text-[#7C3C3C]" : "text-[#5d5049] hover:text-[#7C3C3C]"}`;
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-[#DCCDB8]/60 bg-[#FBF7EF]/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link to="/" className="group flex items-center gap-3" aria-label="Go to homepage">
-          <LogoMark size={40} color="#9E4F49" textColor="#241915" showWordmark={false} />
-          <span className="font-serif text-xl tracking-tight">The Cycle Space</span>
+        <Link to="/" className="flex items-center" aria-label="The Cycle Space — home">
+          <BrandLogo variant="wordmark" tone="light" height={32} />
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm md:flex" aria-label="Primary">
@@ -130,7 +129,7 @@ export default function Header() {
                 end={item.route === "/"}
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
-                  `text-left text-lg ${isActive ? "text-[#9E4F49]" : "text-[#352A25]"}`
+                  `text-left text-lg ${isActive ? "text-[#7C3C3C]" : "text-[#43372F]"}`
                 }
               >
                 {item.label}
@@ -143,7 +142,7 @@ export default function Header() {
               <Button
                 onClick={handleToggleLang}
                 variant="outline"
-                className="border-[#DCCDB8] text-[#241915] hover:bg-[#F4EBDD]"
+                className="border-[#DCCDB8] text-[#362E28] hover:bg-[#F4EBDD]"
               >
                 {lang === "en" ? "FR" : "EN"}
               </Button>

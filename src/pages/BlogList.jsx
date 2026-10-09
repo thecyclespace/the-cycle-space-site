@@ -44,7 +44,7 @@ export default function BlogList() {
     <>
       <section className="bg-[#FBF7EF] px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-40">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#9E4F49] md:mb-5 md:text-sm">{L.kicker}</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:mb-5 md:text-sm">{L.kicker}</p>
           <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-7xl">{L.title}</h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{L.intro}</p>
         </div>
@@ -53,17 +53,17 @@ export default function BlogList() {
       <section className="px-5 pt-10 md:px-8 md:pt-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeader number="01" title={L.free.title} subtitle={L.free.subtitle} />
-          <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-[2rem] bg-[#241915] text-[#FBF7EF] md:mt-8 md:grid-cols-[1fr_0.8fr] md:rounded-[2.8rem]">
+          <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-[2rem] bg-[#362E28] text-[#FBF7EF] md:mt-8 md:grid-cols-[1fr_0.8fr] md:rounded-[2.8rem]">
             <div className="p-6 md:p-14">
-              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#C46B63] md:mb-5 md:text-sm">{L.pdf}</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#D4887F] md:mb-5 md:text-sm">{L.pdf}</p>
               <h3 className="font-serif text-3xl leading-tight md:text-5xl">{t.resourcesTitle}</h3>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#E7D8C8] md:mt-6 md:text-lg">{t.resourcesText}</p>
               <GuideForm />
             </div>
-            <div className="relative hidden min-h-[420px] bg-[#352A25] p-8 md:block md:p-14">
+            <div className="relative hidden min-h-[420px] bg-[#43372F] p-8 md:block md:p-14">
               <OrbitalGraphic dense />
-              <div className="relative ml-auto flex h-full max-w-sm flex-col justify-end rounded-[2rem] border border-[#9E4F49]/40 bg-[#FBF7EF] p-8 text-[#241915] shadow-2xl">
-                <p className="text-sm uppercase tracking-[0.25em] text-[#9E4F49]">Guide</p>
+              <div className="relative ml-auto flex h-full max-w-sm flex-col justify-end rounded-[2rem] border border-[#7C3C3C]/40 bg-[#FBF7EF] p-8 text-[#362E28] shadow-2xl">
+                <p className="text-sm uppercase tracking-[0.25em] text-[#7C3C3C]">Guide</p>
                 <h4 className="mt-6 font-serif text-5xl leading-none">Know Your Flow</h4>
                 <p className="mt-6 text-[#5d5049]">{L.guideTagline}</p>
               </div>
@@ -114,9 +114,9 @@ export default function BlogList() {
 function SectionHeader({ number, title, subtitle }) {
   return (
     <div className="flex items-baseline gap-5 border-t border-[#DCCDB8] pt-6">
-      <span className="font-serif text-3xl italic text-[#9E4F49] md:text-4xl">{number}</span>
+      <span className="font-serif text-3xl text-[#7C3C3C] md:text-4xl">{number}</span>
       <div>
-        <h2 className="font-serif text-3xl leading-tight text-[#241915] md:text-4xl">{title}</h2>
+        <h2 className="font-serif text-3xl leading-tight text-[#362E28] md:text-4xl">{title}</h2>
         {subtitle && <p className="mt-1 text-sm text-[#5d5049] md:text-base">{subtitle}</p>}
       </div>
     </div>
@@ -141,24 +141,24 @@ function PostCard({ post, lang }) {
       )}
       <div className="flex items-center gap-3">
         {post.tool ? (
-          <span className="inline-flex items-center rounded-full bg-[#9E4F49]/15 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#6F3432]">
+          <span className="inline-flex items-center rounded-full bg-[#7C3C3C]/15 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#5C2B2B]">
             {lang === "fr" ? "Outil" : "Tool"}
           </span>
         ) : (
           post.date && (
-            <p className="text-xs uppercase tracking-[0.18em] text-[#9E4F49]">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#7C3C3C]">
               {formatDate(post.date, lang)}
             </p>
           )
         )}
       </div>
-      <h3 className="mt-3 font-serif text-2xl leading-tight transition group-hover:text-[#6F3432]">
+      <h3 className="mt-3 font-serif text-2xl leading-tight transition group-hover:text-[#5C2B2B]">
         {post.title}
       </h3>
       {post.excerpt && (
         <p className="mt-3 flex-1 text-sm leading-6 text-[#5d5049]">{post.excerpt}</p>
       )}
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] group-hover:text-[#9E4F49]">
+      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] group-hover:text-[#7C3C3C]">
         {post.tool
           ? lang === "fr"
             ? "Ouvrir l'outil"

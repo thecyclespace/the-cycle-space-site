@@ -3,11 +3,9 @@ import { motion } from "framer-motion";
 import { Icon, Button } from "./ui";
 import { useBooking } from "../lib/booking";
 import { useI18n } from "../lib/i18n";
-import siteSettings from "../content/settings/site.json";
 
 const CALENDLY_CSS = "https://assets.calendly.com/assets/external/widget.css";
 const CALENDLY_JS = "https://assets.calendly.com/assets/external/widget.js";
-const BOOKING_URL = siteSettings.bookingUrl;
 
 function loadCalendlyAssets() {
   if (typeof window === "undefined") return Promise.resolve();
@@ -36,7 +34,7 @@ function loadCalendlyAssets() {
 }
 
 export default function BookingModal() {
-  const { open, closeBooking } = useBooking();
+  const { open, url: bookingUrl, closeBooking } = useBooking();
   const { t, lang } = useI18n();
   const widgetRef = useRef(null);
   const [status, setStatus] = useState("idle");
@@ -62,14 +60,14 @@ export default function BookingModal() {
         if (cancelled || !widgetRef.current || !window.Calendly) return;
         widgetRef.current.innerHTML = "";
         window.Calendly.initInlineWidget({
-          url: `${BOOKING_URL}?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=9E4F49&text_color=241915&background_color=FBF7EF`,
+          url: `${bookingUrl}${bookingUrl.includes("?") ? "&" : "?"}hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=7C3C3C&text_color=362E28&background_color=FBF7EF`,
           parentElement: widgetRef.current,
         });
         setStatus("ready");
       })
       .catch(() => !cancelled && setStatus("error"));
     return () => { cancelled = true; };
-  }, [open, lang]);
+  }, [open, lang, bookingUrl]);
 
   if (!open) return null;
   return (
@@ -77,7 +75,7 @@ export default function BookingModal() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="booking-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#241915]/75 p-3 backdrop-blur-sm md:p-6"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#362E28]/75 p-3 backdrop-blur-sm md:p-6"
       onClick={closeBooking}
     >
       <motion.div
@@ -88,17 +86,17 @@ export default function BookingModal() {
       >
         <div className="flex items-start justify-between gap-4 border-b border-[#DCCDB8] px-6 py-5 md:px-8">
           <div>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#9E4F49]/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[#6F3432]">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#7C3C3C]/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[#5C2B2B]">
               <Icon name="calendar" size={13} /> Calendly
             </div>
-            <h3 id="booking-title" className="font-serif text-2xl leading-tight text-[#241915] md:text-3xl">
+            <h3 id="booking-title" className="font-serif text-2xl leading-tight text-[#362E28] md:text-3xl">
               {t.modalTitle}
             </h3>
             <p className="mt-1 text-sm text-[#5d5049] md:text-base">{t.modalText}</p>
           </div>
           <button
             onClick={closeBooking}
-            className="shrink-0 rounded-full border border-[#DCCDB8] p-2 text-[#352A25] transition hover:bg-[#F4EBDD]"
+            className="shrink-0 rounded-full border border-[#DCCDB8] p-2 text-[#43372F] transition hover:bg-[#F4EBDD]"
             aria-label="Close booking modal"
           >
             <Icon name="x" size={18} />
@@ -109,14 +107,14 @@ export default function BookingModal() {
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#FBF7EF]">
               {status === "error" ? (
                 <>
-                  <p className="text-base text-[#6F3432]">{t.calendlyError}</p>
-                  <Button href={BOOKING_URL} className="bg-[#9E4F49] text-[#FBF7EF] hover:bg-[#6F3432]">
+                  <p className="text-base text-[#5C2B2B]">{t.calendlyError}</p>
+                  <Button href={bookingUrl} className="bg-[#7C3C3C] text-[#FBF7EF] hover:bg-[#5C2B2B]">
                     {t.calendly} <Icon name="arrow" size={16} />
                   </Button>
                 </>
               ) : (
                 <>
-                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#9E4F49]/30 border-t-[#9E4F49]" />
+                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#7C3C3C]/30 border-t-[#7C3C3C]" />
                   <p className="text-sm text-[#6e625b]">{t.calendlyLoading}</p>
                 </>
               )}

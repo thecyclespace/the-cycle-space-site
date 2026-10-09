@@ -85,67 +85,32 @@ export function Icon({ name, size = 18, className = "" }) {
   return icons[name] || null;
 }
 
-export function LogoMark({ size = 200, color = "#9E4F49", textColor = "#F4EBDD", className = "", showWordmark = true }) {
-  const cx = 100;
-  const cy = 100;
-  const r = 88;
-  const dotAngleDeg = -55;
-  const a = (dotAngleDeg * Math.PI) / 180;
-  const dotX = cx + r * Math.cos(a);
-  const dotY = cy + r * Math.sin(a);
+// Official brand logos (public/brand). `tone` is the background they sit on:
+// "light" background -> dark artwork, "dark" background -> cream artwork.
+// `variant`: "main" (stacked, circular) or "wordmark" (secondary, horizontal).
+const LOGO_RATIO = { main: 720 / 716, wordmark: 900 / 119 };
+
+export function BrandLogo({ variant = "main", tone = "light", height, className = "" }) {
+  const file = `${variant}-${tone === "dark" ? "light" : "dark"}`;
+  const style = height ? { height, width: height * LOGO_RATIO[variant] } : undefined;
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 200 200"
-      className={className}
-      role="img"
-      aria-label="The Cycle Space"
-    >
-      <g transform={`rotate(-90 ${cx} ${cy})`}>
-        <circle
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill="none"
-          stroke={color}
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeDasharray="172 22 86 18 118 16 88 22"
-        />
-      </g>
-      <circle cx={dotX} cy={dotY} r="5" fill={color} />
-      {showWordmark && (
-        <g textAnchor="middle" fill={textColor}>
-          <text x={cx} y={cy - 22} fontFamily="Inter, sans-serif" fontSize="11" letterSpacing="6" fontWeight="500">
-            THE
-          </text>
-          <text
-            x={cx}
-            y={cy + 18}
-            fontFamily='"EB Garamond", Garamond, serif'
-            fontStyle="italic"
-            fontSize="58"
-            fontWeight="500"
-          >
-            Cycle
-          </text>
-          <text x={cx} y={cy + 50} fontFamily="Inter, sans-serif" fontSize="11" letterSpacing="8" fontWeight="500">
-            SPACE
-          </text>
-        </g>
-      )}
-    </svg>
+    <img
+      src={`${import.meta.env.BASE_URL}brand/logo-${file}.png`}
+      alt="The Cycle Space"
+      style={style}
+      className={`select-none ${className}`}
+      draggable="false"
+    />
   );
 }
 
 export function Button({ children, className = "", variant = "default", href, to, onClick, type = "button", ariaLabel }) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF] disabled:pointer-events-none disabled:opacity-50";
+    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF] disabled:pointer-events-none disabled:opacity-50";
   const styles =
     variant === "outline"
-      ? "border border-[#9E4F49]/55 bg-transparent text-inherit hover:bg-[#FBF7EF]/10 hover:border-[#9E4F49]"
-      : "bg-[#241915] text-[#FBF7EF] hover:bg-[#352A25]";
+      ? "border border-[#7C3C3C]/55 bg-transparent text-inherit hover:bg-[#FBF7EF]/10 hover:border-[#7C3C3C]"
+      : "bg-[#362E28] text-[#FBF7EF] hover:bg-[#43372F]";
   const cls = `${base} ${styles} ${className}`;
 
   if (to) {
@@ -182,7 +147,7 @@ export function OrbitalGraphic({ dense = false }) {
         initial={{ opacity: 0, scale: 0.96, rotate: -8 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 1.4, ease: "easeOut" }}
-        className={`absolute rounded-full border border-[#9E4F49]/50 ${
+        className={`absolute rounded-full border border-[#7C3C3C]/50 ${
           dense ? "right-[-160px] top-[-140px] h-[520px] w-[520px]" : "right-[-220px] top-[-120px] h-[680px] w-[680px]"
         }`}
       />
@@ -190,11 +155,11 @@ export function OrbitalGraphic({ dense = false }) {
         initial={{ opacity: 0, rotate: 18 }}
         animate={{ opacity: 1, rotate: 0 }}
         transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-        className={`absolute rounded-full border border-[#9E4F49]/25 ${
+        className={`absolute rounded-full border border-[#7C3C3C]/25 ${
           dense ? "right-[40px] top-[70px] h-[280px] w-[280px]" : "right-[80px] top-[110px] h-[360px] w-[360px]"
         }`}
       />
-      <div className="absolute right-[13%] top-[18%] h-5 w-5 rounded-full bg-[#9E4F49] shadow-[0_0_0_10px_rgba(158,79,73,0.08)]" />
+      <div className="absolute right-[13%] top-[18%] h-5 w-5 rounded-full bg-[#7C3C3C] shadow-[0_0_0_10px_rgba(124,60,60,0.08)]" />
     </div>
   );
 }

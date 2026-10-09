@@ -1,11 +1,23 @@
 {
   "nav": [
-    { "label": "Accueil", "route": "/" },
-    { "label": "Services", "route": "/services" },
-    { "label": "Ressources", "route": "/blog" },
-    { "label": "À propos", "route": "/about" }
+    {
+      "label": "Accueil",
+      "route": "/"
+    },
+    {
+      "label": "Services",
+      "route": "/services"
+    },
+    {
+      "label": "Ressources",
+      "route": "/blog"
+    },
+    {
+      "label": "À propos",
+      "route": "/about"
+    }
   ],
-  "book": "Prendre rendez-vous",
+  "book": "Réserve ton Introduction",
   "heroKicker": "Santé féminine. Éducation du cycle. Compréhension du corps.",
   "heroTitle": "Ton corps te parle depuis longtemps. C'est ici que tu apprends à l'écouter.",
   "heroText": "Ton cycle, tes hormones, tes symptômes. Travaille avec ton corps, pas contre lui. Ancré dans la science. Entièrement en ligne.",
@@ -18,21 +30,39 @@
   "pillarsSubtitle": "Réflexion clinique, éducation du cycle et outils concrets. Pas de wellness anxiogène. Pas de solution magique. Pas de conseils flous.",
   "services": [
     {
-      "title": "Consultation santé féminine 1:1",
-      "tag": "Bilan approfondi en ligne",
-      "body": "Une séance personnalisée pensée pour t'aider à comprendre ce qui se passe dans ton corps, pourquoi tes symptômes apparaissent, et co-créer un plan pour y répondre sans te submerger. On regarde le tableau complet : ton cycle, ton histoire, ton mode de vie, tes patterns. Puis on construit quelque chose de pratique, fondé sur les preuves, et entièrement à toi.",
-      "cta": "Réserver cette séance"
+      "title": "L'Introduction",
+      "tag": "Appel découverte gratuit · 15–20 min",
+      "action": "intro",
+      "body": "15 à 20 minutes. Sans pression. Juste une conversation.\n\nAvant de travailler ensemble, je veux m'assurer que c'est le bon choix pour toi. On parlera de là où tu en es aujourd'hui, de ce que tu as déjà essayé et de ce que tu souhaites changer. Je t'expliquerai ma façon de travailler et à quoi ressemble concrètement le programme.\n\nPas de discours commercial. Si ça colle, on parlera des prochaines étapes. Sinon, je t'orienterai vers ce qui te correspond.",
+      "forWho": "Toute femme curieuse de travailler avec moi, qui veut sentir comment ça se passe avant de s'engager.",
+      "leave": "",
+      "cta": "Réserve ton Introduction"
     },
     {
-      "title": "Session d'éducation du cycle",
-      "tag": "Comprendre tes phases",
-      "body": "Apprends les quatre phases de ton cycle, comment les suivre, et comment adapter ton travail, ton mouvement, ton alimentation et ta récupération avec plus de clarté.",
-      "cta": "En savoir plus"
+      "title": "Le Rhythm Check-In",
+      "tag": "Séance unique · 90 min",
+      "action": "checkin",
+      "body": "Pour les femmes qui ne sont pas prêtes à s'engager dans un programme complet mais ont besoin de clarté maintenant.\n\nUne seule séance de 90 minutes pour comprendre ce qui se passe vraiment dans ton corps. On regarde le tableau complet — ton cycle, tes symptômes, ton histoire, ton mode de vie — et tu repars avec un plan clair et concret, entièrement à toi.\n\nCe n'est pas une séance d'essai. C'est une séance complète, avec de vraies réponses et de vraies étapes. Pas de surcharge, pas de conseils flous. Une réflexion clinique et un plan que tu peux réellement appliquer.\n\nParce que le corps fonctionne par cycles et que le vrai changement prend du temps, cette séance fonctionne mieux dans un rythme régulier. Beaucoup de femmes reviennent une fois par mois : on suit ce qui évolue, on ajuste le plan selon la réponse de ton corps et on s'appuie sur ce qu'on a déjà découvert ensemble. Une séance t'apporte de la clarté. Une série t'apporte une transformation.",
+      "forWho": "Les femmes qui veulent de la clarté avant de s'engager plus loin, ou qui ont un sujet précis à approfondir — leur cycle, leur digestion, leur énergie, ou la compréhension d'un diagnostic qu'on leur a donné.",
+      "leave": "Un protocole écrit avec des recommandations concrètes autour de la nutrition, du mode de vie, du suivi et de l'accompagnement.",
+      "cta": "Réserver un Rhythm Check-In"
     },
     {
-      "title": "Programmes de groupe",
-      "tag": "Bientôt disponible",
-      "body": "Des programmes en cohorte autour du cycle syncing et de la santé hormonale pour les femmes qui cherchent structure, éducation et communauté.",
+      "title": "Your Inner Rhythm",
+      "tag": "Programme 1:1 de 6 mois",
+      "action": "intro",
+      "body": "Un accompagnement 1:1 de 6 mois, en français ou en anglais, construit sur The Inner Rhythm Method : un parcours en 4 phases pour comprendre ton corps, travailler avec ton cycle et trouver ton rythme — pour de bon.",
+      "forWho": "",
+      "leave": "",
+      "cta": "Commencer par une Introduction"
+    },
+    {
+      "title": "The Inner Space",
+      "tag": "Programme de groupe · Bientôt disponible",
+      "action": "waitlist",
+      "body": "Programmes de groupe bientôt disponibles — rejoins la liste pour être la première informée.",
+      "forWho": "",
+      "leave": "",
       "cta": "Rejoindre la liste"
     }
   ],
@@ -49,10 +79,26 @@
   "notForText": "The Cycle Space est fait pour les femmes prêtes à faire les choses autrement, curieuses de leur corps, ouvertes à un changement progressif, et qui cherchent quelque chose de durable. L'approche travaille avec la médecine conventionnelle, mais ne remplace pas une prise en charge médicale urgente.",
   "journeyTitle": "Voici comment ça se passe.",
   "journey": [
-    { "num": "01", "title": "Réserve ta consultation", "body": "Choisis un horaire qui te convient, les séances sont entièrement en ligne, en français ou en anglais." },
-    { "num": "02", "title": "Partage ton histoire", "body": "Avant ta séance, tu remplis un questionnaire approfondi sur ton cycle, tes symptômes, ton mode de vie et ton historique de santé. Pour qu'on tire le meilleur de notre temps ensemble." },
-    { "num": "03", "title": "Rendez-vous en ligne", "body": "La séance est calme, claire et sans précipitation, avec de l'espace pour chaque question." },
-    { "num": "04", "title": "Repars avec un plan", "body": "Tu repars avec des étapes concrètes et pratiques autour du tracking, de la nutrition, du mode de vie et du soutien." }
+    {
+      "num": "01",
+      "title": "Réserve ta séance",
+      "body": "Choisis un horaire qui te convient, les séances sont entièrement en ligne, en français ou en anglais."
+    },
+    {
+      "num": "02",
+      "title": "Partage ton histoire",
+      "body": "Avant ta séance, tu remplis un questionnaire approfondi sur ton cycle, tes symptômes, ton mode de vie et ton historique de santé. Pour qu'on tire le meilleur de notre temps ensemble."
+    },
+    {
+      "num": "03",
+      "title": "Rendez-vous en ligne",
+      "body": "La séance est calme, claire et sans précipitation, avec de l'espace pour chaque question."
+    },
+    {
+      "num": "04",
+      "title": "Repars avec un plan",
+      "body": "Tu repars avec des étapes concrètes et pratiques autour du tracking, de la nutrition, du mode de vie et du soutien."
+    }
   ],
   "resourcesTitle": "Commence avec un guide gratuit du cycle.",
   "resourcesText": "Télécharge Know Your Flow ou Connais Ton Cycle et commence à suivre ton corps avec plus de confiance et moins de bruit.",
@@ -73,14 +119,14 @@
     "Français, anglais, portugais, espagnol"
   ],
   "finalTitle": "Prête à comprendre ce que ton corps essaie de dire ?",
-  "finalText": "Réserve une première consultation ou commence avec un guide gratuit. Dans tous les cas, cet espace est fait pour la clarté.",
-  "modalTitle": "Prendre rendez-vous",
-  "modalText": "Choisis une date et un horaire ci-dessous. Parcours conseillé : un appel découverte court, puis une consultation complète.",
+  "finalText": "Réserve un appel Introduction gratuit ou commence avec un guide gratuit. Dans tous les cas, cet espace est fait pour la clarté.",
+  "modalTitle": "Réserver une séance",
+  "modalText": "Choisis une date et un horaire ci-dessous. Première fois ici ? Commence par l'Introduction, un appel gratuit de 15 à 20 minutes.",
   "calendly": "Ouvrir Calendly",
   "calendlyLoading": "Chargement du calendrier…",
   "calendlyError": "Impossible de charger le calendrier. Tu peux ouvrir Calendly directement.",
   "disclaimer": "Éducation et accompagnement — ne remplace pas un avis médical urgent. En cas de détresse ou de symptômes sévères, contacte ton médecin ou les services d'urgence.",
-  "footerTagline": "Éducation du cycle. Santé féminine. En ligne, partout dans le monde.",
+  "footerTagline": "Accompagner les femmes, un cycle à la fois.",
   "homeTool": {
     "kicker": "Outil gratuit",
     "title": "Calcule ton cycle.",
@@ -88,5 +134,73 @@
     "learnMore": "Lire l'article complet"
   },
   "mobileHeroTitle": "",
-  "mobileHeroText": ""
+  "mobileHeroText": "",
+  "servicesLabels": {
+    "forWho": "Pour qui",
+    "leave": "Ce que tu emportes"
+  },
+  "method": {
+    "kicker": "Trouve ton rythme",
+    "title": "The Inner Rhythm Method",
+    "intro": "Un parcours en 4 phases pour les femmes prêtes à comprendre leur corps, à travailler avec leur cycle et à trouver leur rythme — pour de bon.",
+    "cta": "Découvrir Your Inner Rhythm",
+    "programmeKicker": "Programme 1:1",
+    "programmeTitle": "Your Inner Rhythm",
+    "programmeMeta": "Accompagnement 1:1 de 6 mois · Français & anglais",
+    "programmeCta": "Commencer par une Introduction",
+    "phases": [
+      {
+        "num": "01",
+        "title": "Decode",
+        "tag": "Prise de conscience + validation",
+        "body": "Tu arrives perdue, mise de côté, déconnectée. Ensemble, on met au jour ce qui se passe vraiment — tes symptômes sont des signaux, pas du bruit, et ton cycle est le reflet direct de ta santé globale.",
+        "points": [
+          "Les symptômes sont des signaux, pas du hasard",
+          "Ton cycle reflète ta santé globale",
+          "« Normal » ne veut pas dire optimal"
+        ],
+        "outcome": "La prise de conscience ouvre la porte au changement — ce qui est mis en lumière peut se libérer.",
+        "quote": "Je ne suis pas folle. Mon corps me parlait depuis le début."
+      },
+      {
+        "num": "02",
+        "title": "Regulate",
+        "tag": "Fondations + sécurité",
+        "body": "On arrête le cycle du « tout essayer » et on construit de vraies fondations personnalisées — des rythmes réguliers sur lesquels ton corps peut s'appuyer et répondre.",
+        "points": [
+          "Nutrition adaptée au cycle",
+          "Soutien intestinal et hormonal",
+          "Régulation du système nerveux"
+        ],
+        "outcome": "Tu sors de la surcharge et tu découvres ce que ça fait de soutenir ton corps de façon constante.",
+        "quote": "J'ai arrêté de tout essayer. Je fais enfin ce qui marche pour moi."
+      },
+      {
+        "num": "03",
+        "title": "Reconnect",
+        "tag": "Compréhension du corps + personnalisation",
+        "body": "La compréhension de ton corps devient profondément personnelle. Tu passes de la délégation de ta santé à l'expertise de ton propre corps et de ton propre cycle.",
+        "points": [
+          "Comprendre tes quatre phases du cycle",
+          "Savoir ce dont tu as besoin et quand",
+          "Relier symptômes et schémas"
+        ],
+        "outcome": "Tu construis avec ton corps une relation fondée sur la confiance et la compréhension, pas sur la peur ou le hasard.",
+        "quote": "Tout est lié — et je comprends enfin comment."
+      },
+      {
+        "num": "04",
+        "title": "Embody",
+        "tag": "Intégration + changement d'identité",
+        "body": "La transformation que la plupart des programmes oublient. Le changement durable arrive quand l'identité évolue, pas seulement les actions — sinon les anciens schémas reprennent le dessus.",
+        "points": [
+          "Ne plus être dirigée par tes symptômes",
+          "Calme, ancrée, en confiance en toi",
+          "En rythme avec ton corps et ta vie"
+        ],
+        "outcome": "Tu deviens une femme qui comprend profondément son corps et vit en accord avec son rythme naturel.",
+        "quote": "Je ne suis plus dirigée par mes symptômes. Je suis enfin en rythme avec mon corps."
+      }
+    ]
+  }
 }

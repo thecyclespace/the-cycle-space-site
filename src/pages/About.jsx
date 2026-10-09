@@ -46,7 +46,7 @@ export default function About() {
                 fetchpriority="high"
                 className="h-full w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#241915]/85 via-[#241915]/45 to-transparent p-5 pt-16 text-[#FBF7EF] md:p-7 md:pt-20">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#362E28]/85 via-[#362E28]/45 to-transparent p-5 pt-16 text-[#FBF7EF] md:p-7 md:pt-20">
                 <p className="font-serif text-4xl leading-none md:text-5xl">Elsa</p>
                 <p className="mt-2 text-xs leading-5 text-[#E7D8C8] md:mt-3 md:text-sm md:leading-6">
                   Osteopath · Women's health practitioner · Cycle educator

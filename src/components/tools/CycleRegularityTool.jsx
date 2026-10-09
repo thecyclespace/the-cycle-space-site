@@ -147,7 +147,7 @@ export default function CycleRegularityTool() {
   };
 
   const inputCls =
-    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#241915] outline-none transition focus:border-[#9E4F49] focus:ring-2 focus:ring-[#9E4F49]/30";
+    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#362E28] outline-none transition focus:border-[#7C3C3C] focus:ring-2 focus:ring-[#7C3C3C]/30";
 
   return (
     <div className="not-prose my-12">
@@ -156,14 +156,14 @@ export default function CycleRegularityTool() {
         className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10"
         noValidate
       >
-        <h2 className="font-serif text-3xl text-[#241915]">{t.formTitle}</h2>
+        <h2 className="font-serif text-3xl text-[#362E28]">{t.formTitle}</h2>
         <p className="mt-2 text-sm text-[#6e625b]">{t.privacy}</p>
         <p className="mt-3 text-sm text-[#5d5049]">{t.intro}</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {dates.map((d, idx) => (
             <div key={idx}>
-              <label className="block text-sm font-medium text-[#352A25]" htmlFor={`cr-date-${idx}`}>
+              <label className="block text-sm font-medium text-[#43372F]" htmlFor={`cr-date-${idx}`}>
                 {t.dateLabel(idx)}
               </label>
               <div className="flex gap-2">
@@ -178,7 +178,7 @@ export default function CycleRegularityTool() {
                   <button
                     type="button"
                     onClick={() => removeDate(idx)}
-                    className="mt-2 shrink-0 rounded-2xl border border-[#DCCDB8] px-3 text-sm text-[#6F3432] transition hover:bg-[#F4EBDD]"
+                    className="mt-2 shrink-0 rounded-2xl border border-[#DCCDB8] px-3 text-sm text-[#5C2B2B] transition hover:bg-[#F4EBDD]"
                     aria-label={`${t.remove} ${t.dateLabel(idx)}`}
                   >
                     ×
@@ -193,14 +193,14 @@ export default function CycleRegularityTool() {
           <button
             type="button"
             onClick={addDate}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             + {t.addDate}
           </button>
         )}
 
         {errors.global && (
-          <p role="alert" className="mt-4 text-sm text-[#C46B63]">
+          <p role="alert" className="mt-4 text-sm text-[#D4887F]">
             {errors.global}
           </p>
         )}
@@ -208,7 +208,7 @@ export default function CycleRegularityTool() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-full bg-[#9E4F49] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#6F3432] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
+            className="inline-flex items-center justify-center rounded-full bg-[#7C3C3C] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#5C2B2B] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
           >
             {t.submit}
           </button>
@@ -224,11 +224,11 @@ export default function CycleRegularityTool() {
 
       {result && (
         <div
-          className="mt-6 overflow-hidden rounded-[2rem] bg-[#241915] p-6 text-[#FBF7EF] md:p-10"
+          className="mt-6 overflow-hidden rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:p-10"
           aria-live="polite"
         >
           <div className="flex flex-wrap items-baseline gap-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#C46B63]">{t.resultKicker}</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#D4887F]">{t.resultKicker}</p>
             <span className="text-xs text-[#DCCDB8]">{t.cyclesAnalysed(result.cycles.length)}</span>
           </div>
           <h3 className="mt-3 font-serif text-4xl text-[#FBF7EF]">
@@ -247,14 +247,14 @@ export default function CycleRegularityTool() {
 
           <CyclesBarChart cycles={result.cycles} avg={result.avg} sortedDates={result.sortedDates} lang={lang} />
 
-          <div className="mt-8 rounded-2xl bg-[#352A25]/60 p-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{t.contextTitle}</p>
+          <div className="mt-8 rounded-2xl bg-[#43372F]/60 p-5">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{t.contextTitle}</p>
             <p className="mt-2 text-sm leading-6 text-[#E7D8C8]">{t.contextNote}</p>
           </div>
 
           {(result.flagsMedical || result.veryShort || result.veryLong) && (
-            <div className="mt-4 rounded-2xl border border-[#9E4F49]/40 bg-[#9E4F49]/10 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{t.consultTitle}</p>
+            <div className="mt-4 rounded-2xl border border-[#7C3C3C]/40 bg-[#7C3C3C]/10 p-5">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{t.consultTitle}</p>
               <p className="mt-2 text-sm leading-6 text-[#E7D8C8]">{t.consultGeneric}</p>
               {result.veryShort && (
                 <p className="mt-2 text-sm leading-6 text-[#E7D8C8]">• {t.consultVeryShort}</p>
@@ -267,8 +267,8 @@ export default function CycleRegularityTool() {
         </div>
       )}
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-        <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+      <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+        <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
       </div>
     </div>
   );
@@ -276,8 +276,8 @@ export default function CycleRegularityTool() {
 
 function Stat({ label, value }) {
   return (
-    <div className="rounded-2xl bg-[#352A25]/40 p-4">
-      <p className="text-[10px] uppercase tracking-[0.18em] text-[#C46B63]">{label}</p>
+    <div className="rounded-2xl bg-[#43372F]/40 p-4">
+      <p className="text-[10px] uppercase tracking-[0.18em] text-[#D4887F]">{label}</p>
       <p className="mt-2 font-serif text-2xl text-[#FBF7EF]">{value}</p>
     </div>
   );
@@ -290,7 +290,7 @@ function CyclesBarChart({ cycles, avg, sortedDates, lang }) {
       <div className="space-y-3">
         {cycles.map((days, i) => {
           const widthPct = Math.max(8, (days / max) * 100);
-          const color = days < 21 || days > 35 ? "#C46B63" : "#B98E86";
+          const color = days < 21 || days > 35 ? "#D4887F" : "#B98E86";
           return (
             <div key={i} className="flex items-center gap-3">
               <span className="w-28 shrink-0 text-xs text-[#DCCDB8]">

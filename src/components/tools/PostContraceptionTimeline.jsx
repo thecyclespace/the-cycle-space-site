@@ -416,12 +416,12 @@ export default function PostContraceptionTimeline() {
   return (
     <div className="not-prose my-12">
       <div className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10">
-        <h2 className="font-serif text-3xl text-[#241915]">{t.formTitle}</h2>
+        <h2 className="font-serif text-3xl text-[#362E28]">{t.formTitle}</h2>
         <p className="mt-2 text-sm text-[#6e625b]">{t.privacy}</p>
         <p className="mt-3 text-sm text-[#5d5049]">{t.intro}</p>
 
         <fieldset className="mt-8">
-          <legend className="text-sm font-medium text-[#352A25]">{t.typeLabel}</legend>
+          <legend className="text-sm font-medium text-[#43372F]">{t.typeLabel}</legend>
           <div className="mt-3 flex flex-wrap gap-2">
             {TYPES.map((key) => (
               <PillButton
@@ -435,7 +435,7 @@ export default function PostContraceptionTimeline() {
         </fieldset>
 
         <fieldset className="mt-6">
-          <legend className="text-sm font-medium text-[#352A25]">{t.periodLabel}</legend>
+          <legend className="text-sm font-medium text-[#43372F]">{t.periodLabel}</legend>
           <div className="mt-3 flex flex-wrap gap-2">
             {PERIODS.map((key) => (
               <PillButton
@@ -452,7 +452,7 @@ export default function PostContraceptionTimeline() {
           <button
             type="button"
             onClick={reset}
-            className="mt-6 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+            className="mt-6 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             ↻ {lang === "fr" ? "Réinitialiser" : "Reset"}
           </button>
@@ -465,30 +465,30 @@ export default function PostContraceptionTimeline() {
 
       {content && (
         <div
-          className="mt-6 overflow-hidden rounded-[2rem] bg-[#241915] p-6 text-[#FBF7EF] md:p-10"
+          className="mt-6 overflow-hidden rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:p-10"
           aria-live="polite"
         >
           <div className="flex flex-wrap items-baseline gap-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#C46B63]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#D4887F]">
               {t.typeOptions[type]}
             </p>
             <span className="text-xs text-[#DCCDB8]">{t.periodOptions[period]}</span>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl bg-[#352A25]/40 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{t.expectKicker}</p>
+            <div className="rounded-2xl bg-[#43372F]/40 p-5">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{t.expectKicker}</p>
               <ul className="mt-3 space-y-2.5 text-sm leading-6 text-[#E7D8C8]">
                 {content.expect.map((line, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#9E4F49]" />
+                    <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#7C3C3C]" />
                     <span>{line}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl bg-[#352A25]/40 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{t.watchKicker}</p>
+            <div className="rounded-2xl bg-[#43372F]/40 p-5">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{t.watchKicker}</p>
               <ul className="mt-3 space-y-2.5 text-sm leading-6 text-[#E7D8C8]">
                 {content.watch.map((line, i) => (
                   <li key={i} className="flex gap-2">
@@ -500,13 +500,13 @@ export default function PostContraceptionTimeline() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-[#9E4F49]/40 bg-[#9E4F49]/10 p-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-[#C46B63]">{t.consultTitle}</p>
+          <div className="mt-8 rounded-2xl border border-[#7C3C3C]/40 bg-[#7C3C3C]/10 p-5">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#D4887F]">{t.consultTitle}</p>
             <p className="mt-3 text-sm leading-6 text-[#E7D8C8]">{t.consultIntro}</p>
             <ul className="mt-3 space-y-1.5 text-sm leading-6 text-[#E7D8C8]">
               {t.consultPoints.map((line) => (
                 <li key={line} className="flex gap-2">
-                  <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#C46B63]" />
+                  <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-[#D4887F]" />
                   <span>{line}</span>
                 </li>
               ))}
@@ -517,8 +517,8 @@ export default function PostContraceptionTimeline() {
         </div>
       )}
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-        <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+      <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+        <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
       </div>
     </div>
   );
@@ -530,10 +530,10 @@ function PillButton({ pressed, onClick, label }) {
       type="button"
       onClick={onClick}
       aria-pressed={pressed}
-      className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 ${
+      className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 ${
         pressed
-          ? "border-[#9E4F49] bg-[#9E4F49] text-[#FBF7EF]"
-          : "border-[#DCCDB8] bg-white text-[#352A25] hover:border-[#9E4F49] hover:text-[#9E4F49]"
+          ? "border-[#7C3C3C] bg-[#7C3C3C] text-[#FBF7EF]"
+          : "border-[#DCCDB8] bg-white text-[#43372F] hover:border-[#7C3C3C] hover:text-[#7C3C3C]"
       }`}
     >
       {label}

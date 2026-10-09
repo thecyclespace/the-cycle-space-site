@@ -50,7 +50,7 @@ export default function BlogPost() {
           publisher: {
             "@type": "Organization",
             name: "The Cycle Space",
-            logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.svg` },
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/favicon-512.png` },
           },
           mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           inLanguage: post.lang === "fr" ? "fr-FR" : "en",
@@ -66,7 +66,7 @@ export default function BlogPost() {
   const bodyAfter = splitIndex >= 0 ? post.bodyHtml.slice(splitIndex + TOOL_MARKER.length) : "";
 
   const proseCls =
-    "prose prose-lg mx-auto max-w-3xl prose-headings:font-serif prose-headings:text-[#241915] prose-p:text-[#352A25] prose-a:text-[#9E4F49] hover:prose-a:text-[#6F3432] prose-strong:text-[#241915] prose-blockquote:border-[#9E4F49] prose-blockquote:text-[#6F3432]";
+    "prose prose-lg mx-auto max-w-3xl prose-headings:font-serif prose-headings:text-[#362E28] prose-p:text-[#43372F] prose-a:text-[#7C3C3C] hover:prose-a:text-[#5C2B2B] prose-strong:text-[#362E28] prose-blockquote:border-[#7C3C3C] prose-blockquote:text-[#5C2B2B]";
 
   return (
     <>
@@ -74,12 +74,12 @@ export default function BlogPost() {
         <div className="mx-auto max-w-3xl">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#6F3432] hover:text-[#9E4F49]"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
           </Link>
           {post.date && !post.tool && (
-            <p className="mt-8 text-xs uppercase tracking-[0.2em] text-[#9E4F49] md:mt-10">
+            <p className="mt-8 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:mt-10">
               {formatDate(post.date, lang)}
             </p>
           )}

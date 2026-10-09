@@ -84,8 +84,8 @@ export default function PeriodCalculator() {
   };
 
   const inputCls =
-    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#241915] outline-none transition focus:border-[#9E4F49] focus:ring-2 focus:ring-[#9E4F49]/30";
-  const errorCls = "mt-2 text-sm text-[#C46B63]";
+    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#362E28] outline-none transition focus:border-[#7C3C3C] focus:ring-2 focus:ring-[#7C3C3C]/30";
+  const errorCls = "mt-2 text-sm text-[#D4887F]";
 
   return (
     <div className="not-prose my-12">
@@ -94,12 +94,12 @@ export default function PeriodCalculator() {
         className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10"
         noValidate
       >
-        <h2 className="font-serif text-3xl text-[#241915]">{t.formTitle}</h2>
+        <h2 className="font-serif text-3xl text-[#362E28]">{t.formTitle}</h2>
         <p className="mt-2 text-sm text-[#6e625b]">{t.privacy}</p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <div>
-            <label className="block text-sm font-medium text-[#352A25]" htmlFor="pc-lmp">
+            <label className="block text-sm font-medium text-[#43372F]" htmlFor="pc-lmp">
               {t.lmpLabel}
             </label>
             <input
@@ -120,7 +120,7 @@ export default function PeriodCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#352A25]" htmlFor="pc-period">
+            <label className="block text-sm font-medium text-[#43372F]" htmlFor="pc-period">
               {t.periodLabel}
             </label>
             <input
@@ -143,7 +143,7 @@ export default function PeriodCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#352A25]" htmlFor="pc-cycle">
+            <label className="block text-sm font-medium text-[#43372F]" htmlFor="pc-cycle">
               {t.cycleLabel}
             </label>
             <input
@@ -169,14 +169,14 @@ export default function PeriodCalculator() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-full bg-[#9E4F49] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#6F3432] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
+            className="inline-flex items-center justify-center rounded-full bg-[#7C3C3C] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#5C2B2B] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
           >
             {t.calculate}
           </button>
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] px-7 py-3 text-sm font-medium text-[#5d5049] transition hover:bg-[#F4EBDD] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/30"
+            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] px-7 py-3 text-sm font-medium text-[#5d5049] transition hover:bg-[#F4EBDD] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/30"
           >
             {t.reset}
           </button>
@@ -185,10 +185,10 @@ export default function PeriodCalculator() {
 
       {results && (
         <div
-          className="mt-6 overflow-hidden rounded-[2rem] bg-[#241915] p-6 text-[#FBF7EF] md:p-10"
+          className="mt-6 overflow-hidden rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:p-10"
           aria-live="polite"
         >
-          <p className="mb-8 text-xs uppercase tracking-[0.2em] text-[#C46B63]">{t.resultsTitle}</p>
+          <p className="mb-8 text-xs uppercase tracking-[0.2em] text-[#D4887F]">{t.resultsTitle}</p>
 
           <div className="grid gap-10 md:grid-cols-[220px_1fr] md:items-center">
             <div className="flex justify-center">
@@ -201,14 +201,14 @@ export default function PeriodCalculator() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               <ResultCard
-                dotColor="#9E4F49"
+                dotColor="#7C3C3C"
                 label={t.nextPeriod}
                 primary={`${formatDate(results.nextPeriodStart, lang)} ${t.rangeSeparator} ${formatDate(results.nextPeriodEnd, lang)}`}
                 countdown={formatCountdown(results.nextPeriodStart, lang)}
               />
               <ResultCard
                 dotColor="#FBF7EF"
-                ringColor="#9E4F49"
+                ringColor="#7C3C3C"
                 label={t.ovulation}
                 primary={formatDate(results.ovulation, lang)}
                 countdown={formatCountdown(results.ovulation, lang)}
@@ -232,8 +232,8 @@ export default function PeriodCalculator() {
         </div>
       )}
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-        <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+      <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+        <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
       </div>
     </div>
   );
@@ -241,7 +241,7 @@ export default function PeriodCalculator() {
 
 function ResultCard({ dotColor, ringColor, label, primary, countdown }) {
   return (
-    <div className="rounded-2xl bg-[#352A25]/40 p-4">
+    <div className="rounded-2xl bg-[#43372F]/40 p-4">
       <div className="flex items-center gap-2.5">
         <span
           className="inline-block h-2.5 w-2.5 rounded-full"
@@ -251,7 +251,7 @@ function ResultCard({ dotColor, ringColor, label, primary, countdown }) {
           }}
           aria-hidden="true"
         />
-        <p className="text-[10px] uppercase tracking-[0.18em] text-[#C46B63]">{label}</p>
+        <p className="text-[10px] uppercase tracking-[0.18em] text-[#D4887F]">{label}</p>
       </div>
       <p className="mt-3 font-serif text-lg leading-tight text-[#FBF7EF]">{primary}</p>
       {countdown && <p className="mt-1 text-xs text-[#DCCDB8]/80">{countdown}</p>}
@@ -299,7 +299,7 @@ function CyclePhaseRing({ periodDuration, cycleLength, lang }) {
           cy={cy}
           r={radius}
           fill="none"
-          stroke="#9E4F49"
+          stroke="#7C3C3C"
           strokeWidth="14"
           strokeDasharray={period.dashArray}
           strokeDashoffset={period.dashOffset}
@@ -315,14 +315,13 @@ function CyclePhaseRing({ periodDuration, cycleLength, lang }) {
           strokeDashoffset={fertile.dashOffset}
         />
       </g>
-      <circle cx={ovulationX} cy={ovulationY} r="7" fill="#FBF7EF" stroke="#9E4F49" strokeWidth="3" />
+      <circle cx={ovulationX} cy={ovulationY} r="7" fill="#FBF7EF" stroke="#7C3C3C" strokeWidth="3" />
       <text
         x={cx}
         y={cy - 2}
         textAnchor="middle"
         fill="#FBF7EF"
-        fontFamily="EB Garamond, Garamond, serif"
-        fontStyle="italic"
+        fontFamily="Aboreto, serif"
         fontSize="38"
       >
         {cycleLength}
@@ -332,7 +331,7 @@ function CyclePhaseRing({ periodDuration, cycleLength, lang }) {
         y={cy + 22}
         textAnchor="middle"
         fill="#DCCDB8"
-        fontFamily="Inter, sans-serif"
+        fontFamily="Montserrat, sans-serif"
         fontSize="9"
         letterSpacing="3"
       >

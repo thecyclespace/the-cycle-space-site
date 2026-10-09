@@ -250,31 +250,31 @@ export default function BasalTemperatureTracker() {
   };
 
   const inputCls =
-    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#241915] outline-none transition focus:border-[#9E4F49] focus:ring-2 focus:ring-[#9E4F49]/30";
-  const errorCls = "mt-2 text-sm text-[#C46B63]";
-  const labelCls = "block text-sm font-medium text-[#352A25]";
+    "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#362E28] outline-none transition focus:border-[#7C3C3C] focus:ring-2 focus:ring-[#7C3C3C]/30";
+  const errorCls = "mt-2 text-sm text-[#D4887F]";
+  const labelCls = "block text-sm font-medium text-[#43372F]";
 
   if (!consent) {
     return (
       <div className="not-prose my-12">
         <div className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10">
-          <h2 className="font-serif text-3xl text-[#241915]">{t.formTitle}</h2>
+          <h2 className="font-serif text-3xl text-[#362E28]">{t.formTitle}</h2>
           <p className="mt-2 text-sm text-[#6e625b]">{t.privacyShort}</p>
-          <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-white p-5 text-sm leading-6 text-[#5d5049]">
-            <p className="font-medium text-[#6F3432]">{t.consentTitle}</p>
+          <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-white p-5 text-sm leading-6 text-[#5d5049]">
+            <p className="font-medium text-[#5C2B2B]">{t.consentTitle}</p>
             <p className="mt-2">{t.consentBody}</p>
           </div>
           <button
             type="button"
             onClick={handleConsent}
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#9E4F49] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#6F3432] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#7C3C3C] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#5C2B2B] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
           >
             {t.consentButton}
           </button>
         </div>
 
-        <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-          <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+        <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+          <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
         </div>
       </div>
     );
@@ -288,8 +288,8 @@ export default function BasalTemperatureTracker() {
         className="rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-10"
       >
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className="font-serif text-3xl text-[#241915]">{t.addEntryTitle}</h2>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#9E4F49]">
+          <h2 className="font-serif text-3xl text-[#362E28]">{t.addEntryTitle}</h2>
+          <p className="text-xs uppercase tracking-[0.18em] text-[#7C3C3C]">
             {t.privacyShort}
           </p>
         </div>
@@ -395,14 +395,14 @@ export default function BasalTemperatureTracker() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-full bg-[#9E4F49] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#6F3432] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
+            className="inline-flex items-center justify-center rounded-full bg-[#7C3C3C] px-7 py-3 text-sm font-medium text-[#FBF7EF] transition hover:bg-[#5C2B2B] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 focus:ring-offset-2 focus:ring-offset-[#FBF7EF]"
           >
             {t.save}
           </button>
           <button
             type="button"
             onClick={handleResetForm}
-            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] px-7 py-3 text-sm font-medium text-[#5d5049] transition hover:bg-[#F4EBDD] focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/30"
+            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] px-7 py-3 text-sm font-medium text-[#5d5049] transition hover:bg-[#F4EBDD] focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/30"
           >
             {t.reset}
           </button>
@@ -413,7 +413,7 @@ export default function BasalTemperatureTracker() {
             role="status"
             aria-live="polite"
             className={`mt-5 text-sm ${
-              feedback.type === "success" ? "text-[#3F6B47]" : "text-[#6F3432]"
+              feedback.type === "success" ? "text-[#3F6B47]" : "text-[#5C2B2B]"
             }`}
           >
             {feedback.message}
@@ -422,11 +422,11 @@ export default function BasalTemperatureTracker() {
       </form>
 
       <div
-        className="mt-6 overflow-hidden rounded-[2rem] bg-[#241915] p-6 text-[#FBF7EF] md:p-10"
+        className="mt-6 overflow-hidden rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:p-10"
         aria-live="polite"
       >
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#C46B63]">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#D4887F]">
             {t.listTitle}
           </p>
           <p className="text-xs text-[#DCCDB8]">
@@ -443,8 +443,8 @@ export default function BasalTemperatureTracker() {
         ) : (
           <>
             {lastEntry && (
-              <div className="mt-6 rounded-2xl border border-[#9E4F49]/40 bg-[#9E4F49]/10 p-5">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[#C46B63]">
+              <div className="mt-6 rounded-2xl border border-[#7C3C3C]/40 bg-[#7C3C3C]/10 p-5">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D4887F]">
                   {t.lastEntry}
                 </p>
                 <p className="mt-2 font-serif text-xl text-[#FBF7EF]">
@@ -469,7 +469,7 @@ export default function BasalTemperatureTracker() {
       </div>
 
       <div className="mt-6 rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:p-8">
-        <p className="text-xs uppercase tracking-[0.18em] text-[#9E4F49]">
+        <p className="text-xs uppercase tracking-[0.18em] text-[#7C3C3C]">
           {t.actionsTitle}
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
@@ -477,7 +477,7 @@ export default function BasalTemperatureTracker() {
             type="button"
             onClick={handleExportJson}
             disabled={!entries.length}
-            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] bg-white px-5 py-2.5 text-sm font-medium text-[#352A25] transition hover:border-[#9E4F49] hover:text-[#9E4F49] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] bg-white px-5 py-2.5 text-sm font-medium text-[#43372F] transition hover:border-[#7C3C3C] hover:text-[#7C3C3C] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t.exportJson}
           </button>
@@ -485,7 +485,7 @@ export default function BasalTemperatureTracker() {
             type="button"
             onClick={handleExportCsv}
             disabled={!entries.length}
-            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] bg-white px-5 py-2.5 text-sm font-medium text-[#352A25] transition hover:border-[#9E4F49] hover:text-[#9E4F49] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center justify-center rounded-full border border-[#DCCDB8] bg-white px-5 py-2.5 text-sm font-medium text-[#43372F] transition hover:border-[#7C3C3C] hover:text-[#7C3C3C] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t.exportCsv}
           </button>
@@ -493,15 +493,15 @@ export default function BasalTemperatureTracker() {
             type="button"
             onClick={handleDeleteAll}
             disabled={!entries.length}
-            className="inline-flex items-center justify-center rounded-full border border-[#9E4F49]/50 px-5 py-2.5 text-sm font-medium text-[#6F3432] transition hover:bg-[#9E4F49] hover:text-[#FBF7EF] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center justify-center rounded-full border border-[#7C3C3C]/50 px-5 py-2.5 text-sm font-medium text-[#5C2B2B] transition hover:bg-[#7C3C3C] hover:text-[#FBF7EF] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t.deleteAll}
           </button>
         </div>
       </div>
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#9E4F49]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
-        <strong className="text-[#6F3432]">{t.disclaimerTitle}</strong> {t.disclaimer}
+      <div className="mt-6 rounded-[1.5rem] border border-[#7C3C3C]/30 bg-[#FBF7EF] p-5 text-sm leading-6 text-[#5d5049]">
+        <strong className="text-[#5C2B2B]">{t.disclaimerTitle}</strong> {t.disclaimer}
       </div>
     </div>
   );
@@ -529,14 +529,14 @@ function EntrySummary({ entry, t, compact }) {
             <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#E7D8C8]">
               {items.map((item) => (
                 <li key={item.label}>
-                  <span className="text-[#C46B63]">{item.label}:</span> {item.value}
+                  <span className="text-[#D4887F]">{item.label}:</span> {item.value}
                 </li>
               ))}
             </ul>
           )}
           {entry.notes && (
             <p className="mt-2 text-sm leading-6 text-[#DCCDB8]">
-              <span className="text-[#C46B63]">{t.notesShort}:</span> {entry.notes}
+              <span className="text-[#D4887F]">{t.notesShort}:</span> {entry.notes}
             </p>
           )}
         </>
@@ -551,10 +551,10 @@ function PillButton({ pressed, onClick, label }) {
       type="button"
       onClick={onClick}
       aria-pressed={pressed}
-      className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#9E4F49]/50 ${
+      className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#7C3C3C]/50 ${
         pressed
-          ? "border-[#9E4F49] bg-[#9E4F49] text-[#FBF7EF]"
-          : "border-[#DCCDB8] bg-white text-[#352A25] hover:border-[#9E4F49] hover:text-[#9E4F49]"
+          ? "border-[#7C3C3C] bg-[#7C3C3C] text-[#FBF7EF]"
+          : "border-[#DCCDB8] bg-white text-[#43372F] hover:border-[#7C3C3C] hover:text-[#7C3C3C]"
       }`}
     >
       {label}

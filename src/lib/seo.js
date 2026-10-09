@@ -29,7 +29,7 @@ export function usePageMeta(pageKey, override) {
     const ogTitle = ovOgTitle || page?.ogTitle || seo.ogTitle || title;
     const ogDescription = ovOgDescription || page?.ogDescription || seo.ogDescription || description;
     const url = `${SITE_URL}${location.pathname}`;
-    const image = ovImage || `${SITE_URL}/elsa.jpg`;
+    const image = ovImage || `${SITE_URL}/og.jpg`;
 
     document.title = title;
     document.documentElement.lang = lang;

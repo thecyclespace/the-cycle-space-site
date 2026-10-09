@@ -9,13 +9,18 @@ import { BookingProvider } from "../lib/booking";
 export default function Layout() {
   const location = useLocation();
   useEffect(() => {
+    const target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target) {
+      target.scrollIntoView({ behavior: "instant" });
+      return;
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <I18nProvider>
       <BookingProvider>
-        <main className="min-h-screen bg-[#FBF7EF] text-[#241915]">
+        <main className="min-h-screen bg-[#FBF7EF] text-[#362E28]">
           <BookingModal />
           <Header />
           <Outlet />
