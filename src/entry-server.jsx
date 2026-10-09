@@ -2,7 +2,6 @@
 // static HTML file per route, so crawlers and no-JS visitors get real content.
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import { MotionConfig } from "framer-motion";
 import AppRoutes from "./AppRoutes";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
@@ -20,11 +19,9 @@ const BASENAME = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export function render(path) {
   return renderToString(
-    <MotionConfig reducedMotion="always">
       <StaticRouter location={`${BASENAME}${path === "/" ? "/" : path}`} basename={BASENAME}>
         <AppRoutes pages={pages} />
       </StaticRouter>
-    </MotionConfig>
   );
 }
 

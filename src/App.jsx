@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { MotionConfig } from "framer-motion";
 import AppRoutes from "./AppRoutes";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -22,11 +21,8 @@ const BASENAME = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export default function App() {
   return (
-    // reducedMotion="user": animations disabled for visitors who ask for less motion.
-    <MotionConfig reducedMotion="user">
-      <BrowserRouter basename={BASENAME}>
-        <AppRoutes pages={pages} />
-      </BrowserRouter>
-    </MotionConfig>
+    <BrowserRouter basename={BASENAME}>
+      <AppRoutes pages={pages} />
+    </BrowserRouter>
   );
 }

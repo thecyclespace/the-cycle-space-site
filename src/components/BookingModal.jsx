@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Icon, Button } from "./ui";
 import { useBooking } from "../lib/booking";
 import { useI18n } from "../lib/i18n";
@@ -78,11 +77,9 @@ export default function BookingModal() {
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#362E28]/75 p-0 backdrop-blur-sm sm:p-3 md:p-6"
       onClick={closeBooking}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+      <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex h-[100dvh] w-full max-w-5xl flex-col overflow-hidden bg-[#FBF7EF] shadow-2xl sm:h-[92dvh] sm:rounded-[1.5rem] md:h-[88vh] md:rounded-[2rem]"
+        className="modal-in relative flex h-[100dvh] w-full max-w-5xl flex-col overflow-hidden bg-[#FBF7EF] shadow-2xl sm:h-[92dvh] sm:rounded-[1.5rem] md:h-[88vh] md:rounded-[2rem]"
       >
         <div className="flex items-start justify-between gap-4 border-b border-[#DCCDB8] px-4 py-3 sm:px-6 sm:py-5 md:px-8">
           <div>
@@ -122,7 +119,7 @@ export default function BookingModal() {
           )}
           <div ref={widgetRef} className="h-full w-full" style={{ minHeight: 600 }} />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

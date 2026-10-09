@@ -61,3 +61,15 @@ Plan recommandé (non lancé, car il change les URL et exige validation) :
 ## 6. Rollback
 
 `git revert` : le script de build revient à `vite build` seul (pas de pré-rendu), le site redevient une SPA classique. Aucun contenu touché.
+
+## 7. Complément : Framer Motion retiré
+
+Framer Motion (le plus gros poste de JavaScript) est remplacé par du CSS (`Reveal` dans `components/ui.jsx`, animations `orbit-a/orbit-b/modal-in` dans `index.css`). Même rendu : apparition au scroll des blocs situés sous la ligne de flottaison, orbites décoratives, ouverture de la modale. Différences voulues : le contenu est **toujours** présent et visible dans le HTML (pré-rendu, sans JavaScript, mouvement réduit) ; seuls les blocs hors écran sont masqués par le navigateur juste après le chargement, puis révélés.
+
+| | Avant | Après |
+|---|---|---|
+| JS initial | 428 Ko (gzip 140 Ko) | **316 Ko (gzip 104 Ko)** |
+| Dépendances | + framer-motion | **−1 dépendance** |
+| Lighthouse mobile (3 passages identiques, labo) | Perf 92 · FCP 1,9 s · LCP 3,2 s · TBT 50 ms | **Perf 94** · FCP 1,7 s · **LCP 3,0 s** · TBT ≈ 0 ms |
+
+Le LCP reste au-dessus de 2,5 s en simulation 4G lente (le texte du hero attend le CSS puis la police). Pistes restantes : `font-display: optional`, CSS critique en ligne, réduction de l'image/du HTML au-dessus de la ligne de flottaison. À mesurer en conditions réelles (Search Console, une fois le site indexé) avant d'aller plus loin.
