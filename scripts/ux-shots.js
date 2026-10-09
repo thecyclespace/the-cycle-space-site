@@ -30,7 +30,7 @@ async (page) => {
         return { words: mainWords - footerWords, height: document.documentElement.scrollHeight, imgs: document.querySelectorAll("main img").length };
       });
       out[`${w} ${name}`] = stats;
-      await page.screenshot({ path: `${DIR}/${w}-${name}.png`, fullPage: true });
+      await page.screenshot({ path: `${DIR}/${w}-${name}.jpg`, type: "jpeg", quality: 72, fullPage: true });
     }
   }
   return out;
