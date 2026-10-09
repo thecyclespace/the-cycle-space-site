@@ -14,7 +14,7 @@ Branche `improve/mobile-seo-cms-2026`. Build testé : `VITE_SITE_URL=https://the
 | Mobile | `scripts/mobile-audit.js`, 7 viewports (320 → 1440) × 6 routes | **0 débordement horizontal**, 0 erreur console, 0 cible tactile < 44 px (hors liens dans un paragraphe et champ anti-bot) |
 | Formulaire du guide | Playwright, appel FormSubmit **simulé** (aucun email réel envoyé) | Email invalide → erreur ; sans consentement → erreur et **aucun appel réseau** ; succès → PDF + payload `{email, language, consent, source}` ; échec réseau → PDF quand même + message honnête ; téléchargement direct OK |
 | Calendly | Modale ouverte à 320×568 | Calendrier chargé et défilant ; Échap ferme ; URL inchangée |
-| Lighthouse mobile (lab) | Accueil, build pré-rendu | Perf 96 · A11y 100 · Bonnes pratiques 100 · SEO 100 · LCP 2,7 s · CLS 0,013 |
+| Lighthouse mobile (lab) | Accueil, build pré-rendu | Perf 92 · A11y 100 · Bonnes pratiques 100 · SEO 100 · LCP 3,2 s · FCP 1,9 s (après polices auto-hébergées, voir PHASE3) |
 | Calculateurs | Tests de caractérisation (année bissextile 2024, cycles 21/45 jours, dates invalides, tri) | Comportement actuel verrouillé ; **aucune formule modifiée** |
 
 ## 2. Ce qui n'a PAS été testé (à faire avant fusion)
@@ -40,7 +40,7 @@ Branche `improve/mobile-seo-cms-2026`. Build testé : `VITE_SITE_URL=https://the
 | CMS compatibilité | ✅ test automatique (aucun champ orphelin / cassé) |
 | Blog (brouillons, traductions) | ✅ test des traductions ; publication réelle non testée |
 | SEO (HTML indexable, canonicals, sitemap, robots) | ✅ ; **EN/FR (hreflang) non fait** — décision requise |
-| Vitesse | 🟡 mesurée en lab ; LCP 2,7 s (> 2,5 s) |
+| Vitesse | 🟡 mesurée en lab ; LCP 3,2 s (> 2,5 s) : à améliorer (poids JS) |
 | A11y | 🟡 Lighthouse 100 + clavier ; pas de lecteur d'écran |
 | Sécurité | ✅ aucun secret committé ; aucune donnée de cycle envoyée |
 | Maintenance | ✅ aucune dépendance ajoutée |
