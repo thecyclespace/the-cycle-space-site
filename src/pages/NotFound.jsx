@@ -28,7 +28,7 @@ export default function NotFound() {
     <section className="px-5 pb-32 pt-32 md:px-8 md:pt-40">
       <div className="mx-auto max-w-3xl">
         <p className="mb-5 text-sm uppercase tracking-[0.2em] text-[#7C3C3C]">{t.kicker}</p>
-        <h1 className="font-serif text-5xl leading-tight md:text-7xl">{t.title}</h1>
+        <h1 className="break-words font-serif text-4xl leading-tight sm:text-5xl md:text-7xl">{t.title}</h1>
         <p className="mt-6 text-lg leading-8 text-[#5d5049]">{t.text}</p>
         <div className="mt-10 flex gap-3">
           <Button to="/">{t.home}</Button>

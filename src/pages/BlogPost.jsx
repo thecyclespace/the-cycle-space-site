@@ -7,7 +7,8 @@ import CycleRegularityTool from "../components/tools/CycleRegularityTool";
 import PostContraceptionTimeline from "../components/tools/PostContraceptionTimeline";
 import BasalTemperatureTracker from "../components/tools/BasalTemperatureTracker";
 import { useI18n, I18nScope } from "../lib/i18n";
-import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
+import { usePageMeta, useJsonLd, absoluteAsset } from "../lib/seo";
+import { articleSchema } from "../lib/schemas";
 import { getPost, formatDate } from "../lib/blog";
 
 // Registre des widgets interactifs disponibles dans un article.
@@ -33,30 +34,11 @@ export default function BlogPost() {
       ? {
           title: `${post.title} — The Cycle Space`,
           description: post.excerpt,
-          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
+          image: absoluteAsset(post.coverImage),
         }
       : undefined
   );
-  useJsonLd(
-    post
-      ? {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: post.title,
-          description: post.excerpt || undefined,
-          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
-          datePublished: post.date ? post.date.toISOString() : undefined,
-          author: { "@type": "Person", name: "Elsa" },
-          publisher: {
-            "@type": "Organization",
-            name: "The Cycle Space",
-            logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/favicon-512.png` },
-          },
-          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-          inLanguage: post.lang === "fr" ? "fr-FR" : "en",
-        }
-      : null
-  );
+  useJsonLd(post ? articleSchema(post) : null);
 
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -74,7 +56,7 @@ export default function BlogPost() {
         <div className="mx-auto max-w-3xl">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
           </Link>
@@ -83,7 +65,7 @@ export default function BlogPost() {
               {formatDate(post.date, lang)}
             </p>
           )}
-          <h1 className="mt-4 font-serif text-4xl leading-tight md:text-6xl">{post.title}</h1>
+          <h1 className="mt-4 break-words font-serif text-3xl leading-tight sm:text-4xl md:text-6xl">{post.title}</h1>
           {post.excerpt && (
             <p className="mt-5 text-base leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">{post.excerpt}</p>
           )}

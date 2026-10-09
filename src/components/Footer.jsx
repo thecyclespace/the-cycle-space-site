@@ -32,8 +32,8 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <p className="mt-8 max-w-3xl text-xs leading-5 text-[#8a7d75]">{t.disclaimer}</p>
-        <p className="mt-3 text-xs text-[#8a7d75]">© {new Date().getFullYear()} {siteSettings.siteName}</p>
+        <p className="mt-8 max-w-3xl text-xs leading-5 text-[#6e625b]">{t.disclaimer}</p>
+        <p className="mt-3 text-xs text-[#6e625b]">© <span suppressHydrationWarning>{new Date().getFullYear()}</span> {siteSettings.siteName}</p>
       </div>
     </footer>
   );

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Icon, Button, BrandLogo, OrbitalGraphic } from "../components/ui";
 import FinalCTA from "../components/FinalCTA";
 import Method from "../components/Method";
@@ -22,14 +21,14 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative isolate min-h-[80vh] overflow-hidden bg-[#362E28] px-5 pb-14 pt-28 text-[#FBF7EF] md:min-h-[92vh] md:px-8 md:pb-16 md:pt-40">
+      <section className="relative isolate min-h-[80svh] overflow-hidden bg-[#362E28] px-5 pb-14 pt-28 text-[#FBF7EF] md:min-h-[92svh] md:px-8 md:pb-16 md:pt-40">
         <OrbitalGraphic />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#7C3C3C]/40 bg-[#FBF7EF]/5 px-4 py-2 text-xs text-[#E7D8C8] md:mb-8 md:text-sm">
               <Icon name="sparkles" size={14} className="text-[#D4887F]" /> {t.heroKicker}
             </div>
-            <h1 className="max-w-4xl font-serif text-[2.75rem] leading-[1.02] tracking-tight md:text-8xl md:leading-[0.92]">
+            <h1 className="max-w-4xl break-words font-serif text-[clamp(1.9rem,9vw,2.75rem)] leading-[1.05] tracking-tight sm:text-5xl md:text-6xl md:leading-[0.98] lg:text-8xl lg:leading-[0.92]">
               {t.mobileHeroTitle && t.mobileHeroTitle.trim() ? (
                 <>
                   <span className="md:hidden">{t.mobileHeroTitle}</span>
@@ -58,24 +57,19 @@ export default function Home() {
               </Button>
             </div>
             <p className="mt-6 text-xs tracking-wide text-[#DCCDB8] md:mt-7 md:text-sm">{t.trust}</p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative hidden md:block"
-          >
+          <div className="relative hidden md:block">
             <div className="relative ml-auto flex aspect-square max-w-md items-center justify-center overflow-hidden rounded-[2.5rem] border border-[#7C3C3C]/30 bg-[#43372F] p-10 shadow-2xl">
               <BrandLogo variant="main" tone="dark" className="h-full w-full object-contain" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <section className="px-5 py-16 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end md:gap-12">
-          <h2 className="font-serif text-4xl leading-tight md:text-7xl">{t.manifestoTitle}</h2>
+          <h2 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-7xl">{t.manifestoTitle}</h2>
           <div>
             <p className="text-lg leading-7 text-[#5d5049] md:text-xl md:leading-9">{t.manifestoText}</p>
             <p className="mt-8 font-sans text-xl font-light italic leading-snug text-[#5C2B2B] md:mt-10 md:text-3xl">
@@ -124,7 +118,7 @@ export default function Home() {
           <div className="mt-8">
             <Link
               to={`/blog/${toolSlug}`}
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
+              className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
             >
               {tool.learnMore} <Icon name="arrow" size={16} />
             </Link>

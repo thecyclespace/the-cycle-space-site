@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export function Icon({ name, size = 18, className = "" }) {
   const common = {
@@ -140,26 +139,50 @@ export function Card({ children, className = "" }) {
   );
 }
 
+// Fade-up on scroll, with no animation library. Content is ALWAYS visible in the HTML
+// (prerender, no JavaScript, reduced motion). Only blocks that start below the fold are
+// hidden by the browser right after load, then revealed when they scroll into view.
+export function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+    el.style.transitionDelay = `${delay}s`;
+    el.classList.add("reveal-hidden");
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        el.classList.remove("reveal-hidden");
+        io.disconnect();
+      },
+      { threshold: 0.12 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <Tag ref={ref} className={`reveal ${className}`} {...rest}>
+      {children}
+    </Tag>
+  );
+}
+
 export function OrbitalGraphic({ dense = false }) {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96, rotate: -8 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 1.4, ease: "easeOut" }}
-        className={`absolute rounded-full border border-[#7C3C3C]/50 ${
+      <div
+        className={`orbit-a absolute rounded-full border border-[#7C3C3C]/50 ${
           dense ? "right-[-160px] top-[-140px] h-[520px] w-[520px]" : "right-[-220px] top-[-120px] h-[680px] w-[680px]"
         }`}
       />
-      <motion.div
-        initial={{ opacity: 0, rotate: 18 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-        className={`absolute rounded-full border border-[#7C3C3C]/25 ${
+      <div
+        className={`orbit-b absolute rounded-full border border-[#7C3C3C]/25 ${
           dense ? "right-[40px] top-[70px] h-[280px] w-[280px]" : "right-[80px] top-[110px] h-[360px] w-[360px]"
         }`}
       />
-      <div className="absolute right-[13%] top-[18%] h-5 w-5 rounded-full bg-[#7C3C3C] shadow-[0_0_0_10px_rgba(124,60,60,0.08)]" />
+      <div className="absolute right-[13%] top-[18%] hidden h-5 w-5 rounded-full bg-[#7C3C3C] shadow-[0_0_0_10px_rgba(124,60,60,0.08)] sm:block" />
     </div>
   );
 }

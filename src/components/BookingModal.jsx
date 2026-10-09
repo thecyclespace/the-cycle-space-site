@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Icon, Button } from "./ui";
 import { useBooking } from "../lib/booking";
 import { useI18n } from "../lib/i18n";
@@ -75,34 +74,32 @@ export default function BookingModal() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="booking-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#362E28]/75 p-3 backdrop-blur-sm md:p-6"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#362E28]/75 p-0 backdrop-blur-sm sm:p-3 md:p-6"
       onClick={closeBooking}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+      <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-[2rem] bg-[#FBF7EF] shadow-2xl md:h-[88vh]"
+        className="modal-in relative flex h-[100dvh] w-full max-w-5xl flex-col overflow-hidden bg-[#FBF7EF] shadow-2xl sm:h-[92dvh] sm:rounded-[1.5rem] md:h-[88vh] md:rounded-[2rem]"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-[#DCCDB8] px-6 py-5 md:px-8">
+        <div className="flex items-start justify-between gap-4 border-b border-[#DCCDB8] px-4 py-3 sm:px-6 sm:py-5 md:px-8">
           <div>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#7C3C3C]/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[#5C2B2B]">
+            <div className="mb-2 hidden items-center gap-2 rounded-full bg-[#7C3C3C]/10 sm:inline-flex px-3 py-1 text-xs uppercase tracking-[0.18em] text-[#5C2B2B]">
               <Icon name="calendar" size={13} /> Calendly
             </div>
-            <h3 id="booking-title" className="font-serif text-2xl leading-tight text-[#362E28] md:text-3xl">
+            <h3 id="booking-title" className="font-serif text-xl leading-tight text-[#362E28] md:text-3xl">
               {t.modalTitle}
             </h3>
-            <p className="mt-1 text-sm text-[#5d5049] md:text-base">{t.modalText}</p>
+            <p className="mt-1 hidden text-sm text-[#5d5049] sm:block md:text-base">{t.modalText}</p>
           </div>
           <button
             onClick={closeBooking}
-            className="shrink-0 rounded-full border border-[#DCCDB8] p-2 text-[#43372F] transition hover:bg-[#F4EBDD]"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#DCCDB8] text-[#43372F] transition hover:bg-[#F4EBDD]"
             aria-label="Close booking modal"
           >
             <Icon name="x" size={18} />
           </button>
         </div>
-        <div className="relative flex-1 bg-[#FBF7EF]">
+        <div className="relative flex-1 overflow-y-auto bg-[#FBF7EF]">
           {status !== "ready" && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#FBF7EF]">
               {status === "error" ? (
@@ -122,7 +119,7 @@ export default function BookingModal() {
           )}
           <div ref={widgetRef} className="h-full w-full" style={{ minHeight: 600 }} />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

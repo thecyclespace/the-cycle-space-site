@@ -200,7 +200,7 @@ export default function CycleRegularityTool() {
         )}
 
         {errors.global && (
-          <p role="alert" className="mt-4 text-sm text-[#D4887F]">
+          <p role="alert" className="mt-4 text-sm text-[#9B2F2F]">
             {errors.global}
           </p>
         )}

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Icon, Button, OrbitalGraphic } from "./ui";
+import { Icon, Button, OrbitalGraphic, Reveal } from "./ui";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 
@@ -26,7 +25,7 @@ export default function Method({ detailed = false }) {
             <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#D4887F] md:text-sm">
               {detailed ? m.programmeKicker : m.kicker}
             </p>
-            <h2 className="font-serif text-4xl leading-tight md:text-6xl">
+            <h2 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
               {detailed ? m.programmeTitle : m.title}
             </h2>
             {detailed && (
@@ -42,13 +41,7 @@ export default function Method({ detailed = false }) {
         {detailed ? (
           <div className="mt-12 md:mt-16">
             {m.phases.map((phase, idx) => (
-              <motion.article
-                key={phase.num}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: idx * 0.04 }}
-                className="grid gap-6 border-t border-[#FBF7EF]/15 py-8 md:grid-cols-[0.8fr_1.1fr_1fr] md:gap-10 md:py-10"
+              <Reveal as="article" key={phase.num} delay={idx * 0.04} className="grid gap-6 border-t border-[#FBF7EF]/15 py-8 md:grid-cols-[0.8fr_1.1fr_1fr] md:gap-10 md:py-10"
               >
                 <div>
                   <p className="font-serif text-5xl text-[#D4887F] md:text-6xl">{phase.num}</p>
@@ -57,12 +50,12 @@ export default function Method({ detailed = false }) {
                 </div>
                 <div>
                   <p className="text-base leading-7 text-[#E7D8C8] md:text-lg md:leading-8">{phase.body}</p>
-                  <p className="mt-5 text-sm leading-6 text-[#DCCDB8] md:text-base md:leading-7">{phase.outcome}</p>
+                  <p className="mt-5 text-base leading-7 text-[#DCCDB8]">{phase.outcome}</p>
                 </div>
                 <div>
                   <ul className="grid gap-3">
                     {phase.points.map((point) => (
-                      <li key={point} className="flex gap-3 text-sm leading-6 text-[#FBF7EF] md:text-base">
+                      <li key={point} className="flex gap-3 text-base leading-6 text-[#FBF7EF]">
                         <Icon name="arrow" size={16} className="mt-1 shrink-0 text-[#D4887F]" />
                         <span>{point}</span>
                       </li>
@@ -72,7 +65,7 @@ export default function Method({ detailed = false }) {
                     &ldquo;{phase.quote}&rdquo;
                   </p>
                 </div>
-              </motion.article>
+              </Reveal>
             ))}
             <div className="border-t border-[#FBF7EF]/15 pt-10">
               <Button
@@ -87,25 +80,19 @@ export default function Method({ detailed = false }) {
           <>
             <div className="mt-10 grid gap-4 md:mt-14 md:grid-cols-4 md:gap-5">
               {m.phases.map((phase, idx) => (
-                <motion.div
-                  key={phase.num}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: idx * 0.05 }}
-                  className="rounded-[2rem] border border-[#FBF7EF]/15 bg-[#43372F]/60 p-6 md:p-7"
+                <Reveal key={phase.num} delay={idx * 0.05} className="rounded-[2rem] border border-[#FBF7EF]/15 bg-[#43372F]/60 p-6 md:p-7"
                 >
                   <p className="font-serif text-4xl text-[#D4887F] md:text-5xl">{phase.num}</p>
                   <h3 className="mt-5 font-serif text-2xl md:text-3xl">{phase.title}</h3>
                   <p className="mt-2 text-xs uppercase tracking-[0.16em] text-[#DCCDB8]">{phase.tag}</p>
-                  <p className="mt-4 text-sm leading-6 text-[#E7D8C8] md:text-base md:leading-7">{phase.body}</p>
-                </motion.div>
+                  <p className="mt-4 text-base leading-7 text-[#E7D8C8]">{phase.body}</p>
+                </Reveal>
               ))}
             </div>
             <div className="mt-10 md:mt-12">
               <Link
                 to="/services#inner-rhythm"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#FBF7EF] underline-offset-4 hover:text-[#D4887F] hover:underline"
+                className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#FBF7EF] underline-offset-4 hover:text-[#D4887F] hover:underline"
               >
                 {m.cta} <Icon name="arrow" size={16} />
               </Link>

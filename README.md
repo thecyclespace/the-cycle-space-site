@@ -165,3 +165,13 @@ sur un fichier "code", garde ta version locale (`git checkout --ours …`).
 Ce projet utilisait auparavant **Decap CMS + Netlify Identity / Git Gateway**. La migration vers
 Sveltia CMS (backend GitHub) est documentée dans **[CMS_MIGRATION_AUDIT.md](CMS_MIGRATION_AUDIT.md)**.
 Aucune dépendance npm n'est concernée : l'ancien comme le nouveau CMS se chargent en CDN.
+
+---
+
+## Build, prérendu et tests (mis à jour)
+
+- `npm run build` fait trois choses : build client (`vite build`), build serveur (`vite build --ssr src/entry-server.jsx`) puis `scripts/prerender.mjs`, qui écrit un fichier HTML par route (`dist/services/index.html`, `dist/blog/<slug>/index.html`…) avec titre, description, canonical, Open Graph et JSON-LD. Les nouveaux articles créés dans le CMS sont pris en compte automatiquement.
+- `VITE_SITE_URL` (défini dans `.github/workflows/deploy.yml`) = URL publique utilisée pour canonicals, sitemap et données structurées. Aujourd'hui l'adresse `github.io` ; à remplacer par `https://thecyclespace.com` avec `base: "/"` et `public/CNAME` au moment de brancher le domaine (voir `NAMECHEAP_DNS.md`).
+- `npm test` : tests des calculateurs, de la cohérence contenu/CMS et (après un build) du HTML généré.
+- `scripts/mobile-audit.js` : audit mobile reproductible (voir `docs/PHASE1_MOBILE.md`).
+- Documents : `AUDIT_BASELINE.md`, `docs/PHASE1_MOBILE.md`, `docs/PHASE2_CMS_CONVERSION.md`, `docs/PHASE3_SEO.md`, `docs/PHASE4_VERIFICATION.md`, `docs/PROPOSITIONS_CONTENU.md`, `GUIDE_ELSA.md`.

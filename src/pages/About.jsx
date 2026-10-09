@@ -2,36 +2,15 @@ import { Button } from "../components/ui";
 import FinalCTA from "../components/FinalCTA";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
-import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
+import { usePageMeta, useJsonLd } from "../lib/seo";
+import { personSchema } from "../lib/schemas";
 import siteSettings from "../content/settings/site.json";
 
 export default function About() {
   const { t } = useI18n();
   const { openBooking } = useBooking();
   usePageMeta("about");
-  useJsonLd({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Elsa",
-    jobTitle: "Women's health practitioner, osteopath, cycle educator",
-    description:
-      "Elsa is a women's health practitioner and osteopath, trained in London, fascinated by the intelligence of the female body.",
-    image: `${SITE_URL}/${siteSettings.elsaImage}`,
-    url: `${SITE_URL}/about`,
-    sameAs: [siteSettings.instagramUrl],
-    knowsAbout: [
-      "Women's health",
-      "Menstrual cycle",
-      "Hormonal health",
-      "Osteopathy",
-      "Body literacy",
-      "Cycle education",
-    ],
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "University College of Osteopathy",
-    },
-  });
+  useJsonLd(personSchema());
 
   return (
     <>
@@ -55,7 +34,7 @@ export default function About() {
             </div>
           </div>
           <div>
-            <h1 className="font-serif text-4xl leading-tight md:text-7xl">{t.aboutTitle}</h1>
+            <h1 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-7xl">{t.aboutTitle}</h1>
             <p className="mt-5 whitespace-pre-line text-base leading-7 text-[#5d5049] md:mt-7 md:text-xl md:leading-9">{t.aboutText}</p>
             <div className="mt-7 grid gap-2 sm:grid-cols-2 md:mt-9 md:gap-3">
               {t.credentials.map((credential) => (

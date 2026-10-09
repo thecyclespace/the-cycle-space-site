@@ -3,8 +3,11 @@ import path from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Génère dist/sitemap.xml en listant les routes statiques + chaque .md du blog.
-// Override de l'URL via VITE_SITE_URL (sinon défaut = thecyclespace.com).
+// Génère dist/sitemap.xml : routes statiques + chaque article publié (hors brouillons).
+// L'URL de base vient de VITE_SITE_URL (même variable que le canonical des pages).
+// `lastmod` n'est renseigné que pour les articles (date réelle du frontmatter) : on ne
+// déclare jamais la date du build comme date de modification d'une page inchangée.
+// Les URLs ont un "/" final, comme les canonicals et les dossiers servis par GitHub Pages.
 function sitemapPlugin() {
   const baseUrl = (process.env.VITE_SITE_URL || "https://thecyclespace.com").replace(/\/$/, "");
   return {
@@ -12,22 +15,24 @@ function sitemapPlugin() {
     apply: "build",
     closeBundle() {
       try {
-        const staticRoutes = ["/", "/services", "/blog", "/about"];
+        if (!fs.existsSync(path.resolve("./dist"))) return; // SSR pass writes to dist-ssr only
+        const entries = ["/", "/services", "/blog", "/about"].map((r) => ({ loc: r }));
         const blogDir = path.resolve("./src/content/blog");
-        const blogRoutes = fs.existsSync(blogDir)
-          ? fs.readdirSync(blogDir)
-              .filter((f) => f.endsWith(".md"))
-              .map((f) => `/blog/${f.replace(/\.md$/, "")}`)
-          : [];
-        const all = [...staticRoutes, ...blogRoutes];
-        const today = new Date().toISOString().split("T")[0];
+        if (fs.existsSync(blogDir)) {
+          for (const f of fs.readdirSync(blogDir).filter((f) => f.endsWith(".md"))) {
+            const raw = fs.readFileSync(path.join(blogDir, f), "utf8");
+            const fm = (raw.match(/^---[\r\n]+([\s\S]*?)[\r\n]+---/) || [, ""])[1];
+            if (/^draft:\s*true\s*$/m.test(fm)) continue;
+            const date = (fm.match(/^date:\s*["']?(\d{4}-\d{2}-\d{2})/m) || [])[1];
+            entries.push({ loc: `/blog/${f.replace(/\.md$/, "")}`, lastmod: date });
+          }
+        }
         const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${all
+${entries
   .map(
-    (r) => `  <url>
-    <loc>${baseUrl}${r}</loc>
-    <lastmod>${today}</lastmod>
+    (e) => `  <url>
+    <loc>${baseUrl}${e.loc === "/" ? "/" : `${e.loc}/`}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ""}
   </url>`,
   )
   .join("\n")}
@@ -35,7 +40,7 @@ ${all
 `;
         fs.writeFileSync(path.resolve("./dist/sitemap.xml"), xml);
         // eslint-disable-next-line no-console
-        console.log(`✓ sitemap.xml generated (${all.length} URLs)`);
+        console.log(`✓ sitemap.xml generated (${entries.length} URLs)`);
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error("sitemap generation failed:", e);
