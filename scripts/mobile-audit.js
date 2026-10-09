@@ -1,12 +1,12 @@
 // Reproducible mobile audit. Run with the Playwright MCP `browser_run_code_unsafe`
-// (filename: scripts/mobile-audit.js) while `npm run dev -- --port 5199` is running,
+// (filename: scripts/mobile-audit.js) while `npm run build && npm run preview` is running (port 4173),
 // or adapt `async (page) => ...` to any Playwright runner.
 // Output: horizontal overflow, undersized tap targets, console errors per route/viewport.
 // Set SHOTS to a folder name (inside the repo) to also save screenshots.
 async (page) => {
-  const BASE = "http://localhost:5199/the-cycle-space-site";
+  const BASE = "http://localhost:4173/the-cycle-space-site";
   const SHOTS = "docs/audit/after";
-  const routes = ["/", "/services", "/blog", "/about", "/blog/period-calculator", "/blog/basal-temperature-tracker"];
+  const routes = ["/", "/services/", "/blog/", "/about/", "/blog/period-calculator/", "/blog/basal-temperature-tracker/"]; // trailing slash = how GitHub Pages serves prerendered folders
   const viewports = [
     [320, 568], [360, 800], [390, 844], [430, 932], [768, 1024], [1024, 768], [1440, 900],
   ];
@@ -52,7 +52,7 @@ async (page) => {
         return { overflow, wide, smallCount: small.length, small: small.slice(0, 6), headerH: header ? Math.round(header.getBoundingClientRect().height) : 0, docH: document.documentElement.scrollHeight };
       });
       report.push({ vp: `${w}x${h}`, route, ...r });
-      if (SHOTS && shotWidths.has(w) && ["/", "/services"].includes(route)) {
+      if (SHOTS && shotWidths.has(w) && ["/", "/services/"].includes(route)) {
         await page.screenshot({ path: `${SHOTS}/${w}${route === "/" ? "-home" : "-services"}.png`, fullPage: true });
       }
     }
