@@ -17,12 +17,11 @@
       "route": "/about"
     }
   ],
-  "book": "Réserve ton Introduction",
-  "heroKicker": "Santé féminine. Éducation du cycle. Compréhension du corps.",
-  "heroTitle": "Ton corps te parle depuis longtemps. C'est ici que tu apprends à l'écouter.",
-  "heroText": "Ton cycle, tes hormones, tes symptômes. Travaille avec ton corps, pas contre lui. Ancré dans la science. Entièrement en ligne.",
-  "heroSecondary": "Explorer l'espace",
-  "trust": "Séances en ligne en anglais ou français. Partout dans le monde.",
+  "book": "Réserver un appel gratuit",
+  "heroTitle": "Comprends ton cycle. Sens-toi mieux dans ton corps.",
+  "heroText": "Un accompagnement personnalisé pour les règles, le SPM et les changements hormonaux.",
+  "heroSecondary": "Découvrir les offres",
+  "trust": "15–20 min · En ligne · Français & anglais",
   "manifestoTitle": "On ne gère pas juste des symptômes. On apprend le langage du corps.",
   "manifestoText": "Douleurs, fatigue, ballonnements, acné, sautes d'humeur, cycles irréguliers — ce ne sont pas des échecs. Ce sont des signaux. Le travail ici : comprendre ce que ton corps te dit, puis construire ce qui colle à ta vie.",
   "manifestoQuote": "Ton corps n'est pas un problème à corriger. C'est un système à comprendre.",
@@ -36,7 +35,9 @@
       "body": "15 à 20 minutes. Sans pression. Juste une conversation.\n\nAvant de travailler ensemble, je veux m'assurer que c'est le bon choix pour toi. On parlera de là où tu en es aujourd'hui, de ce que tu as déjà essayé et de ce que tu souhaites changer. Je t'expliquerai ma façon de travailler et à quoi ressemble concrètement le programme.\n\nPas de discours commercial. Si ça colle, on parlera des prochaines étapes. Sinon, je t'orienterai vers ce qui te correspond.",
       "forWho": "Toute femme curieuse de travailler avec moi, qui veut sentir comment ça se passe avant de s'engager.",
       "leave": "",
-      "cta": "Réserve ton Introduction"
+      "cta": "Réserve ton Introduction",
+      "summary": "Une conversation gratuite et détendue pour voir si on est faites pour travailler ensemble.",
+      "audience": "Pour toute femme curieuse de travailler avec Elsa."
     },
     {
       "title": "Le Rhythm Check-In",
@@ -45,7 +46,9 @@
       "body": "Pour les femmes qui ne sont pas prêtes à s'engager dans un programme complet mais ont besoin de clarté maintenant.\n\nUne seule séance de 90 minutes pour comprendre ce qui se passe vraiment dans ton corps. On regarde le tableau complet — ton cycle, tes symptômes, ton histoire, ton mode de vie — et tu repars avec un plan clair et concret, entièrement à toi.\n\nCe n'est pas une séance d'essai. C'est une séance complète, avec de vraies réponses et de vraies étapes. Pas de surcharge, pas de conseils flous. Une réflexion clinique et un plan que tu peux réellement appliquer.\n\nParce que le corps fonctionne par cycles et que le vrai changement prend du temps, cette séance fonctionne mieux dans un rythme régulier. Beaucoup de femmes reviennent une fois par mois : on suit ce qui évolue, on ajuste le plan selon la réponse de ton corps et on s'appuie sur ce qu'on a déjà découvert ensemble. Une séance t'apporte de la clarté. Une série t'apporte une transformation.",
       "forWho": "Les femmes qui veulent de la clarté avant de s'engager plus loin, ou qui ont un sujet précis à approfondir — leur cycle, leur digestion, leur énergie, ou la compréhension d'un diagnostic qu'on leur a donné.",
       "leave": "Un protocole écrit avec des recommandations concrètes autour de la nutrition, du mode de vie, du suivi et de l'accompagnement.",
-      "cta": "Réserver un Rhythm Check-In"
+      "cta": "Réserver un Rhythm Check-In",
+      "summary": "Explore tes symptômes, comprends ton cycle et repars avec des étapes concrètes.",
+      "audience": "Pour les femmes qui veulent de la clarté avant de s'engager plus loin."
     },
     {
       "title": "Your Inner Rhythm",
@@ -54,7 +57,9 @@
       "body": "Un accompagnement 1:1 de 6 mois, en français ou en anglais, construit sur The Inner Rhythm Method : un parcours en 4 phases pour comprendre ton corps, travailler avec ton cycle et trouver ton rythme — pour de bon.",
       "forWho": "",
       "leave": "",
-      "cta": "Commencer par une Introduction"
+      "cta": "Commencer par une Introduction",
+      "summary": "Un parcours 1:1 de 6 mois pour comprendre ton corps et trouver ton rythme.",
+      "audience": "Pour les femmes prêtes à un changement durable."
     },
     {
       "title": "The Inner Space",
@@ -63,7 +68,9 @@
       "body": "Programmes de groupe bientôt disponibles — rejoins la liste pour être la première informée.",
       "forWho": "",
       "leave": "",
-      "cta": "Rejoindre la liste"
+      "cta": "Rejoindre la liste",
+      "summary": "Programmes de groupe, bientôt disponibles.",
+      "audience": ""
     }
   ],
   "forYouTitle": "Tu es probablement au bon endroit si...",
@@ -131,19 +138,21 @@
     "kicker": "Outil gratuit",
     "title": "Calcule ton cycle.",
     "description": "Estime tes prochaines règles, ton ovulation et ta fenêtre fertile. Tout reste dans ton navigateur.",
-    "learnMore": "Lire l'article complet"
+    "learnMore": "Lire l'article complet",
+    "cta": "Essayer le calculateur gratuit"
   },
   "mobileHeroTitle": "",
   "mobileHeroText": "",
   "servicesLabels": {
     "forWho": "Pour qui",
-    "leave": "Ce que tu emportes"
+    "leave": "Ce que tu emportes",
+    "more": "Voir le détail"
   },
   "method": {
     "kicker": "Trouve ton rythme",
     "title": "The Inner Rhythm Method",
     "intro": "Un parcours en 4 phases pour les femmes prêtes à comprendre leur corps, à travailler avec leur cycle et à trouver leur rythme — pour de bon.",
-    "cta": "Découvrir Your Inner Rhythm",
+    "cta": "Découvrir la méthode",
     "programmeKicker": "Programme 1:1",
     "programmeTitle": "Your Inner Rhythm",
     "programmeMeta": "Accompagnement 1:1 de 6 mois · Français & anglais",
@@ -229,5 +238,60 @@
         "a": "Non. The Cycle Space propose de l'éducation et un accompagnement personnalisé. L'approche travaille avec la médecine conventionnelle et ne remplace ni un diagnostic ni une prise en charge médicale urgente. En cas de détresse ou de symptômes sévères, contacte ton médecin ou les services d'urgence."
       }
     ]
+  },
+  "concerns": {
+    "title": "Qu'est-ce qui t'amène ?",
+    "note": "De l'éducation et de l'accompagnement, pas un diagnostic ni un traitement.",
+    "items": [
+      {
+        "icon": "drop",
+        "title": "Règles douloureuses",
+        "link": "services"
+      },
+      {
+        "icon": "mood",
+        "title": "SPM et humeur",
+        "link": "services"
+      },
+      {
+        "icon": "cycle",
+        "title": "Cycles irréguliers",
+        "link": "regularity"
+      },
+      {
+        "icon": "waves",
+        "title": "Changements hormonaux",
+        "link": "services"
+      },
+      {
+        "icon": "capsule",
+        "title": "Arrêt de la contraception",
+        "link": "post-contraception"
+      },
+      {
+        "icon": "sprout",
+        "title": "Comprendre les signes de fertilité",
+        "link": "basal"
+      }
+    ]
+  },
+  "meetElsa": {
+    "title": "Rencontrer Elsa",
+    "text": "Elsa est praticienne en santé féminine et ostéopathe, formée à Londres, et sincèrement fascinée par l'intelligence du corps féminin.",
+    "cta": "Rencontrer Elsa"
+  },
+  "offersTitle": "Comment travailler ensemble",
+  "offersCta": "Voir tous les détails",
+  "about": {
+    "approachKicker": "Son approche",
+    "forYouKicker": "Est-ce pour toi ?",
+    "storyTitle": "L'histoire d'Elsa",
+    "storyToggle": "Lire l'histoire d'Elsa"
+  },
+  "imageAlts": {
+    "hero": "Une femme détendue assise au bord de la mer au coucher du soleil, les yeux fermés et souriante",
+    "online": "Une femme souriante pendant une consultation en ligne sur son ordinateur",
+    "tool": "Un carnet de suivi du cycle terracotta orné de phases de lune sur un plaid en lin",
+    "blog": "Une tasse de tisane avec de la lavande séchée sur un plaid doux"
   }
 }

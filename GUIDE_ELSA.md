@@ -17,6 +17,7 @@ Pas de code, pas de terminal. Tout se fait dans l'espace d'administration du sit
 | Les textes du site en anglais | 🇬🇧 Textes du site — Anglais |
 | Un article ou en écrire un | 📝 Articles de blog |
 | Mon lien Calendly, mon email, ma photo | ⚙️ Paramètres du site |
+| Les grandes photos (accueil, bandeau, ambiance) | 🖼 Images du site |
 | Ce qui s'affiche sur Google / WhatsApp | 🔍 SEO |
 
 Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du nom (🎯, 🛠, ❓…) te disent à quelle partie du site il correspond.
@@ -78,6 +79,18 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 1. **Textes du site** → même chemin que pour l'écrire, ou **📝 Articles de blog** → clique sur l'article (la liste se trie par date ou par langue).
 2. Corrige la faute, **Save**. C'est en ligne 1 à 3 minutes plus tard.
 3. Si, par erreur, tu as supprimé ou abîmé un texte : **ne panique pas, rien n'est perdu**. Écris à Florent avec le nom de la page et l'heure : il rétablit la version précédente en quelques minutes depuis l'historique du site (tu n'as pas besoin de toucher à GitHub).
+
+## Bonus — Remplacer une grande photo du site
+
+1. Menu : **🖼 Images du site** → **Images principales**.
+2. Clique sur l'image à changer (ex. **Accueil — grande photo du haut**), puis **Upload** et choisis ta photo.
+3. Conseils : format **paysage** (4:3 ou 3:2), **3 Mo maximum**, sujet (visage) plutôt **sur la gauche** pour l'accueil, sans texte écrit dans l'image. Sur téléphone, la photo est recadrée autour de sa partie gauche.
+4. **Décris la photo** dans **Textes du site → 🖼 Textes alternatifs des images** (une phrase, dans les deux langues) : c'est lu aux personnes malvoyantes et utile pour Google.
+5. **Save**. Si ta photo est plus lourde que les photos d'origine, la page peut se charger un peu moins vite : compresse-la avant (par exemple avec squoosh.app).
+
+## Bonus — Les cartes « Qu'est-ce qui t'amène ? » de l'accueil
+
+**Textes du site → 🎯 Accueil — « Qu'est-ce qui t'amène ? »** : chaque carte a un **intitulé court**, une **icône** et une **destination** (liste déroulante : page Services, un outil, etc.). Il est impossible de saisir une adresse cassée. Garde des intitulés courts et sans promesse de guérison ou de diagnostic.
 
 ---
 

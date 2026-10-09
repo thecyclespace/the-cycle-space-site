@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import BookingModal from "./BookingModal";
+import StickyBook from "./StickyBook";
 import { I18nProvider } from "../lib/i18n";
 import { BookingProvider } from "../lib/booking";
 
@@ -27,6 +28,7 @@ export default function Layout() {
             <Outlet />
           </Suspense>
           <Footer />
+          <StickyBook />
         </main>
       </BookingProvider>
     </I18nProvider>
