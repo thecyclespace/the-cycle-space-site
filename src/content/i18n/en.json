@@ -74,7 +74,8 @@
     "title": "Track your cycle.",
     "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
     "learnMore": "Read the full article",
-    "cta": "Try the free calculator"
+    "cta": "Try the free calculator",
+    "note": "Estimates only: not medical advice and not a method of contraception."
   },
   "manifestoTitle": "This is not symptom management. This is body literacy.",
   "trust": "15–20 min · Online · English & French",
@@ -292,6 +293,8 @@
     "hero": "A relaxed woman sitting by the sea at sunset, eyes closed and smiling",
     "online": "A smiling woman during an online consultation on her laptop",
     "tool": "A terracotta cycle journal with moon phases on a linen blanket",
-    "blog": "A cup of herbal tea with dried lavender on a soft blanket"
-  }
+    "blog": "A cup of herbal tea with dried lavender on a soft blanket",
+    "elsa": "Elsa, osteopath and women's health practitioner"
+  },
+  "finalCta": "Book my free call"
 }

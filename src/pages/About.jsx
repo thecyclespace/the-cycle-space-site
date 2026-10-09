@@ -30,7 +30,7 @@ export default function About() {
               <div className="relative h-full w-full overflow-hidden rounded-[1.6rem] md:rounded-[2rem]">
                 <img
                   src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
-                  alt="Elsa, osteopath and women's health practitioner"
+                  alt={t.imageAlts?.elsa || "Elsa"}
                   width="400"
                   height="400"
                   loading="eager"

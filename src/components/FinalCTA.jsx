@@ -26,7 +26,7 @@ export default function FinalCTA({ showSecondary = true }) {
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#E7D8C8] md:mt-7 md:text-lg md:leading-8">{t.finalText}</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:mt-10 md:gap-4">
           <Button onClick={() => openBooking("intro")} className="min-h-[52px] bg-[#7C3C3C] px-7 text-[#FBF7EF] hover:bg-[#5C2B2B]">
-            {t.book} <Icon name="calendar" size={18} />
+            {t.finalCta || t.book} <Icon name="calendar" size={18} />
           </Button>
           {showSecondary && (
             <Button to={path("/blog")} variant="outline" className="min-h-[52px] px-7 text-[#FBF7EF]">

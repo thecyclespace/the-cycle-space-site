@@ -13,7 +13,7 @@ const STRINGS = {
   fr: {
     kicker: "404",
     title: "Cette page n'existe pas.",
-    text: "Le lien que tu as suivi n'a rien donné. Reviens à la page d'accueil ou explore le reste du site.",
+    text: "Le lien que tu as suivi ne mène nulle part. Reviens à l'accueil ou découvre le reste du site.",
     home: "Accueil",
     resources: "Ressources",
   },

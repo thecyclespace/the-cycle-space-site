@@ -94,7 +94,7 @@ export default function BookingModal() {
           <button
             onClick={closeBooking}
             className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#DCCDB8] text-[#43372F] transition hover:bg-[#F4EBDD]"
-            aria-label="Close booking modal"
+            aria-label={lang === "fr" ? "Fermer la fenêtre de réservation" : "Close booking modal"}
           >
             <Icon name="x" size={18} />
           </button>

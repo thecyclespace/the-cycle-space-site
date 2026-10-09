@@ -24,26 +24,26 @@
     }
   },
   "fr": {
-    "title": "The Cycle Space — Santé féminine, éducation du cycle",
-    "description": "The Cycle Space aide les femmes à comprendre leur cycle, leurs hormones, leurs symptômes et leurs signes de fertilité grâce à un accompagnement en ligne clinique, clair et humain.",
+    "title": "The Cycle Space — Comprendre son cycle, santé féminine",
+    "description": "Accompagnement en ligne pour mieux comprendre ton cycle, tes symptômes et les changements hormonaux, avec Elsa, ostéopathe et praticienne en santé féminine.",
     "ogTitle": "The Cycle Space",
-    "ogDescription": "Santé féminine. Éducation du cycle. Compréhension du corps. Séances en ligne en anglais ou français.",
+    "ogDescription": "Santé féminine, cycle menstruel et accompagnement personnalisé. Séances en ligne en français ou en anglais.",
     "pages": {
       "services": {
-        "title": "Offres et accompagnement — The Cycle Space",
-        "description": "Un appel Introduction gratuit, le Rhythm Check-In de 90 minutes et le programme Your Inner Rhythm de 6 mois, en ligne."
+        "title": "Accompagnements en santé féminine — The Cycle Space",
+        "description": "Un appel gratuit, une séance de 90 minutes ou un accompagnement de 6 mois : trouve la formule qui te convient pour mieux comprendre ton cycle."
       },
       "blog": {
-        "title": "Articles et ressources — The Cycle Space",
-        "description": "Guide gratuit de suivi du cycle et articles sur les hormones, la compréhension du corps et le bien-être féminin."
+        "title": "Articles et outils sur le cycle menstruel — The Cycle Space",
+        "description": "Un guide gratuit, des outils de suivi du cycle et des articles pour mieux comprendre tes règles, tes hormones et ton corps."
       },
       "about": {
-        "title": "Rencontrer Elsa — The Cycle Space",
-        "description": "Elsa est praticienne en santé féminine et ostéopathe, formée à Londres, fascinée par l'intelligence du corps féminin."
+        "title": "Rencontrer Elsa, ostéopathe — The Cycle Space",
+        "description": "Ostéopathe formée à Londres et praticienne en santé féminine, Elsa t'accompagne pour mieux comprendre ton cycle et les besoins de ton corps."
       },
       "notFound": {
         "title": "Page introuvable — The Cycle Space",
-        "description": "Le lien que tu as suivi n'a rien donné. Reviens à la page d'accueil ou explore le reste du site."
+        "description": "Le lien que tu as suivi ne mène nulle part. Reviens à l'accueil ou découvre le reste du site."
       }
     }
   }

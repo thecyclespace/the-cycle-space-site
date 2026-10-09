@@ -10,7 +10,7 @@ import { localizedPath, stripLang } from "../lib/paths";
 // or missing entries — guarantees the header always renders 4 working links.
 const DEFAULT_NAV = [
   { route: "/", labels: { en: "Home", fr: "Accueil" } },
-  { route: "/services", labels: { en: "Services", fr: "Services" } },
+  { route: "/services", labels: { en: "Services", fr: "Accompagnements" } },
   { route: "/blog", labels: { en: "Resources", fr: "Ressources" } },
   { route: "/about", labels: { en: "About", fr: "À propos" } },
 ];
@@ -83,11 +83,11 @@ export default function Header() {
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-[#DCCDB8]/60 bg-[#FBF7EF]/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 md:px-8 md:py-4">
-        <Link to={path("/")} className="flex min-h-[44px] items-center" aria-label="The Cycle Space — home">
+        <Link to={path("/")} className="flex min-h-[44px] items-center" aria-label={lang === "fr" ? "The Cycle Space — accueil" : "The Cycle Space — home"}>
           <BrandLogo variant="wordmark" tone="light" height={32} />
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 text-sm md:flex" aria-label={lang === "fr" ? "Navigation principale" : "Primary"}>
           {navItems.map((item) => (
             <NavLink
               key={item.route}
@@ -104,7 +104,7 @@ export default function Header() {
           <button
             onClick={handleToggleLang}
             className="inline-flex items-center gap-2 rounded-full border border-[#DCCDB8] px-4 py-2 text-sm text-[#5d5049] hover:bg-[#F4EBDD]"
-            aria-label={lang === "en" ? "Switch to French" : "Switch to English"}
+            aria-label={lang === "en" ? "Switch to French" : "Passer en anglais"}
           >
             <Icon name="globe" size={16} /> {lang === "en" ? "FR" : "EN"}
           </button>
@@ -115,7 +115,7 @@ export default function Header() {
           className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-controls="mobile-menu"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? (lang === "fr" ? "Fermer le menu" : "Close menu") : lang === "fr" ? "Ouvrir le menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
           {menuOpen ? <Icon name="x" /> : <Icon name="menu" />}

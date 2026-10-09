@@ -56,7 +56,7 @@ const STRINGS = {
     formTitle: "Ton cycle est-il régulier ?",
     privacy: "Tes données restent dans ton navigateur. Rien n'est envoyé ni stocké.",
     intro: `Saisis le premier jour de tes ${MIN_DATES} à ${MAX_DATES} dernières règles pour voir la régularité de ton cycle.`,
-    dateLabel: (i) => `Début des règles #${i + 1}`,
+    dateLabel: (i) => `Début des règles n°${i + 1}`,
     addDate: "Ajouter une date",
     remove: "Retirer",
     submit: "Analyser mes cycles",
@@ -77,21 +77,21 @@ const STRINGS = {
       regular:
         "La longueur de ton cycle reste dans une fourchette étroite. C'est le signe d'un rythme relativement constant.",
       "slightly-variable":
-        "Tes cycles varient un peu. Beaucoup de personnes vivent ça — stress, sommeil, voyages, changements de poids, transitions hormonales et changements de mode de vie peuvent tous influencer la longueur du cycle.",
+        "Tes cycles varient un peu. C'est fréquent : le stress, le sommeil, les voyages, les variations de poids, les transitions hormonales ou les changements de mode de vie peuvent influencer la durée du cycle.",
       "more-variable":
-        "Tes cycles varient nettement d'un mois à l'autre. Cela peut avoir de nombreuses causes et n'est pas forcément problématique en soi — mais ça peut valoir la peine de mieux comprendre.",
+        "Tes cycles varient nettement d'un mois à l'autre. Cela peut avoir de nombreuses causes et n'est pas forcément un problème en soi, mais cela peut valoir la peine de chercher à mieux comprendre ce qui se passe.",
     },
     contextTitle: "Un peu de contexte",
     contextNote:
-      "La variabilité du cycle peut venir de plein d'endroits : stress, sommeil, voyages, changements de poids récents, arrêt d'une contraception, allaitement, ou transitions hormonales comme la périménopause ou l'après-pilule.",
-    consultTitle: "Quand ça peut valoir le coup d'en parler",
+      "La variabilité du cycle peut avoir de nombreuses origines : stress, sommeil, voyages, variations de poids récentes, arrêt d'une contraception, allaitement ou transitions hormonales comme la périménopause.",
+    consultTitle: "Quand en parler à un professionnel ?",
     consultGeneric:
-      "Si tes cycles sont souvent très courts, très longs, absents, très douloureux ou très abondants, ou si un changement soudain t'inquiète — ça peut valoir le coup d'en parler avec un professionnel de santé.",
-    consultVeryShort: "Certains de tes cycles sont plus courts que 21 jours.",
-    consultVeryLong: "Certains de tes cycles sont plus longs que 35 jours.",
+      "Si tes cycles sont souvent très courts ou très longs, absents, très douloureux ou très abondants, ou si un changement soudain t'inquiète, il est raisonnable d'en parler avec un professionnel de santé.",
+    consultVeryShort: "Certains de tes cycles durent moins de 21 jours.",
+    consultVeryLong: "Certains de tes cycles durent plus de 35 jours.",
     disclaimerTitle: "Note santé —",
     disclaimer:
-      "Il s'agit d'une estimation éducative, pas d'un diagnostic. Cela ne remplace pas un avis médical. La variabilité du cycle peut avoir de nombreuses causes.",
+      "Il s'agit d'une estimation à visée éducative, pas d'un diagnostic. Elle ne remplace pas un avis médical. La variabilité du cycle peut avoir de nombreuses causes.",
     errMin: `Saisis au moins ${MIN_DATES} dates.`,
     errInvalid: "Une ou plusieurs dates sont invalides.",
     errFuture: "Les dates ne peuvent pas être dans le futur.",

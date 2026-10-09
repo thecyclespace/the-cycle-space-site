@@ -206,61 +206,61 @@ const STRINGS = {
     formTitle: "Après l'arrêt de la pilule ou le retrait d'un DIU",
     privacy: "Tes choix restent dans ton navigateur. Rien n'est envoyé ni stocké.",
     intro:
-      "Un parcours doux et éducatif sur ce qui peut se passer après l'arrêt d'une contraception hormonale ou le retrait d'un DIU. Chaque corps est différent — ce sont des tendances générales, pas des prédictions médicales.",
+      "Un guide éducatif sur ce qui peut se passer après l'arrêt d'une contraception hormonale ou le retrait d'un DIU. Chaque corps est différent : ce sont des tendances générales, pas des prédictions médicales.",
     typeLabel: "Qu'est-ce que tu as arrêté ou retiré ?",
     periodLabel: "Depuis combien de temps ?",
     typeOptions: {
       pill: "Pilule / contraception hormonale",
       "hormonal-iud": "DIU hormonal",
       "copper-iud": "DIU au cuivre",
-      "not-sure": "Pas sûre",
+      "not-sure": "Je ne sais pas",
     },
     periodOptions: {
       "0-1m": "0–1 mois",
       "1-3m": "1–3 mois",
       "3-6m": "3–6 mois",
-      "6m+": "6 mois et +",
+      "6m+": "6 mois et plus",
     },
-    chooseBoth: "Choisis les deux ci-dessus pour voir ce qui peut être fréquent à cette étape.",
+    chooseBoth: "Fais ton choix dans les deux listes pour voir ce qui est fréquent à cette étape.",
     expectKicker: "Ce qui peut être fréquent",
-    watchKicker: "Ce qui mérite d'être noté",
-    consultTitle: "Quand ça peut valoir le coup d'en parler",
+    watchKicker: "Ce qui mérite d'être observé",
+    consultTitle: "Quand en parler à un professionnel ?",
     consultIntro:
-      "Ce sont des signaux généraux. Fie-toi à ton ressenti — si quelque chose te paraît bizarre, persistant ou inquiétant, c'est toujours raisonnable d'en parler.",
+      "Ce sont des repères généraux. Fie-toi à ton ressenti : si quelque chose te paraît inhabituel, persistant ou inquiétant, il est toujours raisonnable d'en parler.",
     consultPoints: [
       "Pas de règles depuis plusieurs mois (et pas de grossesse)",
       "Saignements très abondants ou très longs",
       "Douleurs fortes, inhabituelles ou qui s'aggravent",
       "Fièvre, douleur vive ou pertes inhabituelles après retrait du DIU",
       "Un changement qui semble nouveau, persistant ou préoccupant",
-      "Difficulté à concevoir après une période d'essais significative — selon ton âge et ton contexte",
+      "Difficulté à concevoir après plusieurs mois d'essais (selon ton âge et ton contexte)",
     ],
     individualNote:
       "Les retours dépendent de la durée d'utilisation, de ton cycle d'avant, de ton âge et de nombreux facteurs individuels. Il n'y a pas une seule chronologie.",
     disclaimerTitle: "Note santé —",
     disclaimer:
-      "Il s'agit d'un guide éducatif, pas d'un avis médical ni d'un diagnostic. Ce n'est pas une méthode contraceptive. Si des symptômes t'inquiètent, parle avec un professionnel de santé.",
+      "Il s'agit d'un guide éducatif, pas d'un avis médical ni d'un diagnostic. Ce n'est pas une méthode contraceptive. Si des symptômes t'inquiètent, parles-en avec un professionnel de santé.",
     content: {
       pill: {
         "0-1m": {
           expect: [
             "Un saignement de privation peut apparaître dans les jours qui suivent, semblable à des règles.",
             "Les hormones synthétiques quittent le corps assez vite — souvent en quelques jours.",
-            "Quelques semaines peuvent passer avant que ton rythme hormonal naturel reprenne le relais.",
+            "Il peut s'écouler quelques semaines avant que ton rythme hormonal naturel reprenne le relais.",
           ],
           watch: [
-            "Si quelque chose était masqué par la pilule (acné, sautes d'humeur, règles douloureuses) et revient — c'est une info utile sur ton cycle naturel.",
+            "Si des symptômes que la pilule atténuait (acné, variations d'humeur, règles douloureuses) reviennent, c'est une information utile sur ton cycle naturel.",
           ],
         },
         "1-3m": {
           expect: [
             "Les cycles reviennent souvent, mais d'abord de manière irrégulière.",
-            "Certaines ovulent en quelques semaines, d'autres en quelques mois.",
-            "Peau, humeur, libido et énergie peuvent bouger pendant que les hormones naturelles reprennent.",
+            "Certaines femmes ovulent en quelques semaines, d'autres en quelques mois.",
+            "La peau, l'humeur, la libido et l'énergie peuvent varier pendant que tes hormones naturelles reprennent leur place.",
           ],
           watch: [
-            "Note les patterns : longueur de cycle, flux, sensibilité des seins, glaire cervicale, énergie.",
-            "Suivre maintenant est beaucoup plus utile que de se fier à la mémoire plus tard.",
+            "Note ce que tu observes : durée du cycle, abondance des règles, sensibilité des seins, glaire cervicale, énergie.",
+            "Noter au fur et à mesure est plus fiable que de se fier à ses souvenirs.",
           ],
         },
         "3-6m": {
@@ -270,99 +270,99 @@ const STRINGS = {
           ],
           watch: [
             "Une absence persistante de règles (sans grossesse) mérite attention.",
-            "Cycles très abondants, très douloureux ou très erratiques peuvent valoir une discussion avec un professionnel.",
+            "Des cycles très abondants, très douloureux ou très irréguliers méritent d'en parler avec un professionnel.",
           ],
         },
         "6m+": {
           expect: [
-            "La plupart des personnes ont retrouvé un cycle reconnaissable à ce stade.",
-            "Certaines conditions sous-jacentes (SOPK, endométriose, thyroïde) peuvent devenir visibles ici — non causées par la pilule, juste plus masquées.",
+            "La plupart des femmes ont retrouvé un cycle reconnaissable à ce stade.",
+            "Certaines conditions sous-jacentes (SOPK, endométriose, thyroïde) peuvent devenir visibles : elles ne sont pas causées par la pilule, qui les masquait simplement.",
           ],
           watch: [
-            "Si ton cycle est toujours absent ou chaotique après 6+ mois sans grossesse, c'est un moment raisonnable pour demander un avis.",
+            "Si ton cycle est toujours absent ou très irrégulier après plus de 6 mois (hors grossesse), c'est un bon moment pour demander un avis médical.",
           ],
         },
       },
       "hormonal-iud": {
         "0-1m": {
           expect: [
-            "Quelques saignements légers dans les jours après le retrait sont fréquents.",
-            "Les patterns de saignement commencent souvent à revenir vers ton rythme naturel.",
+            "Quelques saignements légers dans les jours qui suivent le retrait sont fréquents.",
+            "Le rythme des saignements commence souvent à se rapprocher de ton rythme naturel.",
           ],
           watch: [
-            "Douleur ou fièvre après le retrait n'est pas attendue — parle avec la personne qui l'a retiré.",
+            "Une douleur ou de la fièvre après le retrait ne sont pas attendues : parles-en avec la personne qui a retiré le DIU.",
           ],
         },
         "1-3m": {
           expect: [
             "Les règles peuvent revenir progressivement. Elles peuvent être irrégulières au début.",
-            "Si tu saignais peu avec le DIU, le retour de saignements réguliers peut sembler être un grand changement.",
+            "Si tu saignais peu avec le DIU, le retour de règles régulières peut sembler un grand changement.",
           ],
           watch: [
-            "Humeur, peau, libido et énergie peuvent bouger pendant que les hormones naturelles reprennent.",
+            "L'humeur, la peau, la libido et l'énergie peuvent varier pendant que tes hormones naturelles reprennent leur place.",
           ],
         },
         "3-6m": {
           expect: [
-            "Les cycles commencent souvent à dessiner un pattern plus clair.",
-            "Certaines retrouvent leur cycle d'avant le DIU, d'autres en trouvent un nouveau.",
+            "Les cycles deviennent souvent plus lisibles.",
+            "Certaines femmes retrouvent leur cycle d'avant le DIU, d'autres en trouvent un nouveau.",
           ],
           watch: [
-            "Cycles persistamment absents ou très irréguliers méritent d'en parler.",
+            "Des cycles toujours absents ou très irréguliers méritent d'en parler.",
           ],
         },
         "6m+": {
           expect: [
-            "La plupart des personnes ont un pattern reconnaissable à ce stade.",
+            "La plupart des femmes ont un cycle reconnaissable à ce stade.",
             "Si tu suis ton cycle, plusieurs mois de données rendent l'interprétation beaucoup plus claire.",
           ],
           watch: [
-            "Si quelque chose te semble encore bizarre après 6 mois — douleur, règles absentes, saignements très abondants — c'est raisonnable de demander un avis.",
+            "Si quelque chose te semble encore inhabituel après 6 mois (douleurs, absence de règles, saignements très abondants), il est raisonnable de demander un avis médical.",
           ],
         },
       },
       "copper-iud": {
         "0-1m": {
           expect: [
-            "Pas d'arrêt d'hormones synthétiques — ton cycle hormonal tournait déjà avec un DIU cuivre.",
-            "Quelques saignements légers dans les jours après le retrait sont fréquents.",
+            "Il n'y a pas d'arrêt d'hormones synthétiques : ton cycle hormonal fonctionnait déjà avec un DIU au cuivre.",
+            "Quelques saignements légers dans les jours qui suivent le retrait sont fréquents.",
           ],
           watch: [
-            "Douleur ou fièvre après retrait n'est pas attendue — parle avec la personne qui l'a retiré.",
+            "Une douleur ou de la fièvre après le retrait ne sont pas attendues : parles-en avec la personne qui a retiré le DIU.",
           ],
         },
         "1-3m": {
           expect: [
-            "Si tes règles étaient plus abondantes ou douloureuses avec le DIU cuivre, ça peut s'apaiser dans les cycles à venir.",
-            "Si ton cycle était déjà bien en place avec le DIU, il continue souvent à un rythme similaire.",
+            "Si tes règles étaient plus abondantes ou douloureuses avec le DIU au cuivre, cela peut s'apaiser dans les cycles à venir.",
+            "Si ton cycle était déjà bien en place avec le DIU, il garde souvent un rythme similaire.",
           ],
           watch: [
-            "Si les saignements restent inhabituellement abondants ou douloureux, ça vaut le coup d'en parler.",
+            "Si les saignements restent inhabituellement abondants ou douloureux, il est utile d'en parler.",
           ],
         },
         "3-6m": {
           expect: [
-            "La plupart de celles qui avaient un rythme régulier avec le DIU le gardent.",
-            "Volume des saignements et crampes ont souvent retrouvé une base typique pour toi.",
+            "La plupart des femmes qui avaient un cycle régulier avec le DIU le conservent.",
+            "L'abondance des saignements et les crampes retrouvent souvent un niveau habituel pour toi.",
           ],
           watch: [
-            "Des changements soudains et inexpliqués de longueur ou de flux méritent d'être notés.",
+            "Des changements soudains et inexpliqués de durée du cycle ou d'abondance des règles méritent d'être notés.",
           ],
         },
         "6m+": {
           expect: [
-            "À ce stade, tu as une idée claire de ton pattern de cycle post-DIU.",
+            "À ce stade, tu as une idée plus claire de ton cycle après le retrait du DIU.",
             "Plusieurs mois de suivi te donnent une base de référence utile.",
           ],
           watch: [
-            "Toute préoccupation persistante est raisonnable à porter à un professionnel, surtout si quelque chose a changé récemment.",
+            "Toute inquiétude persistante mérite d'être évoquée avec un professionnel, surtout si quelque chose a changé récemment.",
           ],
         },
       },
       "not-sure": {
         "0-1m": {
           expect: [
-            "Beaucoup de choses peuvent bouger dans le premier mois : saignements, humeur, peau, énergie.",
+            "Beaucoup de choses peuvent changer durant le premier mois : saignements, humeur, peau, énergie.",
             "Le corps s'adapte — laisse-lui un peu de temps avant de tirer des conclusions.",
           ],
           watch: ["Note les symptômes qui semblent nouveaux, persistants ou inquiétants."],
@@ -370,28 +370,28 @@ const STRINGS = {
         "1-3m": {
           expect: [
             "Les cycles commencent souvent à revenir, mais peuvent être irréguliers.",
-            "Les patterns préexistants (longueur de cycle, SPM, flux) peuvent commencer à se montrer.",
+            "Ce qui existait avant la contraception (durée du cycle, SPM, abondance des règles) peut commencer à réapparaître.",
           ],
           watch: [
-            "Suivre des choses simples — début des règles, flux, humeur — est utile.",
+            "Noter quelques repères simples (début des règles, abondance, humeur) est utile.",
           ],
         },
         "3-6m": {
           expect: [
-            "Beaucoup commencent à voir un rythme plus clair.",
-            "Si les symptômes te paraissent différents de ce que tu connaissais, c'est une info.",
+            "Beaucoup de femmes commencent à voir un rythme plus clair.",
+            "Si les symptômes te paraissent différents de ce que tu connaissais, c'est une information utile.",
           ],
           watch: [
-            "Absence persistante de règles, saignements très abondants ou douleurs fortes méritent une discussion.",
+            "Une absence persistante de règles, des saignements très abondants ou de fortes douleurs méritent d'être évoqués avec un professionnel.",
           ],
         },
         "6m+": {
           expect: [
-            "La plupart des personnes ont un pattern reconnaissable à ce stade.",
+            "La plupart des femmes ont un cycle reconnaissable à ce stade.",
             "Plusieurs mois de suivi rendent l'interprétation beaucoup plus claire.",
           ],
           watch: [
-            "Si quelque chose te paraît encore bizarre, c'est raisonnable de demander un avis.",
+            "Si quelque chose te paraît encore inhabituel, il est raisonnable de demander un avis médical.",
           ],
         },
       },
