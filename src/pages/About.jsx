@@ -55,7 +55,7 @@ export default function About() {
             </div>
           </div>
           <div>
-            <h1 className="font-serif text-4xl leading-tight md:text-7xl">{t.aboutTitle}</h1>
+            <h1 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-7xl">{t.aboutTitle}</h1>
             <p className="mt-5 whitespace-pre-line text-base leading-7 text-[#5d5049] md:mt-7 md:text-xl md:leading-9">{t.aboutText}</p>
             <div className="mt-7 grid gap-2 sm:grid-cols-2 md:mt-9 md:gap-3">
               {t.credentials.map((credential) => (

@@ -74,7 +74,7 @@ export default function BlogPost() {
         <div className="mx-auto max-w-3xl">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}
           </Link>
@@ -83,7 +83,7 @@ export default function BlogPost() {
               {formatDate(post.date, lang)}
             </p>
           )}
-          <h1 className="mt-4 font-serif text-4xl leading-tight md:text-6xl">{post.title}</h1>
+          <h1 className="mt-4 break-words font-serif text-3xl leading-tight sm:text-4xl md:text-6xl">{post.title}</h1>
           {post.excerpt && (
             <p className="mt-5 text-base leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">{post.excerpt}</p>
           )}

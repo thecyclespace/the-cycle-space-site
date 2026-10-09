@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -23,7 +23,9 @@ export default function Layout() {
         <main className="min-h-screen bg-[#FBF7EF] text-[#362E28]">
           <BookingModal />
           <Header />
-          <Outlet />
+          <Suspense fallback={<div className="min-h-[70vh]" aria-hidden="true" />}>
+            <Outlet />
+          </Suspense>
           <Footer />
         </main>
       </BookingProvider>

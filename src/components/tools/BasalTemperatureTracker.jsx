@@ -251,7 +251,7 @@ export default function BasalTemperatureTracker() {
 
   const inputCls =
     "mt-2 w-full rounded-2xl border border-[#DCCDB8] bg-white px-4 py-3 text-base text-[#362E28] outline-none transition focus:border-[#7C3C3C] focus:ring-2 focus:ring-[#7C3C3C]/30";
-  const errorCls = "mt-2 text-sm text-[#D4887F]";
+  const errorCls = "mt-2 text-sm text-[#9B2F2F]";
   const labelCls = "block text-sm font-medium text-[#43372F]";
 
   if (!consent) {

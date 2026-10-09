@@ -159,7 +159,7 @@ export function OrbitalGraphic({ dense = false }) {
           dense ? "right-[40px] top-[70px] h-[280px] w-[280px]" : "right-[80px] top-[110px] h-[360px] w-[360px]"
         }`}
       />
-      <div className="absolute right-[13%] top-[18%] h-5 w-5 rounded-full bg-[#7C3C3C] shadow-[0_0_0_10px_rgba(124,60,60,0.08)]" />
+      <div className="absolute right-[13%] top-[18%] hidden h-5 w-5 sm:block rounded-full bg-[#7C3C3C] shadow-[0_0_0_10px_rgba(124,60,60,0.08)]" />
     </div>
   );
 }

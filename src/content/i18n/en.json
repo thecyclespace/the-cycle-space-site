@@ -45,7 +45,7 @@
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
   "resourcesText": "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
-  "guideThanksText": "The download just started. If nothing happened, click below to get it again.",
+  "guideThanksText": "The download just started. If nothing happened, click the button to get it again.",
   "footerTagline": "Empowering women one cycle at a time.",
   "guideThanksTitle": "Your guide is on its way.",
   "resourcesTitle": "Start with a free cycle guide.",
@@ -119,7 +119,7 @@
       "cta": "Join the list"
     }
   ],
-  "guideConsent": "We'll only use your email to share the guide and the occasional update. Unsubscribe anytime.",
+  "guideConsent": "Free PDF. No email needed, nothing is stored.",
   "heroTitle": "Your body has been speaking. ",
   "servicesLabels": {
     "forWho": "Who it's for",

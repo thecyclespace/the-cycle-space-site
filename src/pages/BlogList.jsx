@@ -45,7 +45,7 @@ export default function BlogList() {
       <section className="bg-[#FBF7EF] px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-40">
         <div className="mx-auto max-w-7xl">
           <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:mb-5 md:text-sm">{L.kicker}</p>
-          <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-7xl">{L.title}</h1>
+          <h1 className="max-w-4xl break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-7xl">{L.title}</h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{L.intro}</p>
         </div>
       </section>

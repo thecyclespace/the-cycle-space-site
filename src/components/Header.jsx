@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Icon, Button, BrandLogo } from "./ui";
 import { useI18n } from "../lib/i18n";
@@ -53,6 +53,15 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navItems = resolveNav(t.nav, lang);
 
+  // Close the mobile menu on navigation and on Escape.
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   const handleToggleLang = () => {
     const nextLang = lang === "en" ? "fr" : "en";
     const blogMatch = location.pathname.match(/^\/blog\/([^/]+)\/?$/);
@@ -80,8 +89,8 @@ export default function Header() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-[#DCCDB8]/60 bg-[#FBF7EF]/85 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link to="/" className="flex items-center" aria-label="The Cycle Space — home">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 md:px-8 md:py-4">
+        <Link to="/" className="flex min-h-[44px] items-center" aria-label="The Cycle Space — home">
           <BrandLogo variant="wordmark" tone="light" height={32} />
         </Link>
 
@@ -106,12 +115,13 @@ export default function Header() {
           >
             <Icon name="globe" size={16} /> {lang === "en" ? "FR" : "EN"}
           </button>
-          <Button onClick={openBooking}>{t.book}</Button>
+          <Button onClick={() => openBooking("intro")}>{t.book}</Button>
         </div>
 
         <button
-          className="md:hidden"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-controls="mobile-menu"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
@@ -120,8 +130,8 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-[#DCCDB8] bg-[#FBF7EF] px-5 py-5 md:hidden">
-          <div className="grid gap-4">
+        <div id="mobile-menu" className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-[#DCCDB8] bg-[#FBF7EF] px-5 py-4 md:hidden">
+          <div className="grid gap-1">
             {navItems.map((item) => (
               <NavLink
                 key={item.route}
@@ -129,20 +139,20 @@ export default function Header() {
                 end={item.route === "/"}
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
-                  `text-left text-lg ${isActive ? "text-[#7C3C3C]" : "text-[#43372F]"}`
+                  `flex min-h-[48px] items-center text-left text-lg ${isActive ? "text-[#7C3C3C]" : "text-[#43372F]"}`
                 }
               >
                 {item.label}
               </NavLink>
             ))}
-            <div className="flex gap-3 pt-2">
-              <Button onClick={() => { setMenuOpen(false); openBooking(); }} className="flex-1">
+            <div className="flex gap-3 pt-3">
+              <Button onClick={() => { setMenuOpen(false); openBooking("intro"); }} className="min-h-[48px] flex-1">
                 {t.book}
               </Button>
               <Button
                 onClick={handleToggleLang}
                 variant="outline"
-                className="border-[#DCCDB8] text-[#362E28] hover:bg-[#F4EBDD]"
+                className="min-h-[48px] border-[#DCCDB8] text-[#362E28] hover:bg-[#F4EBDD]"
               >
                 {lang === "en" ? "FR" : "EN"}
               </Button>
