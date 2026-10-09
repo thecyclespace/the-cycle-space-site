@@ -67,10 +67,11 @@ function spaFallbackPlugin() {
   };
 }
 
-// `base` = "/" : le site est servi à la racine du domaine personnalisé thecyclespace.com.
+// `base` = sous-chemin GitHub Pages (https://thecyclespace.github.io/the-cycle-space-site/).
+// Pour passer au domaine personnalisé thecyclespace.com : remettre `base: "/"` et recréer public/CNAME.
 // Le routeur (App.jsx) et les images suivent cette valeur via import.meta.env.BASE_URL.
 export default defineConfig({
-  base: "/",
+  base: "/the-cycle-space-site/",
   plugins: [
     react(),
     sitemapPlugin(),
