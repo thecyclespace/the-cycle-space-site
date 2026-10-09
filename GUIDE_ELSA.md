@@ -21,7 +21,7 @@ Pas de code, pas de terminal. Tout se fait dans l'espace d'administration du sit
 
 Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du nom (🎯, 🛠, ❓…) te disent à quelle partie du site il correspond.
 
-> Pense à modifier **les deux langues** (français et anglais) quand tu changes un texte.
+> Pense à modifier **les deux langues** (français et anglais) quand tu changes un texte. Le site français vit sous `/fr/` (ex. `…/fr/services/`), l'anglais à la racine.
 
 ---
 
@@ -71,7 +71,7 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 3. Écris le texte dans **Contenu de l'article** avec la barre d'outils (titres, listes, gras, liens). Ajoute à l'intérieur une courte phrase « Quand consulter ? » pour tout sujet de santé.
 4. **Coche « Brouillon »** puis **Save** : l'article est enregistré mais **invisible** sur le site.
 5. Quand tu es prête : ouvre l'article, **décoche « Brouillon »**, **Save**. Il apparaît sur le site après 1 à 3 minutes.
-6. Pour la version dans l'autre langue, crée un 2ᵉ article et, dans **Slug de l'article traduit**, indique le nom technique du premier (il apparaît dans l'adresse de l'article). Le bouton FR/EN du site te renverra alors vers la bonne version.
+6. Pour la version dans l'autre langue, crée un 2ᵉ article et, dans **Slug de l'article traduit**, indique le nom technique du premier (il apparaît dans l'adresse de l'article). Le bouton FR/EN du site te renverra alors vers la bonne version. Un article en français est publié à l'adresse `…/fr/blog/<nom>`, un article en anglais à `…/blog/<nom>` : c'est le champ **Langue de l'article** qui décide.
 
 ## Scénario 5 — Corriger une faute après publication
 

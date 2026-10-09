@@ -1,6 +1,7 @@
 // JSON-LD builders shared by the pages (client) and the prerender script (build),
 // so structured data in the initial HTML and after hydration is identical.
 import { SITE_URL, canonicalUrl, absoluteAsset } from "./seo";
+import { localizedPath, postPath } from "./paths";
 import siteSettings from "../content/settings/site.json";
 
 const ORG = {
@@ -10,7 +11,7 @@ const ORG = {
   logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/favicon-512.png` },
 };
 
-export function personSchema() {
+export function personSchema(lang = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -19,7 +20,7 @@ export function personSchema() {
     description:
       "Elsa is a women's health practitioner and osteopath, trained in London, fascinated by the intelligence of the female body.",
     image: `${SITE_URL}/${siteSettings.elsaImage}`,
-    url: canonicalUrl("/about"),
+    url: canonicalUrl(localizedPath("/about", lang)),
     sameAs: [siteSettings.instagramUrl],
     knowsAbout: ["Women's health", "Menstrual cycle", "Hormonal health", "Osteopathy", "Body literacy", "Cycle education"],
     alumniOf: { "@type": "EducationalOrganization", name: "University College of Osteopathy" },
@@ -28,7 +29,7 @@ export function personSchema() {
 }
 
 export function articleSchema(post) {
-  const url = canonicalUrl(`/blog/${post.slug}`);
+  const url = canonicalUrl(postPath(post));
   const date = post.date ? post.date.toISOString() : undefined;
   return {
     "@context": "https://schema.org",
@@ -47,8 +48,8 @@ export function articleSchema(post) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "The Cycle Space", item: canonicalUrl("/") },
-          { "@type": "ListItem", position: 2, name: "Blog", item: canonicalUrl("/blog") },
+          { "@type": "ListItem", position: 1, name: "The Cycle Space", item: canonicalUrl(localizedPath("/", post.lang)) },
+          { "@type": "ListItem", position: 2, name: "Blog", item: canonicalUrl(localizedPath("/blog", post.lang)) },
           { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },

@@ -3,7 +3,8 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Icon, Button, BrandLogo } from "./ui";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
-import { getPost } from "../lib/blog";
+import { getPost, getTranslation } from "../lib/blog";
+import { localizedPath, stripLang } from "../lib/paths";
 
 // Default nav structure used as a safety net if the CMS content is malformed
 // or missing entries — guarantees the header always renders 4 working links.
@@ -46,7 +47,7 @@ function resolveNav(navInput, lang) {
 }
 
 export default function Header() {
-  const { lang, setLang, t } = useI18n();
+  const { lang, t, path } = useI18n();
   const { openBooking } = useBooking();
   const location = useLocation();
   const navigate = useNavigate();
@@ -62,26 +63,18 @@ export default function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
+  // Same page in the other language. Articles go to their translation when it exists,
+  // otherwise to the article list of the other language (never a 404).
   const handleToggleLang = () => {
     const nextLang = lang === "en" ? "fr" : "en";
-    const blogMatch = location.pathname.match(/^\/blog\/([^/]+)\/?$/);
+    const current = stripLang(location.pathname);
+    const blogMatch = current.match(/^\/blog\/([^/]+)\/?$/);
     if (blogMatch) {
-      const current = getPost(blogMatch[1]);
-      if (current?.translation) {
-        const target = getPost(current.translation);
-        if (target && target.lang === nextLang) {
-          setLang(nextLang);
-          navigate(`/blog/${target.slug}`);
-          return;
-        }
-      }
-      if (current && current.lang !== nextLang) {
-        setLang(nextLang);
-        navigate("/blog");
-        return;
-      }
+      const translation = getTranslation(getPost(blogMatch[1]));
+      navigate(localizedPath(translation ? `/blog/${translation.slug}` : "/blog", nextLang));
+      return;
     }
-    setLang(nextLang);
+    navigate(localizedPath(current, nextLang) + location.search + location.hash);
   };
 
   const navLinkClass = ({ isActive }) =>
@@ -90,7 +83,7 @@ export default function Header() {
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-[#DCCDB8]/60 bg-[#FBF7EF]/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 md:px-8 md:py-4">
-        <Link to="/" className="flex min-h-[44px] items-center" aria-label="The Cycle Space — home">
+        <Link to={path("/")} className="flex min-h-[44px] items-center" aria-label="The Cycle Space — home">
           <BrandLogo variant="wordmark" tone="light" height={32} />
         </Link>
 
@@ -98,7 +91,7 @@ export default function Header() {
           {navItems.map((item) => (
             <NavLink
               key={item.route}
-              to={item.route}
+              to={path(item.route)}
               end={item.route === "/"}
               className={navLinkClass}
             >
@@ -135,7 +128,7 @@ export default function Header() {
             {navItems.map((item) => (
               <NavLink
                 key={item.route}
-                to={item.route}
+                to={path(item.route)}
                 end={item.route === "/"}
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>

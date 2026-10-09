@@ -8,7 +8,7 @@ import { useBooking } from "../lib/booking";
 // plus the "Your Inner Rhythm" 6-month programme header; the compact version
 // (Home) shows a short card per phase and links to the Services page.
 export default function Method({ detailed = false }) {
-  const { t } = useI18n();
+  const { t, path } = useI18n();
   const { openBooking } = useBooking();
   const m = t.method;
   if (!m) return null;
@@ -91,7 +91,7 @@ export default function Method({ detailed = false }) {
             </div>
             <div className="mt-10 md:mt-12">
               <Link
-                to="/services#inner-rhythm"
+                to={path("/services#inner-rhythm")}
                 className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#FBF7EF] underline-offset-4 hover:text-[#D4887F] hover:underline"
               >
                 {m.cta} <Icon name="arrow" size={16} />

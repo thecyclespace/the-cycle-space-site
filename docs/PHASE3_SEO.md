@@ -39,17 +39,9 @@ Lighthouse mobile (simulation 4G lente, build pré-rendu, page d'accueil) :
 
 Tests automatisés (`npm test`) : toutes les pages du sitemap existent, titres uniques, canonical = URL du sitemap, ≥ 300 caractères de texte et un `h1` dans le HTML initial, JSON-LD valide, pas de `lastmod` sur les pages statiques, `404.html` en `noindex`, aucun script Calendly dans le HTML initial.
 
-## 4. Stratégie EN/FR : décision en attente (non migrée)
+## 4. Stratégie EN/FR : URL distinctes (implémentée sur la branche `feature/fr-en-urls`)
 
-Le site sert une seule URL par page, la langue étant mémorisée dans le navigateur. Conséquences : Google voit la version **anglaise** ; pas de `hreflang` possible ; les articles français sont accessibles mais leur « version langue » n'est pas distincte d'une page d'accueil/Services anglaise.
-
-Plan recommandé (non lancé, car il change les URL et exige validation) :
-
-1. URL `/fr/…` pour le français, `/…` (ou `/en/…`) pour l'anglais ; langue déduite de l'URL, plus de `localStorage` comme source de vérité.
-2. `hreflang` réciproque + `x-default`, canonical par langue, sitemap bilingue.
-3. Redirection de l'ancien comportement : conserver les URL actuelles pour l'anglais (pas de redirection nécessaire) ; le français obtient de nouvelles URL.
-4. Bouton FR/EN : navigue vers l'URL équivalente (déjà géré pour les articles via `translation`).
-5. Effort estimé : 1 journée + tests. Aucun risque pour les URL existantes.
+Voir `docs/PHASE5_FR_EN_URLS.md`. Résumé : l'anglais reste à la racine (aucune URL existante ne change), le français passe sous `/fr/…`, avec `hreflang` réciproque, sitemap bilingue et redirections des anciens liens d'articles français.
 
 ## 5. À faire / à valider
 

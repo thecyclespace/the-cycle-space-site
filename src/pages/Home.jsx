@@ -13,7 +13,7 @@ const TOOL_SLUG_BY_LANG = {
 };
 
 export default function Home() {
-  const { t, lang } = useI18n();
+  const { t, lang, path } = useI18n();
   const { openBooking } = useBooking();
   usePageMeta(null);
   const tool = t.homeTool || {};
@@ -52,7 +52,7 @@ export default function Home() {
               <Button onClick={openBooking} className="bg-[#7C3C3C] px-7 py-4 text-base text-[#FBF7EF] hover:bg-[#5C2B2B]">
                 {t.book} <Icon name="calendar" size={18} />
               </Button>
-              <Button to="/services" variant="outline" className="px-7 py-4 text-base text-[#FBF7EF]">
+              <Button to={path("/services")} variant="outline" className="px-7 py-4 text-base text-[#FBF7EF]">
                 {t.heroSecondary}
               </Button>
             </div>
@@ -83,8 +83,8 @@ export default function Home() {
 
       <section className="bg-[#F4EBDD] px-5 py-16 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_0.85fr] md:gap-8">
-          <div className="rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:rounded-[2.5rem] md:p-12">
-            <h2 className="font-serif text-4xl leading-tight md:text-5xl">{t.forYouTitle}</h2>
+          <div className="min-w-0 rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:rounded-[2.5rem] md:p-12">
+            <h2 className="font-serif text-[1.65rem] leading-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl">{t.forYouTitle}</h2>
             <div className="mt-8 grid gap-4 md:mt-10 md:gap-5">
               {t.forYou.map((item) => (
                 <div key={item} className="flex gap-3 border-b border-[#FBF7EF]/10 pb-4 last:border-0 md:gap-4 md:pb-5">
@@ -94,10 +94,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="relative overflow-hidden rounded-[2rem] border border-[#DCCDB8] bg-[#F4EBDD] p-6 md:rounded-[2.5rem] md:p-12">
+          <div className="relative min-w-0 overflow-hidden rounded-[2rem] border border-[#DCCDB8] bg-[#F4EBDD] p-6 md:rounded-[2.5rem] md:p-12">
             <OrbitalGraphic dense />
             <div className="relative">
-              <h3 className="font-serif text-3xl leading-tight md:text-4xl">{t.notForTitle}</h3>
+              <h3 className="font-serif text-[1.65rem] leading-tight [overflow-wrap:anywhere] sm:text-3xl md:text-4xl">{t.notForTitle}</h3>
               <p className="mt-5 text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.notForText}</p>
               <Button onClick={openBooking} className="mt-7 bg-[#7C3C3C] px-6 py-4 text-[#FBF7EF] hover:bg-[#5C2B2B] md:mt-9">
                 {t.book}
@@ -117,7 +117,7 @@ export default function Home() {
           <PeriodCalculator />
           <div className="mt-8">
             <Link
-              to={`/blog/${toolSlug}`}
+              to={path(`/blog/${toolSlug}`)}
               className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
             >
               {tool.learnMore} <Icon name="arrow" size={16} />
