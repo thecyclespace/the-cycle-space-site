@@ -13,6 +13,8 @@ import { posts, getTranslation } from "./lib/blog";
 import { buildMeta, absoluteAsset, postAlternates, canonicalUrl } from "./lib/seo";
 import { personSchema, articleSchema, faqSchema } from "./lib/schemas";
 import { localizedPath, postPath } from "./lib/paths";
+import { describeImage } from "./components/Picture";
+import images from "./content/settings/images.json";
 import enCopy from "./content/i18n/en.json";
 import frCopy from "./content/i18n/fr.json";
 
@@ -41,7 +43,13 @@ export function getRoutes() {
     ];
     for (const r of statics) {
       const path = localizedPath(r.path, lang);
-      routes.push({ path, lang, meta: buildMeta(lang, r.pageKey, {}, path), ld: r.ld.filter(Boolean) });
+      const route = { path, lang, meta: buildMeta(lang, r.pageKey, {}, path), ld: r.ld.filter(Boolean) };
+      // The hero picture is the largest element of the home page: tell the browser to fetch it early.
+      if (r.path === "/" && images.heroImage) {
+        const d = describeImage(images.heroImage);
+        if (d.avif) route.preload = { type: "image/avif", srcset: d.avif, sizes: "(min-width: 768px) 46vw, 100vw" };
+      }
+      routes.push(route);
     }
   }
   for (const post of posts) {

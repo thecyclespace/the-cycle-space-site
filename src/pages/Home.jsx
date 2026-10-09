@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { Icon, Button, BrandLogo, OrbitalGraphic } from "../components/ui";
+import { Icon, Button, Reveal } from "../components/ui";
+import Picture from "../components/Picture";
 import FinalCTA from "../components/FinalCTA";
 import Method from "../components/Method";
-import PeriodCalculator from "../components/tools/PeriodCalculator";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 import { usePageMeta } from "../lib/seo";
+import { concernHref } from "../lib/concernLinks";
+import siteSettings from "../content/settings/site.json";
+import images from "../content/settings/images.json";
 
 const TOOL_SLUG_BY_LANG = {
   en: "period-calculator",
@@ -18,17 +21,15 @@ export default function Home() {
   usePageMeta(null);
   const tool = t.homeTool || {};
   const toolSlug = TOOL_SLUG_BY_LANG[lang] || TOOL_SLUG_BY_LANG.en;
+  const alts = t.imageAlts || {};
 
   return (
     <>
-      <section className="relative isolate min-h-[80svh] overflow-hidden bg-[#362E28] px-5 pb-14 pt-28 text-[#FBF7EF] md:min-h-[92svh] md:px-8 md:pb-16 md:pt-40">
-        <OrbitalGraphic />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
+      {/* 1. Hero: promise, one action, one picture */}
+      <section className="bg-[#F4EBDD] px-5 pb-12 pt-24 md:px-8 md:pb-24 md:pt-36">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-14">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#7C3C3C]/40 bg-[#FBF7EF]/5 px-4 py-2 text-xs text-[#E7D8C8] md:mb-8 md:text-sm">
-              <Icon name="sparkles" size={14} className="text-[#D4887F]" /> {t.heroKicker}
-            </div>
-            <h1 className="max-w-4xl break-words font-serif text-[clamp(1.9rem,9vw,2.75rem)] leading-[1.05] tracking-tight sm:text-5xl md:text-6xl md:leading-[0.98] lg:text-8xl lg:leading-[0.92]">
+            <h1 className="break-words font-serif text-[clamp(2rem,8.6vw,2.7rem)] leading-[1.08] text-[#362E28] sm:text-5xl md:text-5xl lg:text-6xl">
               {t.mobileHeroTitle && t.mobileHeroTitle.trim() ? (
                 <>
                   <span className="md:hidden">{t.mobileHeroTitle}</span>
@@ -38,7 +39,7 @@ export default function Home() {
                 t.heroTitle
               )}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-7 text-[#E7D8C8] md:mt-8 md:text-2xl md:leading-9">
+            <p className="mt-4 max-w-xl text-lg leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">
               {t.mobileHeroText && t.mobileHeroText.trim() ? (
                 <>
                   <span className="md:hidden">{t.mobileHeroText}</span>
@@ -48,80 +49,147 @@ export default function Home() {
                 t.heroText
               )}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
-              <Button onClick={openBooking} className="bg-[#7C3C3C] px-7 py-4 text-base text-[#FBF7EF] hover:bg-[#5C2B2B]">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8">
+              <Button
+                onClick={() => openBooking("intro")}
+                className="min-h-[52px] bg-[#7C3C3C] px-7 text-base text-[#FBF7EF] hover:bg-[#5C2B2B]"
+              >
                 {t.book} <Icon name="calendar" size={18} />
               </Button>
-              <Button to={path("/services")} variant="outline" className="px-7 py-4 text-base text-[#FBF7EF]">
+              <Button to={path("/services")} variant="outline" className="min-h-[52px] px-7 text-base text-[#362E28]">
                 {t.heroSecondary}
               </Button>
             </div>
-            <p className="mt-6 text-xs tracking-wide text-[#DCCDB8] md:mt-7 md:text-sm">{t.trust}</p>
+            <p className="mt-4 text-sm text-[#5d5049]">{t.trust}</p>
           </div>
-
-          <div className="relative hidden md:block">
-            <div className="relative ml-auto flex aspect-square max-w-md items-center justify-center overflow-hidden rounded-[2.5rem] border border-[#7C3C3C]/30 bg-[#43372F] p-10 shadow-2xl">
-              <BrandLogo variant="main" tone="dark" className="h-full w-full object-contain" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-16 md:px-8 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end md:gap-12">
-          <h2 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-7xl">{t.manifestoTitle}</h2>
-          <div>
-            <p className="text-lg leading-7 text-[#5d5049] md:text-xl md:leading-9">{t.manifestoText}</p>
-            <p className="mt-8 font-sans text-xl font-light italic leading-snug text-[#5C2B2B] md:mt-10 md:text-3xl">
-              &ldquo;{t.manifestoQuote}&rdquo;
-            </p>
+          <div className="relative">
+            <Picture
+              src={images.heroImage}
+              alt={alts.hero}
+              priority
+              sizes="(min-width: 768px) 46vw, 100vw"
+              className="aspect-[5/4] w-full rounded-[2rem] object-cover object-[30%_45%] shadow-xl shadow-[#7C3C3C]/10 md:aspect-[4/5] md:rounded-[2.5rem] md:object-[26%_50%]"
+            />
           </div>
         </div>
       </section>
 
+      {/* 2. What brings you here */}
+      <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
+            {t.concerns.title}
+          </h2>
+          <Reveal className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-3 md:gap-5">
+            {t.concerns.items.map((item) => (
+              <Link
+                key={item.title}
+                to={path(concernHref(item.link, lang))}
+                className="group flex min-h-[112px] flex-col items-start justify-between gap-4 rounded-[1.5rem] border border-[#DCCDB8] bg-[#FBF7EF] p-4 transition hover:-translate-y-0.5 hover:border-[#7C3C3C]/50 hover:shadow-lg md:min-h-[150px] md:p-6"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F4EBDD] text-[#7C3C3C] md:h-12 md:w-12">
+                  <Icon name={item.icon} size={22} />
+                </span>
+                <span className="text-[0.95rem] font-medium leading-snug text-[#362E28] md:text-lg">{item.title}</span>
+              </Link>
+            ))}
+          </Reveal>
+          <p className="mt-6 text-sm text-[#6e625b]">{t.concerns.note}</p>
+        </div>
+      </section>
+
+      {/* 3. Method (compact) */}
       <Method />
 
-      <section className="bg-[#F4EBDD] px-5 py-16 md:px-8 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_0.85fr] md:gap-8">
-          <div className="min-w-0 rounded-[2rem] bg-[#362E28] p-6 text-[#FBF7EF] md:rounded-[2.5rem] md:p-12">
-            <h2 className="font-serif text-[1.65rem] leading-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl">{t.forYouTitle}</h2>
-            <div className="mt-8 grid gap-4 md:mt-10 md:gap-5">
-              {t.forYou.map((item) => (
-                <div key={item} className="flex gap-3 border-b border-[#FBF7EF]/10 pb-4 last:border-0 md:gap-4 md:pb-5">
-                  <Icon name="check" className="mt-1 shrink-0 text-[#D4887F]" size={20} />
-                  <p className="text-base leading-6 text-[#E7D8C8] md:text-lg md:leading-7">{item}</p>
-                </div>
-              ))}
-            </div>
+      {/* 4. Meet Elsa */}
+      <section className="bg-[#F4EBDD] px-5 py-14 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
+          <div className="mx-auto w-full max-w-[260px] md:max-w-none">
+            <img
+              src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
+              alt="Elsa"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              className="aspect-square w-full rounded-[2rem] object-cover md:rounded-[2.5rem]"
+            />
           </div>
-          <div className="relative min-w-0 overflow-hidden rounded-[2rem] border border-[#DCCDB8] bg-[#F4EBDD] p-6 md:rounded-[2.5rem] md:p-12">
-            <OrbitalGraphic dense />
-            <div className="relative">
-              <h3 className="font-serif text-[1.65rem] leading-tight [overflow-wrap:anywhere] sm:text-3xl md:text-4xl">{t.notForTitle}</h3>
-              <p className="mt-5 text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.notForText}</p>
-              <Button onClick={openBooking} className="mt-7 bg-[#7C3C3C] px-6 py-4 text-[#FBF7EF] hover:bg-[#5C2B2B] md:mt-9">
-                {t.book}
-              </Button>
-            </div>
+          <div>
+            <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
+              {t.meetElsa.title}
+            </h2>
+            <p className="mt-4 text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.meetElsa.text}</p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {t.credentials.slice(0, 2).map((c) => (
+                <li key={c} className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-4 py-2 text-sm text-[#5d5049]">
+                  {c}
+                </li>
+              ))}
+            </ul>
+            <Button to={path("/about")} variant="outline" className="mt-7 min-h-[48px] px-7 text-[#362E28]">
+              {t.meetElsa.cta} <Icon name="arrow" size={16} />
+            </Button>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#FBF7EF] px-5 py-16 md:px-8 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-8 max-w-2xl md:mb-10">
-            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:mb-4 md:text-sm">{tool.kicker}</p>
-            <h2 className="font-serif text-3xl leading-tight md:text-6xl">{tool.title}</h2>
-            <p className="mt-4 text-base leading-7 text-[#5d5049] md:mt-5 md:text-lg">{tool.description}</p>
-          </div>
-          <PeriodCalculator />
-          <div className="mt-8">
-            <Link
+      {/* 5. Offers */}
+      <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
+            {t.offersTitle}
+          </h2>
+          <Reveal className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3 md:gap-5">
+            {t.services.slice(0, 3).map((service, i) => (
+              <div
+                key={service.title}
+                className={`flex flex-col rounded-[1.5rem] border p-5 md:rounded-[2rem] md:p-7 ${
+                  i === 0 ? "border-[#7C3C3C]/50 bg-[#F4EBDD]" : "border-[#DCCDB8] bg-[#FBF7EF]"
+                }`}
+              >
+                <p className="text-xs uppercase tracking-[0.14em] text-[#7C3C3C]">{service.tag}</p>
+                <h3 className="mt-2 break-words font-serif text-2xl leading-tight text-[#362E28] md:text-xl lg:text-2xl xl:text-3xl">{service.title}</h3>
+                {service.summary && (
+                  <p className="mt-3 hidden flex-1 text-base leading-7 text-[#5d5049] sm:block">{service.summary}</p>
+                )}
+                <button
+                  onClick={() => openBooking(service.action)}
+                  className="mt-4 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C] md:mt-6"
+                >
+                  {service.cta} <Icon name="arrow" size={16} />
+                </button>
+              </div>
+            ))}
+          </Reveal>
+          <Link
+            to={path("/services")}
+            className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] underline-offset-4 hover:text-[#7C3C3C] hover:underline"
+          >
+            {t.offersCta} <Icon name="arrow" size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* 6. Free tool (the calculator itself lives in its article) */}
+      <section className="bg-[#F4EBDD] px-5 py-14 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-2 md:gap-14">
+          <Picture
+            src={images.toolImage}
+            alt={alts.tool}
+            sizes="(min-width: 768px) 44vw, 100vw"
+            className="aspect-[5/4] w-full rounded-[2rem] object-cover md:rounded-[2.5rem]"
+          />
+          <div>
+            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:text-sm">{tool.kicker}</p>
+            <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">{tool.title}</h2>
+            <p className="mt-4 text-base leading-7 text-[#5d5049] md:text-lg md:leading-8">{tool.description}</p>
+            <Button
               to={path(`/blog/${toolSlug}`)}
-              className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
+              className="mt-7 min-h-[48px] bg-[#7C3C3C] px-7 text-[#FBF7EF] hover:bg-[#5C2B2B]"
             >
-              {tool.learnMore} <Icon name="arrow" size={16} />
-            </Link>
+              {tool.cta || tool.learnMore} <Icon name="arrow" size={16} />
+            </Button>
           </div>
         </div>
       </section>

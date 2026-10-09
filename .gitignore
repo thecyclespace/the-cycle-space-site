@@ -12,3 +12,6 @@ dist-ssr
 Brand Guidelines/
 _chat.txt
 .playwright-mcp/
+
+# Heavy source images (kept locally, never deployed). Responsive versions live in public/images/site/.
+assets-source/

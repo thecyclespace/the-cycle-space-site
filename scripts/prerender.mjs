@@ -18,7 +18,7 @@ function setTag(html, regex, replacement) {
   return html.replace(regex, replacement);
 }
 
-function page({ path: route, meta, ld, lang }) {
+function page({ path: route, meta, ld, lang, preload }) {
   let html = template;
   html = setTag(html, /<title>[\s\S]*?<\/title>/, `<title>${esc(meta.title)}</title>`);
   html = setTag(html, /<meta\s+name="description"[^>]*>/, `<meta name="description" content="${esc(meta.description)}" />`);
@@ -39,7 +39,10 @@ function page({ path: route, meta, ld, lang }) {
   const ldTags = ld
     .map((d) => `<script type="application/ld+json" data-prerendered>${JSON.stringify(d).replace(/</g, "\\u003c")}</script>`)
     .join("\n    ");
-  const extra = [alternates, ldTags].filter(Boolean).join("\n    ");
+  const preloadTag = preload
+    ? `<link rel="preload" as="image" type="${preload.type}" imagesrcset="${esc(preload.srcset)}" imagesizes="${esc(preload.sizes)}" fetchpriority="high" />`
+    : "";
+  const extra = [preloadTag, alternates, ldTags].filter(Boolean).join("\n    ");
   if (extra) html = html.replace("</head>", `    ${extra}\n  </head>`);
   html = setTag(html, /<div id="root"><\/div>/, `<div id="root">${render(route)}</div>`);
   return html;

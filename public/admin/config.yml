@@ -148,7 +148,6 @@ collections:
           - { label: "🧭 Bouton 'Book' (header)", name: "book", widget: "string", hint: "Texte du bouton bordeaux en haut à droite." }
 
           # 🎯 HERO ==========================================================
-          - { label: "🎯 Hero — Kicker (petite ligne au-dessus du titre)", name: "heroKicker", widget: "string" }
           - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
           - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
           - { label: "🎯 Hero — Bouton secondaire (gris)", name: "heroSecondary", widget: "string" }
@@ -171,7 +170,9 @@ collections:
             fields:
               - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
+              - { label: "Résumé (1 phrase, visible sur la carte)", name: "summary", widget: "string", hint: "L'essentiel de l'offre en une phrase." }
+              - { label: "Pour qui (1 phrase, visible sur la carte)", name: "audience", widget: "string", required: false }
+              - { label: "Description complète (dans « Voir le détail »)", name: "body", widget: "text", hint: "Saute une ligne vide pour créer un nouveau paragraphe." }
               - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
               - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
               - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
@@ -191,6 +192,7 @@ collections:
             fields:
               - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
               - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
+              - { label: "Libellé du bouton « voir le détail »", name: "more", widget: "string" }
           - label: "🧬 Méthode Inner Rhythm (accueil + services)"
             name: "method"
             widget: "object"
@@ -218,6 +220,77 @@ collections:
                   - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
                   - { label: "Résultat", name: "outcome", widget: "text" }
                   - { label: "Citation", name: "quote", widget: "string" }
+
+          - label: "🎯 Accueil — « Qu'est-ce qui t'amène ? » (cartes)"
+            name: "concerns"
+            widget: "object"
+            collapsed: true
+            hint: "Petites cartes avec icône sous le hero. Garde des intitulés courts, sans promesse médicale."
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string" }
+              - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
+              - label: "Cartes (6 conseillées)"
+                name: "items"
+                widget: "list"
+                min: 2
+                max: 8
+                summary: "{{fields.title}}"
+                fields:
+                  - label: "Icône"
+                    name: "icon"
+                    widget: "select"
+                    default: "cycle"
+                    options:
+                      - { label: "Goutte", value: "drop" }
+                      - { label: "Humeur", value: "mood" }
+                      - { label: "Cycle", value: "cycle" }
+                      - { label: "Vagues (hormones)", value: "waves" }
+                      - { label: "Contraception", value: "capsule" }
+                      - { label: "Pousse (fertilité)", value: "sprout" }
+                  - { label: "Intitulé court", name: "title", widget: "string" }
+                  - label: "Où mène la carte ?"
+                    name: "link"
+                    widget: "select"
+                    default: "services"
+                    options:
+                      - { label: "Page Services", value: "services" }
+                      - { label: "Page À propos", value: "about" }
+                      - { label: "Page Ressources / Blog", value: "blog" }
+                      - { label: "Outil : Mon cycle est-il régulier ?", value: "regularity" }
+                      - { label: "Outil : Après l'arrêt de la contraception", value: "post-contraception" }
+                      - { label: "Outil : Température basale & glaire", value: "basal" }
+                      - { label: "Outil : Où en suis-je dans mon cycle ?", value: "where-am-i" }
+                      - { label: "Outil : Calculateur de cycle", value: "calculator" }
+          - label: "👤 Accueil — Présentation d'Elsa (courte)"
+            name: "meetElsa"
+            widget: "object"
+            collapsed: true
+            hint: "Photo : voir « 👤 À propos » ci-dessous et le menu « Images du site ». Garde 1 à 2 phrases."
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte (1 à 2 phrases)", name: "text", widget: "text" }
+              - { label: "Texte du bouton", name: "cta", widget: "string" }
+          - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
+          - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
+          - label: "🖼 Textes alternatifs des images (accessibilité + Google)"
+            name: "imageAlts"
+            widget: "object"
+            collapsed: true
+            hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
+            fields:
+              - { label: "Image du hero", name: "hero", widget: "string" }
+              - { label: "Image consultation en ligne", name: "online", widget: "string" }
+              - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
+              - { label: "Image du blog", name: "blog", widget: "string" }
+          - label: "👤 Page À propos — intertitres"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
+              - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
+              - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
+              - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
 
           # 💗 POUR TOI / PAS POUR TOI =======================================
           - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
@@ -289,6 +362,7 @@ collections:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
+              - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
 
           # 👤 À PROPOS (page About) =========================================
           - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
@@ -354,7 +428,6 @@ collections:
           - { label: "🧭 Bouton 'Réserver' (header)", name: "book", widget: "string" }
 
           # 🎯 HERO ==========================================================
-          - { label: "🎯 Hero — Kicker", name: "heroKicker", widget: "string" }
           - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
           - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
           - { label: "🎯 Hero — Bouton secondaire", name: "heroSecondary", widget: "string" }
@@ -379,7 +452,9 @@ collections:
             fields:
               - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description (paragraphes séparés par une ligne vide)", name: "body", widget: "text" }
+              - { label: "Résumé (1 phrase, visible sur la carte)", name: "summary", widget: "string", hint: "L'essentiel de l'offre en une phrase." }
+              - { label: "Pour qui (1 phrase, visible sur la carte)", name: "audience", widget: "string", required: false }
+              - { label: "Description complète (dans « Voir le détail »)", name: "body", widget: "text", hint: "Saute une ligne vide pour créer un nouveau paragraphe." }
               - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
               - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
               - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
@@ -399,6 +474,7 @@ collections:
             fields:
               - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
               - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
+              - { label: "Libellé du bouton « voir le détail »", name: "more", widget: "string" }
           - label: "🧬 Méthode Inner Rhythm (accueil + services)"
             name: "method"
             widget: "object"
@@ -426,6 +502,77 @@ collections:
                   - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
                   - { label: "Résultat", name: "outcome", widget: "text" }
                   - { label: "Citation", name: "quote", widget: "string" }
+
+          - label: "🎯 Accueil — « Qu'est-ce qui t'amène ? » (cartes)"
+            name: "concerns"
+            widget: "object"
+            collapsed: true
+            hint: "Petites cartes avec icône sous le hero. Garde des intitulés courts, sans promesse médicale."
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string" }
+              - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
+              - label: "Cartes (6 conseillées)"
+                name: "items"
+                widget: "list"
+                min: 2
+                max: 8
+                summary: "{{fields.title}}"
+                fields:
+                  - label: "Icône"
+                    name: "icon"
+                    widget: "select"
+                    default: "cycle"
+                    options:
+                      - { label: "Goutte", value: "drop" }
+                      - { label: "Humeur", value: "mood" }
+                      - { label: "Cycle", value: "cycle" }
+                      - { label: "Vagues (hormones)", value: "waves" }
+                      - { label: "Contraception", value: "capsule" }
+                      - { label: "Pousse (fertilité)", value: "sprout" }
+                  - { label: "Intitulé court", name: "title", widget: "string" }
+                  - label: "Où mène la carte ?"
+                    name: "link"
+                    widget: "select"
+                    default: "services"
+                    options:
+                      - { label: "Page Services", value: "services" }
+                      - { label: "Page À propos", value: "about" }
+                      - { label: "Page Ressources / Blog", value: "blog" }
+                      - { label: "Outil : Mon cycle est-il régulier ?", value: "regularity" }
+                      - { label: "Outil : Après l'arrêt de la contraception", value: "post-contraception" }
+                      - { label: "Outil : Température basale & glaire", value: "basal" }
+                      - { label: "Outil : Où en suis-je dans mon cycle ?", value: "where-am-i" }
+                      - { label: "Outil : Calculateur de cycle", value: "calculator" }
+          - label: "👤 Accueil — Présentation d'Elsa (courte)"
+            name: "meetElsa"
+            widget: "object"
+            collapsed: true
+            hint: "Photo : voir « 👤 À propos » ci-dessous et le menu « Images du site ». Garde 1 à 2 phrases."
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte (1 à 2 phrases)", name: "text", widget: "text" }
+              - { label: "Texte du bouton", name: "cta", widget: "string" }
+          - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
+          - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
+          - label: "🖼 Textes alternatifs des images (accessibilité + Google)"
+            name: "imageAlts"
+            widget: "object"
+            collapsed: true
+            hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
+            fields:
+              - { label: "Image du hero", name: "hero", widget: "string" }
+              - { label: "Image consultation en ligne", name: "online", widget: "string" }
+              - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
+              - { label: "Image du blog", name: "blog", widget: "string" }
+          - label: "👤 Page À propos — intertitres"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
+              - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
+              - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
+              - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
 
           # 💗 POUR TOI / PAS POUR TOI =======================================
           - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
@@ -497,6 +644,7 @@ collections:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
+              - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
 
           # 👤 À PROPOS ======================================================
           - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
@@ -549,6 +697,23 @@ collections:
   # ===========================================================================
   # 🔍 SEO (méta titres + descriptions)
   # ===========================================================================
+  - name: images
+    label: "🖼 Images du site"
+    description: "Remplace les grandes photos du site. Format paysage conseillé (4:3 ou 3:2), 3 Mo maximum. Pense à décrire l'image dans « Textes du site » (textes alternatifs)."
+    editor: { preview: false }
+    files:
+      - name: site_images
+        label: "Images principales"
+        file: "src/content/settings/images.json"
+        format: "json"
+        fields:
+          - { label: "Accueil — grande photo du haut", name: "heroImage", widget: "image", hint: "Visage ou sujet sur la gauche : sur téléphone, la photo est recadrée autour de la partie gauche." }
+          - { label: "Accueil — consultation en ligne", name: "onlineImage", widget: "image" }
+          - { label: "Accueil — outil / carnet de suivi", name: "toolImage", widget: "image" }
+          - { label: "Bandeau de fin de page", name: "bannerImage", widget: "image", hint: "Image douce et sans texte : elle est assombrie derrière le texte." }
+          - { label: "Page Services — image d'ambiance", name: "servicesImage", widget: "image" }
+          - { label: "Page Ressources — image d'ambiance", name: "blogImage", widget: "image" }
+
   - name: seo
     label: "🔍 SEO (Google + réseaux sociaux)"
     description: "Titres et descriptions pour Google et le partage sur les réseaux sociaux (EN + FR)."

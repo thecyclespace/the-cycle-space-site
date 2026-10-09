@@ -80,6 +80,65 @@ export function Icon({ name, size = 18, className = "" }) {
         <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z" />
       </svg>
     ),
+    drop: (
+      <svg {...common}>
+        <path d="M12 3c3.5 4.2 6 7 6 10a6 6 0 0 1-12 0c0-3 2.5-5.8 6-10z" />
+      </svg>
+    ),
+    mood: (
+      <svg {...common}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M8.5 14.5c1 1.3 2.2 2 3.5 2s2.5-.7 3.5-2M9 9.5h.01M15 9.5h.01" />
+      </svg>
+    ),
+    cycle: (
+      <svg {...common}>
+        <path d="M20 12a8 8 0 1 1-2.6-5.9" />
+        <path d="M20 4v4h-4" />
+      </svg>
+    ),
+    waves: (
+      <svg {...common}>
+        <path d="M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+      </svg>
+    ),
+    capsule: (
+      <svg {...common}>
+        <rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-40 12 12)" />
+        <path d="m9.4 8.6 5.5 6.9" />
+      </svg>
+    ),
+    sprout: (
+      <svg {...common}>
+        <path d="M12 21v-9" />
+        <path d="M12 12c0-4 2.5-6 7-6 0 4-2.5 6-7 6z" />
+        <path d="M12 15c0-3-2-5-6-5 0 3.5 2 5 6 5z" />
+      </svg>
+    ),
+    magnifier: (
+      <svg {...common}>
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m15.5 15.5 5.5 5.5" />
+      </svg>
+    ),
+    leaf: (
+      <svg {...common}>
+        <path d="M5 19c0-8 5-14 15-14 0 9-5 15-13 15" />
+        <path d="M5 19 14 10" />
+      </svg>
+    ),
+    venn: (
+      <svg {...common}>
+        <circle cx="9" cy="12" r="6" />
+        <circle cx="15" cy="12" r="6" />
+      </svg>
+    ),
+    sun: (
+      <svg {...common}>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" />
+      </svg>
+    ),
   };
   return icons[name] || null;
 }

@@ -3,7 +3,7 @@ title: Welcome to The Cycle Space
 date: 2026-05-01
 excerpt: An introduction to body literacy, what this blog is about, and how it
   can help you work with your body, not against it.
-coverImage: /uploads/babu.png
+coverImage: /uploads/babu.webp
 tags:
   - welcome
   - body literacy

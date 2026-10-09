@@ -5,7 +5,7 @@ import siteSettings from "../content/settings/site.json";
 export default function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="bg-[#FBF7EF] px-5 py-12 md:px-8">
+    <footer className="bg-[#FBF7EF] px-5 pb-28 pt-12 md:px-8 md:pb-12">
       <div className="mx-auto max-w-7xl border-t border-[#DCCDB8] pt-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
