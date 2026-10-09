@@ -3,37 +3,74 @@ import path from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Génère dist/sitemap.xml : routes statiques + chaque article publié (hors brouillons).
-// L'URL de base vient de VITE_SITE_URL (même variable que le canonical des pages).
-// `lastmod` n'est renseigné que pour les articles (date réelle du frontmatter) : on ne
-// déclare jamais la date du build comme date de modification d'une page inchangée.
-// Les URLs ont un "/" final, comme les canonicals et les dossiers servis par GitHub Pages.
+// Génère dist/sitemap.xml : pages statiques et articles publiés, en anglais (racine) et en français (/fr),
+// avec les alternates hreflang réciproques (xhtml:link). L'URL de base vient de VITE_SITE_URL (même
+// variable que le canonical des pages). `lastmod` : uniquement pour les articles (date réelle du
+// frontmatter), jamais la date du build. Les URLs ont un "/" final, comme les canonicals.
 function sitemapPlugin() {
   const baseUrl = (process.env.VITE_SITE_URL || "https://thecyclespace.com").replace(/\/$/, "");
+  const abs = (p) => `${baseUrl}${p === "/" ? "/" : `${p}/`}`;
+  const fr = (p) => (p === "/" ? "/fr" : `/fr${p}`);
   return {
     name: "generate-sitemap",
     apply: "build",
     closeBundle() {
       try {
         if (!fs.existsSync(path.resolve("./dist"))) return; // SSR pass writes to dist-ssr only
-        const entries = ["/", "/services", "/blog", "/about"].map((r) => ({ loc: r }));
+        const entries = []; // { loc, lastmod?, alternates?: [{hreflang, href}] }
+        for (const p of ["/", "/services", "/blog", "/about"]) {
+          const alternates = [
+            { hreflang: "en", href: abs(p) },
+            { hreflang: "fr", href: abs(fr(p)) },
+            { hreflang: "x-default", href: abs(p) },
+          ];
+          entries.push({ loc: abs(p), alternates }, { loc: abs(fr(p)), alternates });
+        }
+        // Articles
         const blogDir = path.resolve("./src/content/blog");
+        const posts = [];
         if (fs.existsSync(blogDir)) {
           for (const f of fs.readdirSync(blogDir).filter((f) => f.endsWith(".md"))) {
             const raw = fs.readFileSync(path.join(blogDir, f), "utf8");
             const fm = (raw.match(/^---[\r\n]+([\s\S]*?)[\r\n]+---/) || [, ""])[1];
             if (/^draft:\s*true\s*$/m.test(fm)) continue;
-            const date = (fm.match(/^date:\s*["']?(\d{4}-\d{2}-\d{2})/m) || [])[1];
-            entries.push({ loc: `/blog/${f.replace(/\.md$/, "")}`, lastmod: date });
+            const field = (k) => (fm.match(new RegExp(`^${k}:\\s*["']?([^"'\\r\\n]+?)["']?\\s*$`, "m")) || [])[1];
+            posts.push({
+              slug: f.replace(/\.md$/, ""),
+              lang: field("lang") === "fr" ? "fr" : "en",
+              translation: field("translation"),
+              date: (field("date") || "").slice(0, 10),
+            });
           }
         }
+        const bySlug = new Map(posts.map((p) => [p.slug, p]));
+        const urlOf = (p) => abs(p.lang === "fr" ? fr(`/blog/${p.slug}`) : `/blog/${p.slug}`);
+        const translationOf = (p) => {
+          const declared = p.translation && bySlug.get(p.translation);
+          if (declared && declared.lang !== p.lang) return declared;
+          return posts.find((o) => o.translation === p.slug && o.lang !== p.lang);
+        };
+        for (const p of posts) {
+          const t = translationOf(p);
+          const en = p.lang === "en" ? p : t;
+          const frp = p.lang === "fr" ? p : t;
+          const alternates = t
+            ? [
+                { hreflang: "en", href: urlOf(en) },
+                { hreflang: "fr", href: urlOf(frp) },
+                { hreflang: "x-default", href: urlOf(en) },
+              ]
+            : undefined;
+          entries.push({ loc: urlOf(p), lastmod: p.date || undefined, alternates });
+        }
         const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries
   .map(
-    (e) => `  <url>
-    <loc>${baseUrl}${e.loc === "/" ? "/" : `${e.loc}/`}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ""}
-  </url>`,
+    (e) =>
+      `  <url>\n    <loc>${e.loc}</loc>${e.lastmod ? `\n    <lastmod>${e.lastmod}</lastmod>` : ""}${(e.alternates || [])
+        .map((a) => `\n    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${a.href}"/>`)
+        .join("")}\n  </url>`,
   )
   .join("\n")}
 </urlset>

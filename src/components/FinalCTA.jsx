@@ -3,7 +3,7 @@ import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 
 export default function FinalCTA({ showSecondary = true }) {
-  const { t } = useI18n();
+  const { t, path } = useI18n();
   const { openBooking } = useBooking();
   return (
     <section className="relative overflow-hidden bg-[#362E28] px-5 py-16 text-[#FBF7EF] md:px-8 md:py-32">
@@ -16,7 +16,7 @@ export default function FinalCTA({ showSecondary = true }) {
             {t.book} <Icon name="calendar" size={18} />
           </Button>
           {showSecondary && (
-            <Button to="/blog" variant="outline" className="px-7 py-4 text-[#FBF7EF]">
+            <Button to={path("/blog")} variant="outline" className="px-7 py-4 text-[#FBF7EF]">
               {t.download}
             </Button>
           )}

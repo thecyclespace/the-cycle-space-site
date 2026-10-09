@@ -7,9 +7,10 @@ import CycleRegularityTool from "../components/tools/CycleRegularityTool";
 import PostContraceptionTimeline from "../components/tools/PostContraceptionTimeline";
 import BasalTemperatureTracker from "../components/tools/BasalTemperatureTracker";
 import { useI18n, I18nScope } from "../lib/i18n";
-import { usePageMeta, useJsonLd, absoluteAsset } from "../lib/seo";
+import { usePageMeta, useJsonLd, absoluteAsset, postAlternates } from "../lib/seo";
 import { articleSchema } from "../lib/schemas";
-import { getPost, formatDate } from "../lib/blog";
+import { getPost, getTranslation, formatDate } from "../lib/blog";
+import { postPath, localizedPath } from "../lib/paths";
 
 // Registre des widgets interactifs disponibles dans un article.
 // L'article les déclenche via `tool: <key>` en frontmatter et un marqueur
@@ -25,7 +26,7 @@ const TOOL_MARKER = "<!-- calculator -->";
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { lang } = useI18n();
+  const { lang, path } = useI18n();
   const post = getPost(slug);
 
   usePageMeta(
@@ -35,12 +36,16 @@ export default function BlogPost() {
           title: `${post.title} — The Cycle Space`,
           description: post.excerpt,
           image: absoluteAsset(post.coverImage),
+          alternates: postAlternates(post, getTranslation(post)),
         }
       : undefined
   );
   useJsonLd(post ? articleSchema(post) : null);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <Navigate to={path("/blog")} replace />;
+  // An article only lives at the URL of its own language (/blog/x in English, /fr/blog/x in French).
+  // Old links to a French article under /blog/x are redirected here.
+  if (post.lang !== lang) return <Navigate to={postPath(post)} replace />;
 
   const ToolComponent = post.tool ? TOOLS[post.tool] : null;
   const splitIndex = ToolComponent ? post.bodyHtml.indexOf(TOOL_MARKER) : -1;
@@ -55,7 +60,7 @@ export default function BlogPost() {
       <section className="bg-[#FBF7EF] px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-40">
         <div className="mx-auto max-w-3xl">
           <Link
-            to="/blog"
+            to={path("/blog")}
             className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             <Icon name="arrowLeft" size={16} /> {lang === "fr" ? "Tous les articles" : "All articles"}

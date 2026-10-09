@@ -5,6 +5,7 @@ import FinalCTA from "../components/FinalCTA";
 import { useI18n } from "../lib/i18n";
 import { usePageMeta } from "../lib/seo";
 import { posts, formatDate } from "../lib/blog";
+import { postPath } from "../lib/paths";
 
 export default function BlogList() {
   const { t, lang } = useI18n();
@@ -126,7 +127,7 @@ function SectionHeader({ number, title, subtitle }) {
 function PostCard({ post, lang }) {
   return (
     <Link
-      to={`/blog/${post.slug}`}
+      to={postPath(post)}
       className="group flex flex-col rounded-[2rem] border border-[#DCCDB8] bg-[#FBF7EF] p-7 transition hover:-translate-y-1 hover:shadow-xl"
     >
       {post.coverImage && (

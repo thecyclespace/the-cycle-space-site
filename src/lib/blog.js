@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import { localizedPath } from "./paths";
 
 // Charge tous les fichiers Markdown de src/content/blog/ au build (Vite import.meta.glob).
 const modules = import.meta.glob("../content/blog/*.md", {
@@ -59,6 +60,14 @@ function toDate(value) {
   return isNaN(d.getTime()) ? null : d;
 }
 
+// Root-relative site links written in the Markdown body (e.g. [consultation](/services)) get the Vite
+// base and the language of the article, so a French article links to /fr/services.
+const SITE_LINK = /href="(\/(?:services|about|blog|resources)?(?:\/[a-z0-9-]+)*)(#[^"]*)?"/g;
+function localizeLinks(html, lang) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return html.replace(SITE_LINK, (_, p, hash = "") => `href="${base}${localizedPath(p, lang)}${hash}"`);
+}
+
 // Préfixe le `base` Vite aux chemins absolus (ex. "/uploads/x.png") pour qu'ils
 // résolvent aussi sur un sous-chemin GitHub Pages. Laisse les URLs http(s) intactes.
 function withBase(src) {
@@ -82,7 +91,7 @@ export const posts = Object.entries(modules)
       translation: data.translation || null,
       lang: data.lang === "fr" ? "fr" : "en",
       draft: data.draft === true || data.draft === "true",
-      bodyHtml: marked.parse(content || "", { async: false }),
+      bodyHtml: localizeLinks(marked.parse(content || "", { async: false }), data.lang === "fr" ? "fr" : "en"),
     };
   })
   .filter((p) => !p.draft)
@@ -99,4 +108,13 @@ export function formatDate(date, lang = "en") {
     month: "long",
     day: "numeric",
   }).format(date);
+}
+
+// Translation of a post in the other language. Works both ways: if only one of the two
+// articles declares `translation: <slug>`, the other one still finds it.
+export function getTranslation(post) {
+  if (!post) return null;
+  const declared = post.translation ? getPost(post.translation) : null;
+  if (declared && declared.lang !== post.lang) return declared;
+  return posts.find((p) => p.translation === post.slug && p.lang !== post.lang) || null;
 }
