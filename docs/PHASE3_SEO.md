@@ -13,7 +13,7 @@
 | Sitemap | `lastmod` = date du build, brouillons inclus | `lastmod` **uniquement pour les articles** (date réelle), brouillons exclus |
 | robots.txt | `/uploads/` bloqué (images d'articles non indexables) | `/uploads/` autorisé ; `/admin/` exclu |
 | Données structurées | JSON-LD ajouté par JS | Dans le HTML initial : `Article` + `BreadcrumbList` (articles), `Person` (À propos), `FAQPage` (Services, questions réellement affichées). Source unique `lib/schemas.js` ; pas de doublon après chargement |
-| Police | CSS Google Fonts bloquant | Chargé sans bloquer le premier affichage |
+| Polices | CSS Google Fonts bloquant (requête vers Google à chaque visite) | **Auto-hébergées** (`public/fonts`, `src/fonts.css`, sous-ensemble latin FR/EN/PT/ES, préchargées) : plus aucune requête vers Google (meilleur pour la vie privée / RGPD) |
 | Hero accueil | Apparition animée (texte invisible tant que JS n'a pas tourné) | Texte visible dès le HTML |
 
 ## 2. Ce qui n'a PAS changé
@@ -35,7 +35,7 @@ Lighthouse mobile (simulation 4G lente, build pré-rendu, page d'accueil) :
 | CLS | 0 | 0,013 |
 | TBT | 60 ms | 30 ms |
 
-**Ce sont des mesures de laboratoire** (une exécution, machine locale), pas des données de terrain : ne pas les présenter comme des Core Web Vitals réels. LCP encore légèrement au-dessus de 2,5 s ; piste suivante : héberger les polices soi-même (suppression de la requête Google Fonts).
+**Ce sont des mesures de laboratoire** (une exécution, machine locale), pas des données de terrain : ne pas les présenter comme des Core Web Vitals réels. **Après auto-hébergement des polices** (médiane de 3 passages) : Performance 92, FCP 1,9 s, **LCP 3,2 s**. Le LCP de 2,7 s mesuré juste avant était flatté : dans la simulation, la police Google n'était pas encore chargée au moment de la mesure. Sans le préchargement des polices, le FCP monte à 2,4 s (donc conservé). Le LCP est désormais dominé par le poids du JavaScript (≈ 430 Ko, dont Framer Motion) sous réseau 4G lent simulé. Pistes : alléger/retirer Framer Motion (remplacer par CSS), `font-display: optional`. Non faites : changement de comportement visuel à valider.
 
 Tests automatisés (`npm test`) : toutes les pages du sitemap existent, titres uniques, canonical = URL du sitemap, ≥ 300 caractères de texte et un `h1` dans le HTML initial, JSON-LD valide, pas de `lastmod` sur les pages statiques, `404.html` en `noindex`, aucun script Calendly dans le HTML initial.
 

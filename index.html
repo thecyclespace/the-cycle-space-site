@@ -33,21 +33,9 @@
       content="Women's health. Cycle education. Body literacy. Online sessions in English or French."
     />
     <meta name="twitter:image" content="https://thecyclespace.com/og.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Fonts load without blocking first paint (text shows in a fallback font, then swaps). -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Aboreto&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Aboreto&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- Fonts are self-hosted (public/fonts, declared in src/fonts.css): no request to Google, faster first paint. -->
+    <link rel="preload" href="/fonts/aboreto.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin />
     <title>The Cycle Space — Women's health, cycle education, body literacy</title>
     <!-- JSON-LD : WebSite schema (statique). Per-page schemas (Person, Article)
          sont injectés à l'hydratation par useJsonLd. -->
