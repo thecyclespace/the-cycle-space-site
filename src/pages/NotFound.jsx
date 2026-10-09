@@ -20,8 +20,8 @@ const STRINGS = {
 };
 
 export default function NotFound() {
-  const { lang } = useI18n();
-  usePageMeta("notFound");
+  const { lang, path } = useI18n();
+  usePageMeta("notFound", { alternates: [] });
   const t = STRINGS[lang] || STRINGS.en;
 
   return (
@@ -31,8 +31,8 @@ export default function NotFound() {
         <h1 className="break-words font-serif text-4xl leading-tight sm:text-5xl md:text-7xl">{t.title}</h1>
         <p className="mt-6 text-lg leading-8 text-[#5d5049]">{t.text}</p>
         <div className="mt-10 flex gap-3">
-          <Button to="/">{t.home}</Button>
-          <Button to="/blog" variant="outline">{t.resources}</Button>
+          <Button to={path("/")}>{t.home}</Button>
+          <Button to={path("/blog")} variant="outline">{t.resources}</Button>
         </div>
       </div>
     </section>

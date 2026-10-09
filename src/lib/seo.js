@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useI18n } from "./i18n";
 import seoData from "../content/seo/seo.json";
+import { stripLang, localizedPath } from "./paths";
 
 // Public URL of the site, INCLUDING its base path if any.
 //   - today (GitHub Pages project site): https://thecyclespace.github.io/the-cycle-space-site
@@ -29,6 +30,29 @@ export function absoluteAsset(path) {
 
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og.jpg`;
 
+// hreflang pairs for a page that exists in both languages (/x and /fr/x), plus x-default (English).
+export function staticAlternates(pathname = "/") {
+  const base = stripLang(pathname);
+  return [
+    { hreflang: "en", href: canonicalUrl(base) },
+    { hreflang: "fr", href: canonicalUrl(localizedPath(base, "fr")) },
+    { hreflang: "x-default", href: canonicalUrl(base) },
+  ];
+}
+
+// Alternates of an article: itself and its translation (if any), x-default = the English one.
+export function postAlternates(post, translation) {
+  if (!translation) return [];
+  const en = post.lang === "en" ? post : translation;
+  const fr = post.lang === "fr" ? post : translation;
+  const at = (p) => canonicalUrl(localizedPath(`/blog/${p.slug}`, p.lang));
+  return [
+    { hreflang: "en", href: at(en) },
+    { hreflang: "fr", href: at(fr) },
+    { hreflang: "x-default", href: at(en) },
+  ];
+}
+
 // Pure helper shared by the React hook (client) and the prerender script (build):
 // one source of truth for the <head> of each route.
 export function buildMeta(lang, pageKey, override = {}, pathname = "/") {
@@ -43,6 +67,7 @@ export function buildMeta(lang, pageKey, override = {}, pathname = "/") {
     ogDescription: override.ogDescription || page?.ogDescription || seo.ogDescription || description,
     url: canonicalUrl(pathname),
     image: override.image || DEFAULT_OG_IMAGE,
+    alternates: override.alternates || staticAlternates(pathname),
   };
 }
 
@@ -57,12 +82,14 @@ export function usePageMeta(pageKey, override) {
   const ovOgTitle = override?.ogTitle;
   const ovOgDescription = override?.ogDescription;
   const ovImage = override?.image;
+  const ovAlternates = override?.alternates;
+  const altKey = ovAlternates ? JSON.stringify(ovAlternates) : "";
 
   useEffect(() => {
     const m = buildMeta(
       lang,
       pageKey,
-      { title: ovTitle, description: ovDescription, ogTitle: ovOgTitle, ogDescription: ovOgDescription, image: ovImage },
+      { title: ovTitle, description: ovDescription, ogTitle: ovOgTitle, ogDescription: ovOgDescription, image: ovImage, alternates: ovAlternates },
       location.pathname
     );
     document.title = m.title;
@@ -77,12 +104,24 @@ export function usePageMeta(pageKey, override) {
     setMeta('meta[name="twitter:description"]', m.ogDescription);
     setMeta('meta[name="twitter:image"]', m.image);
     setLink('link[rel="canonical"]', m.url);
-  }, [lang, pageKey, ovTitle, ovDescription, ovOgTitle, ovOgDescription, ovImage, location.pathname]);
+    setAlternates(m.alternates);
+  }, [lang, pageKey, ovTitle, ovDescription, ovOgTitle, ovOgDescription, ovImage, altKey, location.pathname]);
 }
 
 function setMeta(selector, content) {
   const el = document.querySelector(selector);
   if (el && content != null) el.setAttribute("content", content);
+}
+
+function setAlternates(alternates = []) {
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((n) => n.remove());
+  for (const a of alternates) {
+    const link = document.createElement("link");
+    link.rel = "alternate";
+    link.hreflang = a.hreflang;
+    link.href = a.href;
+    document.head.appendChild(link);
+  }
 }
 
 function setLink(selector, href) {

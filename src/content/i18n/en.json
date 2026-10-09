@@ -47,13 +47,12 @@
   ],
   "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
   "finalText": "Book a free Introduction call or start with a free guide. Either way, this is a space for clarity.",
-  "heroText": "Here is where you learn to listen to your cycle, your hormones, your symptoms. Start working with your body, not against it. Rooted in evidence, centred on you.\nEntirely online.",
+  "heroText": "Personalised support for periods, PMS and hormonal changes.",
   "download": "Download the guide",
-  "book": "Book your Introduction",
+  "book": "Book a free call",
   "aboutTitle": "Meet Elsa.",
   "modalTitle": "Book a session",
   "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles - these are not failures. They're signals, and your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually works for you and fits your life.\n\n",
-  "heroKicker": "Women's health. Cycle education. Body literacy.",
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
   "resourcesText": "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
@@ -74,15 +73,16 @@
     "kicker": "Free tool",
     "title": "Track your cycle.",
     "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
-    "learnMore": "Read the full article"
+    "learnMore": "Read the full article",
+    "cta": "Try the free calculator"
   },
   "manifestoTitle": "This is not symptom management. This is body literacy.",
-  "trust": "Online sessions in English or French. Worldwide.",
+  "trust": "15–20 min · Online · English & French",
   "journeyTitle": "Here's how it works.",
   "calendly": "Open Calendly",
   "modalText": "Pick a date and time below. New here? Start with The Introduction, a free 15–20 minute call.",
   "aboutText": "Elsa is a women's health practitioner and an Osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.\n\nBut this work isn't just professional. It's personal.\n\nFor years, Elsa struggled with acne, PMS, gut issues and painful periods. Put on the pill at a young age, she spent seven years not knowing what her natural cycle even felt like. When she came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion. Despite being the most active she'd ever been. After a year of struggling and little real guidance from her gynaecologist, she accepted a coil out of sheer desperation.\n\nIt was during that time that everything shifted. She started working on her gut health, her nutrition, her inflammation. She started actually listening to her body. Four years later she removed the coil, and though it took time to readjust, for the first time things started to feel different. Less pain. Less PMS. More energy. Periods that made sense. A body she finally understood.\n\nThat experience is exactly why The Cycle Space exists. Because no woman should spend years feeling dismissed, confused or disconnected from her own body.\n\nElsa sees the whole person, not just the symptom. And she finds this work genuinely, endlessly fascinating, because every body has a story worth understanding.",
-  "heroSecondary": "Explore the space",
+  "heroSecondary": "Explore the services",
   "disclaimer": "Education and support — does not replace urgent medical care. If you are in distress or experiencing severe symptoms, please contact your doctor or local emergency services.",
   "guideDownloadAgain": "Download again",
   "manifestoQuote": "Your body is not a problem to fix. It is a system to understand.",
@@ -101,7 +101,9 @@
       "body": "15 to 20 minutes. No pressure. Just a conversation.\n\nBefore we work together, I want to make sure this is the right fit for you. We'll talk about where you are right now, what you've already tried, and what you're hoping to change. I'll tell you about how I work and what the programme looks like in practice.\n\nThere's no sales pitch. If it's a fit, we'll talk about next steps. If it's not, I'll point you in the right direction.",
       "forWho": "Any woman who's curious about working together and wants to get a feel for the process before committing.",
       "leave": "",
-      "cta": "Book your Introduction"
+      "cta": "Book your Introduction",
+      "summary": "A free, relaxed conversation to see if we are a good fit.",
+      "audience": "For any woman curious about working together."
     },
     {
       "title": "The Rhythm Check-In",
@@ -110,7 +112,9 @@
       "body": "For women who aren't ready to commit to a full programme but need clarity now.\n\nThis is a single 90-minute deep dive designed to help you understand what's actually going on in your body. We look at the full picture — your cycle, your symptoms, your history, your lifestyle — and you leave with a clear, practical plan that's entirely yours.\n\nIt's not a taster. It's a complete session with real answers and real next steps. No overwhelm, no vague advice. Just clinical thinking and a plan you can actually act on.\n\nBecause the body works in cycles and real change takes time, this session works best as part of a regular rhythm. Most women find that coming back once a month allows us to track what's shifting, adjust the plan as your body responds, and build on what we've already uncovered together. One session gives you clarity. A series gives you transformation.",
       "forWho": "Women who want clarity before committing to more, or who have one specific area they want to go deep on — whether that's their cycle, their gut, their energy, or understanding a diagnosis they've been given.",
       "leave": "A written protocol with practical recommendations across nutrition, lifestyle, tracking and support.",
-      "cta": "Book a Rhythm Check-In"
+      "cta": "Book a Rhythm Check-In",
+      "summary": "Explore your symptoms, understand your cycle and leave with practical next steps.",
+      "audience": "For women who want clarity before committing to more."
     },
     {
       "title": "Your Inner Rhythm",
@@ -119,7 +123,9 @@
       "body": "A 6-month 1:1 coaching programme, in English or French, built on The Inner Rhythm Method: a 4-phase journey to understand your body, work with your cycle and find your rhythm — for good.",
       "forWho": "",
       "leave": "",
-      "cta": "Start with an Introduction"
+      "cta": "Start with an Introduction",
+      "summary": "A 6-month 1:1 journey to understand your body and find your rhythm.",
+      "audience": "For women ready for lasting change."
     },
     {
       "title": "The Inner Space",
@@ -128,20 +134,23 @@
       "body": "Group programmes coming soon — join the list to be the first to know.",
       "forWho": "",
       "leave": "",
-      "cta": "Join the list"
+      "cta": "Join the list",
+      "summary": "Group programmes, coming soon.",
+      "audience": ""
     }
   ],
   "guideConsent": "I agree to receive the guide and occasional emails from The Cycle Space. My email is sent to Elsa only. I can unsubscribe at any time by replying to any email.",
-  "heroTitle": "Your body has been speaking. ",
+  "heroTitle": "Understand your cycle. Feel better in your body.",
   "servicesLabels": {
     "forWho": "Who it's for",
-    "leave": "What you leave with"
+    "leave": "What you leave with",
+    "more": "Full details"
   },
   "method": {
     "kicker": "Find your rhythm",
     "title": "The Inner Rhythm Method",
     "intro": "A 4-phase journey for women ready to understand their bodies, work with their cycle, and find their rhythm — for good.",
-    "cta": "Discover Your Inner Rhythm",
+    "cta": "Discover the method",
     "programmeKicker": "1:1 programme",
     "programmeTitle": "Your Inner Rhythm",
     "programmeMeta": "6-month 1:1 coaching · English & French",
@@ -229,5 +238,60 @@
     ]
   },
   "mobileHeroTitle": "",
-  "mobileHeroText": ""
+  "mobileHeroText": "",
+  "concerns": {
+    "title": "What brings you here?",
+    "note": "Education and support, not a diagnosis or a treatment.",
+    "items": [
+      {
+        "icon": "drop",
+        "title": "Painful periods",
+        "link": "services"
+      },
+      {
+        "icon": "mood",
+        "title": "PMS & mood",
+        "link": "services"
+      },
+      {
+        "icon": "cycle",
+        "title": "Irregular cycles",
+        "link": "regularity"
+      },
+      {
+        "icon": "waves",
+        "title": "Hormonal changes",
+        "link": "services"
+      },
+      {
+        "icon": "capsule",
+        "title": "Coming off contraception",
+        "link": "post-contraception"
+      },
+      {
+        "icon": "sprout",
+        "title": "Understanding fertility signs",
+        "link": "basal"
+      }
+    ]
+  },
+  "meetElsa": {
+    "title": "Meet Elsa",
+    "text": "Elsa is a women's health practitioner and an osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.",
+    "cta": "Meet Elsa"
+  },
+  "offersTitle": "Ways to work together",
+  "offersCta": "See all the details",
+  "about": {
+    "approachKicker": "Her approach",
+    "forYouKicker": "Is this for you?",
+    "storyTitle": "Elsa's story",
+    "storyToggle": "Read Elsa's story"
+  },
+  "imageAlts": {
+    "hero": "A relaxed woman sitting by the sea at sunset, eyes closed and smiling",
+    "online": "A smiling woman during an online consultation on her laptop",
+    "tool": "A terracotta cycle journal with moon phases on a linen blanket",
+    "blog": "A cup of herbal tea with dried lavender on a soft blanket"
+  }
 }

@@ -6,7 +6,7 @@
 async (page) => {
   const BASE = "http://localhost:4173/the-cycle-space-site";
   const SHOTS = "docs/audit/after";
-  const routes = ["/", "/services/", "/blog/", "/about/", "/blog/period-calculator/", "/blog/basal-temperature-tracker/"]; // trailing slash = how GitHub Pages serves prerendered folders
+  const routes = ["/", "/services/", "/blog/", "/about/", "/blog/period-calculator/", "/blog/basal-temperature-tracker/", "/fr/", "/fr/services/", "/fr/blog/", "/fr/about/", "/fr/blog/ton-cycle-est-il-regulier/"]; // trailing slash = how GitHub Pages serves prerendered folders
   const viewports = [
     [320, 568], [360, 800], [390, 844], [430, 932], [768, 1024], [1024, 768], [1440, 900],
   ];

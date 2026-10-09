@@ -193,7 +193,7 @@ export default function CycleRegularityTool() {
           <button
             type="button"
             onClick={addDate}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
+            className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
           >
             + {t.addDate}
           </button>

@@ -1,0 +1,92 @@
+{
+  "01_hero_home": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "04_consultation_online": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "08_journal_planner": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "20_abstract_landscape": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "09_home_interior": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "07_tea_wellbeing": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "05_woman_back_sun": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "19_flower_flatlay": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "03_flower_nature": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "12_moon_phases": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  }
+}

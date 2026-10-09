@@ -175,3 +175,5 @@ Aucune dépendance npm n'est concernée : l'ancien comme le nouveau CMS se charg
 - `npm test` : tests des calculateurs, de la cohérence contenu/CMS et (après un build) du HTML généré.
 - `scripts/mobile-audit.js` : audit mobile reproductible (voir `docs/PHASE1_MOBILE.md`).
 - Documents : `AUDIT_BASELINE.md`, `docs/PHASE1_MOBILE.md`, `docs/PHASE2_CMS_CONVERSION.md`, `docs/PHASE3_SEO.md`, `docs/PHASE4_VERIFICATION.md`, `docs/PROPOSITIONS_CONTENU.md`, `GUIDE_ELSA.md`.
+- Langues : anglais à la racine, français sous `/fr/` (langue lue dans l'URL, `hreflang` réciproque). Voir `docs/PHASE5_FR_EN_URLS.md`.
+- Images : originaux dans `assets-source/` (hors dépôt) ; `python scripts/optimize-images.py` produit les versions AVIF/WebP de `public/images/site/` et le manifeste. Voir `docs/PHASE6_UX_REFRESH.md`.
