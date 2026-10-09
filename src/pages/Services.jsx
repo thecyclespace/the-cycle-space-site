@@ -4,7 +4,8 @@ import FinalCTA from "../components/FinalCTA";
 import Method from "../components/Method";
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
-import { usePageMeta } from "../lib/seo";
+import { usePageMeta, useJsonLd } from "../lib/seo";
+import { faqSchema } from "../lib/schemas";
 import siteSettings from "../content/settings/site.json";
 
 const CTA_CLASS =
@@ -14,6 +15,7 @@ export default function Services() {
   const { t } = useI18n();
   const { openBooking } = useBooking();
   usePageMeta("services");
+  useJsonLd(faqSchema(t.faq));
   const labels = t.servicesLabels || {};
 
   // "waitlist" offers (group programme) open an email; the others open Calendly.
@@ -60,6 +62,9 @@ export default function Services() {
                     <span className="mb-6 h-5 w-5 rounded-full bg-[#7C3C3C]" />
                     <p className="mb-3 text-xs uppercase tracking-[0.16em] text-[#7C3C3C] md:text-sm">{service.tag}</p>
                     <h2 className="break-words font-serif text-2xl leading-tight sm:text-3xl md:text-4xl">{service.title}</h2>
+                    {service.priceLabel && (
+                      <p className="mt-3 text-lg font-medium text-[#362E28]">{service.priceLabel}</p>
+                    )}
                     <div className="mt-auto">{renderCta(service)}</div>
                   </div>
                   <div className="min-w-0 text-base leading-7 text-[#5d5049] md:leading-8">
@@ -100,6 +105,25 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      {t.faq?.items?.length > 0 && (
+        <section className="bg-[#FBF7EF] px-5 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">{t.faq.title}</h2>
+            <div className="mt-8 divide-y divide-[#DCCDB8] border-y border-[#DCCDB8] md:mt-10">
+              {t.faq.items.map((item) => (
+                <details key={item.q} className="group">
+                  <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-medium text-[#362E28] marker:content-none md:text-lg [&::-webkit-details-marker]:hidden">
+                    <span>{item.q}</span>
+                    <span aria-hidden="true" className="shrink-0 text-2xl leading-none text-[#7C3C3C] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="pb-5 text-base leading-7 text-[#5d5049]">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <FinalCTA />
     </>

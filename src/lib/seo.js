@@ -3,10 +3,48 @@ import { useLocation } from "react-router-dom";
 import { useI18n } from "./i18n";
 import seoData from "../content/seo/seo.json";
 
-// URL canonique du site. Override possible via VITE_SITE_URL au build.
+// Public URL of the site, INCLUDING its base path if any.
+//   - today (GitHub Pages project site): https://thecyclespace.github.io/the-cycle-space-site
+//   - once the custom domain is live:    https://thecyclespace.com
+// Set it with VITE_SITE_URL at build time (see .github/workflows/deploy.yml).
 export const SITE_URL = (
   import.meta.env.VITE_SITE_URL || "https://thecyclespace.com"
 ).replace(/\/$/, "");
+
+// Scheme + host only: used for assets whose path already contains the base ("/the-cycle-space-site/uploads/x.png").
+export const SITE_ORIGIN = SITE_URL.replace(/^(https?:\/\/[^/]+).*$/, "$1");
+
+// Canonical URL of a route. GitHub Pages serves folders with a trailing slash,
+// so canonical, sitemap and internal redirects all agree on it.
+export function canonicalUrl(pathname = "/") {
+  const clean = pathname.replace(/\/+$/, "");
+  return `${SITE_URL}${clean}/`;
+}
+
+// Absolute URL of a path that already includes the Vite base (cover images, brand assets).
+export function absoluteAsset(path) {
+  if (!path) return undefined;
+  return /^https?:\/\//.test(path) ? path : `${SITE_ORIGIN}${path}`;
+}
+
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og.jpg`;
+
+// Pure helper shared by the React hook (client) and the prerender script (build):
+// one source of truth for the <head> of each route.
+export function buildMeta(lang, pageKey, override = {}, pathname = "/") {
+  const seo = seoData[lang] || seoData.en;
+  const page = pageKey ? seo.pages?.[pageKey] : null;
+  const title = override.title || page?.title || seo.title;
+  const description = override.description || page?.description || seo.description;
+  return {
+    title,
+    description,
+    ogTitle: override.ogTitle || page?.ogTitle || seo.ogTitle || title,
+    ogDescription: override.ogDescription || page?.ogDescription || seo.ogDescription || description,
+    url: canonicalUrl(pathname),
+    image: override.image || DEFAULT_OG_IMAGE,
+  };
+}
 
 // Met à jour <title>, meta description, OG, Twitter Card, canonical et html[lang]
 // selon la langue active + la page courante (clef dans seoData[lang].pages).
@@ -21,28 +59,24 @@ export function usePageMeta(pageKey, override) {
   const ovImage = override?.image;
 
   useEffect(() => {
-    const seo = seoData[lang];
-    if (!seo) return;
-    const page = pageKey ? seo.pages?.[pageKey] : null;
-    const title = ovTitle || page?.title || seo.title;
-    const description = ovDescription || page?.description || seo.description;
-    const ogTitle = ovOgTitle || page?.ogTitle || seo.ogTitle || title;
-    const ogDescription = ovOgDescription || page?.ogDescription || seo.ogDescription || description;
-    const url = `${SITE_URL}${location.pathname}`;
-    const image = ovImage || `${SITE_URL}/og.jpg`;
-
-    document.title = title;
+    const m = buildMeta(
+      lang,
+      pageKey,
+      { title: ovTitle, description: ovDescription, ogTitle: ovOgTitle, ogDescription: ovOgDescription, image: ovImage },
+      location.pathname
+    );
+    document.title = m.title;
     document.documentElement.lang = lang;
 
-    setMeta('meta[name="description"]', description);
-    setMeta('meta[property="og:title"]', ogTitle);
-    setMeta('meta[property="og:description"]', ogDescription);
-    setMeta('meta[property="og:url"]', url);
-    setMeta('meta[property="og:image"]', image);
-    setMeta('meta[name="twitter:title"]', ogTitle);
-    setMeta('meta[name="twitter:description"]', ogDescription);
-    setMeta('meta[name="twitter:image"]', image);
-    setLink('link[rel="canonical"]', url);
+    setMeta('meta[name="description"]', m.description);
+    setMeta('meta[property="og:title"]', m.ogTitle);
+    setMeta('meta[property="og:description"]', m.ogDescription);
+    setMeta('meta[property="og:url"]', m.url);
+    setMeta('meta[property="og:image"]', m.image);
+    setMeta('meta[name="twitter:title"]', m.ogTitle);
+    setMeta('meta[name="twitter:description"]', m.ogDescription);
+    setMeta('meta[name="twitter:image"]', m.image);
+    setLink('link[rel="canonical"]', m.url);
   }, [lang, pageKey, ovTitle, ovDescription, ovOgTitle, ovOgDescription, ovImage, location.pathname]);
 }
 
@@ -57,12 +91,13 @@ function setLink(selector, href) {
 }
 
 // Injecte un bloc <script type="application/ld+json"> dans le <head>.
-// Le JSON-LD étant ajouté côté client après hydratation, Google le verra
-// au 2e passage du crawl (pas idéal — voir reco prerendering dans le README).
+// Les pages pré-rendues contiennent déjà ce JSON-LD (marqué data-prerendered) :
+// on le remplace au montage pour ne jamais dupliquer les données structurées.
 export function useJsonLd(data) {
   const key = data ? JSON.stringify(data) : null;
   useEffect(() => {
     if (!key) return;
+    document.querySelectorAll('script[type="application/ld+json"][data-prerendered]').forEach((n) => n.remove());
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.text = key;

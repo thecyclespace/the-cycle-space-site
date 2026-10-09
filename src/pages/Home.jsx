@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Icon, Button, BrandLogo, OrbitalGraphic } from "../components/ui";
 import FinalCTA from "../components/FinalCTA";
 import Method from "../components/Method";
@@ -25,7 +24,7 @@ export default function Home() {
       <section className="relative isolate min-h-[80svh] overflow-hidden bg-[#362E28] px-5 pb-14 pt-28 text-[#FBF7EF] md:min-h-[92svh] md:px-8 md:pb-16 md:pt-40">
         <OrbitalGraphic />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#7C3C3C]/40 bg-[#FBF7EF]/5 px-4 py-2 text-xs text-[#E7D8C8] md:mb-8 md:text-sm">
               <Icon name="sparkles" size={14} className="text-[#D4887F]" /> {t.heroKicker}
             </div>
@@ -58,18 +57,13 @@ export default function Home() {
               </Button>
             </div>
             <p className="mt-6 text-xs tracking-wide text-[#DCCDB8] md:mt-7 md:text-sm">{t.trust}</p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative hidden md:block"
-          >
+          <div className="relative hidden md:block">
             <div className="relative ml-auto flex aspect-square max-w-md items-center justify-center overflow-hidden rounded-[2.5rem] border border-[#7C3C3C]/30 bg-[#43372F] p-10 shadow-2xl">
               <BrandLogo variant="main" tone="dark" className="h-full w-full object-contain" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

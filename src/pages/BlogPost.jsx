@@ -7,7 +7,8 @@ import CycleRegularityTool from "../components/tools/CycleRegularityTool";
 import PostContraceptionTimeline from "../components/tools/PostContraceptionTimeline";
 import BasalTemperatureTracker from "../components/tools/BasalTemperatureTracker";
 import { useI18n, I18nScope } from "../lib/i18n";
-import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
+import { usePageMeta, useJsonLd, absoluteAsset } from "../lib/seo";
+import { articleSchema } from "../lib/schemas";
 import { getPost, formatDate } from "../lib/blog";
 
 // Registre des widgets interactifs disponibles dans un article.
@@ -33,30 +34,11 @@ export default function BlogPost() {
       ? {
           title: `${post.title} — The Cycle Space`,
           description: post.excerpt,
-          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
+          image: absoluteAsset(post.coverImage),
         }
       : undefined
   );
-  useJsonLd(
-    post
-      ? {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: post.title,
-          description: post.excerpt || undefined,
-          image: post.coverImage ? `${SITE_URL}${post.coverImage}` : undefined,
-          datePublished: post.date ? post.date.toISOString() : undefined,
-          author: { "@type": "Person", name: "Elsa" },
-          publisher: {
-            "@type": "Organization",
-            name: "The Cycle Space",
-            logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/favicon-512.png` },
-          },
-          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-          inLanguage: post.lang === "fr" ? "fr-FR" : "en",
-        }
-      : null
-  );
+  useJsonLd(post ? articleSchema(post) : null);
 
   if (!post) return <Navigate to="/blog" replace />;
 
