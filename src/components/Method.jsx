@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon, Button, OrbitalGraphic, Reveal } from "./ui";
 
@@ -5,6 +6,55 @@ import { Icon, Button, OrbitalGraphic, Reveal } from "./ui";
 const PHASE_ICONS = { "01": "magnifier", "02": "leaf", "03": "venn", "04": "sun" };
 import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
+
+// One phase of the detailed method. On phones the explanation is folded behind a button (the text
+// stays in the page); from tablet width it is always shown in three columns.
+function PhaseRow({ phase, idx, moreLabel }) {
+  const [open, setOpen] = useState(false);
+  const id = `phase-${phase.num}`;
+  return (
+    <Reveal
+      as="article"
+      delay={idx * 0.04}
+      className="grid gap-4 border-t border-[#FBF7EF]/15 py-6 md:grid-cols-[0.8fr_1.1fr_1fr] md:gap-10 md:py-10"
+    >
+      <div>
+        <p className="font-serif text-4xl text-[#D4887F] md:text-6xl">{phase.num}</p>
+        <h3 className="mt-2 font-serif text-3xl md:mt-3 md:text-4xl">{phase.title}</h3>
+        <p className="mt-2 text-xs uppercase tracking-[0.16em] text-[#DCCDB8] md:text-sm">{phase.tag}</p>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls={id}
+          className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#FBF7EF] md:hidden"
+        >
+          {moreLabel}
+          <span aria-hidden="true" className={`text-xl leading-none transition ${open ? "rotate-45" : ""}`}>+</span>
+        </button>
+      </div>
+      <div id={id} className={`${open ? "contents" : "hidden"} md:contents`}>
+        <div>
+          <p className="text-base leading-7 text-[#E7D8C8] md:text-lg md:leading-8">{phase.body}</p>
+          <p className="mt-5 text-base leading-7 text-[#DCCDB8]">{phase.outcome}</p>
+        </div>
+        <div>
+          <ul className="grid gap-3">
+            {phase.points.map((point) => (
+              <li key={point} className="flex gap-3 text-base leading-6 text-[#FBF7EF]">
+                <Icon name="arrow" size={16} className="mt-1 shrink-0 text-[#D4887F]" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 border-l-2 border-[#D4887F] pl-4 text-base font-light italic leading-7 text-[#E7D8C8]">
+            &ldquo;{phase.quote}&rdquo;
+          </p>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 // The Inner Rhythm Method — 4 phases (Decode, Regulate, Reconnect, Embody).
 // `detailed` (Services page) adds the key points, outcome and quote of each phase
@@ -44,31 +94,7 @@ export default function Method({ detailed = false }) {
         {detailed ? (
           <div className="mt-12 md:mt-16">
             {m.phases.map((phase, idx) => (
-              <Reveal as="article" key={phase.num} delay={idx * 0.04} className="grid gap-6 border-t border-[#FBF7EF]/15 py-8 md:grid-cols-[0.8fr_1.1fr_1fr] md:gap-10 md:py-10"
-              >
-                <div>
-                  <p className="font-serif text-5xl text-[#D4887F] md:text-6xl">{phase.num}</p>
-                  <h3 className="mt-3 font-serif text-3xl md:text-4xl">{phase.title}</h3>
-                  <p className="mt-2 text-xs uppercase tracking-[0.16em] text-[#DCCDB8] md:text-sm">{phase.tag}</p>
-                </div>
-                <div>
-                  <p className="text-base leading-7 text-[#E7D8C8] md:text-lg md:leading-8">{phase.body}</p>
-                  <p className="mt-5 text-base leading-7 text-[#DCCDB8]">{phase.outcome}</p>
-                </div>
-                <div>
-                  <ul className="grid gap-3">
-                    {phase.points.map((point) => (
-                      <li key={point} className="flex gap-3 text-base leading-6 text-[#FBF7EF]">
-                        <Icon name="arrow" size={16} className="mt-1 shrink-0 text-[#D4887F]" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-6 border-l-2 border-[#D4887F] pl-4 text-base font-light italic leading-7 text-[#E7D8C8]">
-                    &ldquo;{phase.quote}&rdquo;
-                  </p>
-                </div>
-              </Reveal>
+              <PhaseRow key={phase.num} phase={phase} idx={idx} moreLabel={t.servicesLabels?.more} />
             ))}
             <div className="border-t border-[#FBF7EF]/15 pt-10">
               <Button

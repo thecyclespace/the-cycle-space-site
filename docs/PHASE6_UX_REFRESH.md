@@ -10,6 +10,7 @@ Branche `design/ux-refresh` (basée sur `feature/fr-en-urls`). Direction : **mon
 | Accueil mobile : hauteur de page | 6 948 px | 5 449 px (−22 %) |
 | Accueil desktop (1440 px) : mots visibles | 540 | 292 (−46 %) |
 | Services mobile : mots visibles (hors détails repliés) | 906 | 640 (−29 %) |
+| Services mobile : hauteur de page | 9 385 px | **5 985 px (−36 %)** (méthode repliée en accordéon) |
 | Lighthouse mobile (accueil, labo) | Perf 94 · LCP 3,0 s | **Perf 96–97 · LCP 2,6–2,7 s** · A11y/BP/SEO 100 |
 | Lighthouse desktop | 100 · LCP 0,6 s | 100 · LCP 0,6 s |
 | Poids transféré (accueil) | n/m | 324 Ko, images comprises |
@@ -65,7 +66,7 @@ Voir `GUIDE_ELSA.md` : titre/sous-titre du hero, cartes « Qu'est-ce qui t'amèn
 5. **Outil gratuit** : le calculateur n'est plus intégré dans l'accueil (carte + bouton vers l'article qui le contient, inchangé). À valider : certains préfèrent garder l'outil directement sur l'accueil.
 6. **Veille concurrentielle** (Clue, Flo, Holland & Barrett) : **non réalisée** ; la direction suit le brief et les bonnes pratiques mobiles, sans analyse de ces sites.
 7. **Prix** : champ prévu, aucun prix inventé.
-8. **Services mobile** : la page reste longue (≈ 7 700 px) à cause de la méthode détaillée (4 phases) ; piste : la replier en accordéon sur téléphone (à valider).
+8. **Services mobile** : la méthode détaillée (4 phases) est repliée en accordéon sur téléphone (bouton « Voir le détail », `aria-expanded`) et toujours affichée dès la largeur tablette ; le texte reste dans la page.
 9. **Mesures** : labo uniquement ; pas de vrai iPhone/Android ni de lecteur d'écran dans cette phase.
 
 ## 7. Retour arrière
