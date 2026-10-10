@@ -66,14 +66,19 @@ test("French strings of the tools: no banned expression", () => {
   }
 });
 
-test("tutoiement only: no 'vous' form in the French copy", () => {
-  const all = strings(fr).concat(FR_BLOG.map(([, raw]) => raw));
-  const hit = all.find((s) => /(?<![-\w])(vous|votre|vos)(?![-\w])/i.test(s.replace(/The Cycle Space|Inner Rhythm/g, "")));
-  assert.ok(!hit, `vouvoiement found: ${hit?.slice(0, 80)}`);
+// The owner chose "vous" for the French site (October 2026). Elsa speaks as "je"; the reader is "vous".
+const TU = /(?<![\p{L}'’-])(tu|te|toi|ton|ta|tes)(?![\p{L}-])|(?<!\p{L})t['’](?=\p{L})/iu;
+
+test("vouvoiement only: no 'tu' form in the French copy, articles and tools", () => {
+  const all = strings(fr)
+    .concat(FR_BLOG.map(([, raw]) => raw))
+    .concat(TOOLS.map((f) => frBlock(read(`src/components/tools/${f}`))));
+  const hit = all.map((s) => s.match(new RegExp(`.{0,40}(?:${TU.source}).{0,40}`, "iu"))).find(Boolean);
+  assert.ok(!hit, `tutoiement found: ${hit?.[0]}`);
 });
 
 test("the official CTAs and hero of the brief are in place", () => {
-  assert.equal(fr.heroTitle, "Comprends mieux ton cycle. Retrouve confiance en ton corps.");
+  assert.equal(fr.heroTitle, "Comprenez mieux votre cycle. Retrouvez confiance en votre corps.");
   assert.equal(fr.book, "Réserver un appel gratuit");
   assert.equal(fr.finalCta, "Réserver mon appel gratuit");
   assert.equal(fr.services[0].cta, "Réserver un appel gratuit");

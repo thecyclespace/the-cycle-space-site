@@ -53,15 +53,15 @@ const STRINGS = {
     errDuplicate: "Please remove duplicate dates.",
   },
   fr: {
-    formTitle: "Ton cycle est-il régulier ?",
-    privacy: "Tes données restent dans ton navigateur. Rien n'est envoyé ni stocké.",
-    intro: `Saisis le premier jour de tes ${MIN_DATES} à ${MAX_DATES} dernières règles pour voir la régularité de ton cycle.`,
+    formTitle: "Votre cycle est-il régulier ?",
+    privacy: "Vos données restent dans votre navigateur. Rien n'est envoyé ni stocké.",
+    intro: `Saisissez le premier jour de vos ${MIN_DATES} à ${MAX_DATES} dernières règles pour voir la régularité de votre cycle.`,
     dateLabel: (i) => `Début des règles n°${i + 1}`,
     addDate: "Ajouter une date",
     remove: "Retirer",
     submit: "Analyser mes cycles",
     reset: "Réinitialiser",
-    resultKicker: "Ton profil de cycle",
+    resultKicker: "Votre profil de cycle",
     avg: "Cycle moyen",
     shortest: "Le plus court",
     longest: "Le plus long",
@@ -75,27 +75,27 @@ const STRINGS = {
     },
     classificationDescriptions: {
       regular:
-        "La longueur de ton cycle reste dans une fourchette étroite. C'est le signe d'un rythme relativement constant.",
+        "La longueur de votre cycle reste dans une fourchette étroite. C'est le signe d'un rythme relativement constant.",
       "slightly-variable":
-        "Tes cycles varient un peu. C'est fréquent : le stress, le sommeil, les voyages, les variations de poids, les transitions hormonales ou les changements de mode de vie peuvent influencer la durée du cycle.",
+        "Vos cycles varient un peu. C'est fréquent : le stress, le sommeil, les voyages, les variations de poids, les transitions hormonales ou les changements de mode de vie peuvent influencer la durée du cycle.",
       "more-variable":
-        "Tes cycles varient nettement d'un mois à l'autre. Cela peut avoir de nombreuses causes et n'est pas forcément un problème en soi, mais cela peut valoir la peine de chercher à mieux comprendre ce qui se passe.",
+        "Vos cycles varient nettement d'un mois à l'autre. Cela peut avoir de nombreuses causes et n'est pas forcément un problème en soi, mais cela peut valoir la peine de chercher à mieux comprendre ce qui se passe.",
     },
     contextTitle: "Un peu de contexte",
     contextNote:
       "La variabilité du cycle peut avoir de nombreuses origines : stress, sommeil, voyages, variations de poids récentes, arrêt d'une contraception, allaitement ou transitions hormonales comme la périménopause.",
     consultTitle: "Quand en parler à un professionnel ?",
     consultGeneric:
-      "Si tes cycles sont souvent très courts ou très longs, absents, très douloureux ou très abondants, ou si un changement soudain t'inquiète, il est raisonnable d'en parler avec un professionnel de santé.",
-    consultVeryShort: "Certains de tes cycles durent moins de 21 jours.",
-    consultVeryLong: "Certains de tes cycles durent plus de 35 jours.",
+      "Si vos cycles sont souvent très courts ou très longs, absents, très douloureux ou très abondants, ou si un changement soudain vous inquiète, il est raisonnable d'en parler avec un professionnel de santé.",
+    consultVeryShort: "Certains de vos cycles durent moins de 21 jours.",
+    consultVeryLong: "Certains de vos cycles durent plus de 35 jours.",
     disclaimerTitle: "Note santé —",
     disclaimer:
       "Il s'agit d'une estimation à visée éducative, pas d'un diagnostic. Elle ne remplace pas un avis médical. La variabilité du cycle peut avoir de nombreuses causes.",
-    errMin: `Saisis au moins ${MIN_DATES} dates.`,
+    errMin: `Saisissez au moins ${MIN_DATES} dates.`,
     errInvalid: "Une ou plusieurs dates sont invalides.",
     errFuture: "Les dates ne peuvent pas être dans le futur.",
-    errDuplicate: "Retire les dates en double.",
+    errDuplicate: "Retirez les dates en double.",
   },
 };
 
