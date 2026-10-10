@@ -67,9 +67,17 @@ test("Calendly URLs: default link preserved, optional links empty or valid", () 
   }
 });
 
-test("guide lead email is a valid address and the PDF exists", () => {
+test("guide lead email is a valid address; one guide per language, in the CMS upload folder, under its size limit", () => {
   assert.match(site.guideLeadEmail, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
-  assert.ok(fs.existsSync(new URL(`../public/${site.guidePdf}`, import.meta.url)));
+  for (const k of ["guidePdfEn", "guidePdfFr"]) {
+    assert.match(site[k], /^\/uploads\/[^/]+\.pdf$/, `${k} must be a PDF uploaded through the CMS`);
+    const file = new URL(`../public${site[k]}`, import.meta.url);
+    assert.ok(fs.existsSync(file), `${site[k]} is missing`);
+    assert.ok(fs.statSync(file).size <= 3_000_000, `${site[k]} is heavier than the CMS upload limit`);
+  }
+  assert.notEqual(site.guidePdfEn, site.guidePdfFr);
+  const form = read("src/components/GuideForm.jsx");
+  assert.ok(form.includes("guidePdfFr") && form.includes("guidePdfEn"), "the form serves the guide of the page language");
 });
 
 test("method has 4 phases with the fields the page renders", () => {

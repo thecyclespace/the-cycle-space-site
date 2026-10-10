@@ -24,7 +24,8 @@ export default function BlogList() {
       tools: { title: "Tools", subtitle: "Calculators and interactive helpers, all in your browser." },
       articles: { title: "Articles", subtitle: "Notes and essays on the cycle." },
       pdf: "PDF guide",
-      guideTagline: "Cycle tracking guide · EN + FR",
+      guideName: "Know Your Cycle",
+      guideTagline: "Free guide · 28 pages",
       empty: "No articles yet.",
     },
     fr: {
@@ -35,7 +36,8 @@ export default function BlogList() {
       tools: { title: "Outils", subtitle: "Des calculateurs et des outils de suivi, directement dans votre navigateur." },
       articles: { title: "Articles", subtitle: "Des textes pour mieux comprendre votre cycle." },
       pdf: "Guide PDF",
-      guideTagline: "Guide de suivi du cycle",
+      guideName: "Connaître votre cycle",
+      guideTagline: "Guide gratuit · 28 pages",
       empty: "Aucun article pour le moment.",
     },
   };
@@ -65,7 +67,7 @@ export default function BlogList() {
               <OrbitalGraphic dense />
               <div className="relative ml-auto flex h-full max-w-sm flex-col justify-end rounded-[2rem] border border-[#7C3C3C]/40 bg-[#FBF7EF] p-8 text-[#362E28] shadow-2xl">
                 <p className="text-sm uppercase tracking-[0.25em] text-[#7C3C3C]">Guide</p>
-                <h4 className="mt-6 font-serif text-5xl leading-none">Know Your Flow</h4>
+                <h4 className="mt-6 font-serif text-4xl leading-tight lg:text-5xl">{L.guideName}</h4>
                 <p className="mt-6 text-[#5d5049]">{L.guideTagline}</p>
               </div>
             </div>
