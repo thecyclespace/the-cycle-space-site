@@ -76,6 +76,9 @@ test("guide lead email is a valid address; one guide per language, in the CMS up
     assert.ok(fs.statSync(file).size <= 3_000_000, `${site[k]} is heavier than the CMS upload limit`);
   }
   assert.notEqual(site.guidePdfEn, site.guidePdfFr);
+  for (const k of ["guideCoverEn", "guideCoverFr"]) {
+    assert.ok(fs.existsSync(new URL(`../public${site[k]}`, import.meta.url)), `${site[k]} (guide cover) is missing`);
+  }
   const form = read("src/components/GuideForm.jsx");
   assert.ok(form.includes("guidePdfFr") && form.includes("guidePdfEn"), "the form serves the guide of the page language");
 });

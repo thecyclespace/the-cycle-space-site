@@ -706,6 +706,8 @@ collections:
           - { label: "Image principale (Elsa)", name: "elsaImage", widget: "image", hint: "Sélectionne une image OU saisis le nom d'un fichier déjà dans /public (ex: elsa.jpg)." }
           - { label: "📘 Guide gratuit — PDF en français", name: "guidePdfFr", widget: "file", hint: "Le guide téléchargé depuis les pages en français. Pour le remplacer : clique sur « Remplacer », choisis le nouveau PDF (3 Mo maximum), puis « Enregistrer ». Le site se met à jour en quelques minutes." }
           - { label: "📘 Guide gratuit — PDF en anglais", name: "guidePdfEn", widget: "file", hint: "Le guide téléchargé depuis les pages en anglais. Même manipulation que pour le français." }
+          - { label: "📘 Guide gratuit — image de couverture (français)", name: "guideCoverFr", widget: "image", hint: "La couverture affichée à côté du formulaire. Si tu changes la première page du PDF, remplace aussi cette image (une capture de la première page, format portrait)." }
+          - { label: "📘 Guide gratuit — image de couverture (anglais)", name: "guideCoverEn", widget: "image" }
           - { label: "Handle du pied de page", name: "footerHandle", widget: "string", hint: "Texte court affiché dans le footer (ex: 'thecyclespace.com · @elsa.thecyclespace')." }
 
   # ===========================================================================
