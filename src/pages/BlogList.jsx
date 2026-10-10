@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon, OrbitalGraphic } from "../components/ui";
 import GuideForm from "../components/GuideForm";
+import siteSettings from "../content/settings/site.json";
 import FinalCTA from "../components/FinalCTA";
 import { useI18n } from "../lib/i18n";
 import { usePageMeta } from "../lib/seo";
@@ -25,7 +26,7 @@ export default function BlogList() {
       articles: { title: "Articles", subtitle: "Notes and essays on the cycle." },
       pdf: "PDF guide",
       guideName: "Know Your Cycle",
-      guideTagline: "Free guide · 28 pages",
+      coverAlt: "Cover of the free guide",
       empty: "No articles yet.",
     },
     fr: {
@@ -37,11 +38,12 @@ export default function BlogList() {
       articles: { title: "Articles", subtitle: "Des textes pour mieux comprendre votre cycle." },
       pdf: "Guide PDF",
       guideName: "Connaître votre cycle",
-      guideTagline: "Guide gratuit · 28 pages",
+      coverAlt: "Couverture du guide gratuit",
       empty: "Aucun article pour le moment.",
     },
   };
   const L = labels[lang] || labels.en;
+  const cover = (lang === "fr" ? siteSettings.guideCoverFr : siteSettings.guideCoverEn) || siteSettings.guideCoverEn;
 
   return (
     <>
@@ -63,13 +65,17 @@ export default function BlogList() {
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#E7D8C8] md:mt-6 md:text-lg">{t.resourcesText}</p>
               <GuideForm />
             </div>
-            <div className="relative hidden min-h-[420px] bg-[#43372F] p-8 md:block md:p-14">
+            <div className="relative hidden bg-[#43372F] p-8 md:flex md:items-center md:justify-center md:p-12">
               <OrbitalGraphic dense />
-              <div className="relative ml-auto flex h-full max-w-sm flex-col justify-end rounded-[2rem] border border-[#7C3C3C]/40 bg-[#FBF7EF] p-8 text-[#362E28] shadow-2xl">
-                <p className="text-sm uppercase tracking-[0.25em] text-[#7C3C3C]">Guide</p>
-                <h4 className="mt-6 font-serif text-4xl leading-tight lg:text-5xl">{L.guideName}</h4>
-                <p className="mt-6 text-[#5d5049]">{L.guideTagline}</p>
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}${cover.replace(/^\//, "")}`}
+                alt={`${L.coverAlt} « ${L.guideName} »`}
+                width="900"
+                height="1274"
+                loading="lazy"
+                decoding="async"
+                className="relative w-full max-w-[300px] rounded-xl border border-[#FBF7EF]/20 shadow-2xl shadow-black/50"
+              />
             </div>
           </div>
         </div>
