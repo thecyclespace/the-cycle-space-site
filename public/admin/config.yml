@@ -1,817 +1,607 @@
-# Sveltia CMS — The Cycle Space
-# ----------------------------------------------------------------------------
-# Backend : GitHub (le CMS commit directement sur le dépôt GitHub).
-#   - "Publish" = 1 commit sur `main` -> GitHub Actions reconstruit et publie sur GitHub Pages (~1-2 min).
-#   - Pas de Netlify Identity, pas de Git Gateway, pas de serveur CMS séparé.
+# =============================================================================
+# Administration du site The Cycle Space (Sveltia CMS)
+# =============================================================================
+# Ce fichier décrit ce qu'Elsa voit dans /admin : les rubriques, les champs,
+# leurs intitulés et leurs aides. Il ne contient aucun secret.
 #
-# Connexion (voir CMS_GUIDE.md) :
-#   - Simple : bouton "Sign In with Token" -> coller un GitHub Personal Access Token.
-#   - Confort (recommandé plus tard) : OAuth via "Sveltia CMS Authenticator" sur
-#     Cloudflare Workers -> décommenter `base_url` ci-dessous.
+# Règles (vérifiées par tests/admin-config.test.mjs) :
+#   - l'admin n'écrit que dans src/content/ et public/uploads/ ;
+#   - chaque champ correspond à une donnée du site, et inversement ;
+#   - les intitulés sont en français simple, sans mot technique.
 #
-# Édition en LOCAL : ouvrir http://localhost:5173/admin/ dans Chrome/Edge ; Sveltia
-# utilise l'API File System Access pour lire/écrire directement le dépôt local
-# (aucun proxy, aucun `decap-server`). `local_backend` n'est PAS nécessaire.
-# ----------------------------------------------------------------------------
+# Essayer une modification sans GitHub : node scripts/admin-sandbox.mjs
+# Guide de l'éditrice : docs/admin-2.0/GUIDE_ELSA.md
+# =============================================================================
 
 backend:
   name: github
-  # ⚠️ Propriétaire/dépôt GitHub. Format : OWNER/REPO.
   repo: thecyclespace/the-cycle-space-site
   branch: main
-  # OAuth « 1 clic » via le worker Cloudflare (Sveltia CMS Authenticator).
-  # Remplace le service Netlify par défaut. Voir CMS_GUIDE.md.
+  # Connexion « Se connecter avec GitHub » : service gratuit hébergé chez Cloudflare
+  # (Sveltia CMS Authenticator). Voir docs/admin-2.0/AUDIT.md, section Connexion.
   base_url: https://sveltia-cms-auth.thecyclespaceadmin.workers.dev
+  commit_messages:
+    create: "Contenu : nouveau « {{slug}} » ({{collection}})"
+    update: "Contenu : modification de « {{slug}} » ({{collection}})"
+    delete: "Contenu : suppression de « {{slug}} » ({{collection}})"
+    uploadMedia: "Contenu : ajout du fichier {{path}}"
+    deleteMedia: "Contenu : suppression du fichier {{path}}"
 
+# Photos et documents ajoutés depuis l'admin.
 media_folder: "public/uploads"
 public_folder: "/uploads"
-
-# Limites/format des médias uploadés via le CMS.
 media_libraries:
   default:
     config:
-      slugify_filename: true   # renomme les fichiers en minuscules-sans-accents-tirets
-      max_file_size: 3000000   # 3 Mo max par image (évite les uploads trop lourds)
+      slugify_filename: true      # « Ma Photo.JPG » devient « ma-photo.jpg »
+      max_file_size: 3000000      # 3 Mo par fichier
+      transformations:
+        raster_image:             # les photos sont allégées avant l'envoi
+          format: webp
+          quality: 82
+          width: 2000
+          height: 2000
+  stock_assets:
+    providers: []                 # pas de banques d'images externes : seulement les photos d'Elsa
 
-# URL du site (utilisée pour le bouton "View" du CMS).
-# À mettre à jour si le domaine définitif change.
+# Adresse du site (lien « voir le site » de l'admin). À changer au passage sur thecyclespace.com.
 site_url: https://thecyclespace.github.io/the-cycle-space-site
 display_url: thecyclespace.github.io/the-cycle-space-site
 logo_url: https://thecyclespace.github.io/the-cycle-space-site/brand/icon-red.png
 
-# IMPORTANT — Pour préserver la structure plate des fichiers JSON et ne pas
-# casser les composants React, on n'utilise PAS de `widget: object` containers
-# pour regrouper les champs. Le découpage visuel se fait via des préfixes
-# emoji + section dans les labels (ex: "🎯 Hero — Titre"), ce qui permet à
-# l'éditrice de scanner le formulaire facilement sans nesting des données.
+# Français et anglais côte à côte. Le français est la langue de travail d'Elsa.
+i18n:
+  structure: multiple_files
+  locales: [fr, en]
+  default_locale: fr
+
+slug:
+  encoding: ascii
+  clean_accents: true
 
 collections:
 
   # ===========================================================================
-  # 📝 ARTICLES DE BLOG  (collection prioritaire — créée souvent)
+  # Mes pages : un formulaire par page, avec un onglet Français et un onglet Anglais
+  # ===========================================================================
+  - name: pages
+    label: "Mes pages"
+    icon: home
+    description: "Choisis la page à modifier. Dans chaque page, les textes français et anglais sont côte à côte."
+    i18n: true
+    editor: { preview: false }
+    files:
+      - name: home
+        label: "Page d'accueil"
+        icon: home
+        file: "src/content/pages/home.{{locale}}.json"
+        i18n: true
+        description: "Tout ce qu'on lit sur la page d'accueil, de haut en bas."
+        fields:
+          - { label: "Haut de page — petite ligne au-dessus du titre", name: "heroKicker", widget: "string", i18n: true, hint: "Ton prénom et ton métier : on doit comprendre tout de suite qu'une vraie personne est derrière le site." }
+          - { label: "Haut de page — grand titre", name: "heroTitle", widget: "string", i18n: true, pattern: ["^.{1,70}$", "70 caractères maximum"], hint: "Le titre principal de l'accueil. Court : 70 caractères maximum pour tenir sur un téléphone." }
+          - { label: "Haut de page — phrase sous le titre", name: "heroText", widget: "text", i18n: true, pattern: ["^[\\s\\S]{1,110}$", "110 caractères maximum"], hint: "Une ou deux phrases courtes (110 caractères maximum)." }
+          - { label: "Haut de page — second bouton", name: "heroSecondary", widget: "string", i18n: true, hint: "Le bouton clair, à côté de « Réserver un appel gratuit ». Il mène à la page Accompagnements." }
+          - { label: "Haut de page — petite ligne sous les boutons", name: "trust", widget: "string", i18n: true, pattern: ["^.{1,60}$", "60 caractères maximum"], hint: "Exemple : « Avec moi, en ligne · 15 à 20 minutes · Gratuit ». 60 caractères maximum." }
+          - { label: "Haut de page — légende sous ta photo", name: "heroCaption", widget: "string", required: false, i18n: true }
+          - { label: "Sur téléphone seulement — autre grand titre (facultatif)", name: "mobileHeroTitle", widget: "string", required: false, i18n: true, hint: "Laisse vide pour garder le même titre partout." }
+          - { label: "Sur téléphone seulement — autre phrase sous le titre (facultatif)", name: "mobileHeroText", widget: "text", required: false, i18n: true, hint: "Laisse vide pour garder la même phrase partout." }
+          - label: "Section « Qu'est-ce qui vous amène ? » (les cartes)"
+            name: "concerns"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string", i18n: true }
+              - label: "Les cartes"
+                name: "items"
+                widget: "list"
+                i18n: true
+                min: 2
+                max: 8
+                summary: "{{fields.title}}"
+                hint: "6 cartes conseillées. Garde le même nombre de cartes en français et en anglais."
+                fields:
+                  - { label: "Texte de la carte", name: "title", widget: "string", i18n: true, pattern: ["^.{1,40}$", "40 caractères maximum"], hint: "Quelques mots, 40 caractères maximum. Pas de promesse de guérison." }
+                  - label: "Petit dessin"
+                    name: "icon"
+                    widget: "select"
+                    i18n: true
+                    default: "cycle"
+                    options:
+                      - { label: "Goutte", value: "drop" }
+                      - { label: "Visage", value: "mood" }
+                      - { label: "Cycle", value: "cycle" }
+                      - { label: "Vagues", value: "waves" }
+                      - { label: "Gélule", value: "capsule" }
+                      - { label: "Jeune pousse", value: "sprout" }
+                  - label: "Où mène la carte ?"
+                    name: "link"
+                    widget: "select"
+                    i18n: true
+                    default: "services"
+                    options:
+                      - { label: "Page Accompagnements", value: "services" }
+                      - { label: "Page À propos", value: "about" }
+                      - { label: "Page Ressources", value: "blog" }
+                      - { label: "Outil : mon cycle est-il régulier ?", value: "regularity" }
+                      - { label: "Outil : après l'arrêt de la contraception", value: "post-contraception" }
+                      - { label: "Outil : température basale et glaire", value: "basal" }
+                      - { label: "Outil : où en suis-je dans mon cycle ?", value: "where-am-i" }
+                      - { label: "Outil : calculateur de cycle", value: "calculator" }
+              - { label: "Phrase pour celles qui ne se reconnaissent dans aucune carte", name: "unsure", widget: "text", i18n: true, hint: "Affichée sous les cartes, suivie d'un lien vers l'appel gratuit." }
+              - { label: "Petite mention sous les cartes", name: "note", widget: "string", i18n: true, hint: "Rappelle que tu n'es pas médecin." }
+          - label: "Section « Pourquoi je fais ce métier »"
+            name: "meetElsa"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Titre", name: "title", widget: "string", i18n: true }
+              - { label: "Texte", name: "text", widget: "text", i18n: true, hint: "Ton histoire en quelques lignes. Saute une ligne vide pour commencer un nouveau paragraphe." }
+              - { label: "Texte du bouton", name: "cta", widget: "string", i18n: true, hint: "Il mène à la page À propos." }
+          - { label: "Section des accompagnements — titre", name: "offersTitle", widget: "string", i18n: true, hint: "Les trois cartes affichées viennent de la page « Mes accompagnements »." }
+          - { label: "Section des accompagnements — lien sous les cartes", name: "offersCta", widget: "string", i18n: true }
+          - label: "Section « Outil gratuit » (calculateur)"
+            name: "homeTool"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Petite ligne au-dessus du titre", name: "kicker", widget: "string", i18n: true }
+              - { label: "Titre", name: "title", widget: "string", i18n: true }
+              - { label: "Texte", name: "description", widget: "text", i18n: true }
+              - { label: "Texte du bouton", name: "cta", widget: "string", i18n: true }
+              - { label: "Texte de secours du bouton", name: "learnMore", widget: "string", i18n: true, hint: "Utilisé seulement si le texte du bouton est vide." }
+              - { label: "Mention sous le bouton", name: "note", widget: "string", i18n: true, hint: "À garder : les résultats sont des estimations, pas un avis médical ni une contraception." }
+
+      - name: services
+        label: "Mes accompagnements"
+        icon: handshake
+        file: "src/content/pages/services.{{locale}}.json"
+        i18n: true
+        description: "La page Accompagnements : les cartes, la méthode, le déroulé et les questions fréquentes."
+        fields:
+          - { label: "Titre de la page", name: "pillarsTitle", widget: "string", i18n: true }
+          - { label: "Phrase sous le titre", name: "pillarsSubtitle", widget: "text", i18n: true }
+          - label: "Mes accompagnements (les cartes)"
+            name: "services"
+            widget: "list"
+            i18n: true
+            min: 3
+            max: 4
+            summary: "{{fields.title}}"
+            hint: "Fais glisser une carte pour changer l'ordre. 3 ou 4 cartes, le même nombre en français et en anglais. Les 3 premières apparaissent aussi sur l'accueil."
+            fields:
+              - { label: "Nom de l'accompagnement", name: "title", widget: "string", i18n: true }
+              - { label: "Petite ligne au-dessus du nom", name: "tag", widget: "string", i18n: true, pattern: ["^.{1,50}$", "50 caractères maximum"], hint: "Exemple : « Séance individuelle · 90 minutes ». 50 caractères maximum." }
+              - { label: "Résumé en une phrase", name: "summary", widget: "string", i18n: true, pattern: ["^.{1,120}$", "120 caractères maximum"], hint: "Affiché sur la carte, ici et sur l'accueil. 120 caractères maximum." }
+              - { label: "Pour qui ? (une phrase, sur la carte)", name: "audience", widget: "string", required: false, i18n: true }
+              - { label: "Prix affiché (facultatif)", name: "priceLabel", widget: "string", required: false, i18n: true, hint: "Laisse vide pour n'afficher aucun prix." }
+              - { label: "Description complète", name: "body", widget: "text", i18n: true, hint: "Affichée quand on clique sur « Voir le détail ». Saute une ligne vide entre deux paragraphes." }
+              - { label: "Pour qui ? (dans le détail, facultatif)", name: "forWho", widget: "text", required: false, i18n: true }
+              - { label: "Ce que la personne reçoit (facultatif)", name: "leave", widget: "text", required: false, i18n: true }
+              - { label: "Texte du bouton", name: "cta", widget: "string", i18n: true }
+              - label: "Que fait le bouton ?"
+                name: "action"
+                widget: "select"
+                i18n: true
+                default: "intro"
+                hint: "À ne changer que si tu changes le type d'accompagnement."
+                options:
+                  - { label: "Ouvre le calendrier de l'appel gratuit", value: "intro" }
+                  - { label: "Ouvre le calendrier de la séance de 90 minutes", value: "checkin" }
+                  - { label: "Ouvre un email (liste d'attente)", value: "waitlist" }
+          - label: "Petits intitulés des cartes"
+            name: "servicesLabels"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Intitulé « Pour qui »", name: "forWho", widget: "string", i18n: true }
+              - { label: "Intitulé « Ce que vous recevez »", name: "leave", widget: "string", i18n: true }
+              - { label: "Bouton « Voir le détail »", name: "more", widget: "string", i18n: true }
+          - label: "Ma méthode (page Accompagnements et accueil)"
+            name: "method"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Accueil — petite ligne au-dessus du titre", name: "kicker", widget: "string", i18n: true }
+              - { label: "Accueil — titre de la section", name: "homeTitle", widget: "string", i18n: true, hint: "En mots simples, par exemple « Comment je vous accompagne »." }
+              - { label: "Présentation de la méthode", name: "intro", widget: "text", i18n: true, hint: "Affichée sur l'accueil et sur la page Accompagnements." }
+              - { label: "Accueil — lien vers le détail de la méthode", name: "cta", widget: "string", i18n: true }
+              - { label: "Page Accompagnements — petite ligne au-dessus du titre", name: "programmeKicker", widget: "string", i18n: true }
+              - { label: "Page Accompagnements — titre du programme", name: "programmeTitle", widget: "string", i18n: true }
+              - { label: "Page Accompagnements — durée et langues", name: "programmeMeta", widget: "string", i18n: true }
+              - { label: "Nom de la méthode", name: "title", widget: "string", i18n: true }
+              - { label: "Page Accompagnements — texte du bouton", name: "programmeCta", widget: "string", i18n: true }
+              - label: "Les 4 étapes"
+                name: "phases"
+                widget: "list"
+                i18n: true
+                min: 4
+                max: 4
+                summary: "{{fields.num}} — {{fields.homeTitle}}"
+                fields:
+                  - label: "Numéro"
+                    name: "num"
+                    widget: "select"
+                    i18n: true
+                    default: "01"
+                    options:
+                      - { label: "01", value: "01" }
+                      - { label: "02", value: "02" }
+                      - { label: "03", value: "03" }
+                      - { label: "04", value: "04" }
+                  - { label: "Nom simple de l'étape (accueil)", name: "homeTitle", widget: "string", i18n: true, hint: "Par exemple « Comprendre »." }
+                  - { label: "L'étape en une phrase (accueil)", name: "short", widget: "text", i18n: true, hint: "Une phrase concrète, comme tu l'expliquerais à voix haute." }
+                  - { label: "Nom de l'étape dans la méthode", name: "title", widget: "string", i18n: true, hint: "Le nom anglais de la marque : Decode, Regulate, Reconnect, Embody." }
+                  - { label: "Sous-titre de l'étape (page Accompagnements)", name: "tag", widget: "string", i18n: true }
+                  - { label: "Description (page Accompagnements)", name: "body", widget: "text", i18n: true }
+                  - label: "Points clés"
+                    name: "points"
+                    widget: "list"
+                    i18n: true
+                    field: { label: "Point", name: "point", widget: "string", i18n: true }
+                  - { label: "Ce que la personne sait faire à la fin", name: "outcome", widget: "text", i18n: true }
+                  - { label: "Phrase en italique", name: "quote", widget: "string", i18n: true }
+          - { label: "Section « Comment ça se passe ? » — titre", name: "journeyTitle", widget: "string", i18n: true }
+          - label: "Section « Comment ça se passe ? » — les 4 étapes"
+            name: "journey"
+            widget: "list"
+            i18n: true
+            min: 4
+            max: 4
+            summary: "{{fields.num}} — {{fields.title}}"
+            fields:
+              - label: "Numéro"
+                name: "num"
+                widget: "select"
+                i18n: true
+                default: "01"
+                options:
+                  - { label: "01", value: "01" }
+                  - { label: "02", value: "02" }
+                  - { label: "03", value: "03" }
+                  - { label: "04", value: "04" }
+              - { label: "Titre", name: "title", widget: "string", i18n: true }
+              - { label: "Texte", name: "body", widget: "text", i18n: true }
+          - label: "Questions fréquentes"
+            name: "faq"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Titre de la section", name: "title", widget: "string", i18n: true }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                i18n: true
+                max: 8
+                summary: "{{fields.q}}"
+                hint: "8 questions maximum. Pas de promesse médicale."
+                fields:
+                  - { label: "Question", name: "q", widget: "string", i18n: true }
+                  - { label: "Réponse", name: "a", widget: "text", i18n: true }
+
+      - name: about
+        label: "À propos"
+        icon: person
+        file: "src/content/pages/about.{{locale}}.json"
+        i18n: true
+        description: "Ta page de présentation : qui tu es, ton parcours, ta façon de travailler."
+        fields:
+          - { label: "Titre de la page", name: "aboutTitle", widget: "string", i18n: true }
+          - label: "Présentation et intertitres"
+            name: "about"
+            widget: "object"
+            i18n: true
+            collapsed: false
+            fields:
+              - { label: "Présentation courte, sous le titre", name: "intro", widget: "text", i18n: true, hint: "Qui tu es, ta formation, et ce que tu n'es pas (médecin)." }
+              - { label: "Titre de ton parcours", name: "storyTitle", widget: "string", i18n: true }
+              - { label: "Bouton pour déplier ton parcours (téléphone)", name: "storyToggle", widget: "string", i18n: true }
+              - { label: "Petite ligne au-dessus de « Ma façon de travailler »", name: "approachKicker", widget: "string", i18n: true }
+              - { label: "Petite ligne au-dessus de « Vous vous reconnaissez peut-être »", name: "forYouKicker", widget: "string", i18n: true }
+          - label: "Tes diplômes et repères (les étiquettes)"
+            name: "credentials"
+            widget: "list"
+            i18n: true
+            hint: "Les deux premières apparaissent aussi sur l'accueil."
+            field: { label: "Étiquette", name: "item", widget: "string", i18n: true }
+          - { label: "Ton parcours (le récit complet)", name: "aboutText", widget: "text", i18n: true, hint: "Saute une ligne vide pour commencer un nouveau paragraphe." }
+          - { label: "Ma façon de travailler — titre", name: "manifestoTitle", widget: "string", i18n: true }
+          - { label: "Ma façon de travailler — texte", name: "manifestoText", widget: "text", i18n: true }
+          - { label: "Ma façon de travailler — phrase en italique", name: "manifestoQuote", widget: "string", i18n: true }
+          - { label: "« Vous vous reconnaissez peut-être ici » — titre", name: "forYouTitle", widget: "string", i18n: true }
+          - label: "« Vous vous reconnaissez peut-être ici » — les phrases"
+            name: "forYou"
+            widget: "list"
+            i18n: true
+            hint: "5 à 7 phrases courtes."
+            field: { label: "Phrase", name: "item", widget: "text", i18n: true }
+
+      - name: resources
+        label: "Ressources et guide gratuit"
+        icon: menu_book
+        file: "src/content/pages/resources.{{locale}}.json"
+        i18n: true
+        description: "Les textes autour du guide gratuit et de son formulaire. Les articles se modifient dans « Articles »."
+        fields:
+          - { label: "Guide gratuit — titre", name: "resourcesTitle", widget: "string", i18n: true }
+          - { label: "Guide gratuit — phrase sous le titre", name: "resourcesText", widget: "text", i18n: true }
+          - { label: "Formulaire — intitulé du champ email", name: "guideEmailLabel", widget: "string", i18n: true }
+          - { label: "Formulaire — exemple affiché dans le champ email", name: "emailPlaceholder", widget: "string", i18n: true }
+          - { label: "Formulaire — texte de la case à cocher", name: "guideConsent", widget: "text", i18n: true, hint: "C'est le consentement de la personne : dis clairement ce qu'elle recevra et qui reçoit son adresse." }
+          - { label: "Bouton « Télécharger le guide gratuit »", name: "download", widget: "string", i18n: true, hint: "Ce texte est aussi le second bouton du grand bandeau en bas de chaque page." }
+          - { label: "Lien « Télécharger sans email »", name: "guideNoEmail", widget: "string", i18n: true }
+          - { label: "Message — pendant l'envoi", name: "guideSending", widget: "string", i18n: true }
+          - { label: "Message — adresse email incorrecte", name: "guideInvalidEmail", widget: "string", i18n: true }
+          - { label: "Message — case non cochée", name: "guideConsentRequired", widget: "string", i18n: true }
+          - { label: "Message — titre après le téléchargement", name: "guideThanksTitle", widget: "string", i18n: true }
+          - { label: "Message — après un téléchargement sans email", name: "guideThanksText", widget: "text", i18n: true }
+          - { label: "Message — après un téléchargement avec email", name: "guideSentText", widget: "text", i18n: true }
+          - { label: "Message — si l'adresse n'a pas pu être enregistrée", name: "guideFailedText", widget: "text", i18n: true }
+          - { label: "Bouton « Télécharger à nouveau »", name: "guideDownloadAgain", widget: "string", i18n: true }
+
+      - name: shared
+        label: "Menu, boutons et pied de page"
+        icon: web_asset
+        file: "src/content/pages/shared.{{locale}}.json"
+        i18n: true
+        description: "Ce qui apparaît sur toutes les pages : menu, bouton de réservation, bandeau du bas, pied de page."
+        fields:
+          - label: "Menu du haut"
+            name: "nav"
+            widget: "list"
+            i18n: true
+            min: 4
+            max: 4
+            summary: "{{fields.label}}"
+            hint: "Tu peux renommer les 4 liens du menu. Le site a toujours ces 4 pages."
+            fields:
+              - { label: "Nom affiché dans le menu", name: "label", widget: "string", i18n: true }
+              - label: "Page"
+                name: "route"
+                widget: "select"
+                i18n: true
+                hint: "La page vers laquelle ce lien mène. À ne pas changer."
+                options:
+                  - { label: "Accueil", value: "/" }
+                  - { label: "Accompagnements", value: "/services" }
+                  - { label: "Ressources", value: "/blog" }
+                  - { label: "À propos", value: "/about" }
+          - { label: "Bouton de réservation", name: "book", widget: "string", i18n: true, hint: "Le bouton « Réserver un appel gratuit », présent en haut de chaque page." }
+          - { label: "Bandeau en bas de chaque page — titre", name: "finalTitle", widget: "string", i18n: true }
+          - { label: "Bandeau en bas de chaque page — texte", name: "finalText", widget: "text", i18n: true }
+          - { label: "Bandeau en bas de chaque page — texte du bouton", name: "finalCta", widget: "string", i18n: true }
+          - { label: "Fenêtre de réservation — titre", name: "modalTitle", widget: "string", i18n: true }
+          - { label: "Fenêtre de réservation — texte", name: "modalText", widget: "text", i18n: true }
+          - { label: "Fenêtre de réservation — bouton d'ouverture du calendrier", name: "calendly", widget: "string", i18n: true }
+          - { label: "Fenêtre de réservation — message pendant le chargement", name: "calendlyLoading", widget: "string", i18n: true }
+          - { label: "Fenêtre de réservation — message si le calendrier ne s'affiche pas", name: "calendlyError", widget: "text", i18n: true }
+          - { label: "Pied de page — phrase de présentation", name: "footerTagline", widget: "string", i18n: true }
+          - { label: "Pied de page — mention santé", name: "disclaimer", widget: "text", i18n: true, hint: "À garder : ce site ne remplace pas un avis médical." }
+          - label: "Description des photos (pour les personnes malvoyantes et pour Google)"
+            name: "imageAlts"
+            widget: "object"
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: "Ta photo", name: "elsa", widget: "string", i18n: true, hint: "Décris ce qu'on voit, en une phrase." }
+              - { label: "Photo de la section « Outil gratuit »", name: "tool", widget: "string", i18n: true }
+
+  # ===========================================================================
+  # Articles et outils
   # ===========================================================================
   - name: blog
-    label: "📝 Articles de blog"
-    label_singular: "Article"
-    description: "Articles éditoriaux + outils interactifs. Format Markdown — utilise la barre d'outils pour mettre en forme."
+    label: "Articles"
+    label_singular: "article"
+    icon: article
+    description: "Les articles et les outils de la page Ressources. Un article = une langue. Laisse « Brouillon » coché tant qu'il n'est pas prêt."
     folder: "src/content/blog"
     create: true
     slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
-    summary: "{{title}} — {{date | date('YYYY-MM-DD')}} ({{lang}})"
+    thumbnail: coverImage
+    summary: "{{title}}"
     sortable_fields: [date, title]
     view_groups:
-      - { label: "Par langue", field: lang }
-      - { label: "Par type d'outil", field: tool }
+      - { label: "Langue", field: lang }
+      - { label: "Brouillon ou en ligne", field: draft }
+    view_filters:
+      - { label: "Brouillons", field: draft, pattern: true }
+      - { label: "En français", field: lang, pattern: "fr" }
+      - { label: "En anglais", field: lang, pattern: "en" }
     fields:
-      # ---- Informations principales ----------------------------------------
-      - { label: "Titre", name: "title", widget: "string", hint: "Le titre principal affiché en haut de l'article et dans la liste." }
-      - { label: "Date de publication", name: "date", widget: "datetime" }
-      - { label: "Extrait (résumé court)", name: "excerpt", widget: "text", hint: "1 à 3 phrases. Affiché dans la liste des articles et en sous-titre de l'article." }
-      - { label: "Image de couverture (optionnel)", name: "coverImage", widget: "image", required: false, hint: "Optionnel. Format paysage recommandé (1200×630 px)." }
-      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false, hint: "Si coché, l'article ne sera pas publié sur le site." }
-
-      # ---- Langue et organisation ------------------------------------------
+      - { label: "Titre de l'article", name: "title", widget: "string" }
       - label: "Langue de l'article"
         name: "lang"
         widget: "select"
-        required: true
         default: "fr"
+        hint: "L'article apparaît seulement sur le site dans cette langue."
         options:
           - { label: "Français", value: "fr" }
-          - { label: "English", value: "en" }
-        hint: "L'article apparaît uniquement dans la liste correspondant à cette langue."
-
-      - { label: "Slug de l'article traduit (optionnel)", name: "translation", widget: "string", required: false, hint: "Slug de la version EN/FR de cet article. Ex: si cet article est en FR et qu'il existe une version EN à /blog/period-calculator, mets 'period-calculator'. Permet au toggle EN/FR du header de naviguer vers la traduction." }
-
-      - label: "Tags"
+          - { label: "Anglais", value: "en" }
+      - { label: "Brouillon (ne pas mettre en ligne)", name: "draft", widget: "boolean", required: false, default: true, hint: "Coche cette case tant que l'article n'est pas prêt : il reste invisible sur le site." }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Résumé", name: "excerpt", widget: "text", hint: "1 à 3 phrases. Affiché dans la liste des articles et dans Google." }
+      - { label: "Photo de l'article (facultatif)", name: "coverImage", widget: "image", required: false, hint: "Format paysage. Sans photo, l'article s'affiche avec un fond uni." }
+      - { label: "Texte de l'article", name: "body", widget: "markdown", hint: "Écris comme dans un traitement de texte : titres, listes, gras, liens. Pour un article avec un outil, ne supprime pas la ligne <!-- calculator --> : elle marque l'endroit où l'outil s'affiche." }
+      - { label: "Le même article dans l'autre langue (facultatif)", name: "translation", widget: "relation", required: false, collection: "blog", value_field: "{{slug}}", display_fields: ["title"], search_fields: ["title"], hint: "Choisis l'article traduit : le bouton FR / EN du site mènera de l'un à l'autre." }
+      - label: "Outil affiché dans l'article (facultatif)"
+        name: "tool"
+        widget: "select"
+        required: false
+        default: ""
+        hint: "Réservé aux 5 articles-outils existants."
+        options:
+          - { label: "Aucun outil", value: "" }
+          - { label: "Calculateur de cycle", value: "period-calculator" }
+          - { label: "Où en suis-je dans mon cycle ?", value: "cycle-phase" }
+          - { label: "Mon cycle est-il régulier ?", value: "cycle-regularity" }
+          - { label: "Après l'arrêt de la contraception", value: "post-contraception" }
+          - { label: "Journal de température basale", value: "basal-tracker" }
+      - label: "Mots-clés (facultatif)"
         name: "tags"
         widget: "list"
         required: false
         default: []
-        field: { label: "Tag", name: "tag", widget: "string" }
-        hint: "Mots-clés thématiques (cycle, hormones, contraception…). Affichés dans le SEO uniquement."
-
-      # ---- Outil interactif (optionnel) ------------------------------------
-      - label: "Outil interactif (optionnel)"
-        name: "tool"
-        widget: "select"
-        required: false
-        options:
-          - { label: "Aucun", value: "" }
-          - { label: "Calculateur de cycle menstruel", value: "period-calculator" }
-          - { label: "Où en suis-je dans mon cycle ?", value: "cycle-phase" }
-          - { label: "Mon cycle est-il régulier ?", value: "cycle-regularity" }
-          - { label: "Après l'arrêt de la pilule / DIU", value: "post-contraception" }
-          - { label: "Mini journal température basale & glaire cervicale", value: "basal-tracker" }
-        default: ""
-        hint: "Si défini, insère le widget interactif à l'emplacement du marqueur <!-- calculator --> dans le contenu Markdown."
-
-      # ---- Contenu ---------------------------------------------------------
-      - { label: "Contenu de l'article", name: "body", widget: "markdown", hint: "Éditeur riche — titres, listes, citations, images, liens. Utilise <!-- calculator --> sur une ligne seule pour positionner un widget interactif." }
+        hint: "Non affichés sur le site. Utiles pour Google."
+        field: { label: "Mot-clé", name: "tag", widget: "string" }
 
   # ===========================================================================
-  # 🌐 PAGE D'ACCUEIL — TEXTES (English)
+  # Photos et documents
   # ===========================================================================
-  - name: en
-    label: "🇬🇧 Textes du site — Anglais"
-    description: "TOUS les textes en anglais (accueil, services, à propos, menus, pied de page…). Repère chaque section grâce à l'emoji au début du libellé : 🧭 menu · 🎯 hero · ✍️ manifesto · 🛠 services · 💗 pour toi · 📚 ressources · 🎬 CTA · ⚓ footer."
-    editor: { preview: false }
-    files:
-      - name: home_en
-        label: "👉 Ouvrir : tous les textes en anglais"
-        file: "src/content/i18n/en.json"
-        format: "json"
-        fields:
-
-          # 🧭 NAVIGATION ===================================================
-          - label: "🧭 Navigation (header)"
-            name: "nav"
-            widget: "list"
-            min: 4
-            max: 4
-            collapsed: true
-            summary: "{{fields.label}}  →  {{fields.route}}"
-            hint: "Les 4 entrées du menu en haut du site. Tu peux renommer les libellés. La route (l'adresse) est verrouillée par un menu déroulant pour éviter de casser les liens si tu réordonnes."
-            fields:
-              - { label: "Libellé visible", name: "label", widget: "string" }
-              - label: "Route (adresse)"
-                name: "route"
-                widget: "select"
-                options:
-                  - { label: "Accueil  (/)", value: "/" }
-                  - { label: "Services  (/services)", value: "/services" }
-                  - { label: "Ressources / Blog  (/blog)", value: "/blog" }
-                  - { label: "À propos  (/about)", value: "/about" }
-
-          - { label: "🧭 Bouton 'Book' (header)", name: "book", widget: "string", hint: "Texte du bouton bordeaux en haut à droite." }
-
-          # 🎯 HERO ==========================================================
-          - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
-          - { label: "🎯 Hero — Petite ligne au-dessus du titre (qui parle)", name: "heroKicker", widget: "string", hint: "Ton prénom et ton métier : on doit comprendre tout de suite qu'une vraie personne est derrière le site." }
-          - { label: "🎯 Hero — Légende sous ta photo", name: "heroCaption", widget: "string", required: false }
-          - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
-          - { label: "🎯 Hero — Bouton secondaire (gris)", name: "heroSecondary", widget: "string" }
-          - { label: "🎯 Hero — Ligne de confiance (sous les boutons)", name: "trust", widget: "string" }
-
-          # ✍️ MANIFESTO =====================================================
-          - { label: "✍️ Manifesto — Titre", name: "manifestoTitle", widget: "string", hint: "Évite les espaces multiples — utilise une seule ligne." }
-          - { label: "✍️ Manifesto — Texte", name: "manifestoText", widget: "text" }
-          - { label: "✍️ Manifesto — Citation (italique)", name: "manifestoQuote", widget: "string" }
-
-          # 🛠 SERVICES ======================================================
-          - { label: "🛠 Services — Titre de section", name: "pillarsTitle", widget: "string" }
-          - { label: "🛠 Services — Sous-titre", name: "pillarsSubtitle", widget: "text" }
-          - label: "🛠 Services — Offres (3 ou 4 maximum)"
-            name: "services"
-            widget: "list"
-            min: 3
-            max: 4
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Résumé (1 phrase, visible sur la carte)", name: "summary", widget: "string", hint: "L'essentiel de l'offre en une phrase." }
-              - { label: "Pour qui (1 phrase, visible sur la carte)", name: "audience", widget: "string", required: false }
-              - { label: "Description complète (dans « Voir le détail »)", name: "body", widget: "text", hint: "Saute une ligne vide pour créer un nouveau paragraphe." }
-              - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
-              - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
-              - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
-              - { label: "Texte du CTA", name: "cta", widget: "string" }
-              - label: "Action du bouton"
-                name: "action"
-                widget: "select"
-                default: "intro"
-                options:
-                  - { label: "Réserver l'Introduction (Calendly)", value: "intro" }
-                  - { label: "Réserver le Rhythm Check-In (Calendly)", value: "checkin" }
-                  - { label: "Liste d'attente (email)", value: "waitlist" }
-          - label: "🛠 Services — Intitulés des blocs"
-            name: "servicesLabels"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
-              - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
-              - { label: "Libellé du bouton « voir le détail »", name: "more", widget: "string" }
-          - label: "🧬 Méthode Inner Rhythm (accueil + services)"
-            name: "method"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
-              - { label: "Titre de la section sur l'accueil", name: "homeTitle", widget: "string", hint: "En mots simples, ex. « Comment je t'accompagne »." }
-              - { label: "Titre de la méthode", name: "title", widget: "string" }
-              - { label: "Introduction", name: "intro", widget: "text" }
-              - { label: "Lien accueil -> services", name: "cta", widget: "string" }
-              - { label: "Programme — Kicker", name: "programmeKicker", widget: "string" }
-              - { label: "Programme — Titre", name: "programmeTitle", widget: "string" }
-              - { label: "Programme — Détails (durée, langues)", name: "programmeMeta", widget: "string" }
-              - { label: "Programme — Texte du bouton", name: "programmeCta", widget: "string" }
-              - label: "Phases (4)"
-                name: "phases"
-                widget: "list"
-                min: 4
-                max: 4
-                summary: "{{fields.num}} — {{fields.title}}"
-                fields:
-                  - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
-                  - { label: "Titre", name: "title", widget: "string" }
-                  - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
-                  - { label: "Accueil — nom simple de l'étape", name: "homeTitle", widget: "string", hint: "Ex. « Comprendre »." }
-                  - { label: "Accueil — l'étape en une phrase", name: "short", widget: "text", hint: "Une phrase concrète, comme tu l'expliquerais à voix haute." }
-                  - { label: "Description", name: "body", widget: "text" }
-                  - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
-                  - { label: "Résultat", name: "outcome", widget: "text" }
-                  - { label: "Citation", name: "quote", widget: "string" }
-
-          - label: "🎯 Accueil — « Qu'est-ce qui t'amène ? » (cartes)"
-            name: "concerns"
-            widget: "object"
-            collapsed: true
-            hint: "Petites cartes avec icône sous le hero. Garde des intitulés courts, sans promesse médicale."
-            fields:
-              - { label: "Titre de la section", name: "title", widget: "string" }
-              - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
-              - { label: "Phrase pour celles qui ne se reconnaissent dans aucune carte", name: "unsure", widget: "text", hint: "Suivie d'un lien vers l'appel gratuit." }
-              - label: "Cartes (6 conseillées)"
-                name: "items"
-                widget: "list"
-                min: 2
-                max: 8
-                summary: "{{fields.title}}"
-                fields:
-                  - label: "Icône"
-                    name: "icon"
-                    widget: "select"
-                    default: "cycle"
-                    options:
-                      - { label: "Goutte", value: "drop" }
-                      - { label: "Humeur", value: "mood" }
-                      - { label: "Cycle", value: "cycle" }
-                      - { label: "Vagues (hormones)", value: "waves" }
-                      - { label: "Contraception", value: "capsule" }
-                      - { label: "Pousse (fertilité)", value: "sprout" }
-                  - { label: "Intitulé court", name: "title", widget: "string" }
-                  - label: "Où mène la carte ?"
-                    name: "link"
-                    widget: "select"
-                    default: "services"
-                    options:
-                      - { label: "Page Services", value: "services" }
-                      - { label: "Page À propos", value: "about" }
-                      - { label: "Page Ressources / Blog", value: "blog" }
-                      - { label: "Outil : Mon cycle est-il régulier ?", value: "regularity" }
-                      - { label: "Outil : Après l'arrêt de la contraception", value: "post-contraception" }
-                      - { label: "Outil : Température basale & glaire", value: "basal" }
-                      - { label: "Outil : Où en suis-je dans mon cycle ?", value: "where-am-i" }
-                      - { label: "Outil : Calculateur de cycle", value: "calculator" }
-          - label: "👤 Accueil — Présentation d'Elsa (courte)"
-            name: "meetElsa"
-            widget: "object"
-            collapsed: true
-            hint: "Ton histoire en quelques lignes, à la première personne. Le récit complet est sur la page À propos."
-            fields:
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte (2 courts paragraphes)", name: "text", widget: "text" }
-              - { label: "Texte du bouton", name: "cta", widget: "string" }
-          - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
-          - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
-          - label: "🖼 Textes alternatifs des images (accessibilité + Google)"
-            name: "imageAlts"
-            widget: "object"
-            collapsed: true
-            hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
-            fields:
-              - { label: "Image consultation en ligne", name: "online", widget: "string" }
-              - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
-              - { label: "Image du blog", name: "blog", widget: "string" }
-              - { label: "Photo d'Elsa", name: "elsa", widget: "string" }
-          - label: "👤 Page À propos — intertitres"
-            name: "about"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
-              - { label: "Présentation courte sous le titre de la page", name: "intro", widget: "text", hint: "Qui tu es, ta formation, et ce que tu n'es pas (médecin)." }
-              - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
-              - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
-              - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
-
-          # 💗 POUR TOI / PAS POUR TOI =======================================
-          - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
-          - label: "💗 Pour toi — Items"
-            name: "forYou"
-            widget: "list"
-            hint: "Recommandé : 5 à 7 items courts."
-            field: { label: "Item", name: "item", widget: "text" }
-
-          # 🛤 PARCOURS (Services) ==========================================
-          - label: "❓ Questions fréquentes (page Services)"
-            name: "faq"
-            widget: "object"
-            collapsed: true
-            hint: "Quelques questions courtes affichées en bas de la page Services. Évite toute promesse médicale."
-            fields:
-              - { label: "Titre de la section", name: "title", widget: "string" }
-              - label: "Questions"
-                name: "items"
-                widget: "list"
-                max: 8
-                summary: "{{fields.q}}"
-                fields:
-                  - { label: "Question", name: "q", widget: "string" }
-                  - { label: "Réponse", name: "a", widget: "text" }
-          - { label: "🛤 Parcours — Titre de section", name: "journeyTitle", widget: "string" }
-          - label: "🛤 Parcours — Étapes (4)"
-            name: "journey"
-            widget: "list"
-            min: 4
-            max: 4
-            summary: "{{fields.num}} — {{fields.title}}"
-            fields:
-              - label: "Numéro"
-                name: "num"
-                widget: "select"
-                default: "01"
-                options: ["01", "02", "03", "04"]
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte", name: "body", widget: "text" }
-
-          # 📚 RESSOURCES (PDF gratuit) ======================================
-          - { label: "📚 Ressources — Titre", name: "resourcesTitle", widget: "string" }
-          - { label: "📚 Ressources — Texte", name: "resourcesText", widget: "text" }
-          - { label: "📚 Ressources — Placeholder email", name: "emailPlaceholder", widget: "string" }
-          - { label: "📚 Ressources — Bouton 'télécharger'", name: "download", widget: "string" }
-          - { label: "📚 Ressources — Bouton 'télécharger à nouveau'", name: "guideDownloadAgain", widget: "string" }
-          - { label: "📚 Ressources — Libellé du champ email", name: "guideEmailLabel", widget: "string" }
-          - { label: "📚 Ressources — Case de consentement (RGPD)", name: "guideConsent", widget: "text", hint: "Texte à côté de la case à cocher. Il doit dire clairement à qui l'email est transmis." }
-          - { label: "📚 Ressources — Erreur 'case non cochée'", name: "guideConsentRequired", widget: "string" }
-          - { label: "📚 Ressources — Lien 'télécharger sans email'", name: "guideNoEmail", widget: "string" }
-          - { label: "📚 Ressources — Texte du bouton pendant l'envoi", name: "guideSending", widget: "string" }
-          - { label: "📚 Ressources — Erreur 'email invalide'", name: "guideInvalidEmail", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : titre", name: "guideThanksTitle", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : texte (sans email)", name: "guideThanksText", widget: "text" }
-          - { label: "📚 Ressources — Confirmation : texte (email envoyé)", name: "guideSentText", widget: "text" }
-          - { label: "📚 Ressources — Confirmation : texte (email non envoyé)", name: "guideFailedText", widget: "text" }
-
-          # 🛠 BLOC OUTIL HOME ===============================================
-          - label: "🛠 Bloc outil interactif sur la home"
-            name: "homeTool"
-            widget: "object"
-            collapsed: true
-            hint: "Section qui présente le calculateur de cycle juste avant le CTA final."
-            fields:
-              - { label: "Kicker (petite ligne)", name: "kicker", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
-              - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
-              - { label: "Mention sous le bouton (résultats indicatifs)", name: "note", widget: "string", hint: "Garde une mention claire : les résultats sont des estimations, pas un avis médical ni une contraception." }
-
-          # 👤 À PROPOS (page About) =========================================
-          - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
-          - { label: "👤 À propos — Texte (paragraphes séparés par lignes vides)", name: "aboutText", widget: "text" }
-          - label: "👤 À propos — Credentials"
-            name: "credentials"
-            widget: "list"
-            field: { label: "Credential", name: "item", widget: "string" }
-
-          # 🎬 CTA FINAL =====================================================
-          - { label: "🎬 CTA final — Titre", name: "finalTitle", widget: "string" }
-          - { label: "🎬 CTA final — Texte", name: "finalText", widget: "text" }
-          - { label: "🎬 CTA final — Texte du bouton", name: "finalCta", widget: "string", hint: "Le bouton principal de la dernière section de chaque page." }
-
-          # 📅 MODAL RÉSERVATION =============================================
-          - { label: "📅 Modal réservation — Titre", name: "modalTitle", widget: "string" }
-          - { label: "📅 Modal réservation — Texte", name: "modalText", widget: "text" }
-          - { label: "📅 Modal — Bouton 'Open Calendly'", name: "calendly", widget: "string" }
-          - { label: "📅 Modal — Texte de chargement", name: "calendlyLoading", widget: "string" }
-          - { label: "📅 Modal — Texte d'erreur", name: "calendlyError", widget: "text" }
-
-          # ⚓ PIED DE PAGE ==================================================
-          - { label: "⚓ Pied de page — Tagline", name: "footerTagline", widget: "string" }
-          - { label: "⚓ Pied de page — Disclaimer (sous le footer)", name: "disclaimer", widget: "text" }
-
-          # 📱 MOBILE (optionnel) ============================================
-          - { label: "📱 Mobile — Titre du hero (optionnel)", name: "mobileHeroTitle", widget: "string", required: false, default: "", hint: "Si rempli, ce titre remplace le titre principal sur écrans < 768px (mobile). Si vide, on garde le titre principal. Utile pour raccourcir un titre trop long sur petits écrans." }
-          - { label: "📱 Mobile — Texte du hero (optionnel)", name: "mobileHeroText", widget: "text", required: false, default: "", hint: "Pareil que ci-dessus, mais pour le paragraphe d'introduction sous le titre. Vide = on garde le texte principal." }
-
-  # ===========================================================================
-  # 🌐 PAGE D'ACCUEIL — TEXTES (Français)
-  # ===========================================================================
-  - name: fr
-    label: "🇫🇷 Textes du site — Français"
-    description: "TOUS les textes en français (accueil, services, à propos, menus, pied de page…). Repère chaque section grâce à l'emoji au début du libellé : 🧭 menu · 🎯 hero · ✍️ manifesto · 🛠 services · 💗 pour toi · 📚 ressources · 🎬 CTA · ⚓ footer."
-    editor: { preview: false }
-    files:
-      - name: home_fr
-        label: "👉 Ouvrir : tous les textes en français"
-        file: "src/content/i18n/fr.json"
-        format: "json"
-        fields:
-
-          # 🧭 NAVIGATION ===================================================
-          - label: "🧭 Navigation (header)"
-            name: "nav"
-            widget: "list"
-            min: 4
-            max: 4
-            collapsed: true
-            summary: "{{fields.label}}  →  {{fields.route}}"
-            hint: "Les 4 entrées du menu en haut du site. Tu peux renommer les libellés. La route (l'adresse) est verrouillée par un menu déroulant pour éviter de casser les liens si tu réordonnes."
-            fields:
-              - { label: "Libellé visible", name: "label", widget: "string" }
-              - label: "Route (adresse)"
-                name: "route"
-                widget: "select"
-                options:
-                  - { label: "Accueil  (/)", value: "/" }
-                  - { label: "Services  (/services)", value: "/services" }
-                  - { label: "Ressources / Blog  (/blog)", value: "/blog" }
-                  - { label: "À propos  (/about)", value: "/about" }
-
-          - { label: "🧭 Bouton 'Réserver' (header)", name: "book", widget: "string" }
-
-          # 🎯 HERO ==========================================================
-          - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
-          - { label: "🎯 Hero — Petite ligne au-dessus du titre (qui parle)", name: "heroKicker", widget: "string", hint: "Ton prénom et ton métier : on doit comprendre tout de suite qu'une vraie personne est derrière le site." }
-          - { label: "🎯 Hero — Légende sous ta photo", name: "heroCaption", widget: "string", required: false }
-          - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
-          - { label: "🎯 Hero — Bouton secondaire", name: "heroSecondary", widget: "string" }
-          - { label: "📱 Mobile — Titre du hero (optionnel)", name: "mobileHeroTitle", widget: "string", required: false, default: "", hint: "Si rempli, ce titre remplace le titre principal sur mobile. Vide = on garde le titre principal." }
-          - { label: "📱 Mobile — Texte du hero (optionnel)", name: "mobileHeroText", widget: "text", required: false, default: "", hint: "Pareil, pour le paragraphe sous le titre. Vide = on garde le texte principal." }
-          - { label: "🎯 Hero — Ligne de confiance", name: "trust", widget: "string" }
-
-          # ✍️ MANIFESTO =====================================================
-          - { label: "✍️ Manifesto — Titre", name: "manifestoTitle", widget: "string", hint: "Évite les espaces multiples — utilise une seule ligne." }
-          - { label: "✍️ Manifesto — Texte", name: "manifestoText", widget: "text" }
-          - { label: "✍️ Manifesto — Citation (italique)", name: "manifestoQuote", widget: "string" }
-
-          # 🛠 SERVICES ======================================================
-          - { label: "🛠 Services — Titre de section", name: "pillarsTitle", widget: "string" }
-          - { label: "🛠 Services — Sous-titre", name: "pillarsSubtitle", widget: "text" }
-          - label: "🛠 Services — Offres (3 ou 4 maximum)"
-            name: "services"
-            widget: "list"
-            min: 3
-            max: 4
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "Tag (petite ligne)", name: "tag", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Résumé (1 phrase, visible sur la carte)", name: "summary", widget: "string", hint: "L'essentiel de l'offre en une phrase." }
-              - { label: "Pour qui (1 phrase, visible sur la carte)", name: "audience", widget: "string", required: false }
-              - { label: "Description complète (dans « Voir le détail »)", name: "body", widget: "text", hint: "Saute une ligne vide pour créer un nouveau paragraphe." }
-              - { label: "Pour qui (optionnel)", name: "forWho", widget: "text", required: false }
-              - { label: "Ce que tu emportes (optionnel)", name: "leave", widget: "text", required: false }
-              - { label: "Prix affiché (optionnel)", name: "priceLabel", widget: "string", required: false, hint: "Ex : « 90 € » ou « Gratuit ». Laisse vide tant que le prix n'est pas décidé : rien ne s'affichera." }
-              - { label: "Texte du CTA", name: "cta", widget: "string" }
-              - label: "Action du bouton"
-                name: "action"
-                widget: "select"
-                default: "intro"
-                options:
-                  - { label: "Réserver l'Introduction (Calendly)", value: "intro" }
-                  - { label: "Réserver le Rhythm Check-In (Calendly)", value: "checkin" }
-                  - { label: "Liste d'attente (email)", value: "waitlist" }
-          - label: "🛠 Services — Intitulés des blocs"
-            name: "servicesLabels"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Intitulé 'Pour qui'", name: "forWho", widget: "string" }
-              - { label: "Intitulé 'Ce que tu emportes'", name: "leave", widget: "string" }
-              - { label: "Libellé du bouton « voir le détail »", name: "more", widget: "string" }
-          - label: "🧬 Méthode Inner Rhythm (accueil + services)"
-            name: "method"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
-              - { label: "Titre de la section sur l'accueil", name: "homeTitle", widget: "string", hint: "En mots simples, ex. « Comment je t'accompagne »." }
-              - { label: "Titre de la méthode", name: "title", widget: "string" }
-              - { label: "Introduction", name: "intro", widget: "text" }
-              - { label: "Lien accueil -> services", name: "cta", widget: "string" }
-              - { label: "Programme — Kicker", name: "programmeKicker", widget: "string" }
-              - { label: "Programme — Titre", name: "programmeTitle", widget: "string" }
-              - { label: "Programme — Détails (durée, langues)", name: "programmeMeta", widget: "string" }
-              - { label: "Programme — Texte du bouton", name: "programmeCta", widget: "string" }
-              - label: "Phases (4)"
-                name: "phases"
-                widget: "list"
-                min: 4
-                max: 4
-                summary: "{{fields.num}} — {{fields.title}}"
-                fields:
-                  - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
-                  - { label: "Titre", name: "title", widget: "string" }
-                  - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
-                  - { label: "Accueil — nom simple de l'étape", name: "homeTitle", widget: "string", hint: "Ex. « Comprendre »." }
-                  - { label: "Accueil — l'étape en une phrase", name: "short", widget: "text", hint: "Une phrase concrète, comme tu l'expliquerais à voix haute." }
-                  - { label: "Description", name: "body", widget: "text" }
-                  - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
-                  - { label: "Résultat", name: "outcome", widget: "text" }
-                  - { label: "Citation", name: "quote", widget: "string" }
-
-          - label: "🎯 Accueil — « Qu'est-ce qui t'amène ? » (cartes)"
-            name: "concerns"
-            widget: "object"
-            collapsed: true
-            hint: "Petites cartes avec icône sous le hero. Garde des intitulés courts, sans promesse médicale."
-            fields:
-              - { label: "Titre de la section", name: "title", widget: "string" }
-              - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
-              - { label: "Phrase pour celles qui ne se reconnaissent dans aucune carte", name: "unsure", widget: "text", hint: "Suivie d'un lien vers l'appel gratuit." }
-              - label: "Cartes (6 conseillées)"
-                name: "items"
-                widget: "list"
-                min: 2
-                max: 8
-                summary: "{{fields.title}}"
-                fields:
-                  - label: "Icône"
-                    name: "icon"
-                    widget: "select"
-                    default: "cycle"
-                    options:
-                      - { label: "Goutte", value: "drop" }
-                      - { label: "Humeur", value: "mood" }
-                      - { label: "Cycle", value: "cycle" }
-                      - { label: "Vagues (hormones)", value: "waves" }
-                      - { label: "Contraception", value: "capsule" }
-                      - { label: "Pousse (fertilité)", value: "sprout" }
-                  - { label: "Intitulé court", name: "title", widget: "string" }
-                  - label: "Où mène la carte ?"
-                    name: "link"
-                    widget: "select"
-                    default: "services"
-                    options:
-                      - { label: "Page Services", value: "services" }
-                      - { label: "Page À propos", value: "about" }
-                      - { label: "Page Ressources / Blog", value: "blog" }
-                      - { label: "Outil : Mon cycle est-il régulier ?", value: "regularity" }
-                      - { label: "Outil : Après l'arrêt de la contraception", value: "post-contraception" }
-                      - { label: "Outil : Température basale & glaire", value: "basal" }
-                      - { label: "Outil : Où en suis-je dans mon cycle ?", value: "where-am-i" }
-                      - { label: "Outil : Calculateur de cycle", value: "calculator" }
-          - label: "👤 Accueil — Présentation d'Elsa (courte)"
-            name: "meetElsa"
-            widget: "object"
-            collapsed: true
-            hint: "Ton histoire en quelques lignes, à la première personne. Le récit complet est sur la page À propos."
-            fields:
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte (2 courts paragraphes)", name: "text", widget: "text" }
-              - { label: "Texte du bouton", name: "cta", widget: "string" }
-          - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
-          - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
-          - label: "🖼 Textes alternatifs des images (accessibilité + Google)"
-            name: "imageAlts"
-            widget: "object"
-            collapsed: true
-            hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
-            fields:
-              - { label: "Image consultation en ligne", name: "online", widget: "string" }
-              - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
-              - { label: "Image du blog", name: "blog", widget: "string" }
-              - { label: "Photo d'Elsa", name: "elsa", widget: "string" }
-          - label: "👤 Page À propos — intertitres"
-            name: "about"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
-              - { label: "Présentation courte sous le titre de la page", name: "intro", widget: "text", hint: "Qui tu es, ta formation, et ce que tu n'es pas (médecin)." }
-              - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
-              - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
-              - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
-
-          # 💗 POUR TOI / PAS POUR TOI =======================================
-          - { label: "💗 Pour toi — Titre", name: "forYouTitle", widget: "string" }
-          - label: "💗 Pour toi — Items"
-            name: "forYou"
-            widget: "list"
-            hint: "Recommandé : 5 à 7 items courts."
-            field: { label: "Item", name: "item", widget: "text" }
-
-          # 🛤 PARCOURS ======================================================
-          - label: "❓ Questions fréquentes (page Services)"
-            name: "faq"
-            widget: "object"
-            collapsed: true
-            hint: "Quelques questions courtes affichées en bas de la page Services. Évite toute promesse médicale."
-            fields:
-              - { label: "Titre de la section", name: "title", widget: "string" }
-              - label: "Questions"
-                name: "items"
-                widget: "list"
-                max: 8
-                summary: "{{fields.q}}"
-                fields:
-                  - { label: "Question", name: "q", widget: "string" }
-                  - { label: "Réponse", name: "a", widget: "text" }
-          - { label: "🛤 Parcours — Titre de section", name: "journeyTitle", widget: "string" }
-          - label: "🛤 Parcours — Étapes (4)"
-            name: "journey"
-            widget: "list"
-            min: 4
-            max: 4
-            summary: "{{fields.num}} — {{fields.title}}"
-            fields:
-              - label: "Numéro"
-                name: "num"
-                widget: "select"
-                default: "01"
-                options: ["01", "02", "03", "04"]
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte", name: "body", widget: "text" }
-
-          # 📚 RESSOURCES ====================================================
-          - { label: "📚 Ressources — Titre", name: "resourcesTitle", widget: "string" }
-          - { label: "📚 Ressources — Texte", name: "resourcesText", widget: "text" }
-          - { label: "📚 Ressources — Placeholder email", name: "emailPlaceholder", widget: "string" }
-          - { label: "📚 Ressources — Bouton 'télécharger'", name: "download", widget: "string" }
-          - { label: "📚 Ressources — Bouton 'télécharger à nouveau'", name: "guideDownloadAgain", widget: "string" }
-          - { label: "📚 Ressources — Libellé du champ email", name: "guideEmailLabel", widget: "string" }
-          - { label: "📚 Ressources — Case de consentement (RGPD)", name: "guideConsent", widget: "text", hint: "Texte à côté de la case à cocher. Il doit dire clairement à qui l'email est transmis." }
-          - { label: "📚 Ressources — Erreur 'case non cochée'", name: "guideConsentRequired", widget: "string" }
-          - { label: "📚 Ressources — Lien 'télécharger sans email'", name: "guideNoEmail", widget: "string" }
-          - { label: "📚 Ressources — Texte du bouton pendant l'envoi", name: "guideSending", widget: "string" }
-          - { label: "📚 Ressources — Erreur 'email invalide'", name: "guideInvalidEmail", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : titre", name: "guideThanksTitle", widget: "string" }
-          - { label: "📚 Ressources — Confirmation : texte (sans email)", name: "guideThanksText", widget: "text" }
-          - { label: "📚 Ressources — Confirmation : texte (email envoyé)", name: "guideSentText", widget: "text" }
-          - { label: "📚 Ressources — Confirmation : texte (email non envoyé)", name: "guideFailedText", widget: "text" }
-
-          # 🛠 BLOC OUTIL HOME ===============================================
-          - label: "🛠 Bloc outil interactif sur la home"
-            name: "homeTool"
-            widget: "object"
-            collapsed: true
-            hint: "Section qui présente le calculateur de cycle juste avant le CTA final."
-            fields:
-              - { label: "Kicker (petite ligne)", name: "kicker", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
-              - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
-              - { label: "Mention sous le bouton (résultats indicatifs)", name: "note", widget: "string", hint: "Garde une mention claire : les résultats sont des estimations, pas un avis médical ni une contraception." }
-
-          # 👤 À PROPOS ======================================================
-          - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
-          - { label: "👤 À propos — Texte (paragraphes séparés par lignes vides)", name: "aboutText", widget: "text" }
-          - label: "👤 À propos — Credentials"
-            name: "credentials"
-            widget: "list"
-            field: { label: "Credential", name: "item", widget: "string" }
-
-          # 🎬 CTA FINAL =====================================================
-          - { label: "🎬 CTA final — Titre", name: "finalTitle", widget: "string" }
-          - { label: "🎬 CTA final — Texte", name: "finalText", widget: "text" }
-          - { label: "🎬 CTA final — Texte du bouton", name: "finalCta", widget: "string", hint: "Le bouton principal de la dernière section de chaque page." }
-
-          # 📅 MODAL RÉSERVATION =============================================
-          - { label: "📅 Modal réservation — Titre", name: "modalTitle", widget: "string" }
-          - { label: "📅 Modal réservation — Texte", name: "modalText", widget: "text" }
-          - { label: "📅 Modal — Bouton 'Open Calendly'", name: "calendly", widget: "string" }
-          - { label: "📅 Modal — Texte de chargement", name: "calendlyLoading", widget: "string" }
-          - { label: "📅 Modal — Texte d'erreur", name: "calendlyError", widget: "text" }
-
-          # ⚓ PIED DE PAGE ==================================================
-          - { label: "⚓ Pied de page — Tagline", name: "footerTagline", widget: "string" }
-          - { label: "⚓ Pied de page — Disclaimer", name: "disclaimer", widget: "text" }
-
-  # ===========================================================================
-  # ⚙️ PARAMÈTRES DU SITE
-  # ===========================================================================
-  - name: settings
-    label: "⚙️ Paramètres du site"
-    description: "Coordonnées, liens externes, image principale, fichier guide PDF."
-    editor: { preview: false }
-    files:
-      - name: site
-        label: "👉 Ouvrir : coordonnées, Calendly, guides PDF"
-        file: "src/content/settings/site.json"
-        format: "json"
-        fields:
-          - { label: "Nom du site", name: "siteName", widget: "string" }
-          - { label: "URL Calendly (réservation)", name: "bookingUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"], hint: "Lien Calendly complet, utilisé par le bouton de réservation." }
-          - { label: "URL Calendly — The Introduction (optionnel)", name: "bookingUrlIntroduction", widget: "string", required: false, pattern: ['^$|^https://calendly\.com/[^\s]+$', "Doit être un lien Calendly complet qui commence par https://calendly.com/ (ou rester vide)"], hint: "Lien de l'événement Calendly 'Introduction'. Vide = lien Calendly général." }
-          - { label: "URL Calendly — Rhythm Check-In (optionnel)", name: "bookingUrlCheckIn", widget: "string", required: false, pattern: ['^$|^https://calendly\.com/[^\s]+$', "Doit être un lien Calendly complet qui commence par https://calendly.com/ (ou rester vide)"], hint: "Lien de l'événement Calendly 'Rhythm Check-In'. Vide = lien Calendly général." }
-          - { label: "Email qui reçoit les inscriptions au guide", name: "guideLeadEmail", widget: "string", pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Adresse email invalide"], hint: "Qui a téléchargé le guide ? Chaque personne qui laisse son email arrive dans cette boîte mail, dans un message intitulé « The Cycle Space — guide download (FR) » ou « (EN) » : cherche ce titre pour voir toute la liste. Les téléchargements sans email restent anonymes. À la toute première inscription, FormSubmit envoie un email de confirmation à cette adresse : il faut cliquer sur le lien une fois, sinon rien n'arrive." }
-          - { label: "Email de contact", name: "contactEmail", widget: "string", pattern: ['^[^@]+@[^@]+\.[^@]+$', "Adresse email invalide"], hint: "Affiché dans le footer." }
-          - { label: "URL Instagram", name: "instagramUrl", widget: "string", pattern: ['^https?://', "Doit commencer par http:// ou https://"] }
-          - { label: "Image principale (Elsa)", name: "elsaImage", widget: "image", hint: "Sélectionne une image OU saisis le nom d'un fichier déjà dans /public (ex: elsa.jpg)." }
-          - { label: "📘 Guide gratuit — PDF en français", name: "guidePdfFr", widget: "file", hint: "Le guide téléchargé depuis les pages en français. Pour le remplacer : clique sur « Remplacer », choisis le nouveau PDF (3 Mo maximum), puis « Enregistrer ». Le site se met à jour en quelques minutes." }
-          - { label: "📘 Guide gratuit — PDF en anglais", name: "guidePdfEn", widget: "file", hint: "Le guide téléchargé depuis les pages en anglais. Même manipulation que pour le français." }
-          - { label: "📘 Guide gratuit — image de couverture (français)", name: "guideCoverFr", widget: "image", hint: "La couverture affichée à côté du formulaire. Si tu changes la première page du PDF, remplace aussi cette image (une capture de la première page, format portrait)." }
-          - { label: "📘 Guide gratuit — image de couverture (anglais)", name: "guideCoverEn", widget: "image" }
-          - { label: "Handle du pied de page", name: "footerHandle", widget: "string", hint: "Texte court affiché dans le footer (ex: 'thecyclespace.com · @elsa.thecyclespace')." }
-
-  # ===========================================================================
-  # 🔍 SEO (méta titres + descriptions)
-  # ===========================================================================
-  - name: images
-    label: "🖼 Images du site"
-    description: "Remplace les grandes photos du site. Format paysage conseillé (4:3 ou 3:2), 3 Mo maximum. Pense à décrire l'image dans « Textes du site » (textes alternatifs)."
+  - name: media
+    label: "Photos et documents"
+    icon: photo_library
+    description: "Les photos du site et le guide gratuit. Les photos sont allégées automatiquement (3 Mo maximum par fichier)."
     editor: { preview: false }
     files:
       - name: site_images
-        label: "👉 Ouvrir : les images du site"
+        label: "Photos du site"
+        icon: image
         file: "src/content/settings/images.json"
-        format: "json"
+        description: "Clique sur une photo pour la remplacer. Pense ensuite à sa description, dans « Mes pages » → « Menu, boutons et pied de page »."
         fields:
-          - { label: "Accueil — consultation en ligne", name: "onlineImage", widget: "image" }
-          - { label: "Accueil — outil / carnet de suivi", name: "toolImage", widget: "image" }
-          - { label: "Bandeau de fin de page", name: "bannerImage", widget: "image", hint: "Image douce et sans texte : elle est assombrie derrière le texte." }
-          - { label: "Page Services — image d'ambiance", name: "servicesImage", widget: "image" }
-          - { label: "Page Ressources — image d'ambiance", name: "blogImage", widget: "image" }
+          - { label: "Ta photo", name: "elsaImage", widget: "image", hint: "Affichée en haut de l'accueil et sur la page À propos. Idéalement carrée, au moins 1200 pixels de côté." }
+          - { label: "Accueil — photo de la section « Outil gratuit »", name: "toolImage", widget: "image", media_folder: "/public/images/site", public_folder: "/images/site", hint: "Format paysage." }
+          - { label: "Page Accompagnements — photo du haut", name: "servicesImage", widget: "image", media_folder: "/public/images/site", public_folder: "/images/site", hint: "Format paysage. Visible sur ordinateur seulement." }
+          - { label: "Bandeau en bas de chaque page — image de fond", name: "bannerImage", widget: "image", media_folder: "/public/images/site", public_folder: "/images/site", hint: "Image douce, sans texte : elle est assombrie derrière le titre." }
+      - name: guide
+        label: "Guide gratuit (PDF)"
+        icon: picture_as_pdf
+        file: "src/content/settings/guide.json"
+        description: "Les deux PDF téléchargés depuis le site, leur couverture, et l'adresse qui reçoit les inscriptions."
+        fields:
+          - { label: "Le guide en français (PDF)", name: "guidePdfFr", widget: "file", hint: "Téléchargé depuis les pages en français. Pour le remplacer : clique sur le fichier, choisis le nouveau PDF (3 Mo maximum), puis enregistre." }
+          - { label: "Le guide en anglais (PDF)", name: "guidePdfEn", widget: "file", hint: "Téléchargé depuis les pages en anglais." }
+          - { label: "Couverture du guide en français (image)", name: "guideCoverFr", widget: "image", hint: "L'image affichée à côté du formulaire. Si tu changes la première page du PDF, remplace aussi cette image (une capture de la première page)." }
+          - { label: "Couverture du guide en anglais (image)", name: "guideCoverEn", widget: "image" }
+          - { label: "Adresse qui reçoit les inscriptions", name: "guideLeadEmail", widget: "string", pattern: ["^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", "Cette adresse email n'est pas valide"], hint: "Chaque personne qui laisse son email pour le guide arrive dans cette boîte, dans un message intitulé « The Cycle Space — guide download ». Si tu changes d'adresse, un email de confirmation (FormSubmit) arrive à la nouvelle adresse : clique sur son lien, sinon rien n'arrive." }
 
-  - name: seo
-    label: "🔍 SEO (Google + réseaux sociaux)"
-    description: "Titres et descriptions pour Google et le partage sur les réseaux sociaux (EN + FR)."
+  # ===========================================================================
+  # Coordonnées et réservation
+  # ===========================================================================
+  - name: contact
+    label: "Coordonnées"
+    icon: call
+    description: "Tes liens Calendly, ton email et ton Instagram."
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Mes coordonnées et mes liens Calendly"
+        icon: event_available
+        file: "src/content/settings/site.json"
+        description: "Après un changement de lien Calendly, teste un bouton de réservation sur le site."
+        fields:
+          - { label: "Lien Calendly principal", name: "bookingUrl", widget: "string", pattern: ["^https://calendly\\.com/[^\\s]+$", "Le lien doit commencer par https://calendly.com/"], hint: "Utilisé par tous les boutons de réservation tant que les deux liens ci-dessous sont vides. Ne le laisse jamais vide." }
+          - { label: "Lien Calendly de l'appel gratuit (facultatif)", name: "bookingUrlIntroduction", widget: "string", required: false, pattern: ["^$|^https://calendly\\.com/[^\\s]+$", "Le lien doit commencer par https://calendly.com/ (ou rester vide)"], hint: "Si tu crées dans Calendly un événement réservé à l'appel gratuit, colle son lien ici." }
+          - { label: "Lien Calendly de la séance de 90 minutes (facultatif)", name: "bookingUrlCheckIn", widget: "string", required: false, pattern: ["^$|^https://calendly\\.com/[^\\s]+$", "Le lien doit commencer par https://calendly.com/ (ou rester vide)"] }
+          - { label: "Ton adresse email de contact", name: "contactEmail", widget: "string", pattern: ["^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", "Cette adresse email n'est pas valide"], hint: "Affichée en bas du site et utilisée par le bouton « liste d'attente »." }
+          - { label: "Lien de ton compte Instagram", name: "instagramUrl", widget: "string", pattern: ["^https://[^\\s]+$", "Le lien doit commencer par https://"] }
+          - { label: "Petite ligne du pied de page", name: "footerHandle", widget: "string", hint: "Par exemple : thecyclespace.com · @elsa.thecyclespace" }
+          - { label: "Nom du site", name: "siteName", widget: "string", hint: "Affiché tout en bas, après le symbole ©." }
+
+  # ===========================================================================
+  # Options avancées (rarement utiles)
+  # ===========================================================================
+  - name: advanced
+    label: "Options avancées"
+    icon: tune
+    description: "Ce que Google et les réseaux sociaux affichent. À modifier rarement."
     editor: { preview: false }
     files:
       - name: meta
-        label: "👉 Ouvrir : titres et descriptions Google (anglais et français)"
+        label: "Titres et descriptions pour Google"
+        icon: search
         file: "src/content/seo/seo.json"
-        format: "json"
+        description: "Le titre et la description de chaque page dans les résultats Google, en français et en anglais."
         fields:
-          - label: "🇬🇧 Anglais"
-            name: "en"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Titre de la page (Google)", name: "title", widget: "string", hint: "Idéal entre 50 et 60 caractères." }
-              - { label: "Meta description (Google)", name: "description", widget: "text", hint: "Idéal entre 140 et 160 caractères." }
-              - { label: "Open Graph — Titre (réseaux sociaux)", name: "ogTitle", widget: "string" }
-              - { label: "Open Graph — Description (réseaux sociaux)", name: "ogDescription", widget: "text" }
-              - label: "Pages — Services, Ressources, À propos"
-                name: "pages"
-                widget: "object"
-                collapsed: true
-                fields:
-                  - label: "Services"
-                    name: "services"
-                    widget: "object"
-                    fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-                  - label: "Ressources / Blog"
-                    name: "blog"
-                    widget: "object"
-                    fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-                  - label: "À propos"
-                    name: "about"
-                    widget: "object"
-                    fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-                  - label: "Page introuvable (erreur 404)"
-                    name: "notFound"
-                    widget: "object"
-                    fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-          - label: "🇫🇷 Français"
+          - label: "Français"
             name: "fr"
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Titre de la page (Google)", name: "title", widget: "string", hint: "Idéal entre 50 et 60 caractères." }
-              - { label: "Meta description (Google)", name: "description", widget: "text", hint: "Idéal entre 140 et 160 caractères." }
-              - { label: "Open Graph — Titre (réseaux sociaux)", name: "ogTitle", widget: "string" }
-              - { label: "Open Graph — Description (réseaux sociaux)", name: "ogDescription", widget: "text" }
-              - label: "Pages — Services, Ressources, À propos"
+              - { label: "Accueil — titre dans Google", name: "title", widget: "string", hint: "Idéalement 50 à 60 caractères." }
+              - { label: "Accueil — description dans Google", name: "description", widget: "text", hint: "Idéalement 140 à 160 caractères." }
+              - { label: "Titre quand le site est partagé (WhatsApp, Instagram…)", name: "ogTitle", widget: "string" }
+              - { label: "Description quand le site est partagé", name: "ogDescription", widget: "text" }
+              - label: "Autres pages"
                 name: "pages"
                 widget: "object"
                 collapsed: true
                 fields:
-                  - label: "Services"
+                  - label: "Accompagnements"
                     name: "services"
                     widget: "object"
+                    collapsed: false
                     fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-                  - label: "Ressources / Blog"
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+                  - label: "Ressources"
                     name: "blog"
                     widget: "object"
+                    collapsed: false
                     fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
                   - label: "À propos"
                     name: "about"
                     widget: "object"
+                    collapsed: false
                     fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
-                  - label: "Page introuvable (erreur 404)"
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+                  - label: "Page introuvable"
                     name: "notFound"
                     widget: "object"
+                    collapsed: false
                     fields:
-                      - { label: "Titre (Google)", name: "title", widget: "string" }
-                      - { label: "Description (Google)", name: "description", widget: "text" }
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+          - label: "Anglais"
+            name: "en"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Accueil — titre dans Google", name: "title", widget: "string", hint: "Idéalement 50 à 60 caractères." }
+              - { label: "Accueil — description dans Google", name: "description", widget: "text", hint: "Idéalement 140 à 160 caractères." }
+              - { label: "Titre quand le site est partagé (WhatsApp, Instagram…)", name: "ogTitle", widget: "string" }
+              - { label: "Description quand le site est partagé", name: "ogDescription", widget: "text" }
+              - label: "Autres pages"
+                name: "pages"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Accompagnements"
+                    name: "services"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+                  - label: "Ressources"
+                    name: "blog"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+                  - label: "À propos"
+                    name: "about"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+                  - label: "Page introuvable"
+                    name: "notFound"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Titre", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }

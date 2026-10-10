@@ -4,16 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>The Cycle Space — Admin</title>
+    <title>The Cycle Space — Mon espace</title>
   </head>
   <body>
     <!--
-      Sveltia CMS — free, Git-based content manager. Reads ./config.yml.
-      - Loaded from CDN (no npm dependency, no separate CMS server).
-      - NOT type="module" (required: the bundle attaches itself to window).
-      - No CSS link and no custom preview script: Sveltia ships its own UI + preview.
-      Login: GitHub. See CMS_GUIDE.md for how the site editor signs in and publishes.
+      Administration du site : Sveltia CMS (gratuit, sans serveur). Il lit ./config.yml.
+      - Version fixée et empreinte vérifiée par le navigateur (integrity) : le script ne peut pas
+        changer sans une modification de cette page. Mise à jour : voir docs/admin-2.0/AUDIT.md.
+      - PAS type="module" : le script s'attache à window.
+      - publication.js : le petit indicateur « Le site est à jour / Mise en ligne en cours ».
+      Guide de l'éditrice : docs/admin-2.0/GUIDE_ELSA.md.
     -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script
+      src="https://unpkg.com/@sveltia/cms@0.233.1/dist/sveltia-cms.js"
+      integrity="sha384-yp71QPgroiSMC4/Jwff1SciLlpayjGi7MsNEFX4rsJXB/EEdaEloIFYi3IIiiUlQ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./publication.js" defer></script>
   </body>
 </html>
