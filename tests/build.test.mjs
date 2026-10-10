@@ -81,3 +81,12 @@ test("404.html is the SPA shell (empty root) and is not indexable", opts, () => 
 test("Calendly script is not part of the initial HTML (loaded on demand)", opts, () => {
   for (const p of sitemapPaths()) assert.ok(!read(fileFor(p)).includes("assets.calendly.com"), p);
 });
+
+test("the build says which version it is, and ships the admin with its publication indicator", opts, () => {
+  const version = JSON.parse(read("version.json"));
+  assert.ok(typeof version.commit === "string" && version.commit.length > 0);
+  assert.ok(!Number.isNaN(new Date(version.builtAt).getTime()));
+  assert.ok(fs.existsSync(path.join(dist, "admin/index.html")) && fs.existsSync(path.join(dist, "admin/config.yml")));
+  assert.match(read("admin/index.html"), /publication\.js/);
+  assert.ok(fs.existsSync(path.join(dist, "admin/publication.js")));
+});
