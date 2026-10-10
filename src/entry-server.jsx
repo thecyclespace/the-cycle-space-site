@@ -13,13 +13,11 @@ import { posts, getTranslation } from "./lib/blog";
 import { buildMeta, absoluteAsset, postAlternates, canonicalUrl } from "./lib/seo";
 import { personSchema, articleSchema, faqSchema } from "./lib/schemas";
 import { localizedPath, postPath } from "./lib/paths";
-import enCopy from "./content/i18n/en.json";
-import frCopy from "./content/i18n/fr.json";
+import { copy } from "./content/copy";
 
 const pages = { Home, Services, About, BlogList, BlogPost, NotFound };
 export const BASE = import.meta.env.BASE_URL; // e.g. "/the-cycle-space-site/" or "/"
 const BASENAME = BASE.replace(/\/$/, "");
-const copy = { en: enCopy, fr: frCopy };
 
 export function render(path) {
   return renderToString(

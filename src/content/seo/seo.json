@@ -1,28 +1,4 @@
 {
-  "en": {
-    "title": "The Cycle Space — Women's health, cycle education, body literacy",
-    "description": "Elsa, osteopath and women's health practitioner, helps you understand your cycle online: painful periods, PMS, coming off the pill, perimenopause and menopause.",
-    "ogTitle": "The Cycle Space",
-    "ogDescription": "Women's health. Cycle education. Body literacy. Online sessions in English or French.",
-    "pages": {
-      "services": {
-        "title": "Services — The Cycle Space",
-        "description": "A free Introduction call, the 90-minute Rhythm Check-In and the 6-month Your Inner Rhythm programme, all online."
-      },
-      "blog": {
-        "title": "Blog — The Cycle Space",
-        "description": "Free cycle tracking guide and articles on hormones, body literacy and women's wellness."
-      },
-      "about": {
-        "title": "Meet Elsa — The Cycle Space",
-        "description": "I'm Elsa, an osteopath trained in London and a women's health practitioner. My story, how I work and why I started The Cycle Space."
-      },
-      "notFound": {
-        "title": "Page not found — The Cycle Space",
-        "description": "The link you followed didn't lead anywhere. Head back home or explore the rest of the site."
-      }
-    }
-  },
   "fr": {
     "title": "The Cycle Space — Comprendre son cycle, santé féminine",
     "description": "Elsa, ostéopathe, vous accompagne en ligne pour comprendre votre cycle : règles douloureuses, SPM, arrêt de la pilule, périménopause et ménopause.",
@@ -44,6 +20,30 @@
       "notFound": {
         "title": "Page introuvable — The Cycle Space",
         "description": "Le lien que vous avez suivi ne mène nulle part. Revenez à l'accueil ou découvrez le reste du site."
+      }
+    }
+  },
+  "en": {
+    "title": "The Cycle Space — Women's health, cycle education, body literacy",
+    "description": "Elsa, osteopath and women's health practitioner, helps you understand your cycle online: painful periods, PMS, coming off the pill, perimenopause and menopause.",
+    "ogTitle": "The Cycle Space",
+    "ogDescription": "Women's health. Cycle education. Body literacy. Online sessions in English or French.",
+    "pages": {
+      "services": {
+        "title": "Services — The Cycle Space",
+        "description": "A free Introduction call, the 90-minute Rhythm Check-In and the 6-month Your Inner Rhythm programme, all online."
+      },
+      "blog": {
+        "title": "Blog — The Cycle Space",
+        "description": "Free cycle tracking guide and articles on hormones, body literacy and women's wellness."
+      },
+      "about": {
+        "title": "Meet Elsa — The Cycle Space",
+        "description": "I'm Elsa, an osteopath trained in London and a women's health practitioner. My story, how I work and why I started The Cycle Space."
+      },
+      "notFound": {
+        "title": "Page not found — The Cycle Space",
+        "description": "The link you followed didn't lead anywhere. Head back home or explore the rest of the site."
       }
     }
   }

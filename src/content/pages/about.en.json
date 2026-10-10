@@ -1,0 +1,30 @@
+{
+  "aboutTitle": "Hi, I'm Elsa.",
+  "about": {
+    "intro": "I'm an osteopath, trained in London, and a women's health practitioner, with over seven years of clinical practice. I'm not a medical doctor: my work sits alongside your medical care.",
+    "storyTitle": "My story",
+    "storyToggle": "Read my story",
+    "approachKicker": "My approach",
+    "forYouKicker": "Is this for you?"
+  },
+  "credentials": [
+    "M.Ost. University College of Osteopathy",
+    "7+ years clinical practice",
+    "Women's health practitioner",
+    "Yoga teacher 200h RYT",
+    "French, English, Portuguese, Spanish"
+  ],
+  "aboutText": "I'm a women's health practitioner and an osteopath. I trained in London, and I have always been fascinated by how the female body works.\n\nBut this work isn't just professional. It's personal.\n\nFor years, I struggled with acne, PMS, gut issues and painful periods. I went on the pill at a young age and spent seven years not knowing what my natural cycle even felt like. When I came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion, even though I was the most active I had ever been. After a year of struggling, with little real guidance from my gynaecologist, I accepted a coil because I could see no other option.\n\nThat is when things started to shift. I began working on my gut health, my nutrition and my inflammation, and I started actually listening to my body. Four years later I had the coil removed. It took time to readjust, but for the first time things felt different: less pain, less PMS, more energy, periods that made sense.\n\nThat experience is why The Cycle Space exists. I don't want other women to spend years feeling dismissed, confused or disconnected from their own body.\n\nToday I look at you as a whole person, not just at your symptoms. And I still find this work fascinating.",
+  "manifestoTitle": "I take the time to understand",
+  "manifestoText": "A first session lasts 90 minutes, because years of painful periods don't fit into a quarter of an hour. I listen, I ask a lot of questions and I look at the whole picture: your cycle, your digestion, your sleep, your stress, your history.\n\nI don't diagnose and I don't prescribe treatment: that is your doctor's or gynaecologist's job. Mine is to help you understand your body and find what helps you day to day.",
+  "manifestoQuote": "Once you understand what is happening in your body, it is already less frightening.",
+  "forYouTitle": "You are probably in the right place if...",
+  "forYou": [
+    "You have been told everything looks normal, but you know something is off.",
+    "You have PMS, PMDD, PCOS, endometriosis, painful periods, hormonal acne or irregular cycles.",
+    "You are coming off hormonal birth control — pill, IUD, implant — and want to understand your natural cycle.",
+    "You are going through perimenopause or menopause and struggling with the changes.",
+    "You are trying to understand your fertility signs.",
+    "You want to understand your body, not just be handed a protocol."
+  ]
+}

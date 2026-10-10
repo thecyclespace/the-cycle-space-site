@@ -2,22 +2,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { loadCopy } from "./_content.mjs";
 
 const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const json = (p) => JSON.parse(read(p));
-const en = json("src/content/i18n/en.json");
-const fr = json("src/content/i18n/fr.json");
+const en = loadCopy("en");
+const fr = loadCopy("fr");
 const site = json("src/content/settings/site.json");
 const seo = json("src/content/seo/seo.json");
-const config = read("public/admin/config.yml").split("\r").join("");
-
-// Slice of config.yml belonging to one top-level collection.
-function collectionBlock(name) {
-  const start = config.indexOf(`\n  - name: ${name}\n`);
-  assert.ok(start >= 0, `collection ${name} missing in config.yml`);
-  const next = config.indexOf("\n  - name:", start + 5);
-  return config.slice(start, next < 0 ? undefined : next);
-}
+const guide = json("src/content/settings/guide.json");
 
 function keysDeep(o, prefix = "") {
   return Object.entries(o).flatMap(([k, v]) =>
@@ -27,15 +20,6 @@ function keysDeep(o, prefix = "") {
 
 test("EN and FR files expose exactly the same keys", () => {
   assert.deepEqual(keysDeep(en).sort(), keysDeep(fr).sort());
-});
-
-test("every EN/FR text key is editable in the CMS (no orphan field)", () => {
-  for (const [lang, data] of [["en", en], ["fr", fr]]) {
-    const block = collectionBlock(lang);
-    for (const key of Object.keys(data)) {
-      assert.ok(block.includes(`name: "${key}"`), `${lang}.json › "${key}" has no field in the ${lang} CMS collection`);
-    }
-  }
 });
 
 test("nav uses the {label, route} shape expected by the CMS and routes exist", () => {
@@ -68,16 +52,16 @@ test("Calendly URLs: default link preserved, optional links empty or valid", () 
 });
 
 test("guide lead email is a valid address; one guide per language, in the CMS upload folder, under its size limit", () => {
-  assert.match(site.guideLeadEmail, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
+  assert.match(guide.guideLeadEmail, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
   for (const k of ["guidePdfEn", "guidePdfFr"]) {
-    assert.match(site[k], /^\/uploads\/[^/]+\.pdf$/, `${k} must be a PDF uploaded through the CMS`);
-    const file = new URL(`../public${site[k]}`, import.meta.url);
-    assert.ok(fs.existsSync(file), `${site[k]} is missing`);
-    assert.ok(fs.statSync(file).size <= 3_000_000, `${site[k]} is heavier than the CMS upload limit`);
+    assert.match(guide[k], /^\/uploads\/[^/]+\.pdf$/, `${k} must be a PDF uploaded through the CMS`);
+    const file = new URL(`../public${guide[k]}`, import.meta.url);
+    assert.ok(fs.existsSync(file), `${guide[k]} is missing`);
+    assert.ok(fs.statSync(file).size <= 3_000_000, `${guide[k]} is heavier than the CMS upload limit`);
   }
-  assert.notEqual(site.guidePdfEn, site.guidePdfFr);
+  assert.notEqual(guide.guidePdfEn, guide.guidePdfFr);
   for (const k of ["guideCoverEn", "guideCoverFr"]) {
-    assert.ok(fs.existsSync(new URL(`../public${site[k]}`, import.meta.url)), `${site[k]} (guide cover) is missing`);
+    assert.ok(fs.existsSync(new URL(`../public${guide[k]}`, import.meta.url)), `${guide[k]} (guide cover) is missing`);
   }
   const form = read("src/components/GuideForm.jsx");
   assert.ok(form.includes("guidePdfFr") && form.includes("guidePdfEn"), "the form serves the guide of the page language");

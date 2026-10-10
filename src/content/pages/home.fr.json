@@ -1,0 +1,62 @@
+{
+  "heroKicker": "Elsa · Ostéopathe · Accompagnement du cycle, en ligne",
+  "heroTitle": "Comprenez mieux votre cycle. Retrouvez confiance en votre corps.",
+  "heroText": "Je suis Elsa, ostéopathe. Je vous accompagne en ligne, en séance individuelle, pour comprendre votre cycle.",
+  "heroSecondary": "Découvrir les accompagnements",
+  "trust": "Avec moi, en ligne · 15 à 20 minutes · Gratuit",
+  "heroCaption": "Elsa, ostéopathe",
+  "mobileHeroTitle": "",
+  "mobileHeroText": "",
+  "concerns": {
+    "title": "Qu'est-ce qui vous amène ?",
+    "items": [
+      {
+        "title": "Règles douloureuses",
+        "icon": "drop",
+        "link": "services"
+      },
+      {
+        "title": "Syndrome prémenstruel (SPM)",
+        "icon": "mood",
+        "link": "services"
+      },
+      {
+        "title": "Cycles irréguliers",
+        "icon": "cycle",
+        "link": "regularity"
+      },
+      {
+        "title": "Périménopause et ménopause",
+        "icon": "waves",
+        "link": "services"
+      },
+      {
+        "title": "Arrêt de la contraception",
+        "icon": "capsule",
+        "link": "post-contraception"
+      },
+      {
+        "title": "Fertilité et signes d'ovulation",
+        "icon": "sprout",
+        "link": "basal"
+      }
+    ],
+    "unsure": "Vous ne vous reconnaissez dans aucune case, ou dans plusieurs à la fois ? C'est très fréquent. Racontez-moi ce que vous vivez lors d'un premier appel, nous démêlerons cela ensemble.",
+    "note": "Je ne suis pas médecin : je ne remplace ni votre gynécologue ni votre généraliste, je travaille à côté d'eux."
+  },
+  "meetElsa": {
+    "title": "Pourquoi je fais ce métier",
+    "text": "Pendant des années, j'ai vécu avec de l'acné, un syndrome prémenstruel, des troubles digestifs et des règles douloureuses. J'ai pris la pilule pendant sept ans sans savoir à quoi ressemblait mon cycle. Quand je l'ai arrêtée, tout est revenu, et je n'ai pas vraiment été accompagnée.\n\nJ'ai fini par comprendre mon corps, mais ça m'a pris des années. J'ai créé The Cycle Space pour que vous n'ayez pas à chercher seule.",
+    "cta": "Lire mon parcours"
+  },
+  "offersTitle": "Les accompagnements",
+  "offersCta": "Découvrir les accompagnements",
+  "homeTool": {
+    "kicker": "Outil gratuit",
+    "title": "Mieux connaître votre cycle",
+    "description": "Estimez la date de vos prochaines règles et découvrez les différentes phases de votre cycle.",
+    "cta": "Essayer le calculateur gratuit",
+    "learnMore": "Lire l'article complet",
+    "note": "Résultats indicatifs : ils ne remplacent pas un avis médical et ne constituent pas une méthode de contraception."
+  }
+}

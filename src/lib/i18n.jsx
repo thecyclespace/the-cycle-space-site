@@ -1,11 +1,9 @@
 import { createContext, useCallback, useContext, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import enCopy from "../content/i18n/en.json";
-import frCopy from "../content/i18n/fr.json";
+import { copy } from "../content/copy";
 import { langFromPath, localizedPath, stripLang } from "./paths";
 
 const I18nContext = createContext(null);
-const copy = { en: enCopy, fr: frCopy };
 
 // The language comes from the URL (/fr/... = French), never from a stored preference:
 // every page has one language, so search engines and visitors always get what the URL says.

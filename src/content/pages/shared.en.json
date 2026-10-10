@@ -1,0 +1,35 @@
+{
+  "nav": [
+    {
+      "label": "Home",
+      "route": "/"
+    },
+    {
+      "label": "Services",
+      "route": "/services"
+    },
+    {
+      "label": "Resources",
+      "route": "/blog"
+    },
+    {
+      "label": "About",
+      "route": "/about"
+    }
+  ],
+  "book": "Book a free call",
+  "finalTitle": "Ready to understand what your body has been trying to say?",
+  "finalText": "A first call with me, free and with no commitment. You tell me what brings you here, I answer your questions, and you decide what comes next.",
+  "finalCta": "Book my free call",
+  "modalTitle": "Book a session",
+  "modalText": "Pick a date and time below. New here? Start with The Introduction, a free 15–20 minute call.",
+  "calendly": "Open Calendly",
+  "calendlyLoading": "Loading the calendar…",
+  "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
+  "footerTagline": "Empowering women one cycle at a time.",
+  "disclaimer": "Education and support — does not replace urgent medical care. If you are in distress or experiencing severe symptoms, please contact your doctor or local emergency services.",
+  "imageAlts": {
+    "elsa": "Elsa, an osteopath, during a session with a patient",
+    "tool": "A terracotta cycle journal with moon phases on a linen blanket"
+  }
+}

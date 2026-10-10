@@ -2,14 +2,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { loadCopy } from "./_content.mjs";
 import path from "node:path";
 
 const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const json = (p) => JSON.parse(read(p));
 const images = json("src/content/settings/images.json");
 const manifest = json("src/content/images.manifest.json");
-const en = json("src/content/i18n/en.json");
-const fr = json("src/content/i18n/fr.json");
+const en = loadCopy("en");
+const fr = loadCopy("fr");
 const pub = (p) => new URL(`../public${p}`, import.meta.url);
 
 test("every site image points to an existing file (optimised set or an upload)", () => {
@@ -25,7 +26,7 @@ test("optimised images have AVIF + WebP files for every declared width, and are 
     assert.ok(entry.widths.length >= 2, name);
     for (const w of entry.widths) {
       for (const ext of ["webp", "avif"]) {
-        const f = pub(`/images/site/${name}-${w}.${ext}`);
+        const f = pub(`/images/site/variantes/${name}-${w}.${ext}`);
         assert.ok(fs.existsSync(f), `missing ${name}-${w}.${ext}`);
         assert.ok(fs.statSync(f).size < MAX_BYTES, `${name}-${w}.${ext} is heavier than 180 KB`);
       }

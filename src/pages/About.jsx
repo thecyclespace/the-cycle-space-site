@@ -5,7 +5,7 @@ import { useI18n } from "../lib/i18n";
 import { useBooking } from "../lib/booking";
 import { usePageMeta, useJsonLd } from "../lib/seo";
 import { personSchema } from "../lib/schemas";
-import siteSettings from "../content/settings/site.json";
+import images from "../content/settings/images.json";
 
 export default function About() {
   const { t, lang } = useI18n();
@@ -29,7 +29,7 @@ export default function About() {
             <div className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#DCCDB8] p-2 md:rounded-[2.5rem] md:p-3">
               <div className="relative h-full w-full overflow-hidden rounded-[1.6rem] md:rounded-[2rem]">
                 <img
-                  src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
+                  src={`${import.meta.env.BASE_URL}${images.elsaImage.replace(/^\//, "")}`}
                   alt={t.imageAlts?.elsa || "Elsa"}
                   width="400"
                   height="400"

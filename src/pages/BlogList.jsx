@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon, OrbitalGraphic } from "../components/ui";
 import GuideForm from "../components/GuideForm";
-import siteSettings from "../content/settings/site.json";
+import guideSettings from "../content/settings/guide.json";
 import FinalCTA from "../components/FinalCTA";
 import { useI18n } from "../lib/i18n";
 import { usePageMeta } from "../lib/seo";
@@ -43,7 +43,7 @@ export default function BlogList() {
     },
   };
   const L = labels[lang] || labels.en;
-  const cover = (lang === "fr" ? siteSettings.guideCoverFr : siteSettings.guideCoverEn) || siteSettings.guideCoverEn;
+  const cover = (lang === "fr" ? guideSettings.guideCoverFr : guideSettings.guideCoverEn) || guideSettings.guideCoverEn;
 
   return (
     <>

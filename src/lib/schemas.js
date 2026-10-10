@@ -3,6 +3,7 @@
 import { SITE_URL, canonicalUrl, absoluteAsset } from "./seo";
 import { localizedPath, postPath } from "./paths";
 import siteSettings from "../content/settings/site.json";
+import images from "../content/settings/images.json";
 
 const ORG = {
   "@type": "Organization",
@@ -19,7 +20,7 @@ export function personSchema(lang = "en") {
     jobTitle: "Women's health practitioner, osteopath, cycle educator",
     description:
       "Elsa is a women's health practitioner and osteopath, trained in London, fascinated by the intelligence of the female body.",
-    image: `${SITE_URL}/${siteSettings.elsaImage}`,
+    image: `${SITE_URL}/${images.elsaImage.replace(/^\//, "")}`,
     url: canonicalUrl(localizedPath("/about", lang)),
     sameAs: [siteSettings.instagramUrl],
     knowsAbout: ["Women's health", "Menstrual cycle", "Hormonal health", "Osteopathy", "Body literacy", "Cycle education"],

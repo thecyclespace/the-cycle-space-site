@@ -1,14 +1,14 @@
 import { useId, useState } from "react";
 import { Icon, Button } from "./ui";
 import { useI18n } from "../lib/i18n";
-import siteSettings from "../content/settings/site.json";
+import guideSettings from "../content/settings/guide.json";
 
-// One guide per language, replaceable in the CMS (Réglages > Guide gratuit). Falls back to the English one.
-const GUIDES = { en: siteSettings.guidePdfEn, fr: siteSettings.guidePdfFr };
+// One guide per language, replaceable in the CMS (Photos et documents > Guide gratuit). Falls back to the English one.
+const GUIDES = { en: guideSettings.guidePdfEn, fr: guideSettings.guidePdfFr };
 const guideFor = (lang) => GUIDES[lang] || GUIDES.en;
 const fileName = (p) => decodeURIComponent(p.split("/").pop());
-// Where guide sign-ups are sent (Elsa's inbox). Editable in the CMS (Réglages > "Email qui reçoit les inscriptions").
-const LEAD_EMAIL = siteSettings.guideLeadEmail;
+// Where guide sign-ups are sent (Elsa's inbox). Editable in the CMS (Photos et documents > Guide gratuit).
+const LEAD_EMAIL = guideSettings.guideLeadEmail;
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());

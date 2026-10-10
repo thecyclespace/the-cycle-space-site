@@ -9,6 +9,7 @@ Add a file name to USED to publish it. Not needed day-to-day: Elsa never runs th
 """
 import json
 import os
+import shutil
 import sys
 from PIL import Image
 
@@ -25,7 +26,8 @@ USED = [
     "03_flower_nature", "12_moon_phases",
 ]
 
-os.makedirs(OUT, exist_ok=True)
+VARIANTS = os.path.join(OUT, "variantes")  # lighter versions; the admin only lists the main files
+os.makedirs(VARIANTS, exist_ok=True)
 manifest = {}
 total = 0
 for name in USED:
@@ -39,9 +41,11 @@ for name in USED:
         h = round(h0 * w / w0)
         resized = im.resize((w, h), Image.LANCZOS) if w != w0 else im
         for ext, kw in (("webp", {"quality": 74, "method": 6}), ("avif", {"quality": 52, "speed": 6})):
-            fn = os.path.join(OUT, f"{name}-{w}.{ext}")
+            fn = os.path.join(VARIANTS, f"{name}-{w}.{ext}")
             resized.save(fn, **kw)
             total += os.path.getsize(fn)
+    # Main file: the one the admin shows and stores ("/images/site/<name>.webp").
+    shutil.copyfile(os.path.join(VARIANTS, f"{name}-{widths[-1]}.webp"), os.path.join(OUT, f"{name}.webp"))
     manifest[name] = {"width": w0, "height": h0, "widths": widths}
     print(f"{name}: {widths}")
 

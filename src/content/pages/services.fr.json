@@ -1,0 +1,176 @@
+{
+  "pillarsTitle": "Travailler avec moi",
+  "pillarsSubtitle": "Plusieurs façons de travailler avec moi. Vous ne savez pas laquelle choisir ? Commencez par l'appel gratuit : nous verrons ensemble ce qui vous convient.",
+  "services": [
+    {
+      "title": "Premier échange gratuit",
+      "tag": "15 à 20 minutes · En ligne · Sans engagement",
+      "summary": "Nous faisons connaissance, vous me dites ce qui vous amène et nous voyons si je peux vous aider.",
+      "audience": "Vous voulez voir qui je suis et comment je travaille avant de décider quoi que ce soit.",
+      "body": "Un appel de 15 à 20 minutes pour faire connaissance. Vous me dites ce qui vous amène et ce que vous avez déjà essayé, je vous explique comment je travaille, et nous voyons si cela peut vous aider. Si ce n'est pas le cas, je vous le dis.\n\nVous ne vous engagez à rien.",
+      "forWho": "Vous voulez voir qui je suis et comment je travaille avant de décider quoi que ce soit.",
+      "leave": "",
+      "cta": "Réserver un appel gratuit",
+      "action": "intro"
+    },
+    {
+      "title": "Rhythm Check-In",
+      "tag": "Séance individuelle · 90 minutes",
+      "summary": "90 minutes pour parler de votre cycle et de vos symptômes. Vous repartez avec un plan écrit.",
+      "audience": "Vous avez une question précise, ou vous voulez essayer une séance avant un suivi plus long.",
+      "body": "Une séance de 90 minutes, rien que pour vous. Vous me racontez votre cycle, vos symptômes, ce que vous avez déjà essayé, et je vous pose beaucoup de questions.\n\nAprès la séance, je vous envoie un plan écrit : quoi observer dans votre cycle, quoi ajuster dans votre alimentation et votre quotidien, et par où commencer.\n\nSi vous voulez continuer, nous pouvons prévoir des rendez-vous de suivi pour voir ce qui change et ajuster.",
+      "forWho": "Vous avez une question précise, ou vous voulez essayer une séance avant un suivi plus long.",
+      "leave": "Un plan écrit : quoi observer dans votre cycle, quoi ajuster dans votre alimentation et votre quotidien, et par où commencer.",
+      "cta": "Réserver une séance",
+      "action": "checkin"
+    },
+    {
+      "title": "Your Inner Rhythm",
+      "tag": "Accompagnement individuel · 6 mois",
+      "summary": "Six mois de suivi avec moi, en séances individuelles, pour apprendre à lire votre cycle.",
+      "audience": "Vous voulez être suivie pendant plusieurs mois plutôt que repartir seule avec un plan.",
+      "body": "Six mois de suivi avec moi, en séances individuelles. Nous avançons en quatre étapes : comprendre ce qui se passe, poser quelques bases, apprendre à lire votre cycle, puis faire en sorte que cela tienne sans moi.",
+      "forWho": "Vous voulez être suivie pendant plusieurs mois plutôt que repartir seule avec un plan.",
+      "leave": "",
+      "cta": "Commencer par un appel gratuit",
+      "action": "intro"
+    },
+    {
+      "title": "The Inner Space",
+      "tag": "Programmes de groupe · Bientôt disponible",
+      "summary": "Ateliers et programmes de groupe, bientôt disponibles.",
+      "audience": "",
+      "body": "Des ateliers et des programmes en groupe, pour apprendre et échanger avec d'autres femmes.",
+      "forWho": "",
+      "leave": "",
+      "cta": "Être informée du lancement",
+      "action": "waitlist"
+    }
+  ],
+  "servicesLabels": {
+    "forWho": "Pour qui",
+    "leave": "Ce que vous recevez",
+    "more": "Voir le détail"
+  },
+  "method": {
+    "kicker": "Ma méthode",
+    "homeTitle": "Comment je vous accompagne",
+    "intro": "J'ai appelé ma façon de travailler « la méthode Inner Rhythm ». Ce sont quatre étapes que nous parcourons ensemble, en séances individuelles.",
+    "cta": "Voir la méthode en détail",
+    "programmeKicker": "Accompagnement individuel",
+    "programmeTitle": "Your Inner Rhythm",
+    "programmeMeta": "6 mois · Français et anglais",
+    "title": "The Inner Rhythm Method",
+    "programmeCta": "Commencer par un appel gratuit",
+    "phases": [
+      {
+        "num": "01",
+        "homeTitle": "Comprendre",
+        "short": "Nous reprenons votre histoire, votre cycle et vos symptômes, et nous regardons ce qui revient d'un cycle à l'autre.",
+        "title": "Decode",
+        "tag": "Comprendre",
+        "body": "Nous reprenons votre histoire, votre cycle et vos symptômes, et nous regardons ce qui revient d'un cycle à l'autre. Vous arrivez souvent avec beaucoup de questions, parfois avec le sentiment de ne pas avoir été entendue : nous commençons par là.",
+        "points": [
+          "Repérer à quel moment du cycle vos symptômes apparaissent",
+          "Relier votre cycle au reste : sommeil, digestion, stress",
+          "Préparer les questions à poser à votre médecin ou à votre gynécologue"
+        ],
+        "outcome": "Vous savez mieux décrire ce que vous vivez, et par où commencer.",
+        "quote": "Ce que je veux que vous sachiez en sortant de cette étape : vous n'inventez rien."
+      },
+      {
+        "num": "02",
+        "homeTitle": "Poser les bases",
+        "short": "Nous ajustons quelques habitudes : alimentation, sommeil, digestion, stress. Peu de choses, mais que vous pouvez tenir.",
+        "title": "Regulate",
+        "tag": "Poser les bases",
+        "body": "Nous choisissons ensemble deux ou trois choses à changer, pas dix : ce que vous mangez, comment vous dormez, comment vous digérez, ce qui vous stresse. Je préfère peu de changements que vous tenez à un grand plan abandonné au bout de quinze jours.",
+        "points": [
+          "Ce que vous mangez, et quand",
+          "Votre digestion et votre sommeil",
+          "Ce qui vous aide quand le stress monte"
+        ],
+        "outcome": "Vous savez ce qui vous aide au quotidien, et vous arrivez à le tenir.",
+        "quote": "L'idée, c'est que vous arrêtiez de tout essayer en même temps."
+      },
+      {
+        "num": "03",
+        "homeTitle": "Lire votre cycle",
+        "short": "Vous apprenez à lire votre cycle et à repérer ce dont vous avez besoin selon les moments.",
+        "title": "Reconnect",
+        "tag": "Lire votre cycle",
+        "body": "Vous apprenez à lire votre cycle et à repérer ce dont vous avez besoin selon les moments, sans attendre qu'on vous le dise.",
+        "points": [
+          "Reconnaître les quatre phases de votre cycle",
+          "Savoir ce dont vous avez besoin selon les moments",
+          "Faire le lien entre vos symptômes et votre cycle"
+        ],
+        "outcome": "Vous savez où vous en êtes dans votre cycle et vous comprenez pourquoi certaines semaines sont plus dures que d'autres.",
+        "quote": "Je veux que vous sachiez lire votre cycle sans moi."
+      },
+      {
+        "num": "04",
+        "homeTitle": "Trouver votre équilibre",
+        "short": "Vous gardez ce qui marche pour vous et vous continuez seule, sans dépendre de moi.",
+        "title": "Embody",
+        "tag": "Trouver votre équilibre",
+        "body": "Nous vérifions que ce que vous avez mis en place tient dans votre vraie vie : les semaines chargées, les vacances, les mauvais cycles.",
+        "points": [
+          "Vous savez quoi faire quand un symptôme revient",
+          "Vous savez quand consulter votre médecin",
+          "Vous n'avez plus besoin de moi"
+        ],
+        "outcome": "Vous savez prendre soin de votre cycle seule.",
+        "quote": "Mon but, c'est que vous n'ayez plus besoin de moi."
+      }
+    ]
+  },
+  "journeyTitle": "Comment ça se passe ?",
+  "journey": [
+    {
+      "num": "01",
+      "title": "Choisissez votre créneau",
+      "body": "Les séances ont lieu en ligne, en français ou en anglais. Choisissez l'horaire qui vous convient."
+    },
+    {
+      "num": "02",
+      "title": "Remplissez le questionnaire",
+      "body": "Avant la séance, vous remplissez un questionnaire détaillé sur votre cycle, vos symptômes, votre mode de vie et votre histoire de santé. Je le lis avant, pour ne pas avoir à tout reprendre de zéro."
+    },
+    {
+      "num": "03",
+      "title": "Nous nous retrouvons en ligne",
+      "body": "Nous avons le temps : vous pouvez poser toutes vos questions, même celles que vous n'osez pas poser ailleurs."
+    },
+    {
+      "num": "04",
+      "title": "Repartez avec un plan",
+      "body": "Vous repartez avec un plan écrit : quoi observer, quoi changer, et par quoi commencer."
+    }
+  ],
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Qui est derrière The Cycle Space ?",
+        "a": "Moi, Elsa. Je suis ostéopathe, diplômée du University College of Osteopathy à Londres. C'est moi que vous avez en appel et en séance, du premier échange au dernier rendez-vous. Je ne suis pas médecin."
+      },
+      {
+        "q": "Dans quelles langues se déroulent les séances ?",
+        "a": "Les séances ont lieu en ligne, en français ou en anglais."
+      },
+      {
+        "q": "Je vis à l'étranger, c'est possible ?",
+        "a": "Oui. Tout se fait en ligne et le calendrier affiche les créneaux dans votre fuseau horaire."
+      },
+      {
+        "q": "Par quoi commencer ?",
+        "a": "Par l'appel gratuit : nous faisons connaissance et je vous dis ce qui me paraît le plus utile pour vous. Ensuite, soit une séance unique de 90 minutes avec un plan écrit, soit un suivi de six mois."
+      },
+      {
+        "q": "Cet accompagnement remplace-t-il un suivi médical ?",
+        "a": "Non. Je vous explique, je vous aide à observer et à ajuster votre quotidien, mais je ne remplace ni un diagnostic ni un traitement. Si vous avez des symptômes sévères ou si vous êtes en détresse, contactez votre médecin ou les urgences."
+      }
+    ]
+  }
+}
