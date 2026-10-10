@@ -25,25 +25,25 @@
   },
   "fr": {
     "title": "The Cycle Space — Comprendre son cycle, santé féminine",
-    "description": "Elsa, ostéopathe et praticienne en santé féminine, t'accompagne en ligne pour comprendre ton cycle : règles douloureuses, SPM, arrêt de la pilule, périménopause et ménopause.",
+    "description": "Elsa, ostéopathe, vous accompagne en ligne pour comprendre votre cycle : règles douloureuses, SPM, arrêt de la pilule, périménopause et ménopause.",
     "ogTitle": "The Cycle Space",
     "ogDescription": "Santé féminine, cycle menstruel et accompagnement personnalisé. Séances en ligne en français ou en anglais.",
     "pages": {
       "services": {
         "title": "Accompagnements en santé féminine — The Cycle Space",
-        "description": "Un appel gratuit, une séance de 90 minutes ou un accompagnement de 6 mois : trouve la formule qui te convient pour mieux comprendre ton cycle."
+        "description": "Un appel gratuit, une séance de 90 minutes ou un suivi de 6 mois avec Elsa, ostéopathe, pour mieux comprendre votre cycle."
       },
       "blog": {
         "title": "Articles et outils sur le cycle menstruel — The Cycle Space",
-        "description": "Un guide gratuit, des outils de suivi du cycle et des articles pour mieux comprendre tes règles, tes hormones et ton corps."
+        "description": "Un guide gratuit, des outils de suivi du cycle et des articles pour mieux comprendre vos règles, vos hormones et votre corps."
       },
       "about": {
-        "title": "Elsa, ostéopathe et praticienne en santé féminine — The Cycle Space",
-        "description": "Je suis Elsa, ostéopathe formée à Londres et praticienne en santé féminine. Mon parcours, ma façon de travailler et pourquoi j'ai créé The Cycle Space."
+        "title": "Elsa, ostéopathe — The Cycle Space",
+        "description": "Je suis Elsa, ostéopathe formée à Londres. Mon parcours, ma façon de travailler et pourquoi j'ai créé The Cycle Space."
       },
       "notFound": {
         "title": "Page introuvable — The Cycle Space",
-        "description": "Le lien que tu as suivi ne mène nulle part. Reviens à l'accueil ou découvre le reste du site."
+        "description": "Le lien que vous avez suivi ne mène nulle part. Revenez à l'accueil ou découvrez le reste du site."
       }
     }
   }

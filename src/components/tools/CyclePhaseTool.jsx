@@ -64,7 +64,7 @@ const STRINGS = {
   },
   fr: {
     formTitle: "Où en suis-je dans mon cycle ?",
-    privacy: "Tes données restent dans ton navigateur. Rien n'est envoyé ni stocké.",
+    privacy: "Vos données restent dans votre navigateur. Rien n'est envoyé ni stocké.",
     lmpLabel: "Premier jour des dernières règles",
     cycleLabel: "Longueur du cycle (jours)",
     submit: "Voir ma phase",
@@ -72,14 +72,14 @@ const STRINGS = {
     resultKicker: "Phase probable",
     cycleDayLabel: (d, total) => `Jour ${d} sur environ ${total}`,
     individualNote:
-      "Chaque corps est différent : ce sont des tendances générales, pas une description exacte de ton cycle.",
+      "Chaque corps est différent : ce sont des tendances générales, pas une description exacte de votre cycle.",
     energyLabel: "Énergie",
     moodLabel: "Ressentis fréquents",
     suggestionsLabel: "Pistes à explorer",
     disclaimerTitle: "Note santé —",
     disclaimer:
       "Il s'agit d'une estimation à visée éducative, pas d'un diagnostic. Elle ne remplace pas un avis médical et ne doit pas être utilisée comme méthode contraceptive.",
-    errDate: "Indique la date du premier jour de tes dernières règles.",
+    errDate: "Indiquez la date du premier jour de vos dernières règles.",
     errFuture: "La date ne peut pas être dans le futur.",
     errCycle: "La longueur du cycle doit être comprise entre 21 et 45 jours.",
     phases: {
@@ -89,7 +89,7 @@ const STRINGS = {
           "Un nouveau cycle commence. Les taux d'hormones sont au plus bas et la muqueuse utérine se détache.",
         energy: "L'énergie peut être plus basse que d'habitude.",
         mood: "Souvent plus introspective, sensible ou calme.",
-        suggestions: ["Te reposer quand c'est possible", "Boire suffisamment", "Chaleur sur le ventre", "Mouvement doux"],
+        suggestions: ["Vous reposer quand c'est possible", "Boire suffisamment", "Chaleur sur le ventre", "Mouvement doux"],
       },
       follicular: {
         name: "Phase folliculaire",
@@ -104,10 +104,10 @@ const STRINGS = {
         description:
           "Un ovule peut être libéré. Les œstrogènes atteignent leur pic et la fertilité est à son maximum.",
         energy: "L'énergie et la libido peuvent être plus élevées chez certaines femmes.",
-        mood: "Souvent un sentiment de confiance et plus de facilité à t'exprimer.",
+        mood: "Souvent un sentiment de confiance et plus de facilité à vous exprimer.",
         suggestions: [
           "Observer les signaux du corps (glaire, température, humeur)",
-          "Utile à suivre si tu cherches à comprendre ta fertilité",
+          "Utile à suivre si vous cherchez à comprendre votre fertilité",
           "Ne suffit pas à lui seul comme méthode contraceptive",
         ],
       },
@@ -117,7 +117,7 @@ const STRINGS = {
           "Après l'ovulation. La progestérone augmente puis chute en l'absence de grossesse, ce qui peut provoquer des symptômes de SPM.",
         energy: "Souvent fluctuante, plus basse en fin de phase.",
         mood: "Certaines femmes ressentent un SPM : sensibilité, irritabilité, baisse de moral.",
-        suggestions: ["Une routine régulière", "Des repas et un sommeil réguliers", "Alléger ton emploi du temps et éviter la surcharge"],
+        suggestions: ["Une routine régulière", "Des repas et un sommeil réguliers", "Alléger votre emploi du temps et éviter la surcharge"],
       },
     },
   },

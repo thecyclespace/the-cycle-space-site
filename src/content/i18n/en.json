@@ -25,7 +25,6 @@
   "pillarsSubtitle": "Several ways to work with me. Not sure which one to pick? Start with the free call and we'll work out together what suits you.",
   "forYouTitle": "You are probably in the right place if...",
   "finalTitle": "Ready to understand what your body has been trying to say?",
-  "notForTitle": "This may not be the right fit if you want a quick fix.",
   "calendlyLoading": "Loading the calendar…",
   "nav": [
     {
@@ -45,7 +44,6 @@
       "route": "/about"
     }
   ],
-  "notForText": "I work with women who are curious about their body and ready to go at their own pace: lasting change takes time. My work sits alongside conventional medicine and does not replace urgent medical care.",
   "finalText": "A first call with me, free and with no commitment. You tell me what brings you here, I answer your questions, and you decide what comes next.",
   "heroText": "I'm Elsa, an osteopath. I help women understand their cycle, from coming off the pill to menopause.",
   "download": "Download the guide",

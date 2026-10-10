@@ -50,3 +50,7 @@ Non modifié, à décider : les noms anglais des offres (Rhythm Check-In, Your I
 - **Les autres images sont générées par IA** (carnet, tisane, intérieur, paysage du bandeau). Elles ne montrent plus de personne, mais de vraies photos seraient préférables.
 - **De vrais témoignages**, avec prénom et accord écrit. Les citations des quatre phases, sur la page Accompagnements, ne sont pas des témoignages.
 - **Une courte vidéo ou un message audio d'Elsa** serait la meilleure preuve qu'une personne est derrière le site.
+
+## Vouvoiement (ajout)
+
+À la demande du propriétaire, tout le français s'adresse désormais à la lectrice avec « vous » : textes du site, articles, outils, descriptions Google. Elsa reste à la première personne (« je », « nous » pour ce qui se fait ensemble). Un test bloque le retour du tutoiement. Le bloc « Ce que je ne peux pas faire » de la page À propos est retiré, dans les deux langues. Les adresses des articles ne changent pas (`ton-cycle-est-il-regulier` reste l'adresse de « Votre cycle est-il régulier ? »).

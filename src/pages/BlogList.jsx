@@ -30,10 +30,10 @@ export default function BlogList() {
     fr: {
       kicker: "Ressources",
       title: "Outils, articles et ressources",
-      intro: "Des articles, des ressources gratuites et des outils interactifs pour mieux comprendre ton cycle, tes hormones et ton corps. Mis à jour régulièrement.",
+      intro: "Des articles, des ressources gratuites et des outils interactifs pour mieux comprendre votre cycle, vos hormones et votre corps. Mis à jour régulièrement.",
       free: { title: "Ressources gratuites", subtitle: "Un guide à télécharger pour commencer." },
-      tools: { title: "Outils", subtitle: "Des calculateurs et des outils de suivi, directement dans ton navigateur." },
-      articles: { title: "Articles", subtitle: "Des textes pour mieux comprendre ton cycle." },
+      tools: { title: "Outils", subtitle: "Des calculateurs et des outils de suivi, directement dans votre navigateur." },
+      articles: { title: "Articles", subtitle: "Des textes pour mieux comprendre votre cycle." },
       pdf: "Guide PDF",
       guideTagline: "Guide de suivi du cycle",
       empty: "Aucun article pour le moment.",

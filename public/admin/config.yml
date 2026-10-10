@@ -306,8 +306,6 @@ collections:
             widget: "list"
             hint: "Recommandé : 5 à 7 items courts."
             field: { label: "Item", name: "item", widget: "text" }
-          - { label: "💗 Pas pour toi — Titre", name: "notForTitle", widget: "string" }
-          - { label: "💗 Pas pour toi — Texte", name: "notForText", widget: "text" }
 
           # 🛤 PARCOURS (Services) ==========================================
           - label: "❓ Questions fréquentes (page Services)"
@@ -597,8 +595,6 @@ collections:
             widget: "list"
             hint: "Recommandé : 5 à 7 items courts."
             field: { label: "Item", name: "item", widget: "text" }
-          - { label: "💗 Pas pour toi — Titre", name: "notForTitle", widget: "string" }
-          - { label: "💗 Pas pour toi — Texte", name: "notForText", widget: "text" }
 
           # 🛤 PARCOURS ======================================================
           - label: "❓ Questions fréquentes (page Services)"

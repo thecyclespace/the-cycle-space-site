@@ -86,7 +86,7 @@ export default function About() {
       </section>
 
       <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
+        <div className="mx-auto max-w-4xl">
           <div className="rounded-[1.75rem] bg-[#362E28] p-6 text-[#FBF7EF] md:rounded-[2.5rem] md:p-10">
             <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#D4887F] md:text-sm">{copy.forYouKicker}</p>
             <h2 className="break-words font-serif text-2xl leading-tight [overflow-wrap:anywhere] sm:text-3xl md:text-4xl">{t.forYouTitle}</h2>
@@ -98,10 +98,6 @@ export default function About() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-[1.75rem] border border-[#DCCDB8] bg-[#F4EBDD] p-6 md:rounded-[2.5rem] md:p-10">
-            <h3 className="break-words font-serif text-2xl leading-tight [overflow-wrap:anywhere] sm:text-3xl">{t.notForTitle}</h3>
-            <p className="mt-4 text-base leading-7 text-[#5d5049]">{t.notForText}</p>
           </div>
         </div>
       </section>
