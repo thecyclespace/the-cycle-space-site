@@ -96,7 +96,7 @@ Des tests de structure (`npm run test:deploy`, 46 tests) sont maintenant lancés
 
 ### Bac à sable
 
-`node scripts/admin-sandbox.mjs` ouvre l'administration sur `http://localhost:4321/admin/` avec le vrai contenu, sans GitHub ni jeton. Toutes les vérifications du chapitre 6 ont été faites ainsi.
+`node scripts/admin-sandbox.mjs` ouvre l'administration sur `http://localhost:4321/admin/` avec le vrai contenu, sans GitHub ni jeton. Le serveur doit rester lancé pendant l'essai. L'administration s'ouvre aussi avec `npm run dev`, sur `http://localhost:5173/the-cycle-space-site/admin/` (cette adresse renvoyait une page 404 ; corrigé). Dans les deux cas, utiliser **Chrome ou Edge** et le bouton « Travailler avec un dépôt local » : la connexion GitHub est refusée depuis `localhost`, et Brave bloque par défaut l'accès aux dossiers dont ce mode a besoin. Ce mode écrit dans les fichiers du poste. Toutes les vérifications du chapitre 6 ont été faites ainsi.
 
 ## 5. Fichiers créés ou modifiés
 
