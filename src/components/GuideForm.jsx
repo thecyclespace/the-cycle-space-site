@@ -3,8 +3,10 @@ import { Icon, Button } from "./ui";
 import { useI18n } from "../lib/i18n";
 import siteSettings from "../content/settings/site.json";
 
-const GUIDE_PDF = siteSettings.guidePdf;
-const GUIDE_FILENAME = siteSettings.guideFilename;
+// One guide per language, replaceable in the CMS (Réglages > Guide gratuit). Falls back to the English one.
+const GUIDES = { en: siteSettings.guidePdfEn, fr: siteSettings.guidePdfFr };
+const guideFor = (lang) => GUIDES[lang] || GUIDES.en;
+const fileName = (p) => decodeURIComponent(p.split("/").pop());
 // Where guide sign-ups are sent (Elsa's inbox). Editable in the CMS (Réglages > "Email qui reçoit les inscriptions").
 const LEAD_EMAIL = siteSettings.guideLeadEmail;
 
@@ -12,10 +14,11 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
-function triggerGuideDownload() {
+function triggerGuideDownload(lang) {
+  const guide = guideFor(lang);
   const a = document.createElement("a");
-  a.href = `${import.meta.env.BASE_URL}${GUIDE_PDF}`;
-  a.download = GUIDE_FILENAME;
+  a.href = `${import.meta.env.BASE_URL}${guide.replace(/^\//, "")}`;
+  a.download = fileName(guide);
   a.rel = "noopener";
   document.body.appendChild(a);
   a.click();
@@ -25,19 +28,19 @@ function triggerGuideDownload() {
 // Sends the sign-up by email to Elsa through FormSubmit (https://formsubmit.co):
 // a free relay for static sites, no account needed. First use: FormSubmit emails
 // an activation link to LEAD_EMAIL, which must be confirmed once.
-// Only the email address, the language and the consent are sent. Never any health data.
+// Only the email address, the language, the guide and the consent are sent. Never any health data.
 async function sendLead({ email, lang }) {
   const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(LEAD_EMAIL)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
-      _subject: "The Cycle Space — new guide download",
+      _subject: `The Cycle Space — guide download (${lang.toUpperCase()})`,
       _template: "table",
       _captcha: "false",
       email,
       language: lang,
       consent: "Agreed to receive the guide and occasional emails from The Cycle Space",
-      source: "Know Your Flow guide",
+      guide: fileName(guideFor(lang)),
     }),
   });
   if (!res.ok) throw new Error(`lead request failed: ${res.status}`);
@@ -59,7 +62,7 @@ export default function GuideForm() {
     if (!isValidEmail(email)) return setStatus("invalid");
     if (!consent) return setStatus("consent");
     setStatus("sending");
-    triggerGuideDownload(); // the download never depends on the email service
+    triggerGuideDownload(lang); // the download never depends on the email service
     if (honey) return setStatus("sent"); // bot: pretend success, send nothing
     try {
       await sendLead({ email: email.trim(), lang });
@@ -70,7 +73,7 @@ export default function GuideForm() {
   };
 
   const handleDirect = () => {
-    triggerGuideDownload();
+    triggerGuideDownload(lang);
     setStatus("direct");
   };
 
@@ -87,7 +90,7 @@ export default function GuideForm() {
             <p className="mt-2 text-base leading-6 text-[#5d5049]">{text}</p>
             <button
               type="button"
-              onClick={triggerGuideDownload}
+              onClick={() => triggerGuideDownload(lang)}
               className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] hover:text-[#7C3C3C]"
             >
               <Icon name="download" size={16} /> {t.guideDownloadAgain}

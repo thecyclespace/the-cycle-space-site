@@ -149,7 +149,7 @@ sur un fichier "code", garde ta version locale (`git checkout --ours …`).
 - L'interface Sveltia CMS est en anglais (libellés du CMS lui-même). Les labels des champs du
   formulaire, eux, sont en français (définis dans `config.yml`).
 - Les images uploadées via le CMS arrivent dans `public/uploads/`. Les images existantes
-  (`public/elsa.jpg`, `public/Know_Your_Cycle_EN.pdf`) ne sont pas dans le sélecteur — saisis le
+  (`public/elsa.jpg`) ne sont pas dans le sélecteur — saisis le
   nom du fichier à la main (ex. `elsa.jpg`).
 - Le SEO bilingue (canonical, meta, OG, JSON-LD) est mis à jour côté client après hydratation.
   Les crawlers modernes (Google, Bing) exécutent le JS, donc le SEO fonctionne. Le canonical
