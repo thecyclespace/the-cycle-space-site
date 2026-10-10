@@ -2,7 +2,7 @@ import manifest from "../content/images.manifest.json";
 
 const BASE = import.meta.env.BASE_URL; // "/the-cycle-space-site/" or "/"
 // A photo of the site set: "/images/site/<name>.webp". Its lighter versions are in the "variantes" sub-folder.
-const OPTIMISED = /^\/images\/site\/([^/]+?)(?:-\d+)?\.(?:webp|avif)$/;
+const OPTIMISED = /^\/images\/site\/([^/]+)\.webp$/;
 
 const withBase = (p) => (/^https?:\/\//.test(p) ? p : `${BASE}${p.replace(/^\//, "")}`);
 

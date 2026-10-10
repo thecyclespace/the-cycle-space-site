@@ -92,7 +92,7 @@ Avant : `src/content/i18n/en.json` et `fr.json`, 58 clés chacun. Après : `src/
 
 `public/admin/publication.js` affiche en bas à gauche : **Le site est à jour**, **Mise en ligne en cours…** ou **Mise en ligne échouée**. Il compare la version réellement publiée (`version.json`, écrit par le build) au dernier changement enregistré, et consulte l'état du déploiement. Il ne lit que des informations publiques : aucun jeton. Il n'annonce « à jour » que lorsque le site publié porte bien le dernier changement.
 
-Les tests sont maintenant lancés avant chaque mise en ligne. Si un enregistrement casse une règle de contenu, le déploiement s'arrête, le site garde sa version précédente et l'indicateur passe à « échouée ».
+Des tests de structure (`npm run test:deploy`, 46 tests) sont maintenant lancés avant chaque mise en ligne : fichier illisible, page manquante, PDF absent, lien Calendly invalide. Si un enregistrement casse l'une de ces règles, le déploiement s'arrête, le site garde sa version précédente et l'indicateur passe à « échouée ». Les règles de rédaction (vouvoiement, mots à éviter, longueur des descriptions) ne bloquent **pas** la mise en ligne : Elsa reste libre de ses textes. Elles sont vérifiées par `npm test`, avant de fusionner du code.
 
 ### Bac à sable
 
@@ -123,7 +123,8 @@ Les tests sont maintenant lancés avant chaque mise en ligne. Si un enregistreme
 
 | Vérification | Résultat |
 |---|---|
-| Tests | 65 sur 65 (57 au départ, 8 nouveaux). |
+| Tests | 65 sur 65 (57 au départ, 8 nouveaux). Sous-ensemble lancé avant chaque mise en ligne : 46 sur 46. |
+| Une modification ordinaire d'Elsa ne bloque pas la mise en ligne | Simulation : titre de l'accueil réécrit (avec un tutoiement), une carte supprimée en français seulement. Les 46 tests de mise en ligne passent ; la suite complète signale 4 écarts de rédaction, comme prévu. |
 | Build de production | OK, 19 pages et 5 redirections. |
 | Site public inchangé | `scripts/compare-with-live.mjs` : 19 pages sur 19 ont le même texte visible, le même titre, la même description, le même lien canonique et les mêmes `hreflang` que le site en ligne. Seuls les chemins de 3 images changent. Cette comparaison a d'ailleurs rattrapé une erreur en cours de route (le nom du site avait disparu du pied de page). |
 | Textes identiques après migration | Comparaison clé par clé avant et après, dans les deux langues : identiques. |
@@ -140,13 +141,29 @@ Les tests sont maintenant lancés avant chaque mise en ligne. Si un enregistreme
 ## 7. Non vérifié et risques restants
 
 - **Connexion d'Elsa, enregistrement réel, déclenchement du déploiement** : non testés (chapitre 2).
-- **Indicateur de mise en ligne** : la logique a été relue et ses appels publics vérifiés (réponses de GitHub, accès autorisé depuis un navigateur, 60 requêtes par heure). Il n'a été vu en fonctionnement que dans le bac à sable, où il affiche « Essai en local ». Ses trois états réels ne pourront être observés qu'après fusion.
+- **Indicateur de mise en ligne** : testé dans un navigateur avec GitHub et le fichier de version simulés (captures `apres-14` à `apres-16`). Après un clic sur Enregistrer, il affiche « Enregistrement… » et jamais « à jour » tant que le changement n'est pas réellement publié ; il passe à « en cours », « à jour » ou « échouée » selon le cas, et revient à l'état réel si rien n'a été enregistré. Il consomme 12 requêtes GitHub par heure au repos et 24 pour une heure avec 4 enregistrements, sur 60 autorisées. **Pas encore vu avec le vrai GitHub** : à observer à l'étape 3 du chapitre 8. Après un échec, il ne se réactualise que toutes les 5 minutes.
 - **Conflit d'édition** (deux personnes, ou un développeur qui pousse pendant qu'Elsa écrit) : non testé. Sveltia écrit par l'API Git de GitHub ; son comportement exact en cas de conflit reste à observer en vrai.
 - **Vrais téléphones** (Safari iPhone, Chrome Android) : non testés. L'allègement des photos est plus lent sur Safari.
 - **Droit d'écriture large** du jeton GitHub (chapitre 3).
 - **Chemins d'images** : `…/images/site/<nom>-1200.webp` devient `…/images/site/variantes/<nom>-1200.webp`. Un lien externe vers l'ancien chemin serait cassé ; aucun n'est connu. `elsa.jpg` reste aussi à son ancien emplacement.
 - **Photos « banque »** : le sélecteur montre les 10 photos d'ambiance d'origine, dont deux images générées de femmes qui ne sont plus utilisées.
 - **Mise à jour de Sveltia** : elle est maintenant volontaire. Pour changer de version : remplacer le numéro et l'empreinte dans `public/admin/index.html` (`openssl dgst -sha384 -binary sveltia-cms.js | openssl base64 -A`), puis rejouer le bac à sable.
+
+### Relecture indépendante
+
+Une relecture séparée de la branche a trouvé six défauts, tous corrigés avant ce compte rendu :
+
+1. La commande de test ne fonctionnait pas avec la version de Node utilisée pour la mise en ligne : chaque déploiement aurait échoué. La mise en ligne lance maintenant une liste explicite de fichiers.
+2. Les tests bloquants figeaient des textes qu'Elsa peut modifier (titre de l'accueil, lien Calendly, nombre de cartes) : sa première modification aurait bloqué le site. Les règles de rédaction ne bloquent plus.
+3. L'indicateur pouvait afficher « à jour » juste après un enregistrement pas encore publié.
+4. L'indicateur pouvait épuiser le quota de GitHub en dix minutes.
+5. Une date d'article enregistrée avec une heure aurait pu s'afficher la veille. Le champ est maintenant une date simple, et le site ne lit que le jour.
+6. Une photo envoyée sous un nom finissant par un chiffre (`photo-2.webp`) pouvait afficher l'ancienne photo.
+
+Points relevés et laissés en l'état :
+
+- Au premier enregistrement de « Mes accompagnements », Sveltia ajoutera probablement un champ de prix vide à chaque carte : sans effet sur le site.
+- Le champ « Le même article dans l'autre langue » propose tous les articles, y compris ceux de la même langue. Choisir un article de la même langue ne casse rien, mais le bouton FR / EN ne mènera nulle part.
 
 ## 8. À tester sur une vraie session, dans cet ordre
 

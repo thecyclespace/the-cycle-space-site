@@ -426,7 +426,7 @@ collections:
           - { label: "Français", value: "fr" }
           - { label: "Anglais", value: "en" }
       - { label: "Brouillon (ne pas mettre en ligne)", name: "draft", widget: "boolean", required: false, default: true, hint: "Coche cette case tant que l'article n'est pas prêt : il reste invisible sur le site." }
-      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Date de publication", name: "date", widget: "datetime", type: "date", format: "YYYY-MM-DD" }
       - { label: "Résumé", name: "excerpt", widget: "text", hint: "1 à 3 phrases. Affiché dans la liste des articles et dans Google." }
       - { label: "Photo de l'article (facultatif)", name: "coverImage", widget: "image", required: false, hint: "Format paysage. Sans photo, l'article s'affiche avec un fond uni." }
       - { label: "Texte de l'article", name: "body", widget: "markdown", hint: "Écris comme dans un traitement de texte : titres, listes, gras, liens. Pour un article avec un outil, ne supprime pas la ligne <!-- calculator --> : elle marque l'endroit où l'outil s'affiche." }

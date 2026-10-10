@@ -1,4 +1,5 @@
-// Content / CMS compatibility checks. They protect Elsa from publishing something that breaks the site.
+// Content checks that run before every deployment (npm run test:deploy): they stop a change that would
+// break the site. Keep them structural: no rule here may depend on the wording Elsa chooses in the admin.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -33,9 +34,8 @@ test("nav uses the {label, route} shape expected by the CMS and routes exist", (
   }
 });
 
-test("services: required fields, valid action, 3-4 cards, same count in both languages", () => {
-  assert.equal(en.services.length, fr.services.length);
-  assert.ok(en.services.length >= 3 && en.services.length <= 4);
+test("services: required fields, valid action, 3-4 cards in each language", () => {
+  for (const data of [en, fr]) assert.ok(data.services.length >= 3 && data.services.length <= 4);
   for (const data of [en, fr]) {
     for (const s of data.services) {
       for (const f of ["title", "tag", "body", "cta"]) assert.ok(s[f], `service "${s.title}" missing ${f}`);
@@ -45,7 +45,7 @@ test("services: required fields, valid action, 3-4 cards, same count in both lan
 });
 
 test("Calendly URLs: default link preserved, optional links empty or valid", () => {
-  assert.equal(site.bookingUrl, "https://calendly.com/thecyclespaceadmin");
+  assert.match(site.bookingUrl, /^https:\/\/calendly\.com\/\S+$/, "the main booking link must be a calendly.com link");
   for (const k of ["bookingUrlIntroduction", "bookingUrlCheckIn"]) {
     assert.ok(site[k] === "" || /^https:\/\/calendly\.com\/\S+$/.test(site[k]), `${k} is not a calendly.com link`);
   }

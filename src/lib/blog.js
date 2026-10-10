@@ -9,9 +9,12 @@ const modules = import.meta.glob("../content/blog/*.md", {
   import: "default",
 });
 
+// An article date is a day ("2026-05-02"). If a time follows, it is ignored: the same day is shown
+// to every visitor and in the prerendered page.
 function toDate(value) {
   if (!value) return null;
-  const d = new Date(value);
+  const day = String(value).match(/^\d{4}-\d{2}-\d{2}/);
+  const d = new Date(day ? `${day[0]}T00:00:00Z` : value);
   return isNaN(d.getTime()) ? null : d;
 }
 
