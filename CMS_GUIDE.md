@@ -1,3 +1,5 @@
+> **Document ancien (juin 2026).** L'administration a été réorganisée en octobre 2026 : rubriques par page, français et anglais côte à côte, connexion par le bouton « Se connecter avec GitHub ». Références à jour : `docs/admin-2.0/GUIDE_ELSA.md` (éditrice) et `docs/admin-2.0/AUDIT.md` (technique). Ce qui suit est conservé pour mémoire.
+
 # Guide d'édition du site — The Cycle Space (`/admin`)
 
 Ce guide explique, **sans jargon technique**, comment modifier les textes, images, articles
