@@ -115,8 +115,8 @@ function ordered(fields, data) {
   return out;
 }
 let reordered = 0;
-for (const collection of config.collections) {
-  for (const file of collection.files || []) {
+for (const group of [{ files: (config.singletons || []).filter((s) => s.file) }, ...config.collections]) {
+  for (const file of group.files || []) {
     const targets = file.file.includes("{{locale}}") ? LANGS.map((l) => file.file.replace("{{locale}}", l)) : [file.file];
     for (const target of targets) {
       const before = fs.readFileSync(at(target), "utf8").replace(/\r\n/g, "\n");

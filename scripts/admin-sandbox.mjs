@@ -23,7 +23,10 @@ const PORT = Number(process.env.PORT || 4321);
 const OUT = path.join(root, ".admin-sandbox");
 // The only places the admin may read or write (same list as tests/admin-config.test.mjs).
 const EDITABLE = ["src/content", "public/uploads", "public/images/site"];
-const EXTRA = ["public/admin/config.yml", "public/elsa.jpg"];
+const EXTRA = ["public/admin/config.yml", "public/elsa.jpg", ".gitignore"];
+// To investigate a problem seen with the real folder, more of the project can be copied (read-only use):
+//   SANDBOX_ALSO=docs,tests,.admin-sandbox node scripts/admin-sandbox.mjs
+const ALSO = (process.env.SANDBOX_ALSO || "").split(",").map((d) => d.trim()).filter((d) => d && fs.existsSync(path.join(root, d)));
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mjs": "text/javascript; charset=utf-8",
@@ -57,12 +60,12 @@ http
     const p = decodeURIComponent(url.pathname);
 
     if (p === "/__repo__/manifest.json") {
-      const files = EDITABLE.flatMap((d) => walk(d)).concat(EXTRA).filter((f) => fs.existsSync(path.join(root, f)));
+      const files = EDITABLE.concat(ALSO).flatMap((d) => walk(d)).concat(EXTRA).filter((f) => fs.existsSync(path.join(root, f)));
       return send(res, 200, JSON.stringify(files), TYPES[".json"]);
     }
     if (p.startsWith("/__repo__/file/")) {
       const rel = p.slice("/__repo__/file/".length);
-      const allowed = EDITABLE.some((d) => rel.startsWith(d + "/")) || EXTRA.includes(rel);
+      const allowed = EDITABLE.concat(ALSO).some((d) => rel.startsWith(d + "/")) || EXTRA.includes(rel);
       const full = allowed && inside(root, rel);
       if (!full || !fs.existsSync(full)) return send(res, 404, "not found");
       return send(res, 200, fs.readFileSync(full), "application/octet-stream");

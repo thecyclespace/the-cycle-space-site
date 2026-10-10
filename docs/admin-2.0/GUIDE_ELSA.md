@@ -20,26 +20,30 @@ Tu n'as besoin de rien installer. Tout se fait dans ton navigateur, sur ordinate
 | 🟠 Mise en ligne en cours… | C'est enregistré. Attends quelques minutes. Tu peux fermer la page. |
 | 🔴 Mise en ligne échouée | C'est enregistré, mais pas encore visible. Rien n'est perdu : préviens Florent. |
 
-## Où trouver quoi
+## L'écran d'accueil
 
-| Je veux modifier… | Je clique sur… |
+Quand tu arrives, un écran te dit **« Bonjour Elsa, que veux-tu modifier ? »** avec six grands boutons :
+
+| Bouton | Ce que tu y trouves |
 |---|---|
-| Un texte de l'accueil | **Mes pages** → Page d'accueil |
-| Un accompagnement, la méthode, les questions fréquentes | **Mes pages** → Mes accompagnements |
-| Ma présentation, mon parcours | **Mes pages** → À propos |
-| Les textes autour du guide gratuit | **Mes pages** → Ressources et guide gratuit |
-| Le menu, le bouton de réservation, le bas du site | **Mes pages** → Menu, boutons et pied de page |
-| Un article | **Articles** |
-| Une photo, le guide en PDF | **Photos et documents** |
-| Mon lien Calendly, mon email, mon Instagram | **Coordonnées** |
+| 🏠 **Page d'accueil** | Le grand titre, les cartes, ton histoire en quelques lignes |
+| 🤝 **Mes accompagnements** | Les offres, la méthode, les questions fréquentes |
+| 👤 **À propos** | Ta présentation, ton parcours, tes diplômes |
+| 📝 **Articles et ressources** | Tes articles, et les textes autour du guide gratuit |
+| 🖼️ **Photos et documents** | Les photos du site, et le guide gratuit en PDF |
+| 📞 **Coordonnées et réservation** | Tes liens Calendly, ton email, ton Instagram |
 
-Dans **Mes pages**, chaque texte apparaît deux fois : en **français à gauche**, en **anglais à droite**. Modifier l'un ne change jamais l'autre. Sur téléphone, un petit menu en haut permet de passer d'une langue à l'autre.
+Un clic sur un bouton ouvre directement le bon formulaire. Pour revenir à cet écran, clique sur le bouton rouge **Accueil**, en bas à gauche.
+
+Les mêmes rubriques sont aussi dans le menu de gauche.
+
+Dans les pages, chaque texte apparaît deux fois : en **français à gauche**, en **anglais à droite**. Modifier l'un ne change jamais l'autre. Sur téléphone, un petit menu en haut permet de passer d'une langue à l'autre.
 
 ---
 
 ## 1. Changer une phrase
 
-1. **Mes pages** → **Page d'accueil**.
+1. Clique sur **Page d'accueil**.
 2. Trouve le texte. Les champs suivent l'ordre de la page, de haut en bas. Le premier est la petite ligne au-dessus du titre, le deuxième le grand titre.
 3. Modifie le texte en français (à gauche). Si la phrase existe aussi en anglais, modifie-la à droite.
 4. Clique sur **Enregistrer**.
@@ -49,18 +53,18 @@ Si un texte est trop long, un message rouge apparaît sous le champ et l'enregis
 
 ## 2. Changer une photo
 
-1. **Photos et documents** → **Photos du site**.
+1. Clique sur **Photos et documents**.
 2. Sous la photo à changer, clique sur **Remplacer**.
 3. Clique sur **Téléverser** et choisis ta photo. Tu peux aussi reprendre une photo déjà présente.
 4. Clique sur **Insérer**, puis sur **Enregistrer**.
 
 Ta photo est allégée automatiquement. Elle ne doit pas dépasser 3 Mo au départ : une photo de téléphone passe sans problème.
 
-Pense à décrire la photo en une phrase : **Mes pages** → **Menu, boutons et pied de page** → tout en bas, « Description des photos ». C'est lu aux personnes malvoyantes.
+Pense à décrire la photo en une phrase : sur l'écran d'accueil, **Menu et bas de page** → tout en bas, « Description des photos ». C'est lu aux personnes malvoyantes.
 
 ## 3. Écrire un article
 
-1. **Articles** → **Nouveau** (le « + » en haut).
+1. Clique sur **Articles et ressources**, puis sur **Nouveau**.
 2. Remplis le **titre**, choisis la **langue**, écris le **résumé** (une à trois phrases).
 3. Laisse **Brouillon** coché : l'article est enregistré mais personne ne le voit.
 4. Écris ton texte. À droite, tu vois l'aperçu.
@@ -73,7 +77,7 @@ Dans les cinq articles qui contiennent un outil (calculateur, journal…), ne su
 
 ## 4. Modifier un accompagnement
 
-1. **Mes pages** → **Mes accompagnements**.
+1. Clique sur **Mes accompagnements**.
 2. Dans « Mes accompagnements (les cartes) », clique sur la carte à modifier.
 3. Change le nom, le résumé, la description, le prix (laisse vide pour ne rien afficher) ou le texte du bouton.
 4. Pour changer l'ordre, utilise les flèches en haut de la carte.
@@ -83,13 +87,13 @@ Garde le même nombre de cartes en français et en anglais.
 
 ## 5. Changer ton lien Calendly ou ton email
 
-1. **Coordonnées** → **Mes coordonnées et mes liens Calendly**.
+1. Clique sur **Coordonnées et réservation**.
 2. Colle le nouveau lien. Il doit commencer par `https://calendly.com/`, sinon il est refusé.
 3. **Enregistrer**. Quand la pastille est verte, clique sur un bouton de réservation du site pour vérifier.
 
 ## 6. Remplacer le guide gratuit
 
-1. **Photos et documents** → **Guide gratuit (PDF)**.
+1. Sur l'écran d'accueil, sous **Photos et documents**, clique sur **Remplacer le guide gratuit (PDF)**.
 2. Sous « Le guide en français », clique sur **Remplacer**, puis **Téléverser**, et choisis ton nouveau PDF (3 Mo maximum).
 3. Si la première page a changé, remplace aussi l'image de couverture (une capture de la première page).
 4. **Enregistrer**.
@@ -116,5 +120,5 @@ Les personnes qui laissent leur email pour le guide t'arrivent par email, dans u
 
 - Les listes déroulantes « Que fait le bouton ? » et « Page » du menu.
 - La mention santé du pied de page et la mention sous le calculateur.
-- La rubrique **Options avancées**, sauf si Florent te le demande.
+- **Options avancées (Google)**, sauf si Florent te le demande.
 - Les promesses de santé : reste sur l'explication et l'accompagnement, sans promettre de guérison ni de diagnostic.

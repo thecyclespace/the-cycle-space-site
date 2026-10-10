@@ -51,7 +51,7 @@ Comptes ayant le droit d'écrire : `thecyclespace` (administrateur) et `Flambe02
 | Option | Ce que cela apporte | Coût et risque | Décision |
 |---|---|---|---|
 | **A. Sveltia mieux configuré** | Rubriques par page, français et anglais côte à côte, photos allégées, brouillon local restauré, aperçu des articles. | Une migration du contenu (mêmes textes, fichiers découpés), pas de nouveau service. | **Retenue.** |
-| B. Enveloppe React autour de Sveltia | Page d'accueil « Bonjour Elsa », raccourcis. | Deuxième interface à maintenir, liens profonds fragiles, pour un gain faible : Sveltia ouvre déjà sur « Mes pages ». | Écartée. Seul l'indicateur de mise en ligne, qui manquait vraiment, a été ajouté (un fichier de 150 lignes, sans dépendance). |
+| B. Enveloppe légère autour de Sveltia | Écran « Bonjour Elsa », raccourcis, état de la mise en ligne. | Deux petits fichiers sans dépendance (`accueil.js`, `publication.js`), pas de React, pas de build. Ils dépendent des adresses internes de Sveltia : un test vérifie que chaque raccourci mène à un formulaire existant. | **Retenue en complément de A**, à la demande du propriétaire, dans sa forme la plus légère. |
 | C. Éditeur React sur mesure | Aperçu fidèle de la page, écran par intention. | Authentification, écriture GitHub, conflits, médias et brouillons à réécrire et à sécuriser. Plusieurs semaines, surface d'attaque nouvelle. | Écartée pour cette passe. Rien de constaté ne l'impose. |
 
 Limites de Sveltia qui restent, sans contournement gratuit et simple :
@@ -59,7 +59,7 @@ Limites de Sveltia qui restent, sans contournement gratuit et simple :
 - **Pas d'aperçu fidèle des pages** (accueil, accompagnements…). Sveltia n'accepte pas encore de gabarit d'aperçu personnalisé. Elsa voit ses champs, pas la page. Les articles, eux, ont un aperçu du texte.
 - **Pas de publication groupée** : chaque page s'enregistre séparément (une page = français + anglais ensemble).
 - **Le droit d'écriture n'est limité que par l'interface.** Le jeton GitHub d'Elsa peut techniquement tout modifier ; le CMS ne lui propose que les dossiers de contenu.
-- Le mot « Collections » en haut du menu et le bouton « Enregistrer » viennent de Sveltia et ne se renomment pas.
+- Les mots « Collections » et « Fichiers » dans le menu, et le bouton « Enregistrer », viennent de Sveltia et ne se renomment pas.
 
 ## 4. Ce qui a été fait
 
@@ -75,13 +75,16 @@ Avant : `src/content/i18n/en.json` et `fr.json`, 58 clés chacun. Après : `src/
 
 ### Administration
 
-| Rubrique | Contenu |
+**Écran d'accueil** (`public/admin/accueil.js`) : « Bonjour Elsa, que veux-tu modifier ? » et six grands boutons, ceux du cahier des charges. Chaque bouton ouvre directement le bon formulaire : le titre de l'accueil est à **un clic**. Un bouton « Accueil » le rappelle à tout moment. Ce sont des raccourcis posés au-dessus de Sveltia : le fichier ne lit rien, n'écrit rien et ne demande aucune connexion.
+
+**Menu de gauche** : chaque ligne ouvre directement son formulaire (plus de liste intermédiaire à un seul élément).
+
+| Entrée | Contenu |
 |---|---|
-| **Mes pages** | Page d'accueil, Mes accompagnements, À propos, Ressources et guide gratuit, Menu, boutons et pied de page. Chaque page s'ouvre avec le français à gauche et l'anglais à droite. |
-| **Articles** | Liste avec vignette, filtres (brouillons, langue). Un nouvel article commence en brouillon. L'article traduit se choisit dans une liste, plus besoin de taper un nom technique. |
-| **Photos et documents** | Photos du site (avec vignettes), guide gratuit (PDF, couvertures, adresse des inscriptions). |
-| **Coordonnées** | Liens Calendly, email, Instagram. |
-| **Options avancées** | Titres et descriptions pour Google. |
+| Page d'accueil, Mes accompagnements, À propos, Guide gratuit : les textes, Menu et bas de page | Les pages. Chacune s'ouvre avec le français à gauche et l'anglais à droite. |
+| Photos du site, Guide gratuit : le PDF, Coordonnées et réservation | Les photos (avec vignettes), les deux PDF et leurs couvertures, les liens Calendly, l'email, Instagram. |
+| Options avancées (Google) | Titres et descriptions pour Google. |
+| Articles | Liste avec vignette, filtres (brouillons, langue). Un nouvel article commence en brouillon. L'article traduit se choisit dans une liste. |
 
 - Tous les libellés sont réécrits en français courant ; un test interdit le retour des mots techniques.
 - Longueurs maximales vérifiées à la saisie pour les textes qui cassent la mise en page (grand titre, cartes).
@@ -102,7 +105,7 @@ Des tests de structure (`npm run test:deploy`, 46 tests) sont maintenant lancés
 
 **Créés**
 - `src/content/pages/*.json` (10 fichiers), `src/content/settings/guide.json`, `src/content/copy.js`
-- `public/admin/publication.js`, `public/uploads/elsa.jpg`, `public/images/site/*.webp` (10 vignettes)
+- `public/admin/publication.js`, `public/admin/accueil.js`, `public/uploads/elsa.jpg`, `public/images/site/*.webp` (10 vignettes)
 - `scripts/migrate-content-admin2.mjs`, `scripts/admin-sandbox.mjs`, `scripts/admin-sandbox-open.js`, `scripts/admin-sandbox-export.js`, `scripts/compare-with-live.mjs`
 - `tests/admin-config.test.mjs`, `tests/_content.mjs`
 - `docs/admin-2.0/AUDIT.md`, `docs/admin-2.0/GUIDE_ELSA.md`, `docs/admin-2.0/screens/`
@@ -123,7 +126,9 @@ Des tests de structure (`npm run test:deploy`, 46 tests) sont maintenant lancés
 
 | Vérification | Résultat |
 |---|---|
-| Tests | 65 sur 65 (57 au départ, 8 nouveaux). Sous-ensemble lancé avant chaque mise en ligne : 46 sur 46. |
+| Tests | 66 sur 66 (57 au départ, 9 nouveaux). Sous-ensemble lancé avant chaque mise en ligne : 47 sur 47. |
+| Écran d'accueil | Dans le bac à sable : absent de l'écran de connexion, affiché après connexion, les 10 raccourcis ouvrent chacun un formulaire rempli, se ferme avec Échap, s'affiche sans débordement à 390 px. |
+| Vrai dossier du projet | L'administration a aussi été ouverte sur le dossier réel `F:\dev\the-cycle-space` (et non la copie du bac à sable) : les formulaires sont remplis. |
 | Une modification ordinaire d'Elsa ne bloque pas la mise en ligne | Simulation : titre de l'accueil réécrit (avec un tutoiement), une carte supprimée en français seulement. Les 46 tests de mise en ligne passent ; la suite complète signale 4 écarts de rédaction, comme prévu. |
 | Build de production | OK, 19 pages et 5 redirections. |
 | Site public inchangé | `scripts/compare-with-live.mjs` : 19 pages sur 19 ont le même texte visible, le même titre, la même description, le même lien canonique et les mêmes `hreflang` que le site en ligne. Seuls les chemins de 3 images changent. Cette comparaison a d'ailleurs rattrapé une erreur en cours de route (le nom du site avait disparu du pied de page). |
@@ -141,6 +146,7 @@ Des tests de structure (`npm run test:deploy`, 46 tests) sont maintenant lancés
 ## 7. Non vérifié et risques restants
 
 - **Connexion d'Elsa, enregistrement réel, déclenchement du déploiement** : non testés (chapitre 2).
+- **Formulaires vides avant la fusion** : si l'on se connecte à cette nouvelle administration avec un compte ou un jeton GitHub **avant** que la branche soit fusionnée, les formulaires apparaissent vides, parce que les nouveaux fichiers de pages n'existent pas encore sur `main`. Ne rien enregistrer dans cet état. Après la fusion, le contenu est présent.
 - **Indicateur de mise en ligne** : testé dans un navigateur avec GitHub et le fichier de version simulés (captures `apres-14` à `apres-16`). Après un clic sur Enregistrer, il affiche « Enregistrement… » et jamais « à jour » tant que le changement n'est pas réellement publié ; il passe à « en cours », « à jour » ou « échouée » selon le cas, et revient à l'état réel si rien n'a été enregistré. Il consomme 12 requêtes GitHub par heure au repos et 24 pour une heure avec 4 enregistrements, sur 60 autorisées. **Pas encore vu avec le vrai GitHub** : à observer à l'étape 3 du chapitre 8. Après un échec, il ne se réactualise que toutes les 5 minutes.
 - **Conflit d'édition** (deux personnes, ou un développeur qui pousse pendant qu'Elsa écrit) : non testé. Sveltia écrit par l'API Git de GitHub ; son comportement exact en cas de conflit reste à observer en vrai.
 - **Vrais téléphones** (Safari iPhone, Chrome Android) : non testés. L'allègement des photos est plus lent sur Safari.
@@ -168,8 +174,8 @@ Points relevés et laissés en l'état :
 ## 8. À tester sur une vraie session, dans cet ordre
 
 1. Fusionner la branche (rien ne change pour les visiteurs).
-2. Ouvrir `/admin/`, cliquer « Se connecter avec GitHub » avec le compte d'Elsa. Attendu : retour dans l'administration, rubrique « Mes pages ».
-3. Mes pages → Page d'accueil → modifier la légende sous la photo en français → Enregistrer. Attendu : message de succès, puis l'indicateur passe à « Mise en ligne en cours… » en moins d'une minute, puis « Le site est à jour » en 2 à 5 minutes. Vérifier sur le site, puis remettre l'ancien texte.
+2. Ouvrir `/admin/`, cliquer « Se connecter avec GitHub » avec le compte d'Elsa. Attendu : l'écran « Bonjour Elsa ».
+3. Page d'accueil → modifier la légende sous la photo en français → Enregistrer. Attendu : message de succès, puis l'indicateur passe à « Mise en ligne en cours… » en moins d'une minute, puis « Le site est à jour » en 2 à 5 minutes. Vérifier sur le site, puis remettre l'ancien texte.
 4. Sur GitHub, vérifier que le commit ne touche que `src/content/pages/home.fr.json`.
 5. Photos et documents → remplacer une photo par une photo de téléphone. Attendu : fichier `.webp` dans `public/images/site/` ou `public/uploads/`.
 6. Articles → Nouveau → enregistrer en brouillon. Attendu : l'article n'apparaît pas sur le site.

@@ -13,7 +13,8 @@ const read = (p) => fs.readFileSync(new URL(p, root), "utf8");
 const config = parse(read("public/admin/config.yml"));
 const LOCALES = ["fr", "en"];
 const collection = (name) => config.collections.find((c) => c.name === name);
-const fileEntries = config.collections.flatMap((c) => (c.files || []).map((f) => ({ ...f, collection: c.name })));
+// The pages and settings are direct entries of the side menu ("singletons"); the articles are a collection.
+const fileEntries = config.singletons.filter((s) => s.file);
 const targets = (file) => (file.file.includes("{{locale}}") ? LOCALES.map((l) => file.file.replace("{{locale}}", l)) : [file.file]);
 
 // Walks the fields of a form together with the data of its file.
@@ -57,7 +58,7 @@ test("every form of the admin matches its file, both ways, and in the same order
 test("the pages are edited in French and English side by side, one file per page and language", () => {
   assert.deepEqual(config.i18n.locales, LOCALES);
   assert.equal(config.i18n.default_locale, "fr");
-  const pages = collection("pages");
+  const pages = { files: fileEntries.filter((f) => f.file.includes("{{locale}}")) };
   assert.deepEqual(pages.files.map((f) => f.name).sort(), [...PAGES].sort(), "one admin page per content page");
   const untranslated = [];
   const walk = (fields, path) => {
@@ -89,11 +90,11 @@ test("the admin can only write to the content and media folders (never code, wor
       walk(f.fields);
     }
   };
-  config.collections.forEach((c) => {
+  [...config.collections, ...fileEntries].forEach((c) => {
     if (c.media_folder) mediaFolders.add(c.media_folder);
     walk(c.fields);
-    (c.files || []).forEach((f) => walk(f.fields));
   });
+  assert.ok(config.collections.every((c) => !c.files), "file forms are declared as menu entries, not inside a collection");
   assert.deepEqual([...mediaFolders], ["/public/images/site"]);
   const raw = read("public/admin/config.yml");
   for (const forbidden of [".github/", "package.json", "vite.config", "node_modules", "src/components", "src/pages", "src/lib", "scripts/"]) {
@@ -126,23 +127,32 @@ test("labels are written for Elsa: plain French, no technical word, every field 
       walk(f.fields, here);
     }
   };
-  for (const c of config.collections) {
+  for (const c of [...config.collections, ...fileEntries]) {
     if (banned.test(c.label) || banned.test(c.description || "")) bad.push(c.label);
     walk(c.fields, c.label);
-    for (const f of c.files || []) {
-      if (banned.test(f.label) || banned.test(f.description || "")) bad.push(f.label);
-      walk(f.fields, f.label);
-    }
   }
   assert.deepEqual(bad, []);
 });
 
-test("the admin has at most 7 sections and reaches the home page title in 2 clicks", () => {
-  assert.ok(config.collections.length <= 7);
-  assert.equal(config.collections[0].name, "pages", "the pages are the first section, opened by default");
-  assert.equal(config.collections[0].files[0].name, "home");
-  const firstFields = config.collections[0].files[0].fields.slice(0, 3).map((f) => f.name);
-  assert.ok(firstFields.includes("heroTitle"), "the main title is visible without scrolling");
+test("the side menu opens each form directly, and the home page title is the second field of the first entry", () => {
+  assert.equal(fileEntries[0].name, "home");
+  assert.ok(fileEntries[0].fields.slice(0, 3).map((f) => f.name).includes("heroTitle"), "the main title is visible without scrolling");
+  assert.ok(fileEntries.length <= 9, "keep the menu short");
+  assert.ok(config.singletons.some((s) => s.divider), "the menu is grouped");
+});
+
+test("welcome screen: six large shortcuts, each leading to an existing form", () => {
+  const src = read("public/admin/accueil.js");
+  const cards = src.slice(src.indexOf("const CARDS = ["), src.indexOf("const OTHER = ["));
+  assert.equal((cards.match(/\{ icon:/g) || []).length + (cards.match(/^\s+icon:/gm) || []).length, 6, "six cards, as in the plan");
+  const names = new Set(fileEntries.map((f) => f.name));
+  const targets = [...src.matchAll(/`\$\{ENTRY\}([a-z_]+)`/g)].map((m) => m[1]);
+  assert.ok(targets.length >= 8);
+  for (const t of targets) assert.ok(names.has(t), `the welcome screen links to "${t}", which is not a form of the admin`);
+  // every form can be reached from the welcome screen
+  for (const n of names) assert.ok(targets.includes(n), `the form "${n}" has no shortcut on the welcome screen`);
+  assert.ok(src.includes('"#/collections/blog"') && config.collections.some((c) => c.name === "blog"));
+  assert.match(read("public/admin/index.html"), /accueil\.js/);
 });
 
 test("articles: the form covers what the site reads, and the drop-down lists match the existing articles", () => {
