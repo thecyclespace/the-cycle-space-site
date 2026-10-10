@@ -90,4 +90,18 @@ if (fs.existsSync(notFound)) {
   fs.writeFileSync(notFound, html);
 }
 
+// robots.txt must point to the sitemap of the address the site is really served from.
+const robots = path.join(dist, "robots.txt");
+if (fs.existsSync(robots)) {
+  const siteUrl = (process.env.VITE_SITE_URL || "https://thecyclespace.com").replace(/\/$/, "");
+  fs.writeFileSync(robots, fs.readFileSync(robots, "utf8").replace(/^Sitemap:.*$/m, `Sitemap: ${siteUrl}/sitemap.xml`));
+}
+
+// Which version of the project this build is. The admin compares it with the last recorded change
+// to tell the editor, truthfully, whether her change is online (public/admin/publication.js).
+fs.writeFileSync(
+  path.join(dist, "version.json"),
+  JSON.stringify({ commit: process.env.GITHUB_SHA || "local", builtAt: new Date().toISOString() }) + "\n"
+);
+
 console.log(`✓ prerendered ${count} routes + ${redirects} redirects`);

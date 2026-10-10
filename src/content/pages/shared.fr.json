@@ -1,0 +1,35 @@
+{
+  "nav": [
+    {
+      "label": "Accueil",
+      "route": "/"
+    },
+    {
+      "label": "Accompagnements",
+      "route": "/services"
+    },
+    {
+      "label": "Ressources",
+      "route": "/blog"
+    },
+    {
+      "label": "À propos",
+      "route": "/about"
+    }
+  ],
+  "book": "Réserver un appel gratuit",
+  "finalTitle": "Et si nous prenions le temps de parler de votre cycle ?",
+  "finalText": "Un premier appel avec moi, gratuit et sans engagement. Vous me racontez ce qui vous amène, je réponds à vos questions, et vous décidez ensuite.",
+  "finalCta": "Réserver mon appel gratuit",
+  "modalTitle": "Réserver une séance",
+  "modalText": "Choisissez le créneau qui vous convient. Pour une première rencontre, commencez par un appel gratuit de 15 à 20 minutes.",
+  "calendly": "Ouvrir le calendrier",
+  "calendlyLoading": "Chargement du calendrier…",
+  "calendlyError": "Le calendrier ne s'affiche pas ? Vous pouvez accéder directement à Calendly.",
+  "footerTagline": "Elsa, ostéopathe. Accompagnement en ligne autour du cycle menstruel.",
+  "disclaimer": "Contenu éducatif et d'accompagnement : il ne remplace pas un avis médical. En cas de détresse ou de symptômes sévères, contactez votre médecin ou les services d'urgence.",
+  "imageAlts": {
+    "elsa": "Elsa, ostéopathe, pendant une séance avec une patiente",
+    "tool": "Un carnet de suivi du cycle terracotta orné de phases de lune sur un plaid en lin"
+  }
+}

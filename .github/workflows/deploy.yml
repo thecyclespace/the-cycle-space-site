@@ -29,6 +29,11 @@ jobs:
           # Public URL used for canonicals, sitemap and structured data.
           # Switch to https://thecyclespace.com when the custom domain is live (see NAMECHEAP_DNS.md).
           VITE_SITE_URL: https://thecyclespace.github.io/the-cycle-space-site
+      # Structure checks only (broken file, missing page, missing PDF…). If a change saved from the admin
+      # would break the site, the job stops here: the site stays on its previous version and the admin
+      # shows "Mise en ligne échouée". Wording rules (tests/fr-style, tests/images-ux) are NOT checked
+      # here: Elsa is free to rewrite her texts. They run with `npm test`, before merging code.
+      - run: npm run test:deploy
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

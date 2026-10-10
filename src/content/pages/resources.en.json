@@ -1,0 +1,17 @@
+{
+  "resourcesTitle": "Start with a free cycle guide.",
+  "resourcesText": "A practical guide to your hormones, your symptoms and your fertility signs, and to knowing when to ask for help.",
+  "guideEmailLabel": "Your email",
+  "emailPlaceholder": "your@email.com",
+  "guideConsent": "I agree to receive the guide and occasional emails from The Cycle Space. My email is sent to Elsa only. I can unsubscribe at any time by replying to any email.",
+  "download": "Download the guide",
+  "guideNoEmail": "Download without email",
+  "guideSending": "Sending…",
+  "guideInvalidEmail": "Please enter a valid email address.",
+  "guideConsentRequired": "Please tick the box to receive the guide by email, or use the direct download below.",
+  "guideThanksTitle": "Your guide is on its way.",
+  "guideThanksText": "The download just started. If nothing happened, click below to get the guide again.",
+  "guideSentText": "The download just started and your email was sent to Elsa. If nothing happened, click below to get the guide again.",
+  "guideFailedText": "The download started, but we couldn't register your email just now. You can try again later; the guide is yours either way.",
+  "guideDownloadAgain": "Download again"
+}

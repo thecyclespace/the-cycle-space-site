@@ -1,0 +1,17 @@
+{
+  "resourcesTitle": "Mon guide gratuit pour suivre votre cycle",
+  "resourcesText": "Un guide pratique pour comprendre vos hormones, vos symptômes et vos signes de fertilité, et savoir quand demander de l'aide.",
+  "guideEmailLabel": "Votre adresse email",
+  "emailPlaceholder": "votre@email.com",
+  "guideConsent": "J'accepte de recevoir le guide et, de temps en temps, des nouvelles de The Cycle Space. Mon adresse est transmise à Elsa uniquement. Je peux me désabonner à tout moment en répondant à l'un de ses emails.",
+  "download": "Télécharger le guide gratuit",
+  "guideNoEmail": "Télécharger sans email",
+  "guideSending": "Envoi en cours…",
+  "guideInvalidEmail": "Saisissez une adresse email valide.",
+  "guideConsentRequired": "Cochez la case pour recevoir le guide par email, ou choisissez le téléchargement sans email.",
+  "guideThanksTitle": "Votre guide est prêt !",
+  "guideThanksText": "Le téléchargement a commencé. Si rien ne se passe, vous pouvez le relancer ici.",
+  "guideSentText": "Le téléchargement a commencé et j'ai bien reçu votre adresse. Si rien ne se passe, vous pouvez relancer le téléchargement ci-dessous.",
+  "guideFailedText": "Le téléchargement a commencé, mais votre adresse n'a pas pu être enregistrée pour le moment. Vous pouvez réessayer plus tard : le guide est à vous dans tous les cas.",
+  "guideDownloadAgain": "Télécharger à nouveau"
+}

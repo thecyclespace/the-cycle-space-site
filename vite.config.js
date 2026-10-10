@@ -124,10 +124,17 @@ export default defineConfig({
     {
       name: "serve-admin-index",
       configureServer(server) {
-        server.middlewares.use((req, _res, next) => {
-          if (req.url === "/admin" || req.url === "/admin/") {
-            req.url = "/admin/index.html";
+        server.middlewares.use((req, res, next) => {
+          // The address carries the site base ("/the-cycle-space-site/admin") and sometimes a query.
+          const [pathname, query = ""] = (req.url || "").split("?");
+          const suffix = query ? `?${query}` : "";
+          if (/^(\/the-cycle-space-site)?\/admin$/.test(pathname)) {
+            // Without the final slash, the admin would look for its files one folder too high.
+            res.statusCode = 302;
+            res.setHeader("Location", `${pathname}/${suffix}`);
+            return res.end();
           }
+          if (/^(\/the-cycle-space-site)?\/admin\/$/.test(pathname)) req.url = `${pathname}index.html${suffix}`;
           next();
         });
       },

@@ -68,7 +68,7 @@ export default function Home() {
           <figure className="mx-auto w-full max-w-[300px] md:max-w-[400px]">
             <div className="overflow-hidden rounded-[2rem] bg-[#DCCDB8] p-2 md:rounded-[2.5rem] md:p-3">
               <img
-                src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
+                src={`${import.meta.env.BASE_URL}${images.elsaImage.replace(/^\//, "")}`}
                 alt={alts.elsa || "Elsa"}
                 width="400"
                 height="400"

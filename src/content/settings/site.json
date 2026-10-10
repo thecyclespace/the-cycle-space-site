@@ -1,15 +1,9 @@
 {
-  "siteName": "The Cycle Space",
   "bookingUrl": "https://calendly.com/thecyclespaceadmin",
-  "contactEmail": "hello@thecyclespace.com",
-  "instagramUrl": "https://www.instagram.com/elsa.thecyclespace",
-  "elsaImage": "elsa.jpg",
-  "guidePdfEn": "/uploads/The_Cycle_Space_Know_Your_Cycle_EN.pdf",
-  "guidePdfFr": "/uploads/The_Cycle_Space_Connaitre_votre_cycle_FR.pdf",
-  "guideCoverEn": "/uploads/guide-cover-en.webp",
-  "guideCoverFr": "/uploads/guide-cover-fr.webp",
-  "footerHandle": "thecyclespace.com · @elsa.thecyclespace",
   "bookingUrlIntroduction": "",
   "bookingUrlCheckIn": "",
-  "guideLeadEmail": "thecyclespaceadmin@gmail.com"
+  "contactEmail": "hello@thecyclespace.com",
+  "instagramUrl": "https://www.instagram.com/elsa.thecyclespace",
+  "footerHandle": "thecyclespace.com · @elsa.thecyclespace",
+  "siteName": "The Cycle Space"
 }

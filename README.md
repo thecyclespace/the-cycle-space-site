@@ -44,9 +44,9 @@ Tous les textes, images, liens et métadonnées SEO du site sont stockés dans `
 
 ```
 src/content/
-├── i18n/
-│   ├── en.json          # Tous les textes en anglais
-│   └── fr.json          # Tous les textes en français
+├── pages/              # Les textes, un fichier par page et par langue
+│   ├── home.fr.json     # (home, services, about, resources, shared)
+│   └── home.en.json
 ├── settings/
 │   └── site.json        # Calendly, email, Instagram, image, guide PDF
 ├── seo/
@@ -125,8 +125,8 @@ et re-`pull --rebase` juste avant de `push`.
 src/content/settings/site.json    # contact, calendly, instagram…
 src/content/seo/seo.json          # titres et meta des pages
 src/content/blog/*.md             # tous les articles et outils
-src/content/i18n/en.json          # tous les textes EN
-src/content/i18n/fr.json          # tous les textes FR
+src/content/pages/<page>.en.json   # textes EN, un fichier par page
+src/content/pages/<page>.fr.json   # textes FR, un fichier par page
 public/uploads/*                  # images uploadées via le CMS
 ```
 

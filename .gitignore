@@ -15,3 +15,6 @@ _chat.txt
 
 # Heavy source images (kept locally, never deployed). Responsive versions live in public/images/site/.
 assets-source/
+
+# Local admin sandbox output (scripts/admin-sandbox.mjs)
+.admin-sandbox/

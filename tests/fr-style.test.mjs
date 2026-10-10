@@ -3,9 +3,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { loadCopy } from "./_content.mjs";
 
 const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8").replace(/\r\n/g, "\n");
-const fr = JSON.parse(read("src/content/i18n/fr.json"));
+const fr = loadCopy("fr");
 
 const BANNED = [
   [/\bpatterns?\b/i, "pattern → tendance / schéma / rythme"],
@@ -124,6 +125,6 @@ test("menopause is one of the 'what brings you here' cards, and the undecided ha
 test("the home page shows Elsa's own photo at the top, not a stock picture", () => {
   const home = read("src/pages/Home.jsx");
   const hero = home.slice(home.indexOf("1. Hero"), home.indexOf("<Method />"));
-  assert.ok(hero.includes("siteSettings.elsaImage"), "hero uses Elsa's photo");
+  assert.ok(hero.includes("images.elsaImage"), "hero uses Elsa's photo");
   assert.ok(!hero.includes("<Picture"), "no decorative picture in the hero");
 });

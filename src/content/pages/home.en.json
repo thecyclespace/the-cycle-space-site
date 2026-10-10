@@ -1,0 +1,62 @@
+{
+  "heroKicker": "Elsa · Osteopath & women's health practitioner",
+  "heroTitle": "Understand your cycle. Feel better in your body.",
+  "heroText": "I'm Elsa, an osteopath. I help women understand their cycle, from coming off the pill to menopause.",
+  "heroSecondary": "Explore the services",
+  "trust": "With me, online · 15–20 min · Free",
+  "heroCaption": "Elsa, during an osteopathy session",
+  "mobileHeroTitle": "",
+  "mobileHeroText": "",
+  "concerns": {
+    "title": "What brings you here?",
+    "items": [
+      {
+        "title": "Painful periods",
+        "icon": "drop",
+        "link": "services"
+      },
+      {
+        "title": "PMS & mood",
+        "icon": "mood",
+        "link": "services"
+      },
+      {
+        "title": "Irregular cycles",
+        "icon": "cycle",
+        "link": "regularity"
+      },
+      {
+        "title": "Perimenopause & menopause",
+        "icon": "waves",
+        "link": "services"
+      },
+      {
+        "title": "Coming off contraception",
+        "icon": "capsule",
+        "link": "post-contraception"
+      },
+      {
+        "title": "Understanding fertility signs",
+        "icon": "sprout",
+        "link": "basal"
+      }
+    ],
+    "unsure": "Not sure which box is yours, or ticking several at once? That's very common. Tell me what's going on in a first call and we'll untangle it together.",
+    "note": "I don't diagnose or prescribe treatment: my work sits alongside your medical care."
+  },
+  "meetElsa": {
+    "title": "Why I do this work",
+    "text": "For years I lived with acne, PMS, gut issues and painful periods. I spent seven years on the pill without knowing what my own cycle felt like. When I came off it, everything came back, and I had little real guidance.\n\nI did end up understanding my body, but it took years. I started The Cycle Space so you don't have to work it out alone.",
+    "cta": "Read my story"
+  },
+  "offersTitle": "Ways to work together",
+  "offersCta": "See all the details",
+  "homeTool": {
+    "kicker": "Free tool",
+    "title": "Track your cycle.",
+    "description": "Estimate your next period, ovulation and fertile window. Everything stays in your browser.",
+    "cta": "Try the free calculator",
+    "learnMore": "Read the full article",
+    "note": "Estimates only: not medical advice and not a method of contraception."
+  }
+}

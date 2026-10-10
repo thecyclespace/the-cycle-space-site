@@ -1,21 +1,22 @@
 import manifest from "../content/images.manifest.json";
 
 const BASE = import.meta.env.BASE_URL; // "/the-cycle-space-site/" or "/"
-const OPTIMISED = /^\/images\/site\/(.+)-\d+\.(?:webp|avif)$/;
+// A photo of the site set: "/images/site/<name>.webp". Its lighter versions are in the "variantes" sub-folder.
+const OPTIMISED = /^\/images\/site\/([^/]+)\.webp$/;
 
 const withBase = (p) => (/^https?:\/\//.test(p) ? p : `${BASE}${p.replace(/^\//, "")}`);
 
 // Everything the page needs to describe one image: responsive AVIF/WebP sources when the
 // file comes from the optimised set (public/images/site), or the file itself when Elsa
-// uploaded her own through the CMS (then the box keeps its shape through `aspect` + object-cover).
+// uploaded her own through the admin (then the box keeps its shape through `aspect` + object-cover).
 export function describeImage(src) {
   const m = src && src.match(OPTIMISED);
   const entry = m && manifest[m[1]];
   if (!entry) return { src: src ? withBase(src) : null };
-  const set = (ext) => entry.widths.map((w) => `${withBase(`/images/site/${m[1]}-${w}.${ext}`)} ${w}w`).join(", ");
+  const set = (ext) => entry.widths.map((w) => `${withBase(`/images/site/variantes/${m[1]}-${w}.${ext}`)} ${w}w`).join(", ");
   const widest = entry.widths[entry.widths.length - 1];
   return {
-    src: withBase(`/images/site/${m[1]}-${widest}.webp`),
+    src: withBase(`/images/site/variantes/${m[1]}-${widest}.webp`),
     avif: set("avif"),
     webp: set("webp"),
     width: entry.width,

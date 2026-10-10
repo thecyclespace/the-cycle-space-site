@@ -1,0 +1,176 @@
+{
+  "pillarsTitle": "A calmer, smarter route into hormonal health.",
+  "pillarsSubtitle": "Several ways to work with me. Not sure which one to pick? Start with the free call and we'll work out together what suits you.",
+  "services": [
+    {
+      "title": "The Introduction",
+      "tag": "Free discovery call · 15–20 min",
+      "summary": "A free, relaxed conversation to see if we are a good fit.",
+      "audience": "For any woman curious about working together.",
+      "body": "15 to 20 minutes. No pressure. Just a conversation.\n\nBefore we work together, I want to make sure this is the right fit for you. We'll talk about where you are right now, what you've already tried, and what you're hoping to change. I'll tell you about how I work and what the programme looks like in practice.\n\nThere's no sales pitch. If it's a fit, we'll talk about next steps. If it's not, I'll point you in the right direction.",
+      "forWho": "Any woman who's curious about working together and wants to get a feel for the process before committing.",
+      "leave": "",
+      "cta": "Book your Introduction",
+      "action": "intro"
+    },
+    {
+      "title": "The Rhythm Check-In",
+      "tag": "One-off session · 90 min",
+      "summary": "Explore your symptoms, understand your cycle and leave with practical next steps.",
+      "audience": "For women who want clarity before committing to more.",
+      "body": "For women who aren't ready to commit to a full programme but need clarity now.\n\nThis is a single 90-minute deep dive designed to help you understand what's actually going on in your body. We look at the full picture — your cycle, your symptoms, your history, your lifestyle — and you leave with a clear, practical plan that's entirely yours.\n\nIt's not a taster. It's a complete session with real answers and real next steps. No overwhelm, no vague advice. Just clinical thinking and a plan you can actually act on.\n\nBecause the body works in cycles and real change takes time, this session works best as part of a regular rhythm. Most women find that coming back once a month allows us to track what's shifting, adjust the plan as your body responds, and build on what we've already uncovered together. One session gives you clarity. A series gives you transformation.",
+      "forWho": "Women who want clarity before committing to more, or who have one specific area they want to go deep on — whether that's their cycle, their gut, their energy, or understanding a diagnosis they've been given.",
+      "leave": "A written protocol with practical recommendations across nutrition, lifestyle, tracking and support.",
+      "cta": "Book a Rhythm Check-In",
+      "action": "checkin"
+    },
+    {
+      "title": "Your Inner Rhythm",
+      "tag": "6-month 1:1 programme",
+      "summary": "A 6-month 1:1 journey to understand your body and find your rhythm.",
+      "audience": "For women ready for lasting change.",
+      "body": "A 6-month 1:1 coaching programme, in English or French, built on The Inner Rhythm Method: a 4-phase journey to understand your body, work with your cycle and find your rhythm — for good.",
+      "forWho": "",
+      "leave": "",
+      "cta": "Start with an Introduction",
+      "action": "intro"
+    },
+    {
+      "title": "The Inner Space",
+      "tag": "Group programme · Coming soon",
+      "summary": "Group programmes, coming soon.",
+      "audience": "",
+      "body": "Group programmes coming soon — join the list to be the first to know.",
+      "forWho": "",
+      "leave": "",
+      "cta": "Join the list",
+      "action": "waitlist"
+    }
+  ],
+  "servicesLabels": {
+    "forWho": "Who it's for",
+    "leave": "What you leave with",
+    "more": "Full details"
+  },
+  "method": {
+    "kicker": "My method",
+    "homeTitle": "How I work with you",
+    "intro": "I call the way I work The Inner Rhythm Method. It is four steps we go through together, in one-to-one sessions and at your pace.",
+    "cta": "See the method in detail",
+    "programmeKicker": "1:1 programme",
+    "programmeTitle": "Your Inner Rhythm",
+    "programmeMeta": "6-month 1:1 coaching · English & French",
+    "title": "The Inner Rhythm Method",
+    "programmeCta": "Start with an Introduction",
+    "phases": [
+      {
+        "num": "01",
+        "homeTitle": "Understand",
+        "short": "We go back over your history, your cycle and your symptoms to see what is really going on.",
+        "title": "Decode",
+        "tag": "Awareness + validation",
+        "body": "You arrive confused, dismissed and disconnected. Together we surface what's actually happening — your symptoms are signals, not noise, and your cycle is a direct reflection of your overall health.",
+        "points": [
+          "Symptoms are signals, not random",
+          "Your cycle reflects your overall health",
+          "\"Normal\" doesn't mean optimal"
+        ],
+        "outcome": "Awareness creates the opening for change — what gets surfaced gets released.",
+        "quote": "I'm not crazy. My body has been communicating with me all along."
+      },
+      {
+        "num": "02",
+        "homeTitle": "Build the basics",
+        "short": "We adjust a few habits: food, sleep, digestion, stress. Not many, but ones you can keep.",
+        "title": "Regulate",
+        "tag": "Foundations + safety",
+        "body": "We stop the cycle of trying everything and build real, personalised foundations — consistent rhythms that your body can actually build on and respond to.",
+        "points": [
+          "Cycle-informed nutrition",
+          "Gut and hormonal support",
+          "Nervous system regulation"
+        ],
+        "outcome": "You stop the overwhelm and start experiencing what it feels like to consistently support your body.",
+        "quote": "I've stopped trying everything. I'm finally doing what works for me."
+      },
+      {
+        "num": "03",
+        "homeTitle": "Listen to your body",
+        "short": "You learn to read your cycle and to notice what you need at each point in it.",
+        "title": "Reconnect",
+        "tag": "Body literacy + personalisation",
+        "body": "Body literacy becomes deeply personal. You move from outsourcing your health to becoming the expert on your own body and cycle.",
+        "points": [
+          "Understanding your four cycle phases",
+          "Knowing what you need and when",
+          "Connecting symptoms to patterns"
+        ],
+        "outcome": "You develop a relationship with your body built on trust and understanding, not fear or guesswork.",
+        "quote": "It's all connected — and I finally understand how."
+      },
+      {
+        "num": "04",
+        "homeTitle": "Find your balance",
+        "short": "You keep what works for you and carry on by yourself, without depending on me.",
+        "title": "Embody",
+        "tag": "Integration + identity shift",
+        "body": "The transformation most programmes skip. Lasting change happens when identity shifts, not just actions — otherwise old patterns pull you back.",
+        "points": [
+          "No longer controlled by symptoms",
+          "Calm, grounded and self-trusting",
+          "In rhythm with your body and your life"
+        ],
+        "outcome": "You become a woman who understands her body deeply and lives in tune with her natural rhythm.",
+        "quote": "I'm no longer controlled by my symptoms. I'm finally in rhythm with my body."
+      }
+    ]
+  },
+  "journeyTitle": "Here's how it works.",
+  "journey": [
+    {
+      "num": "01",
+      "title": "Book your session",
+      "body": "Choose a time that works for you, sessions are fully online and available in English or French."
+    },
+    {
+      "num": "02",
+      "title": "Share your story",
+      "body": "Before your session, you'll complete an in-depth intake form covering your cycle, symptoms, lifestyle and health history. So we can make the most of our time together."
+    },
+    {
+      "num": "03",
+      "title": "Meet online",
+      "body": "Your session is calm, clear and unhurried, with space for every question."
+    },
+    {
+      "num": "04",
+      "title": "Leave with a plan",
+      "body": "You leave with grounded, practical next steps across tracking, nutrition, lifestyle and support."
+    }
+  ],
+  "faq": {
+    "title": "Good to know",
+    "items": [
+      {
+        "q": "Who is behind The Cycle Space?",
+        "a": "Me, Elsa. I'm an osteopath, a graduate of the University College of Osteopathy in London, and a women's health practitioner. I'm the person you speak to on the call and in every session. I'm not a medical doctor: I don't diagnose or prescribe treatment."
+      },
+      {
+        "q": "Which languages are the sessions in?",
+        "a": "Sessions are fully online and available in English or French."
+      },
+      {
+        "q": "Can I book from outside France or the UK?",
+        "a": "Yes. Sessions are online and open to women worldwide. The booking calendar shows times in your own time zone."
+      },
+      {
+        "q": "What is the difference between the offers?",
+        "a": "The Introduction is a free 15–20 minute conversation to see if we are a good fit. The Rhythm Check-In is a single 90-minute session that ends with a written protocol. Your Inner Rhythm is a 6-month 1:1 programme built on The Inner Rhythm Method."
+      },
+      {
+        "q": "Does this replace medical care?",
+        "a": "No. The Cycle Space offers education and personalised support. It works alongside conventional medicine and does not replace a diagnosis or urgent medical care. If you are in distress or have severe symptoms, please contact your doctor or local emergency services."
+      }
+    ]
+  }
+}

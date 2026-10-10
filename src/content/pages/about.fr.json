@@ -1,0 +1,30 @@
+{
+  "aboutTitle": "Bonjour, je suis Elsa.",
+  "about": {
+    "intro": "Je suis ostéopathe, formée à Londres, et j'exerce depuis plus de sept ans. Ici, tout se passe en ligne : nous nous parlons, en séance individuelle, et je vous aide à comprendre votre cycle. Je ne suis pas médecin, je travaille en complément de votre suivi médical.",
+    "storyTitle": "Mon parcours",
+    "storyToggle": "Lire mon parcours",
+    "approachKicker": "Mon approche",
+    "forYouKicker": "Est-ce pour vous ?"
+  },
+  "credentials": [
+    "Master d'ostéopathie (M.Ost.), University College of Osteopathy, Londres",
+    "Plus de 7 ans de pratique clinique",
+    "Praticienne en santé féminine",
+    "Professeure de yoga (formation de 200 heures)",
+    "Français, anglais, portugais et espagnol"
+  ],
+  "aboutText": "Je suis ostéopathe. J'ai fait mes études à Londres, et depuis je travaille surtout sur le cycle menstruel et la santé hormonale des femmes.\n\nSi je fais ce métier, c'est aussi parce que je suis passée par là.\n\nPendant des années, j'ai vécu avec de l'acné, un syndrome prémenstruel, des troubles digestifs et des règles douloureuses. J'ai commencé la pilule très jeune, et j'ai passé sept ans sans savoir à quoi ressemblait mon cycle naturel. Quand je l'ai arrêtée, les symptômes sont revenus, parfois en pire : douleurs, inflammation, variations de poids, fatigue, alors que je n'avais jamais été aussi active. Après un an de difficultés, sans véritable accompagnement de la part de ma gynécologue, j'ai accepté la pose d'un stérilet, faute d'autre solution.\n\nC'est là que j'ai commencé à chercher par moi-même. Je me suis intéressée à ma santé digestive, à mon alimentation et à l'inflammation, et j'ai commencé à vraiment écouter mon corps. Quatre ans plus tard, j'ai fait retirer mon stérilet. Retrouver un équilibre a pris du temps, mais j'ai vu la différence : moins de douleurs, moins de SPM, plus d'énergie, et un cycle que je comprenais.\n\nC'est de cette expérience qu'est né The Cycle Space. Je ne veux pas que d'autres femmes passent des années à chercher seules, comme moi.\n\nAujourd'hui, en séance, je ne regarde pas que vos symptômes : je vous demande aussi comment vous dormez, ce que vous mangez, ce que vous vivez.",
+  "manifestoTitle": "Je prends le temps de comprendre",
+  "manifestoText": "Une première séance dure 90 minutes, parce que des années de règles douloureuses ne se racontent pas en quelques minutes. Je vous écoute, je pose beaucoup de questions et je regarde l'ensemble : votre cycle, votre digestion, votre sommeil, votre stress, votre histoire.\n\nJe ne pose pas de diagnostic et je ne prescris pas de traitement : c'est le rôle de votre médecin ou de votre gynécologue. Le mien, c'est de vous aider à comprendre votre corps et à trouver ce qui vous fait du bien au quotidien.",
+  "manifestoQuote": "Quand on comprend ce qui se passe dans son corps, on a déjà moins peur.",
+  "forYouTitle": "Vous vous reconnaissez peut-être ici",
+  "forYou": [
+    "On vous a dit que tout était normal, mais vous sentez que quelque chose ne va pas.",
+    "Vous avez un diagnostic (endométriose, SOPK, trouble dysphorique prémenstruel) ou simplement des règles douloureuses, un SPM marqué, de l'acné, des cycles irréguliers, et vous voulez mieux comprendre ce que vous vivez, en plus de votre suivi médical.",
+    "Vous arrêtez la pilule, l'implant ou un stérilet hormonal et vous voulez comprendre votre cycle naturel.",
+    "Vous traversez la périménopause ou la ménopause et les changements vous pèsent.",
+    "Vous voulez apprendre à repérer votre ovulation.",
+    "Vous en avez assez d'appliquer des conseils sans comprendre pourquoi."
+  ]
+}
