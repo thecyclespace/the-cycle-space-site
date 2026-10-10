@@ -28,7 +28,7 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 
 ## Scénario 1 — Changer une phrase de l'accueil
 
-1. Menu : **🇫🇷 Textes du site — Français** → **Tous les textes (français)**.
+1. Menu : **🇫🇷 Textes du site — Français** → **👉 Ouvrir : tous les textes en français**.
 2. Cherche le champ **🎯 Hero — Titre principal** (le grand titre) ou **🎯 Hero — Texte d'introduction**. Les autres textes de l'accueil sont plus bas (✍️ manifeste, 🧬 méthode, 💗 « pour toi »).
 3. Modifie la phrase. Garde le titre court (moins de 90 caractères) pour qu'il tienne bien sur téléphone.
 4. Clique **Save** en haut à droite.
@@ -37,7 +37,7 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 
 ## Scénario 2 — Modifier le descriptif d'une offre
 
-1. Menu : **Textes du site — Français** → **Tous les textes**.
+1. Menu : **Textes du site — Français** → **👉 Ouvrir : tous les textes en français**.
 2. Descends jusqu'à **🛠 Services — Offres**. Clique sur l'offre (ex. « Le Rhythm Check-In »).
 3. Tu peux changer :
    - le **titre** et la petite ligne au-dessus (**tag**, ex. « Séance unique · 90 min »),
@@ -52,7 +52,7 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 ## Scénario 3 — Mettre à jour le lien Calendly
 
 1. Dans Calendly, crée un événement par offre (ex. « Introduction », « Rhythm Check-In ») et copie son lien (il commence par `https://calendly.com/`).
-2. Menu : **⚙️ Paramètres du site** → **Configuration générale**.
+2. Menu : **⚙️ Paramètres du site** → **👉 Ouvrir : coordonnées, Calendly, guides PDF**.
 3. Colle le lien dans :
    - **URL Calendly — The Introduction** pour l'appel gratuit,
    - **URL Calendly — Rhythm Check-In** pour la séance de 90 min.
@@ -82,7 +82,7 @@ Chaque champ a un **petit texte d'aide** sous son nom. Les emojis au début du n
 
 ## Bonus — Remplacer une grande photo du site
 
-1. Menu : **🖼 Images du site** → **Images principales**.
+1. Menu : **🖼 Images du site** → **👉 Ouvrir : les images du site**.
 2. Clique sur l'image à changer (ex. **Accueil — grande photo du haut**), puis **Upload** et choisis ta photo.
 3. Conseils : format **paysage** (4:3 ou 3:2), **3 Mo maximum**, sujet (visage) plutôt **sur la gauche** pour l'accueil, sans texte écrit dans l'image. Sur téléphone, la photo est recadrée autour de sa partie gauche.
 4. **Décris la photo** dans **Textes du site → 🖼 Textes alternatifs des images** (une phrase, dans les deux langues) : c'est lu aux personnes malvoyantes et utile pour Google.
