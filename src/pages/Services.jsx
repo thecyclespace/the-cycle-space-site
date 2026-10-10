@@ -43,8 +43,8 @@ export default function Services() {
     <>
       <section className="bg-[#F4EBDD] px-5 pb-10 pt-24 md:px-8 md:pb-16 md:pt-36">
         <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
-          <div>
-            <h1 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">{t.pillarsTitle}</h1>
+          <div className="min-w-0">
+            <h1 className="font-serif text-[1.65rem] leading-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl">{t.pillarsTitle}</h1>
             <p className="mt-4 max-w-xl text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.pillarsSubtitle}</p>
           </div>
           {images.servicesImage && (

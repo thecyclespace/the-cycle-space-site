@@ -282,6 +282,7 @@ collections:
               - { label: "Image consultation en ligne", name: "online", widget: "string" }
               - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
               - { label: "Image du blog", name: "blog", widget: "string" }
+              - { label: "Photo d'Elsa", name: "elsa", widget: "string" }
           - label: "👤 Page À propos — intertitres"
             name: "about"
             widget: "object"
@@ -363,6 +364,7 @@ collections:
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
               - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
+              - { label: "Mention sous le bouton (résultats indicatifs)", name: "note", widget: "string", hint: "Garde une mention claire : les résultats sont des estimations, pas un avis médical ni une contraception." }
 
           # 👤 À PROPOS (page About) =========================================
           - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
@@ -375,6 +377,7 @@ collections:
           # 🎬 CTA FINAL =====================================================
           - { label: "🎬 CTA final — Titre", name: "finalTitle", widget: "string" }
           - { label: "🎬 CTA final — Texte", name: "finalText", widget: "text" }
+          - { label: "🎬 CTA final — Texte du bouton", name: "finalCta", widget: "string", hint: "Le bouton principal de la dernière section de chaque page." }
 
           # 📅 MODAL RÉSERVATION =============================================
           - { label: "📅 Modal réservation — Titre", name: "modalTitle", widget: "string" }
@@ -564,6 +567,7 @@ collections:
               - { label: "Image consultation en ligne", name: "online", widget: "string" }
               - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
               - { label: "Image du blog", name: "blog", widget: "string" }
+              - { label: "Photo d'Elsa", name: "elsa", widget: "string" }
           - label: "👤 Page À propos — intertitres"
             name: "about"
             widget: "object"
@@ -645,6 +649,7 @@ collections:
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Lien 'lire l'article'", name: "learnMore", widget: "string" }
               - { label: "Bouton de l'accueil (essayer l'outil)", name: "cta", widget: "string" }
+              - { label: "Mention sous le bouton (résultats indicatifs)", name: "note", widget: "string", hint: "Garde une mention claire : les résultats sont des estimations, pas un avis médical ni une contraception." }
 
           # 👤 À PROPOS ======================================================
           - { label: "👤 À propos — Titre", name: "aboutTitle", widget: "string" }
@@ -657,6 +662,7 @@ collections:
           # 🎬 CTA FINAL =====================================================
           - { label: "🎬 CTA final — Titre", name: "finalTitle", widget: "string" }
           - { label: "🎬 CTA final — Texte", name: "finalText", widget: "text" }
+          - { label: "🎬 CTA final — Texte du bouton", name: "finalCta", widget: "string", hint: "Le bouton principal de la dernière section de chaque page." }
 
           # 📅 MODAL RÉSERVATION =============================================
           - { label: "📅 Modal réservation — Titre", name: "modalTitle", widget: "string" }

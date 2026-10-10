@@ -72,13 +72,13 @@ const STRINGS = {
     resultKicker: "Phase probable",
     cycleDayLabel: (d, total) => `Jour ${d} sur environ ${total}`,
     individualNote:
-      "Chaque corps est différent. Ce sont des tendances générales — pas une description précise de toi.",
+      "Chaque corps est différent : ce sont des tendances générales, pas une description exacte de ton cycle.",
     energyLabel: "Énergie",
     moodLabel: "Ressentis fréquents",
-    suggestionsLabel: "Suggestions douces",
+    suggestionsLabel: "Pistes à explorer",
     disclaimerTitle: "Note santé —",
     disclaimer:
-      "Il s'agit d'une estimation éducative, pas d'un diagnostic. Elle ne remplace pas un avis médical et ne doit pas être utilisée comme méthode contraceptive.",
+      "Il s'agit d'une estimation à visée éducative, pas d'un diagnostic. Elle ne remplace pas un avis médical et ne doit pas être utilisée comme méthode contraceptive.",
     errDate: "Indique la date du premier jour de tes dernières règles.",
     errFuture: "La date ne peut pas être dans le futur.",
     errCycle: "La longueur du cycle doit être comprise entre 21 et 45 jours.",
@@ -86,7 +86,7 @@ const STRINGS = {
       menstruation: {
         name: "Règles",
         description:
-          "Ton corps commence un nouveau cycle. Les niveaux hormonaux sont au plus bas, la muqueuse utérine se détache.",
+          "Un nouveau cycle commence. Les taux d'hormones sont au plus bas et la muqueuse utérine se détache.",
         energy: "L'énergie peut être plus basse que d'habitude.",
         mood: "Souvent plus introspective, sensible ou calme.",
         suggestions: ["Te reposer quand c'est possible", "Boire suffisamment", "Chaleur sur le ventre", "Mouvement doux"],
@@ -94,30 +94,30 @@ const STRINGS = {
       follicular: {
         name: "Phase folliculaire",
         description:
-          "L'œstrogène monte progressivement. Le corps prépare un ovule pour l'ovulation.",
-        energy: "Souvent en hausse — plus de concentration et d'élan extérieur.",
-        mood: "Souvent plus confiante, sociale, motivée.",
-        suggestions: ["Planifier à l'avance", "Travail créatif ou détaillé", "Activité d'intensité modérée à plus soutenue"],
+          "Les œstrogènes augmentent progressivement. Le corps prépare un ovule en vue de l'ovulation.",
+        energy: "Souvent en hausse, avec plus de concentration et d'envie d'aller vers les autres.",
+        mood: "Souvent plus de confiance, d'envie de sortir et de motivation.",
+        suggestions: ["Planifier à l'avance", "Travail créatif ou minutieux", "Activité physique modérée à plus soutenue"],
       },
       ovulation: {
         name: "Fenêtre d'ovulation",
         description:
-          "Un ovule peut être libéré. L'œstrogène culmine, la fertilité est au plus haut du cycle.",
-        energy: "L'énergie et la libido peuvent être plus élevées pour certaines.",
-        mood: "Souvent un sentiment de confiance et d'expression.",
+          "Un ovule peut être libéré. Les œstrogènes atteignent leur pic et la fertilité est à son maximum.",
+        energy: "L'énergie et la libido peuvent être plus élevées chez certaines femmes.",
+        mood: "Souvent un sentiment de confiance et plus de facilité à t'exprimer.",
         suggestions: [
           "Observer les signaux du corps (glaire, température, humeur)",
           "Utile à suivre si tu cherches à comprendre ta fertilité",
-          "Pas fiable seul comme méthode contraceptive",
+          "Ne suffit pas à lui seul comme méthode contraceptive",
         ],
       },
       luteal: {
         name: "Phase lutéale",
         description:
-          "Après l'ovulation. La progestérone monte puis chute si pas de grossesse — ce qui peut déclencher des symptômes de type SPM.",
+          "Après l'ovulation. La progestérone augmente puis chute en l'absence de grossesse, ce qui peut provoquer des symptômes de SPM.",
         energy: "Souvent fluctuante, plus basse en fin de phase.",
-        mood: "Certaines vivent du SPM — sensibilité, irritabilité, humeur plus basse.",
-        suggestions: ["Routine et rythme", "Repas et sommeil réguliers", "Réduire la surcharge et les tâches très stimulantes"],
+        mood: "Certaines femmes ressentent un SPM : sensibilité, irritabilité, baisse de moral.",
+        suggestions: ["Une routine régulière", "Des repas et un sommeil réguliers", "Alléger ton emploi du temps et éviter la surcharge"],
       },
     },
   },

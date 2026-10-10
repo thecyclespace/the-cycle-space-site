@@ -107,7 +107,7 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[260px] md:max-w-none">
             <img
               src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
-              alt="Elsa"
+              alt={alts.elsa || "Elsa"}
               width="400"
               height="400"
               loading="lazy"
@@ -190,6 +190,7 @@ export default function Home() {
             >
               {tool.cta || tool.learnMore} <Icon name="arrow" size={16} />
             </Button>
+            {tool.note && <p className="mt-4 text-sm leading-6 text-[#6e625b]">{tool.note}</p>}
           </div>
         </div>
       </section>
