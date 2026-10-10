@@ -42,7 +42,7 @@ export default function About() {
           </div>
           <div>
             <h1 className="break-words font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">{t.aboutTitle}</h1>
-            <p className="mt-4 text-lg leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">{t.meetElsa?.text}</p>
+            <p className="mt-4 text-lg leading-7 text-[#5d5049] md:mt-6 md:text-xl md:leading-8">{copy.intro || t.meetElsa?.text}</p>
             <ul className="mt-6 flex flex-wrap gap-2">
               {t.credentials.map((credential) => (
                 <li key={credential} className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-4 py-2 text-sm text-[#5d5049]">
@@ -58,6 +58,19 @@ export default function About() {
       </section>
 
       <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
+        <div className="mx-auto max-w-3xl">
+          <details ref={story} className="group">
+            <summary className="flex min-h-[56px] cursor-pointer list-none flex-wrap items-center justify-between gap-x-4 gap-y-1 border-y border-[#DCCDB8] py-3 marker:content-none [&::-webkit-details-marker]:hidden">
+              <h2 className="py-1 font-serif text-2xl text-[#362E28] sm:text-3xl md:text-4xl">{copy.storyTitle}</h2>
+              <span className="text-sm font-medium text-[#5C2B2B] group-open:hidden">{copy.storyToggle} +</span>
+              <span aria-hidden="true" className="hidden shrink-0 text-3xl leading-none text-[#7C3C3C] group-open:block">&minus;</span>
+            </summary>
+            <p className="mt-6 whitespace-pre-line text-base leading-8 text-[#5d5049] md:text-lg md:leading-9">{t.aboutText}</p>
+          </details>
+        </div>
+      </section>
+
+      <section className="bg-[#F4EBDD] px-5 py-14 md:px-8 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[0.9fr_1.1fr] md:gap-14">
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#7C3C3C] md:text-sm">{copy.approachKicker}</p>
@@ -72,7 +85,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-[#F4EBDD] px-5 py-14 md:px-8 md:py-24">
+      <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
           <div className="rounded-[1.75rem] bg-[#362E28] p-6 text-[#FBF7EF] md:rounded-[2.5rem] md:p-10">
             <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#D4887F] md:text-sm">{copy.forYouKicker}</p>
@@ -86,23 +99,10 @@ export default function About() {
               ))}
             </ul>
           </div>
-          <div className="rounded-[1.75rem] border border-[#DCCDB8] bg-[#FBF7EF] p-6 md:rounded-[2.5rem] md:p-10">
+          <div className="rounded-[1.75rem] border border-[#DCCDB8] bg-[#F4EBDD] p-6 md:rounded-[2.5rem] md:p-10">
             <h3 className="break-words font-serif text-2xl leading-tight [overflow-wrap:anywhere] sm:text-3xl">{t.notForTitle}</h3>
             <p className="mt-4 text-base leading-7 text-[#5d5049]">{t.notForText}</p>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
-        <div className="mx-auto max-w-3xl">
-          <details ref={story} className="group">
-            <summary className="flex min-h-[56px] cursor-pointer list-none flex-wrap items-center justify-between gap-x-4 gap-y-1 border-y border-[#DCCDB8] py-3 marker:content-none [&::-webkit-details-marker]:hidden">
-              <h2 className="py-1 font-serif text-2xl text-[#362E28] sm:text-3xl md:text-4xl">{copy.storyTitle}</h2>
-              <span className="text-sm font-medium text-[#5C2B2B] group-open:hidden">{copy.storyToggle} +</span>
-              <span aria-hidden="true" className="hidden shrink-0 text-3xl leading-none text-[#7C3C3C] group-open:block">&minus;</span>
-            </summary>
-            <p className="mt-6 whitespace-pre-line text-base leading-8 text-[#5d5049] md:text-lg md:leading-9">{t.aboutText}</p>
-          </details>
         </div>
       </section>
 

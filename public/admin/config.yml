@@ -149,6 +149,8 @@ collections:
 
           # 🎯 HERO ==========================================================
           - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
+          - { label: "🎯 Hero — Petite ligne au-dessus du titre (qui parle)", name: "heroKicker", widget: "string", hint: "Ton prénom et ton métier : on doit comprendre tout de suite qu'une vraie personne est derrière le site." }
+          - { label: "🎯 Hero — Légende sous ta photo", name: "heroCaption", widget: "string", required: false }
           - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
           - { label: "🎯 Hero — Bouton secondaire (gris)", name: "heroSecondary", widget: "string" }
           - { label: "🎯 Hero — Ligne de confiance (sous les boutons)", name: "trust", widget: "string" }
@@ -199,6 +201,7 @@ collections:
             collapsed: true
             fields:
               - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
+              - { label: "Titre de la section sur l'accueil", name: "homeTitle", widget: "string", hint: "En mots simples, ex. « Comment je t'accompagne »." }
               - { label: "Titre de la méthode", name: "title", widget: "string" }
               - { label: "Introduction", name: "intro", widget: "text" }
               - { label: "Lien accueil -> services", name: "cta", widget: "string" }
@@ -216,6 +219,8 @@ collections:
                   - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
                   - { label: "Titre", name: "title", widget: "string" }
                   - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
+                  - { label: "Accueil — nom simple de l'étape", name: "homeTitle", widget: "string", hint: "Ex. « Comprendre »." }
+                  - { label: "Accueil — l'étape en une phrase", name: "short", widget: "text", hint: "Une phrase concrète, comme tu l'expliquerais à voix haute." }
                   - { label: "Description", name: "body", widget: "text" }
                   - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
                   - { label: "Résultat", name: "outcome", widget: "text" }
@@ -229,6 +234,7 @@ collections:
             fields:
               - { label: "Titre de la section", name: "title", widget: "string" }
               - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
+              - { label: "Phrase pour celles qui ne se reconnaissent dans aucune carte", name: "unsure", widget: "text", hint: "Suivie d'un lien vers l'appel gratuit." }
               - label: "Cartes (6 conseillées)"
                 name: "items"
                 widget: "list"
@@ -265,10 +271,10 @@ collections:
             name: "meetElsa"
             widget: "object"
             collapsed: true
-            hint: "Photo : voir « 👤 À propos » ci-dessous et le menu « Images du site ». Garde 1 à 2 phrases."
+            hint: "Ton histoire en quelques lignes, à la première personne. Le récit complet est sur la page À propos."
             fields:
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte (1 à 2 phrases)", name: "text", widget: "text" }
+              - { label: "Texte (2 courts paragraphes)", name: "text", widget: "text" }
               - { label: "Texte du bouton", name: "cta", widget: "string" }
           - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
           - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
@@ -278,7 +284,6 @@ collections:
             collapsed: true
             hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
             fields:
-              - { label: "Image du hero", name: "hero", widget: "string" }
               - { label: "Image consultation en ligne", name: "online", widget: "string" }
               - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
               - { label: "Image du blog", name: "blog", widget: "string" }
@@ -289,6 +294,7 @@ collections:
             collapsed: true
             fields:
               - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
+              - { label: "Présentation courte sous le titre de la page", name: "intro", widget: "text", hint: "Qui tu es, ta formation, et ce que tu n'es pas (médecin)." }
               - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
               - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
               - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
@@ -432,6 +438,8 @@ collections:
 
           # 🎯 HERO ==========================================================
           - { label: "🎯 Hero — Titre principal", name: "heroTitle", widget: "string", hint: "Garde court — moins de 90 caractères pour bien tenir sur mobile." }
+          - { label: "🎯 Hero — Petite ligne au-dessus du titre (qui parle)", name: "heroKicker", widget: "string", hint: "Ton prénom et ton métier : on doit comprendre tout de suite qu'une vraie personne est derrière le site." }
+          - { label: "🎯 Hero — Légende sous ta photo", name: "heroCaption", widget: "string", required: false }
           - { label: "🎯 Hero — Texte d'introduction", name: "heroText", widget: "text" }
           - { label: "🎯 Hero — Bouton secondaire", name: "heroSecondary", widget: "string" }
           - { label: "📱 Mobile — Titre du hero (optionnel)", name: "mobileHeroTitle", widget: "string", required: false, default: "", hint: "Si rempli, ce titre remplace le titre principal sur mobile. Vide = on garde le titre principal." }
@@ -484,6 +492,7 @@ collections:
             collapsed: true
             fields:
               - { label: "Kicker accueil (philosophie)", name: "kicker", widget: "string" }
+              - { label: "Titre de la section sur l'accueil", name: "homeTitle", widget: "string", hint: "En mots simples, ex. « Comment je t'accompagne »." }
               - { label: "Titre de la méthode", name: "title", widget: "string" }
               - { label: "Introduction", name: "intro", widget: "text" }
               - { label: "Lien accueil -> services", name: "cta", widget: "string" }
@@ -501,6 +510,8 @@ collections:
                   - { label: "Numéro", name: "num", widget: "select", default: "01", options: ["01", "02", "03", "04"] }
                   - { label: "Titre", name: "title", widget: "string" }
                   - { label: "Sous-titre (tag)", name: "tag", widget: "string" }
+                  - { label: "Accueil — nom simple de l'étape", name: "homeTitle", widget: "string", hint: "Ex. « Comprendre »." }
+                  - { label: "Accueil — l'étape en une phrase", name: "short", widget: "text", hint: "Une phrase concrète, comme tu l'expliquerais à voix haute." }
                   - { label: "Description", name: "body", widget: "text" }
                   - { label: "Points clés", name: "points", widget: "list", field: { label: "Point", name: "point", widget: "string" } }
                   - { label: "Résultat", name: "outcome", widget: "text" }
@@ -514,6 +525,7 @@ collections:
             fields:
               - { label: "Titre de la section", name: "title", widget: "string" }
               - { label: "Petite mention sous les cartes", name: "note", widget: "string" }
+              - { label: "Phrase pour celles qui ne se reconnaissent dans aucune carte", name: "unsure", widget: "text", hint: "Suivie d'un lien vers l'appel gratuit." }
               - label: "Cartes (6 conseillées)"
                 name: "items"
                 widget: "list"
@@ -550,10 +562,10 @@ collections:
             name: "meetElsa"
             widget: "object"
             collapsed: true
-            hint: "Photo : voir « 👤 À propos » ci-dessous et le menu « Images du site ». Garde 1 à 2 phrases."
+            hint: "Ton histoire en quelques lignes, à la première personne. Le récit complet est sur la page À propos."
             fields:
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte (1 à 2 phrases)", name: "text", widget: "text" }
+              - { label: "Texte (2 courts paragraphes)", name: "text", widget: "text" }
               - { label: "Texte du bouton", name: "cta", widget: "string" }
           - { label: "🛠 Accueil — Titre de la section offres", name: "offersTitle", widget: "string" }
           - { label: "🛠 Accueil — Lien « voir tous les détails »", name: "offersCta", widget: "string" }
@@ -563,7 +575,6 @@ collections:
             collapsed: true
             hint: "Décris chaque image en une phrase. Lu par les lecteurs d'écran et utile pour Google."
             fields:
-              - { label: "Image du hero", name: "hero", widget: "string" }
               - { label: "Image consultation en ligne", name: "online", widget: "string" }
               - { label: "Image de l'outil (carnet)", name: "tool", widget: "string" }
               - { label: "Image du blog", name: "blog", widget: "string" }
@@ -574,6 +585,7 @@ collections:
             collapsed: true
             fields:
               - { label: "Titre « son approche »", name: "approachKicker", widget: "string" }
+              - { label: "Présentation courte sous le titre de la page", name: "intro", widget: "text", hint: "Qui tu es, ta formation, et ce que tu n'es pas (médecin)." }
               - { label: "Titre « est-ce pour toi ? »", name: "forYouKicker", widget: "string" }
               - { label: "Titre de son histoire", name: "storyTitle", widget: "string" }
               - { label: "Bouton « lire son histoire »", name: "storyToggle", widget: "string" }
@@ -713,7 +725,6 @@ collections:
         file: "src/content/settings/images.json"
         format: "json"
         fields:
-          - { label: "Accueil — grande photo du haut", name: "heroImage", widget: "image", hint: "Visage ou sujet sur la gauche : sur téléphone, la photo est recadrée autour de la partie gauche." }
           - { label: "Accueil — consultation en ligne", name: "onlineImage", widget: "image" }
           - { label: "Accueil — outil / carnet de suivi", name: "toolImage", widget: "image" }
           - { label: "Bandeau de fin de page", name: "bannerImage", widget: "image", hint: "Image douce et sans texte : elle est assombrie derrière le texte." }

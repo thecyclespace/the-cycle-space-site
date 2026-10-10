@@ -22,7 +22,7 @@
     }
   ],
   "guideInvalidEmail": "Please enter a valid email address.",
-  "pillarsSubtitle": "Clinical thinking, cycle education and everyday tools. No fear-based wellness. No quick fixes. No vague advice.",
+  "pillarsSubtitle": "Several ways to work with me. Not sure which one to pick? Start with the free call and we'll work out together what suits you.",
   "forYouTitle": "You are probably in the right place if...",
   "finalTitle": "Ready to understand what your body has been trying to say?",
   "notForTitle": "This may not be the right fit if you want a quick fix.",
@@ -45,14 +45,14 @@
       "route": "/about"
     }
   ],
-  "notForText": "The Cycle Space is built for women who are ready to do things differently, curious about their body, open to gradual change, and looking for something sustainable. It works alongside conventional medicine, but does not replace urgent medical care.",
-  "finalText": "Book a free Introduction call or start with a free guide. Either way, this is a space for clarity.",
-  "heroText": "Personalised support for periods, PMS and hormonal changes.",
+  "notForText": "I work with women who are curious about their body and ready to go at their own pace: lasting change takes time. My work sits alongside conventional medicine and does not replace urgent medical care.",
+  "finalText": "A first call with me, free and with no commitment. You tell me what brings you here, I answer your questions, and you decide what comes next.",
+  "heroText": "I'm Elsa, an osteopath. I help women understand their cycle, from coming off the pill to menopause.",
   "download": "Download the guide",
   "book": "Book a free call",
-  "aboutTitle": "Meet Elsa.",
+  "aboutTitle": "Hi, I'm Elsa.",
   "modalTitle": "Book a session",
-  "manifestoText": "Pain, fatigue, bloating, acne, mood shifts, irregular cycles - these are not failures. They're signals, and your body has been sending them for a reason. The work here is to understand what it's trying to tell you, then build something that actually works for you and fits your life.\n\n",
+  "manifestoText": "A first session lasts 90 minutes, because years of painful periods don't fit into a quarter of an hour. I listen, I ask a lot of questions and I look at the whole picture: your cycle, your digestion, your sleep, your stress, your history.\n\nI don't diagnose and I don't prescribe treatment: that is your doctor's or gynaecologist's job. Mine is to help you understand your body and find what helps you day to day.",
   "calendlyError": "We couldn't load the calendar. You can open Calendly directly.",
   "pillarsTitle": "A calmer, smarter route into hormonal health.",
   "resourcesText": "Download Know Your Flow or Connais Ton Cycle and begin tracking your body with more confidence and less noise.",
@@ -77,16 +77,16 @@
     "cta": "Try the free calculator",
     "note": "Estimates only: not medical advice and not a method of contraception."
   },
-  "manifestoTitle": "This is not symptom management. This is body literacy.",
-  "trust": "15–20 min · Online · English & French",
+  "manifestoTitle": "I take the time to understand",
+  "trust": "With me, online · 15–20 min · Free",
   "journeyTitle": "Here's how it works.",
   "calendly": "Open Calendly",
   "modalText": "Pick a date and time below. New here? Start with The Introduction, a free 15–20 minute call.",
-  "aboutText": "Elsa is a women's health practitioner and an Osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.\n\nBut this work isn't just professional. It's personal.\n\nFor years, Elsa struggled with acne, PMS, gut issues and painful periods. Put on the pill at a young age, she spent seven years not knowing what her natural cycle even felt like. When she came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion. Despite being the most active she'd ever been. After a year of struggling and little real guidance from her gynaecologist, she accepted a coil out of sheer desperation.\n\nIt was during that time that everything shifted. She started working on her gut health, her nutrition, her inflammation. She started actually listening to her body. Four years later she removed the coil, and though it took time to readjust, for the first time things started to feel different. Less pain. Less PMS. More energy. Periods that made sense. A body she finally understood.\n\nThat experience is exactly why The Cycle Space exists. Because no woman should spend years feeling dismissed, confused or disconnected from her own body.\n\nElsa sees the whole person, not just the symptom. And she finds this work genuinely, endlessly fascinating, because every body has a story worth understanding.",
+  "aboutText": "I'm a women's health practitioner and an osteopath. I trained in London, and I have always been fascinated by how the female body works.\n\nBut this work isn't just professional. It's personal.\n\nFor years, I struggled with acne, PMS, gut issues and painful periods. I went on the pill at a young age and spent seven years not knowing what my natural cycle even felt like. When I came off it, everything came back, but worse: the pain, the inflammation, the weight changes, the exhaustion, even though I was the most active I had ever been. After a year of struggling, with little real guidance from my gynaecologist, I accepted a coil because I could see no other option.\n\nThat is when things started to shift. I began working on my gut health, my nutrition and my inflammation, and I started actually listening to my body. Four years later I had the coil removed. It took time to readjust, but for the first time things felt different: less pain, less PMS, more energy, periods that made sense.\n\nThat experience is why The Cycle Space exists. I don't want other women to spend years feeling dismissed, confused or disconnected from their own body.\n\nToday I look at you as a whole person, not just at your symptoms. And I still find this work fascinating.",
   "heroSecondary": "Explore the services",
   "disclaimer": "Education and support — does not replace urgent medical care. If you are in distress or experiencing severe symptoms, please contact your doctor or local emergency services.",
   "guideDownloadAgain": "Download again",
-  "manifestoQuote": "Your body is not a problem to fix. It is a system to understand.",
+  "manifestoQuote": "Once you understand what is happening in your body, it is already less frightening.",
   "credentials": [
     "M.Ost. University College of Osteopathy",
     "7+ years clinical practice",
@@ -148,10 +148,10 @@
     "more": "Full details"
   },
   "method": {
-    "kicker": "Find your rhythm",
+    "kicker": "My method",
     "title": "The Inner Rhythm Method",
-    "intro": "A 4-phase journey for women ready to understand their bodies, work with their cycle, and find their rhythm — for good.",
-    "cta": "Discover the method",
+    "intro": "I call the way I work The Inner Rhythm Method. It is four steps we go through together, in one-to-one sessions and at your pace.",
+    "cta": "See the method in detail",
     "programmeKicker": "1:1 programme",
     "programmeTitle": "Your Inner Rhythm",
     "programmeMeta": "6-month 1:1 coaching · English & French",
@@ -168,7 +168,9 @@
           "\"Normal\" doesn't mean optimal"
         ],
         "outcome": "Awareness creates the opening for change — what gets surfaced gets released.",
-        "quote": "I'm not crazy. My body has been communicating with me all along."
+        "quote": "I'm not crazy. My body has been communicating with me all along.",
+        "homeTitle": "Understand",
+        "short": "We go back over your history, your cycle and your symptoms to see what is really going on."
       },
       {
         "num": "02",
@@ -181,7 +183,9 @@
           "Nervous system regulation"
         ],
         "outcome": "You stop the overwhelm and start experiencing what it feels like to consistently support your body.",
-        "quote": "I've stopped trying everything. I'm finally doing what works for me."
+        "quote": "I've stopped trying everything. I'm finally doing what works for me.",
+        "homeTitle": "Build the basics",
+        "short": "We adjust a few habits: food, sleep, digestion, stress. Not many, but ones you can keep."
       },
       {
         "num": "03",
@@ -194,7 +198,9 @@
           "Connecting symptoms to patterns"
         ],
         "outcome": "You develop a relationship with your body built on trust and understanding, not fear or guesswork.",
-        "quote": "It's all connected — and I finally understand how."
+        "quote": "It's all connected — and I finally understand how.",
+        "homeTitle": "Listen to your body",
+        "short": "You learn to read your cycle and to notice what you need at each point in it."
       },
       {
         "num": "04",
@@ -207,9 +213,12 @@
           "In rhythm with your body and your life"
         ],
         "outcome": "You become a woman who understands her body deeply and lives in tune with her natural rhythm.",
-        "quote": "I'm no longer controlled by my symptoms. I'm finally in rhythm with my body."
+        "quote": "I'm no longer controlled by my symptoms. I'm finally in rhythm with my body.",
+        "homeTitle": "Find your balance",
+        "short": "You keep what works for you and carry on by yourself, without depending on me."
       }
-    ]
+    ],
+    "homeTitle": "How I work with you"
   },
   "guideEmailLabel": "Your email",
   "guideConsentRequired": "Please tick the box to receive the guide by email, or use the direct download below.",
@@ -220,6 +229,10 @@
   "faq": {
     "title": "Good to know",
     "items": [
+      {
+        "q": "Who is behind The Cycle Space?",
+        "a": "Me, Elsa. I'm an osteopath, a graduate of the University College of Osteopathy in London, and a women's health practitioner. I'm the person you speak to on the call and in every session. I'm not a medical doctor: I don't diagnose or prescribe treatment."
+      },
       {
         "q": "Which languages are the sessions in?",
         "a": "Sessions are fully online and available in English or French."
@@ -242,7 +255,7 @@
   "mobileHeroText": "",
   "concerns": {
     "title": "What brings you here?",
-    "note": "Education and support, not a diagnosis or a treatment.",
+    "note": "I don't diagnose or prescribe treatment: my work sits alongside your medical care.",
     "items": [
       {
         "icon": "drop",
@@ -261,7 +274,7 @@
       },
       {
         "icon": "waves",
-        "title": "Hormonal changes",
+        "title": "Perimenopause & menopause",
         "link": "services"
       },
       {
@@ -274,27 +287,30 @@
         "title": "Understanding fertility signs",
         "link": "basal"
       }
-    ]
+    ],
+    "unsure": "Not sure which box is yours, or ticking several at once? That's very common. Tell me what's going on in a first call and we'll untangle it together."
   },
   "meetElsa": {
-    "title": "Meet Elsa",
-    "text": "Elsa is a women's health practitioner and an osteopath, trained in London, and genuinely fascinated by the intelligence of the female body.",
-    "cta": "Meet Elsa"
+    "title": "Why I do this work",
+    "text": "For years I lived with acne, PMS, gut issues and painful periods. I spent seven years on the pill without knowing what my own cycle felt like. When I came off it, everything came back, and I had little real guidance.\n\nI did end up understanding my body, but it took years. I started The Cycle Space so you don't have to work it out alone.",
+    "cta": "Read my story"
   },
   "offersTitle": "Ways to work together",
   "offersCta": "See all the details",
   "about": {
-    "approachKicker": "Her approach",
+    "approachKicker": "My approach",
     "forYouKicker": "Is this for you?",
-    "storyTitle": "Elsa's story",
-    "storyToggle": "Read Elsa's story"
+    "storyTitle": "My story",
+    "storyToggle": "Read my story",
+    "intro": "I'm an osteopath, trained in London, and a women's health practitioner, with over seven years of clinical practice. I'm not a medical doctor: my work sits alongside your medical care."
   },
   "imageAlts": {
-    "hero": "A relaxed woman sitting by the sea at sunset, eyes closed and smiling",
     "online": "A smiling woman during an online consultation on her laptop",
     "tool": "A terracotta cycle journal with moon phases on a linen blanket",
     "blog": "A cup of herbal tea with dried lavender on a soft blanket",
-    "elsa": "Elsa, osteopath and women's health practitioner"
+    "elsa": "Elsa, an osteopath, during a session with a patient"
   },
-  "finalCta": "Book my free call"
+  "finalCta": "Book my free call",
+  "heroKicker": "Elsa · Osteopath & women's health practitioner",
+  "heroCaption": "Elsa, during an osteopathy session"
 }

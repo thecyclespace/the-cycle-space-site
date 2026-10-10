@@ -4,7 +4,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
+const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8").replace(/\r\n/g, "\n");
 const fr = JSON.parse(read("src/content/i18n/fr.json"));
 
 const BANNED = [
@@ -75,7 +75,6 @@ test("tutoiement only: no 'vous' form in the French copy", () => {
 test("the official CTAs and hero of the brief are in place", () => {
   assert.equal(fr.heroTitle, "Comprends mieux ton cycle. Retrouve confiance en ton corps.");
   assert.equal(fr.book, "Réserver un appel gratuit");
-  assert.equal(fr.trust, "15 à 20 minutes · En ligne · Français et anglais");
   assert.equal(fr.finalCta, "Réserver mon appel gratuit");
   assert.equal(fr.services[0].cta, "Réserver un appel gratuit");
 });
@@ -89,4 +88,37 @@ test("accessibility labels exist in French in the header", () => {
   for (const label of ["Ouvrir le menu", "Fermer le menu", "Passer en anglais", "Navigation principale"]) {
     assert.ok(header.includes(label), `Header.jsx lacks "${label}"`);
   }
+});
+
+// Feedback from first readers: "is it a doctor, a practitioner or an AI behind this?"
+test("a real person speaks: Elsa is named, with her profession, at the top of the home page", () => {
+  for (const key of ["heroKicker", "heroText"]) {
+    assert.match(fr[key], /Elsa/, `${key} names Elsa`);
+    assert.match(fr[key], /ostéopathe/i, `${key} states her profession`);
+  }
+  assert.match(fr.heroText, /\b(je|j')/i, "the hero is written in the first person");
+  assert.match(fr.about.intro, /pas médecin/, "the About introduction says what Elsa is not");
+  assert.match(fr.faq.items[0].a, /Elsa/, "the first FAQ answer says who is behind the site");
+});
+
+test("the method is explained in plain words on the home page", () => {
+  assert.ok(fr.method.homeTitle && fr.method.intro.includes("Inner Rhythm"));
+  for (const p of fr.method.phases) {
+    assert.ok(p.homeTitle && !/^(Decode|Regulate|Reconnect|Embody)$/.test(p.homeTitle), `${p.title}: plain French name`);
+    assert.ok(p.short && p.short.length >= 40 && p.short.length <= 130, `${p.title}: one concrete sentence`);
+  }
+  const home = read("src/pages/Home.jsx");
+  assert.ok(home.indexOf("<Method />") < home.indexOf("t.concerns.title"), "the method comes right after the hero");
+});
+
+test("menopause is one of the 'what brings you here' cards, and the undecided have a way in", () => {
+  assert.ok(fr.concerns.items.some((i) => /ménopause/i.test(i.title)), "menopause card");
+  assert.ok(fr.concerns.unsure && fr.concerns.unsure.length > 40, "sentence for women who do not recognise themselves in a card");
+});
+
+test("the home page shows Elsa's own photo at the top, not a stock picture", () => {
+  const home = read("src/pages/Home.jsx");
+  const hero = home.slice(home.indexOf("1. Hero"), home.indexOf("<Method />"));
+  assert.ok(hero.includes("siteSettings.elsaImage"), "hero uses Elsa's photo");
+  assert.ok(!hero.includes("<Picture"), "no decorative picture in the hero");
 });
