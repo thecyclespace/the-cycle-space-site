@@ -73,3 +73,7 @@ Clique sur la **coche verte** (Save) à droite de chaque ligne.
 
 - Active la **double authentification (2FA)** sur le compte Namecheap : Profile → Security.
 - Ne partage plus les mots de passe par WhatsApp ; utilise plutôt un gestionnaire de mots de passe, ou l'ajout d'un accès délégué (Profile → Sharing & Access).
+
+## Après le passage au domaine thecyclespace.com
+
+Dans `public/admin/config.yml`, remplacer `thecyclespace.github.io/the-cycle-space-site` par `thecyclespace.com` aux lignes `site_url`, `display_url` et `logo_url` (liens « voir le site » et logo du back-office).

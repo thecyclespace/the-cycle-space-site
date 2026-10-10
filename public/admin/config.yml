@@ -35,9 +35,9 @@ media_libraries:
 
 # URL du site (utilisée pour le bouton "View" du CMS).
 # À mettre à jour si le domaine définitif change.
-site_url: https://thecyclespace.com
-display_url: thecyclespace.com
-logo_url: /elsa.jpg
+site_url: https://thecyclespace.github.io/the-cycle-space-site
+display_url: thecyclespace.github.io/the-cycle-space-site
+logo_url: https://thecyclespace.github.io/the-cycle-space-site/brand/icon-red.png
 
 # IMPORTANT — Pour préserver la structure plate des fichiers JSON et ne pas
 # casser les composants React, on n'utilise PAS de `widget: object` containers
@@ -120,7 +120,7 @@ collections:
     editor: { preview: false }
     files:
       - name: home_en
-        label: "Tous les textes (anglais)"
+        label: "👉 Ouvrir : tous les textes en anglais"
         file: "src/content/i18n/en.json"
         format: "json"
         fields:
@@ -407,7 +407,7 @@ collections:
     editor: { preview: false }
     files:
       - name: home_fr
-        label: "Tous les textes (français)"
+        label: "👉 Ouvrir : tous les textes en français"
         file: "src/content/i18n/fr.json"
         format: "json"
         fields:
@@ -692,7 +692,7 @@ collections:
     editor: { preview: false }
     files:
       - name: site
-        label: "Configuration générale"
+        label: "👉 Ouvrir : coordonnées, Calendly, guides PDF"
         file: "src/content/settings/site.json"
         format: "json"
         fields:
@@ -719,7 +719,7 @@ collections:
     editor: { preview: false }
     files:
       - name: site_images
-        label: "Images principales"
+        label: "👉 Ouvrir : les images du site"
         file: "src/content/settings/images.json"
         format: "json"
         fields:
@@ -735,7 +735,7 @@ collections:
     editor: { preview: false }
     files:
       - name: meta
-        label: "Métadonnées SEO"
+        label: "👉 Ouvrir : titres et descriptions Google (anglais et français)"
         file: "src/content/seo/seo.json"
         format: "json"
         fields:
@@ -771,6 +771,12 @@ collections:
                     fields:
                       - { label: "Titre (Google)", name: "title", widget: "string" }
                       - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "Page introuvable (erreur 404)"
+                    name: "notFound"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
           - label: "🇫🇷 Français"
             name: "fr"
             widget: "object"
@@ -799,6 +805,12 @@ collections:
                       - { label: "Description (Google)", name: "description", widget: "text" }
                   - label: "À propos"
                     name: "about"
+                    widget: "object"
+                    fields:
+                      - { label: "Titre (Google)", name: "title", widget: "string" }
+                      - { label: "Description (Google)", name: "description", widget: "text" }
+                  - label: "Page introuvable (erreur 404)"
+                    name: "notFound"
                     widget: "object"
                     fields:
                       - { label: "Titre (Google)", name: "title", widget: "string" }
