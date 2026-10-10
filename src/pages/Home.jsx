@@ -25,10 +25,13 @@ export default function Home() {
 
   return (
     <>
-      {/* 1. Hero: promise, one action, one picture */}
+      {/* 1. Hero: who is speaking (Elsa, her real photo), the promise, one action */}
       <section className="bg-[#F4EBDD] px-5 pb-12 pt-24 md:px-8 md:pb-24 md:pt-36">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-14">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[1.2fr_0.8fr] md:gap-14">
           <div>
+            {t.heroKicker && (
+              <p className="mb-3 text-xs uppercase tracking-[0.16em] text-[#7C3C3C] md:mb-4 md:text-sm">{t.heroKicker}</p>
+            )}
             <h1 className="break-words font-serif text-[clamp(2rem,8.6vw,2.7rem)] leading-[1.08] text-[#362E28] sm:text-5xl md:text-5xl lg:text-6xl">
               {t.mobileHeroTitle && t.mobileHeroTitle.trim() ? (
                 <>
@@ -62,19 +65,27 @@ export default function Home() {
             </div>
             <p className="mt-4 text-sm text-[#5d5049]">{t.trust}</p>
           </div>
-          <div className="relative">
-            <Picture
-              src={images.heroImage}
-              alt={alts.hero}
-              priority
-              sizes="(min-width: 768px) 46vw, 100vw"
-              className="aspect-[5/4] w-full rounded-[2rem] object-cover object-[30%_45%] shadow-xl shadow-[#7C3C3C]/10 md:aspect-[4/5] md:rounded-[2.5rem] md:object-[26%_50%]"
-            />
-          </div>
+          <figure className="mx-auto w-full max-w-[300px] md:max-w-[400px]">
+            <div className="overflow-hidden rounded-[2rem] bg-[#DCCDB8] p-2 md:rounded-[2.5rem] md:p-3">
+              <img
+                src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
+                alt={alts.elsa || "Elsa"}
+                width="400"
+                height="400"
+                loading="eager"
+                fetchpriority="high"
+                className="aspect-square w-full rounded-[1.6rem] object-cover md:rounded-[2rem]"
+              />
+            </div>
+            {t.heroCaption && <figcaption className="mt-3 text-center text-sm text-[#6e625b]">{t.heroCaption}</figcaption>}
+          </figure>
         </div>
       </section>
 
-      {/* 2. What brings you here */}
+      {/* 2. How Elsa works: the method in plain words */}
+      <Method />
+
+      {/* 3. What brings you here */}
       <section className="bg-[#FBF7EF] px-5 py-14 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
           <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
@@ -94,43 +105,39 @@ export default function Home() {
               </Link>
             ))}
           </Reveal>
-          <p className="mt-6 text-sm text-[#6e625b]">{t.concerns.note}</p>
+          {t.concerns.unsure && (
+            <div className="mt-8 max-w-2xl md:mt-10">
+              <p className="text-base leading-7 text-[#43372F] md:text-lg md:leading-8">{t.concerns.unsure}</p>
+              <button
+                type="button"
+                onClick={() => openBooking("intro")}
+                className="mt-2 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[#5C2B2B] underline-offset-4 hover:text-[#7C3C3C] hover:underline"
+              >
+                {t.book} <Icon name="arrow" size={16} />
+              </button>
+            </div>
+          )}
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-[#6e625b]">{t.concerns.note}</p>
         </div>
       </section>
 
-      {/* 3. Method (compact) */}
-      <Method />
-
-      {/* 4. Meet Elsa */}
+      {/* 4. Why Elsa does this work (her story, in her words) */}
       <section className="bg-[#F4EBDD] px-5 py-14 md:px-8 md:py-24">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
-          <div className="mx-auto w-full max-w-[260px] md:max-w-none">
-            <img
-              src={`${import.meta.env.BASE_URL}${siteSettings.elsaImage}`}
-              alt={alts.elsa || "Elsa"}
-              width="400"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              className="aspect-square w-full rounded-[2rem] object-cover md:rounded-[2.5rem]"
-            />
-          </div>
-          <div>
-            <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
-              {t.meetElsa.title}
-            </h2>
-            <p className="mt-4 text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.meetElsa.text}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {t.credentials.slice(0, 2).map((c) => (
-                <li key={c} className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-4 py-2 text-sm text-[#5d5049]">
-                  {c}
-                </li>
-              ))}
-            </ul>
-            <Button to={path("/about")} variant="outline" className="mt-7 min-h-[48px] px-7 text-[#362E28]">
-              {t.meetElsa.cta} <Icon name="arrow" size={16} />
-            </Button>
-          </div>
+        <div className="mx-auto max-w-3xl">
+          <h2 className="break-words font-serif text-3xl leading-tight text-[#362E28] sm:text-4xl md:text-5xl">
+            {t.meetElsa.title}
+          </h2>
+          <p className="mt-4 whitespace-pre-line text-base leading-7 text-[#5d5049] md:mt-6 md:text-lg md:leading-8">{t.meetElsa.text}</p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {t.credentials.slice(0, 2).map((c) => (
+              <li key={c} className="rounded-full border border-[#DCCDB8] bg-[#FBF7EF] px-4 py-2 text-sm text-[#5d5049]">
+                {c}
+              </li>
+            ))}
+          </ul>
+          <Button to={path("/about")} variant="outline" className="mt-7 min-h-[48px] px-7 text-[#362E28]">
+            {t.meetElsa.cta} <Icon name="arrow" size={16} />
+          </Button>
         </div>
       </section>
 

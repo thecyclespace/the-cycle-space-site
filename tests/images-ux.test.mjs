@@ -42,7 +42,7 @@ test("no heavy raw PNG is shipped in public/ (originals stay in assets-source/)"
 
 test("images used on the home page have an alternative text in both languages", () => {
   for (const data of [en, fr]) {
-    for (const k of ["hero", "tool"]) assert.ok(data.imageAlts[k] && data.imageAlts[k].length > 15, `imageAlts.${k}`);
+    for (const k of ["elsa", "tool"]) assert.ok(data.imageAlts[k] && data.imageAlts[k].length > 15, `imageAlts.${k}`);
   }
 });
 

@@ -79,7 +79,7 @@ export default function Method({ detailed = false }) {
               {detailed ? m.programmeKicker : m.kicker}
             </p>
             <h2 className="break-words font-serif text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              {detailed ? m.programmeTitle : m.title}
+              {detailed ? m.programmeTitle : m.homeTitle || m.title}
             </h2>
             {detailed && (
               <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[#DCCDB8] md:text-base">{m.programmeMeta}</p>
@@ -87,7 +87,7 @@ export default function Method({ detailed = false }) {
           </div>
           <div>
             {detailed && <p className="mb-3 font-serif text-xl text-[#FBF7EF] md:text-2xl">{m.title}</p>}
-            <p className={`text-base leading-7 text-[#E7D8C8] md:text-lg md:leading-8 ${detailed ? "" : "hidden md:block"}`}>{m.intro}</p>
+            <p className="text-base leading-7 text-[#E7D8C8] md:text-lg md:leading-8">{m.intro}</p>
           </div>
         </div>
 
@@ -107,18 +107,22 @@ export default function Method({ detailed = false }) {
           </div>
         ) : (
           <>
-            <Reveal as="ol" className="mt-8 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4 md:gap-5">
+            <Reveal as="ol" className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-14 md:gap-5 lg:grid-cols-4">
               {m.phases.map((phase) => (
                 <li
                   key={phase.num}
-                  className="rounded-[1.5rem] border border-[#FBF7EF]/15 bg-[#43372F]/60 p-4 md:rounded-[2rem] md:p-7"
+                  className="flex gap-4 rounded-[1.5rem] border border-[#FBF7EF]/15 bg-[#43372F]/60 p-4 md:rounded-[2rem] md:p-6 lg:block"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FBF7EF]/10 text-[#D4887F] md:h-12 md:w-12">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FBF7EF]/10 text-[#D4887F] md:h-12 md:w-12">
                     <Icon name={PHASE_ICONS[phase.num] || "sun"} size={22} />
                   </span>
-                  <p className="mt-4 text-xs text-[#D4887F]">{phase.num}</p>
-                  <h3 className="font-serif text-xl leading-tight md:text-3xl">{phase.title}</h3>
-                  <p className="mt-2 text-xs uppercase tracking-[0.12em] text-[#DCCDB8] md:text-sm md:tracking-[0.16em]">{phase.tag}</p>
+                  <div className="lg:mt-4">
+                    <p className="text-xs uppercase tracking-[0.12em] text-[#D4887F]">
+                      {phase.num} · {phase.title}
+                    </p>
+                    <h3 className="mt-1 font-serif text-xl leading-tight md:text-2xl">{phase.homeTitle || phase.tag}</h3>
+                    {phase.short && <p className="mt-2 text-base leading-6 text-[#E7D8C8]">{phase.short}</p>}
+                  </div>
                 </li>
               ))}
             </Reveal>
